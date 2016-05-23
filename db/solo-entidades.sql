@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `models`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `models` (
-  `modelId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `modelName` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `modelYear` varchar(4) COLLATE latin1_spanish_ci NOT NULL,
-  `modelVersion` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
-  `modelDescription` varchar(250) COLLATE latin1_spanish_ci NOT NULL
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `year` varchar(4) COLLATE latin1_spanish_ci NOT NULL,
+  `version` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `description` varchar(250) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,8 +39,8 @@ DROP TABLE IF EXISTS `dimensions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dimensions` (
-  `dimId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `dimName` varchar(30) COLLATE latin1_spanish_ci NOT NULL
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,8 +52,8 @@ DROP TABLE IF EXISTS `factors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `factors` (
-  `factorId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `factorName` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `definition` varchar(2048) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -66,13 +66,13 @@ DROP TABLE IF EXISTS `modelitems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `modelitems` (
-  `modItemId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `modelId` INT NOT NULL,
-  FOREIGN KEY (modelId) REFERENCES models(modelId) ON DELETE CASCADE,
+  FOREIGN KEY (modelId) REFERENCES models(id) ON DELETE CASCADE,
   `dimId`  INT NOT NULL,
-  FOREIGN KEY (dimId) REFERENCES dimensions(dimId) ON DELETE CASCADE,
+  FOREIGN KEY (dimId) REFERENCES dimensions(id) ON DELETE CASCADE,
   `factorId`   INT NOT NULL,
-  FOREIGN KEY (factorId) REFERENCES factors(factorId) ON DELETE CASCADE,
+  FOREIGN KEY (factorId) REFERENCES factors(id) ON DELETE CASCADE,
   `impact` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
   `weight` float NOT NULL,
   `interpretation` varchar(2048) COLLATE latin1_spanish_ci NOT NULL,
@@ -88,9 +88,9 @@ DROP TABLE IF EXISTS `questionnaires`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questionnaires` (
-  `questionnaireId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `modelId` INT,
-  FOREIGN KEY (modelId) REFERENCES models(modelId) ON DELETE CASCADE,
+  FOREIGN KEY (modelId) REFERENCES models(id) ON DELETE CASCADE,
   `name` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `version` varchar(10) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -104,11 +104,11 @@ DROP TABLE IF EXISTS `assessmentlines`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assessmentlines` (
-  `lineId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `questionnaireId` INT NOT NULL,
-  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(questionnaireId) ON DELETE CASCADE,
+  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(id) ON DELETE CASCADE,
   `modItemId` INT NOT NULL,
-  FOREIGN KEY (modItemId) REFERENCES modelitems(modItemId) ON DELETE CASCADE,
+  FOREIGN KEY (modItemId) REFERENCES modelitems(id) ON DELETE CASCADE,
   `type` varchar(20) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -121,8 +121,8 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
-  `productId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `productname` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `version` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
   `provider` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(250) COLLATE latin1_spanish_ci NOT NULL
@@ -137,11 +137,11 @@ DROP TABLE IF EXISTS `linevalues`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `linevalues` (
-  `lineId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `questionnaireId` INT NOT NULL,
-  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(questionnaireId) ON DELETE CASCADE,
+  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(id) ON DELETE CASCADE,
   `productId` INT NOT NULL,
-  FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE,
+  FOREIGN KEY (productId) REFERENCES products(id) ON DELETE CASCADE,
   `value` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `date` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `time` varchar(5) COLLATE latin1_spanish_ci NOT NULL
@@ -156,13 +156,13 @@ DROP TABLE IF EXISTS `sourcesfiles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sourcesfiles` (
-  `sourcesfilesId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `questionnaireId` INT NOT NULL,
-  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(questionnaireId) ON DELETE CASCADE,
+  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(id) ON DELETE CASCADE,
   `lineId` INT NOT NULL,
-  FOREIGN KEY (lineId) REFERENCES linevalues(lineId) ON DELETE CASCADE,
+  FOREIGN KEY (lineId) REFERENCES linevalues(id) ON DELETE CASCADE,
   `productId` INT NOT NULL,
-  FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE,
+  FOREIGN KEY (productId) REFERENCES products(id) ON DELETE CASCADE,
   `date` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `time` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `filename` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
@@ -178,13 +178,13 @@ DROP TABLE IF EXISTS `sourcesurl`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sourcesurl` (
-  `sourcesurlId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `questionnaireId` INT NOT NULL,
-  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(questionnaireId) ON DELETE CASCADE,
+  FOREIGN KEY (questionnaireId) REFERENCES questionnaires(id) ON DELETE CASCADE,
   `lineId` INT NOT NULL,
-  FOREIGN KEY (lineId) REFERENCES linevalues(lineId) ON DELETE CASCADE,
+  FOREIGN KEY (lineId) REFERENCES linevalues(id) ON DELETE CASCADE,
   `productId` INT NOT NULL,
-  FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE,
+  FOREIGN KEY (productId) REFERENCES products(id) ON DELETE CASCADE,
   `date` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `time` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `url` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
