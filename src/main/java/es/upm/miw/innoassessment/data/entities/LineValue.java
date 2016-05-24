@@ -30,9 +30,7 @@ public class LineValue {
 	@Column(nullable = false)
 	private String time;
 
-	public LineValue(int id, Questionnarie questionnarie, Product product, String value, String date, String time) {
-		super();
-		this.id = id;
+	public LineValue(Questionnarie questionnarie, Product product, String value, String date, String time) {
 		this.questionnarie = questionnarie;
 		this.product = product;
 		this.value = value;

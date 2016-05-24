@@ -37,10 +37,8 @@ public class SourceFile {
 	@Column(nullable = false)
 	private String realpath;
 
-	public SourceFile(int id, Questionnarie questionnarie, LineValue lineValue, Product product, String date,
+	public SourceFile(Questionnarie questionnarie, LineValue lineValue, Product product, String date,
 			String time, String filename, String realpath) {
-		super();
-		this.id = id;
 		this.questionnarie = questionnarie;
 		this.lineValue = lineValue;
 		this.product = product;

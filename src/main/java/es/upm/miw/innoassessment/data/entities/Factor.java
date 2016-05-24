@@ -17,9 +17,7 @@ public class Factor {
 	@Column(nullable = false)
 	private String definition;
 
-	public Factor(int id, String name, String definition) {
-		super();
-		this.id = id;
+	public Factor(String name, String definition) {
 		this.name = name;
 		this.definition = definition;
 	}

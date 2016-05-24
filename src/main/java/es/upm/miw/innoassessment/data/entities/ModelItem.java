@@ -37,10 +37,8 @@ public class ModelItem {
 	@Column(nullable = false)
 	private String help;
 
-	public ModelItem(int id, Model model, Dimension dimension, Factor factor, String impact, String weight,
+	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, String weight,
 			String interpretation, String help) {
-		super();
-		this.id = id;
 		this.model = model;
 		this.dimension = dimension;
 		this.factor = factor;

@@ -34,10 +34,8 @@ public class SourceUrl {
 	@Column(nullable = false)
 	private String url;
 
-	public SourceUrl(int id, Questionnarie questionnarie, LineValue lineValue, Product product, String date,
+	public SourceUrl(Questionnarie questionnarie, LineValue lineValue, Product product, String date,
 			String time, String url) {
-		super();
-		this.id = id;
 		this.questionnarie = questionnarie;
 		this.lineValue = lineValue;
 		this.product = product;

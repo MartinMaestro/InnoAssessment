@@ -23,9 +23,7 @@ public class Product {
 	@Column(nullable = false)
 	private String description;
 
-	public Product(int id, String name, String version, String provider, String description) {
-		super();
-		this.id = id;
+	public Product(String name, String version, String provider, String description) {
 		this.name = name;
 		this.version = version;
 		this.provider = provider;

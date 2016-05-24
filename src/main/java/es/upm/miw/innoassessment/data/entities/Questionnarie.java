@@ -23,9 +23,7 @@ public class Questionnarie {
 	@Column(nullable = false)
 	private String version;
 
-	public Questionnarie(int id, Model model, String name, String version) {
-		super();
-		this.id = id;
+	public Questionnarie(Model model, String name, String version) {
 		this.model = model;
 		this.name = name;
 		this.version = version;

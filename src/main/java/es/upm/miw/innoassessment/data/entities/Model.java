@@ -23,9 +23,7 @@ public class Model {
 	@Column(nullable = false)
 	private String description;
 
-	public Model(int id, String name, String year, String version, String description) {
-		super();
-		this.id = id;
+	public Model(String name, String year, String version, String description) {
 		this.name = name;
 		this.year = year;
 		this.version = version;

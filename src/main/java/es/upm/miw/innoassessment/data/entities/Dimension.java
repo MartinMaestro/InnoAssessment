@@ -14,9 +14,7 @@ public class Dimension {
 	@Column(unique = true, nullable = false)
 	private String name;
 
-	public Dimension(int id, String name) {
-		super();
-		this.id = id;
+	public Dimension(String name) {
 		this.name = name;
 	}
 

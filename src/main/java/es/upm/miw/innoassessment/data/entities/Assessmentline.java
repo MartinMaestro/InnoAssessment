@@ -26,9 +26,7 @@ public class Assessmentline {
 	private String type;
 
 
-	public Assessmentline(int id, Questionnarie questionnarie, ModelItem modelItem, String type) {
-		super();
-		this.id = id;
+	public Assessmentline(Questionnarie questionnarie, ModelItem modelItem, String type) {
 		this.questionnarie = questionnarie;
 		this.modelItem = modelItem;
 		this.type = type;
