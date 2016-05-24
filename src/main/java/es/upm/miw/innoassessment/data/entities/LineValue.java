@@ -15,7 +15,7 @@ public class LineValue {
 
 	@ManyToOne
 	@JoinColumn
-	private Questionnarie questionnarie;
+	private Questionnaire questionnaire;
 
 	@ManyToOne
 	@JoinColumn
@@ -30,8 +30,8 @@ public class LineValue {
 	@Column(nullable = false)
 	private String time;
 
-	public LineValue(Questionnarie questionnarie, Product product, String value, String date, String time) {
-		this.questionnarie = questionnarie;
+	public LineValue(Questionnaire questionnaire, Product product, String value, String date, String time) {
+		this.questionnaire = questionnaire;
 		this.product = product;
 		this.value = value;
 		this.date = date;

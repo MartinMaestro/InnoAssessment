@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-public class Questionnarie {
+public class Questionnaire {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -23,7 +23,7 @@ public class Questionnarie {
 	@Column(nullable = false)
 	private String version;
 
-	public Questionnarie(Model model, String name, String version) {
+	public Questionnaire(Model model, String name, String version) {
 		this.model = model;
 		this.name = name;
 		this.version = version;

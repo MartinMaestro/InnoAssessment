@@ -15,7 +15,7 @@ public class SourceFile {
 
 	@ManyToOne
 	@JoinColumn
-	private Questionnarie questionnarie;
+	private Questionnaire questionnaire;
 
 	@ManyToOne
 	@JoinColumn
@@ -37,9 +37,9 @@ public class SourceFile {
 	@Column(nullable = false)
 	private String realpath;
 
-	public SourceFile(Questionnarie questionnarie, LineValue lineValue, Product product, String date,
-			String time, String filename, String realpath) {
-		this.questionnarie = questionnarie;
+	public SourceFile(Questionnaire questionnaire, LineValue lineValue, Product product, String date,
+					  String time, String filename, String realpath) {
+		this.questionnaire = questionnaire;
 		this.lineValue = lineValue;
 		this.product = product;
 		this.date = date;
