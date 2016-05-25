@@ -15,7 +15,7 @@ public class AssessmentLine {
 
 	@ManyToOne
 	@JoinColumn
-	private Questionnarie questionnarie;
+	private Questionnaire questionnaire;
 
 	@ManyToOne
 	@JoinColumn
@@ -25,9 +25,8 @@ public class AssessmentLine {
 	@Column(nullable = false)
 	private String type;
 
-
-	public AssessmentLine(Questionnarie questionnarie, ModelItem modelItem, String type) {
-		this.questionnarie = questionnarie;
+	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, String type) {
+		this.questionnaire = questionnaire;
 		this.modelItem = modelItem;
 		this.type = type;
 	}

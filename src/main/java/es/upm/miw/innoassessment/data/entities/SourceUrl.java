@@ -15,7 +15,7 @@ public class SourceUrl {
 
 	@ManyToOne
 	@JoinColumn
-	private Questionnarie questionnarie;
+	private Questionnaire questionnaire;
 
 	@ManyToOne
 	@JoinColumn
@@ -34,9 +34,9 @@ public class SourceUrl {
 	@Column(nullable = false)
 	private String url;
 
-	public SourceUrl(Questionnarie questionnarie, LineValue lineValue, Product product, String date,
-			String time, String url) {
-		this.questionnarie = questionnarie;
+	public SourceUrl(Questionnaire questionnaire, LineValue lineValue, Product product, String date,
+					 String time, String url) {
+		this.questionnaire = questionnaire;
 		this.lineValue = lineValue;
 		this.product = product;
 		this.date = date;
