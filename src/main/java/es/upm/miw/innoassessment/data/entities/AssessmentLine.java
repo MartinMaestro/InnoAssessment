@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-public class Assessmentline {
+public class AssessmentLine {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -26,7 +26,7 @@ public class Assessmentline {
 	private String type;
 
 
-	public Assessmentline(Questionnarie questionnarie, ModelItem modelItem, String type) {
+	public AssessmentLine(Questionnarie questionnarie, ModelItem modelItem, String type) {
 		this.questionnarie = questionnarie;
 		this.modelItem = modelItem;
 		this.type = type;
