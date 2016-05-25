@@ -6,4 +6,5 @@ import es.upm.miw.innoassessment.data.entities.AssessmentLine;
 
 public interface AssessmentLineDao extends JpaRepository<AssessmentLine, Integer>{
 
+	
 }
