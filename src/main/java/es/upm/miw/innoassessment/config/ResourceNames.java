@@ -16,4 +16,6 @@ public class ResourceNames {
 
     public static final String SERVICES = "es.upm.miw.innoassessment.data.services";
 
+    public static final String PRESENTERS = "es.upm.miw.innoassessment.web";
+
 }
