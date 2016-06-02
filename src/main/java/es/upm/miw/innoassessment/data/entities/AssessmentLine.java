@@ -1,6 +1,8 @@
 package es.upm.miw.innoassessment.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,10 +27,10 @@ public class AssessmentLine {
 	private ModelItem modelItem;
 	
 	
-	@Column(nullable = false)
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private AssessmentType type;
 
-	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, String type) {
+	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, AssessmentType type) {
 		this.questionnaire = questionnaire;
 		this.modelItem = modelItem;
 		this.type = type;
