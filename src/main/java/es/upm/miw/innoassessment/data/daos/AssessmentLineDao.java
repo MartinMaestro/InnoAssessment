@@ -9,8 +9,8 @@ import es.upm.miw.innoassessment.data.entities.Questionnaire;
 
 public interface AssessmentLineDao extends JpaRepository<AssessmentLine, Integer>, AssessmentLineDaoExtended {
 
-	List<AssessmentLine> findByModel(ModelItem modelItem);
-	List<AssessmentLine> findByQuestionnarie(Questionnaire questionnarie);
+	List<AssessmentLine> findByModelItem(ModelItem modelItem);
+	List<AssessmentLine> findByQuestionnaire(Questionnaire questionnarie);
 
 
 }
