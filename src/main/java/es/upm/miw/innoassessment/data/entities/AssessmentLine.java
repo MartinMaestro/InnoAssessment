@@ -36,4 +36,13 @@ public class AssessmentLine {
 		this.type = type;
 	}
 	
+	public AssessmentLine(AssessmentType type) {		
+		this.type = type;
+	}
+
+	public AssessmentType getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

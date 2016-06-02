@@ -8,5 +8,7 @@
 </head>
 <body>
 <h1>Este es nuestro primer Home - INNOASSESSMENT</h1>
+    <p><a href="<c:url value='/assessmentLine-list'/>">- Lista de Assessment</a></p>
+
 </body>
 </html>
