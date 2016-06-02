@@ -1,4 +1,4 @@
-package web;
+package es.upm.miw.innoassessment.web;
 
 
 import org.springframework.context.annotation.Scope;
@@ -17,10 +17,6 @@ import java.util.List;
 @SessionAttributes("name")
 public class Presenter {
 
-    private static final List<String> THEMES = Arrays.asList("jsp", "bootstrap", "thymeleaf");
-
-    private String theme = THEMES.get(0);
-
     // Se ejecuta siempre y antes. Añade un atributo al Model
     @ModelAttribute("now")
     public String now() {
@@ -29,9 +25,8 @@ public class Presenter {
 
     @RequestMapping("/home")
     public String home(Model model) {
-        model.addAttribute("themes", THEMES);
         //La vista resultante no lleva extensión (.jsp) configurado en WebConfig.java
-        return theme + "/home";
+        return "jsp/home";
     }
 
 }
