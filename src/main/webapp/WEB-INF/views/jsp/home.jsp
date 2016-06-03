@@ -9,6 +9,9 @@
 <body>
 <h1>Este es nuestro primer Home - INNOASSESSMENT</h1>
     <p><a href="<c:url value='/assessmentLine-list'/>">- Lista de Assessment</a></p>
+    <p><a href="<c:url value='/dimension-list'/>">- Lista de Dimension</a></p>
+    <p><a href="<c:url value='/create-dimension'/>">- Crear una dimension</a></p>
+    
 
 </body>
 </html>

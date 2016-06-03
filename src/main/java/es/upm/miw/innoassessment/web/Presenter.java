@@ -5,16 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
+import es.upm.miw.innoassessment.business.controllers.DimensionController;
+import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -23,6 +28,9 @@ public class Presenter {
 	
 	@Autowired
     private AssessmentLineController assessmentLineController;
+	
+	@Autowired
+    private DimensionController dimensionController;
 
     // Se ejecuta siempre y antes. Añade un atributo al Model
     @ModelAttribute("now")
@@ -41,6 +49,39 @@ public class Presenter {
         ModelAndView modelAndView = new ModelAndView("jsp/assessmentLineList");
         modelAndView.addObject("assessmentLine", assessmentLineController.showAssessmentLines());
         return modelAndView;
+    }
+    
+    @RequestMapping("/dimension-list")
+    public ModelAndView listDimension(Model model) {
+        ModelAndView modelAndView = new ModelAndView("jsp/dimensionList");
+        modelAndView.addObject("dimension", dimensionController.showDimensions());
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
+    public String createCourt(Model model) {
+        model.addAttribute("dimension", new DimensionWrapper("prueba"));
+        return "jsp/createDimension";
+    }
+
+    @RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
+    public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()) {
+            if (dimensionController.createDimension(dimension.getName())) {
+                model.addAttribute("id", dimension.getId());
+                return "jsp/registrationSuccess";
+            } else {
+                bindingResult.rejectValue("id", "error.dimension", "Dimension ya existente");
+            }
+        }
+        return "jsp/createDimension";
+    }
+
+    @RequestMapping(value = {"/delete-dimension/{id}"})
+    public String deleteDimension(@PathVariable int id, Model model) {
+        dimensionController.deleteDimension(id);
+        model.addAttribute("dimensionList", dimensionController.showDimensions());
+        return "jsp/dimensionList";
     }
 
 }
