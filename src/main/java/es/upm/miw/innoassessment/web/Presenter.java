@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
+import es.upm.miw.innoassessment.data.entities.Dimension;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -54,24 +55,26 @@ public class Presenter {
     @RequestMapping("/dimension-list")
     public ModelAndView listDimension(Model model) {
         ModelAndView modelAndView = new ModelAndView("jsp/dimensionList");
-        modelAndView.addObject("dimension", dimensionController.showDimensions());
+        modelAndView.addObject("dimensionList", dimensionController.showDimensions());
         return modelAndView;
     }
     
     @RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
-    public String createCourt(Model model) {
-        model.addAttribute("dimension", new DimensionWrapper("prueba"));
+    public String createDimension(Model model) {    	
+       	model.addAttribute("dimension", new DimensionWrapper());     
         return "jsp/createDimension";
     }
 
     @RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
     public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
-        if (!bindingResult.hasErrors()) {
+    	if (!bindingResult.hasErrors()) {
             if (dimensionController.createDimension(dimension.getName())) {
-                model.addAttribute("id", dimension.getId());
+            	System.out.println("------------ CREATE DIMENSION SUBMIT ID:" +  dimension.getId()+"-NAME:"+dimension.getName());
+            	model.addAttribute("name", dimension.getName());
+            	model.addAttribute("id", dimension.getId());
                 return "jsp/registrationSuccess";
             } else {
-                bindingResult.rejectValue("id", "error.dimension", "Dimension ya existente");
+                bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
             }
         }
         return "jsp/createDimension";

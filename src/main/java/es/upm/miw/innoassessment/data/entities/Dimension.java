@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-public class Dimension {	
+public class Dimension {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -14,7 +14,11 @@ public class Dimension {
 	@Column(unique = true, nullable = false)
 	private String name;
 
+	public Dimension() {
+	}
+
 	public Dimension(String name) {
+		System.out.println("------------ CREATE DIMENSION ENTITY " + name);
 		this.name = name;
 	}
 
@@ -33,5 +37,5 @@ public class Dimension {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

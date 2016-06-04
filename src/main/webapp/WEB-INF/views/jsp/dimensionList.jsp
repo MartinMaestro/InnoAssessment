@@ -21,9 +21,9 @@
 		<tbody>
 			<c:forEach items="${dimensionList}" var="dimension">
 				<tr>
-					<td>${dimension.Id}</td>
+					<td>${dimension.id}</td>
 				    <td>${dimension.name}</td>
-				    <td><a href="<c:url value='/delete-dimension/${dimension.Id}' />">delete</a></td>
+				    <td><a href="<c:url value='/delete-dimension/${dimension.id}' />">delete</a></td>
 				    				
 				</tr>
 			</c:forEach>

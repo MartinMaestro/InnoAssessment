@@ -12,17 +12,18 @@ public class DimensionWrapper {
     public DimensionWrapper() {
     }
 
-    public DimensionWrapper(String name) {
+    public DimensionWrapper(int id, String name) {
         super();
+        this.id = id;
         this.name = name;
       
     }
 
     public DimensionWrapper(Dimension  dimension) {
-        this(dimension.getName());
+        this(dimension.getId(), dimension.getName());
     }
 
-	public Object getName() {
+	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
 	}
@@ -30,6 +31,11 @@ public class DimensionWrapper {
 	public Object getId() {
 		// TODO Auto-generated method stub
 		return id;
+	}
+
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		this.name = name;
 	}
 
     

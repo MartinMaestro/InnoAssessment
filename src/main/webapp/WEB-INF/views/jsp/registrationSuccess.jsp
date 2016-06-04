@@ -10,7 +10,7 @@
 <body>
 	<H1>Creación de Dimension correcta</H1>
 
-	<h3>La dimension (${dimension.Id}) ha sido creada satisfactoriamente</h3>
+	<h3>La dimension ${dimension.name} ha sido creada satisfactoriamente</h3>
 
 	<p><a href="<c:url value='/dimension-list' />">Ir a Lista de Dimensiones</a></p>
 

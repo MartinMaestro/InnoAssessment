@@ -25,8 +25,11 @@ public class DimensionController {
 
     
     public List<DimensionWrapper> showDimensions() {
+    	System.out.println("------------ CONTROLLER SHOWDIMENSIONS num dime: " + dimensionDao.count());
+
         List<DimensionWrapper> dimensionWrapperList = new ArrayList<>();
         for (Dimension dimension : dimensionDao.findAll()) {
+        	System.out.println("------------ CONTROLLER SHOWDIMENSIONS FOR id:"+dimension.getId() + "-name: " + dimension.getName());
         	dimensionWrapperList.add(new DimensionWrapper(dimension));
         }
         return dimensionWrapperList;
@@ -39,9 +42,11 @@ public class DimensionController {
 	}
 
 
-	public boolean createDimension(Object name) {
+	public boolean createDimension(String name) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println("------------ CREATE DIMENSION CONTROLLER " +  name);
+		return dimensionDao.createDimensionDao(name);		
+		
 	}
 
  

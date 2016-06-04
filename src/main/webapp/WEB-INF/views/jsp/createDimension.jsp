@@ -11,11 +11,11 @@
 	<h1>Crear una dimension</h1>
 	<form:form action="create-dimension" modelAttribute="dimension">
 		<p>Id:
-			<form:input path="Id" placeholder="Id" required="required" />
-			<form:errors path="Id" cssClass="error"/>
-		</p>
+            <form:input path="id" placeholder="Id"  />
+            
+        </p>
 		<p>Name:
-			<form:input path="name" placeholder="name" required="required" />
+			<form:input path="name" placeholder="Name" required="required" />
 			<form:errors path="name" cssClass="error" />
 		</p>
 		<p><input type="submit" value="Crear"></p>

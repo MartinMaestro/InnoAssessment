@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-@Table(name="AssessmentLines")
+@Table(name="AssessmentLine")
 public class AssessmentLine {
 	@Id
 	@GeneratedValue
