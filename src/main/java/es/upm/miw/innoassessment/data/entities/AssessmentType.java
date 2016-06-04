@@ -1,12 +1,20 @@
 package es.upm.miw.innoassessment.data.entities;
 
 public enum AssessmentType {
-    NETRAL, POSITIVE, NEGATIVE;
+    BOTH("RadioBoth"), 
+    POSITIVE("RadioPositive"), 
+    NEGATIVE("RadioNegative");
+	
+	private final String name;
+	
+	private AssessmentType(String name) {
+		this.name = name;
+	}
 
-    public static AssessmentType getRoleById(int i){
+    public static AssessmentType getAssessmentTypeById(int i){
     	switch(i){
     		case 0:
-    			return NETRAL;
+    			return BOTH;
     		case 1:
     			return POSITIVE;
     		case 2:
@@ -16,4 +24,8 @@ public enum AssessmentType {
     	}
     }	
 
+    public String AssessmentTypeName(){
+    	return name;
+    }
+    
 }

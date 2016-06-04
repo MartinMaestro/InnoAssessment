@@ -11,14 +11,13 @@ import javax.persistence.Column;
 public class Questionnaire {
 	@Id
 	@GeneratedValue
-	@Column(name="questionnaireId")
 	private int id;
 
 	@ManyToOne
 	@JoinColumn
 	private Model model;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String name;
 	
 	@Column(nullable = false)

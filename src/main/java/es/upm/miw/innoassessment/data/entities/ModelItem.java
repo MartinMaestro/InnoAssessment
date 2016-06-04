@@ -31,10 +31,10 @@ public class ModelItem {
 	@Column(nullable = false)
 	private String weight;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 2048)
 	private String interpretation;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 2048)
 	private String help;
 
 	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, String weight,

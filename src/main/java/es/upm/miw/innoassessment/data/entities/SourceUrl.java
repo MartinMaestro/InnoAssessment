@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.GeneratedValue;
+
+import java.util.Date;
+
 import javax.persistence.Column;
 
 @Entity
@@ -19,28 +24,35 @@ public class SourceUrl {
 
 	@ManyToOne
 	@JoinColumn
+	private AssessmentLine assessmentLine;
+
+	@ManyToOne
+	@JoinColumn
 	private LineValue lineValue;
 
 	@ManyToOne
 	@JoinColumn
 	private Product product;
 
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	private String date;
+	private Date creationDate;
 
+	@Temporal(TemporalType.TIME)
 	@Column(nullable = false)
-	private String time;
+	private Date creationTime;
 
 	@Column(nullable = false)
 	private String url;
 
-	public SourceUrl(Questionnaire questionnaire, LineValue lineValue, Product product, String date,
-					 String time, String url) {
+	public SourceUrl(Questionnaire questionnaire, AssessmentLine assessmentLine, LineValue lineValue, Product product, Date creationDate,
+					 Date creationTime, String url) {
 		this.questionnaire = questionnaire;
+		this.assessmentLine = assessmentLine;
 		this.lineValue = lineValue;
 		this.product = product;
-		this.date = date;
-		this.time = time;
+		this.creationDate = creationDate;
+		this.creationTime = creationTime;
 		this.url = url;
 	}
 
