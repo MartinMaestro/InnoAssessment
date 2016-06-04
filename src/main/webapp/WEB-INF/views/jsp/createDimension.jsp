@@ -10,10 +10,7 @@
 <body>
 	<h1>Crear una dimension</h1>
 	<form:form action="create-dimension" modelAttribute="dimension">
-		<p>Id:
-            <form:input path="id" placeholder="Id"  />
-            
-        </p>
+		
 		<p>Name:
 			<form:input path="name" placeholder="Name" required="required" />
 			<form:errors path="name" cssClass="error" />

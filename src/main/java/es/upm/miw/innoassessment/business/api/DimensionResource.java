@@ -26,12 +26,14 @@ public class DimensionResource {
 
     @RequestMapping(method = RequestMethod.POST)
     public void createDimension(@RequestParam(required = true) String name) {
-    	this.dimensionController.createDimension(name);
-        
+    	this.dimensionController.createDimension(name);        
     }
 
+    @RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
+    public void deleteDimension(@PathVariable int id)  {
+    	this.dimensionController.deleteDimension(id);          
+    }
     
-
     @RequestMapping(method = RequestMethod.GET)
     public List<DimensionWrapper> showDimensions() {
         return dimensionController.showDimensions();

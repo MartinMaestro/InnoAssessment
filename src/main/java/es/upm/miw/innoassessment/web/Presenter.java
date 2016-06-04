@@ -13,13 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
-import es.upm.miw.innoassessment.data.entities.Dimension;
-
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-
 import javax.validation.Valid;
 
 @Controller
@@ -69,7 +64,6 @@ public class Presenter {
     public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
     	if (!bindingResult.hasErrors()) {
             if (dimensionController.createDimension(dimension.getName())) {
-            	System.out.println("------------ CREATE DIMENSION SUBMIT ID:" +  dimension.getId()+"-NAME:"+dimension.getName());
             	model.addAttribute("name", dimension.getName());
             	model.addAttribute("id", dimension.getId());
                 return "jsp/registrationSuccess";

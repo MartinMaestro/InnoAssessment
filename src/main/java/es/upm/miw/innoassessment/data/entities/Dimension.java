@@ -18,7 +18,6 @@ public class Dimension {
 	}
 
 	public Dimension(String name) {
-		System.out.println("------------ CREATE DIMENSION ENTITY " + name);
 		this.name = name;
 	}
 
