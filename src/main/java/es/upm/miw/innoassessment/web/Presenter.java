@@ -48,20 +48,20 @@ public class Presenter {
     
     @RequestMapping("/assessmentLine-list")
     public ModelAndView listAssessmentLines(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/assessmentLineList");
+        ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
         modelAndView.addObject("assessmentLine", assessmentLineController.showAssessmentLines());
         return modelAndView;
     }
     
     @RequestMapping("/dimension-list")
     public ModelAndView listDimension(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/dimensionList");
+        ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
         modelAndView.addObject("dimensionList", dimensionController.showDimensions());
         return modelAndView;
     }
     @RequestMapping("/product-list")
     public ModelAndView listProduct(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/productList");
+        ModelAndView modelAndView = new ModelAndView("jsp/list/productList");
         modelAndView.addObject("productList", productController.showProducts());
         return modelAndView;
     }
@@ -70,7 +70,7 @@ public class Presenter {
     @RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
     public String createDimension(Model model) {    	
        	model.addAttribute("dimension", new DimensionWrapper());     
-        return "jsp/createDimension";
+        return "jsp/create/dimensionCreate";
     }
 
     @RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
@@ -84,13 +84,13 @@ public class Presenter {
                 bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
             }
         }
-        return "jsp/createDimension";
+        return "jsp/create/dimensionCreate";
     }
     
     @RequestMapping(value = "/create-product", method = RequestMethod.GET)
     public String createProduct(Model model) {    	
        	model.addAttribute("product", new ProductWrapper());     
-        return "jsp/createProduct";
+        return "jsp/create/productCreate";
     }
 
     @RequestMapping(value = "/create-product", method = RequestMethod.POST)
@@ -108,7 +108,7 @@ public class Presenter {
                 bindingResult.rejectValue("name", "error.product", "Product ya existente");
             }
         }
-        return "jsp/createProduct";
+        return "jsp/create/createProduct";
     }
     
 
@@ -116,7 +116,14 @@ public class Presenter {
     public String deleteDimension(@PathVariable int id, Model model) {
         dimensionController.deleteDimension(id);
         model.addAttribute("dimensionList", dimensionController.showDimensions());
-        return "jsp/dimensionList";
+        return "jsp/list/dimensionList";
+    }
+    
+    @RequestMapping(value = {"/delete-product/{id}"})
+    public String deleteProduct(@PathVariable int id, Model model) {
+        productController.deleteProduct(id);
+        model.addAttribute("productList", productController.showProducts());
+        return "jsp/list/productList";
     }
 
 }
