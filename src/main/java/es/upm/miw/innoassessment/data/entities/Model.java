@@ -6,12 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-public class Model {	
+public class Model {
 	@Id
 	@GeneratedValue
 	private int id;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String name;
 
 	@Column(nullable = false)
@@ -19,11 +19,11 @@ public class Model {
 
 	@Column(nullable = false)
 	private String version;
-	
+
 	@Column(nullable = false)
 	private String description;
-	
-	public Model(){	
+
+	public Model() {
 	}
 
 	public Model(String name, String year, String version, String description) {
@@ -73,7 +73,4 @@ public class Model {
 		this.description = description;
 	}
 
-	
-
-	
 }

@@ -3,23 +3,18 @@ package es.upm.miw.innoassessment.data.entities;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
 
 @Entity
-@Table(name="AssessmentLine")
 public class AssessmentLine {
 	@Id
 	@GeneratedValue
-	@Column(name="assessmentLineId")
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name="questionnaireId")
 	private Questionnaire questionnaire;
 
 	@ManyToOne

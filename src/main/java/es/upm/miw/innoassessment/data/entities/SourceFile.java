@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.GeneratedValue;
+
+import java.util.Date;
+
 import javax.persistence.Column;
 
 @Entity
@@ -19,17 +24,19 @@ public class SourceFile {
 
 	@ManyToOne
 	@JoinColumn
-	private LineValue lineValue;
+	private AssessmentLine assessmentLine;
 
 	@ManyToOne
 	@JoinColumn
 	private Product product;
 
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	private String date;
+	private Date creationDate;
 
+	@Temporal(TemporalType.TIME)
 	@Column(nullable = false)
-	private String time;
+	private Date creationTime;
 
 	@Column(nullable = false)
 	private String filename;
@@ -37,13 +44,13 @@ public class SourceFile {
 	@Column(nullable = false)
 	private String realpath;
 
-	public SourceFile(Questionnaire questionnaire, LineValue lineValue, Product product, String date,
-					  String time, String filename, String realpath) {
+	public SourceFile(Questionnaire questionnaire, AssessmentLine assessmentLine, Product product, Date creationDate,
+					  Date creationTime, String filename, String realpath) {
 		this.questionnaire = questionnaire;
-		this.lineValue = lineValue;
+		this.assessmentLine = assessmentLine;
 		this.product = product;
-		this.date = date;
-		this.time = time;
+		this.creationDate = creationDate;
+		this.creationTime = creationTime;
 		this.filename = filename;
 		this.realpath = realpath;
 	}
