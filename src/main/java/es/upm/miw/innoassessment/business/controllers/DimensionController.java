@@ -22,7 +22,7 @@ public class DimensionController {
 
 	public List<DimensionWrapper> showDimensions() {
 		List<DimensionWrapper> dimensionWrapperList = new ArrayList<>();
-		for (Dimension dimension : dimensionDao.findAll()) {
+		for (Dimension dimension : dimensionDao.findAllByOrderByIdAsc()) {
 			dimensionWrapperList.add(new DimensionWrapper(dimension));
 		}
 		return dimensionWrapperList;
