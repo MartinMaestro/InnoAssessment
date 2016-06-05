@@ -11,7 +11,7 @@ import javax.persistence.Column;
 public class Questionnaire {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int id; 
 
 	@ManyToOne
 	@JoinColumn
