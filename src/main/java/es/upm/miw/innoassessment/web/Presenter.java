@@ -89,6 +89,15 @@ public class Presenter {
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
+	
+	@RequestMapping("/productQuestionnaire-list")
+	public ModelAndView listProductQuestionnaire(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaire");
+		modelAndView.addObject("productList", productController.showProducts());
+		
+		
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
 	public String createDimension(Model model) {

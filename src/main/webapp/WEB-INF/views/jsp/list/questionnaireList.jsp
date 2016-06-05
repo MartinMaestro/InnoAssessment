@@ -15,8 +15,9 @@
 				<th>Id</th>
 				<th>Name</th>
 				<th>Version</th>
-				<th>Model</th>				
-				<th>#</th>
+				<th>Model Name</th>
+				<th>Model Version</th>  
+				<th>Model Description</th>                             				
 			</tr>
 		</thead>
 		<tbody>
@@ -25,9 +26,9 @@
 					<td>${questionnaire.id}</td>
 				    <td>${questionnaire.name}</td>
 				    <td>${questionnaire.version}</td>
-				    <td>${questionnaire.modelId}</td>				    
-				    <td><a href="<c:url value='/delete-questionnaire/${questionnaire.id}' />">delete</a></td>
-				    				
+				    <td>${questionnaire.modelName}</td>
+                    <td>${questionnaire.modelVersion}</td> 
+                    <td>${questionnaire.modelDescription}</td>          
 				</tr>
 			</c:forEach>
 		</tbody>

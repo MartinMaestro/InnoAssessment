@@ -8,6 +8,9 @@ public class QuestionnaireWrapper {
 	private String name;
 	private String version;
 	private int modelId;
+	private String modelName;
+	private String modelVersion;
+	private String modelDescription;
 
 	public QuestionnaireWrapper() {
 	}
@@ -19,10 +22,23 @@ public class QuestionnaireWrapper {
 		this.version = version;
 		this.modelId = modelId;
 	}
+	
+	public QuestionnaireWrapper(int id, String name, String version, int modelId
+			,String modelName, String modelVersion,String modelDescription) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.version = version;
+		this.modelId = modelId;
+		this.modelName = modelName;
+		this.modelVersion = modelVersion;
+		this.modelDescription = modelDescription;
+	}
 
 	public QuestionnaireWrapper(Questionnaire questionnaire) {
 		this(questionnaire.getId(), questionnaire.getName(), questionnaire.getVersion()
-				,questionnaire.getModel().getId());
+				,questionnaire.getModel().getId(),questionnaire.getModel().getName()
+				,questionnaire.getModel().getVersion(),questionnaire.getModel().getDescription());
 	}
 
 	public int getId() {
@@ -55,6 +71,30 @@ public class QuestionnaireWrapper {
 
 	public void setModelId(int modelId) {
 		this.modelId = modelId;
+	}
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+
+	public String getModelVersion() {
+		return modelVersion;
+	}
+
+	public void setModelVersion(String modelVersion) {
+		this.modelVersion = modelVersion;
+	}
+
+	public String getModelDescription() {
+		return modelDescription;
+	}
+
+	public void setModelDescription(String modelDescription) {
+		this.modelDescription = modelDescription;
 	}
 
 	
