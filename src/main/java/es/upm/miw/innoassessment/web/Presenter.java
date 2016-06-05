@@ -1,6 +1,5 @@
 package es.upm.miw.innoassessment.web;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
+import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
+import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
+import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
 
 import java.text.SimpleDateFormat;
@@ -24,106 +26,157 @@ import javax.validation.Valid;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 @SessionAttributes("name")
 public class Presenter {
+
+	@Autowired
+	private AssessmentLineController assessmentLineController;
+
+	@Autowired
+	private DimensionController dimensionController;
+
+	@Autowired
+	private ProductController productController;
+
+	@Autowired
+	private ModelController modelController;
 	
 	@Autowired
-    private AssessmentLineController assessmentLineController;
+	private QuestionnaireController questionnaireController;
+
+	// Se ejecuta siempre y antes. Añade un atributo al Model
+	@ModelAttribute("now")
+	public String now() {
+		return new SimpleDateFormat("EEEE, d MMM yyyy HH:mm:ss").format(new Date());
+	}
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+		// La vista resultante no lleva extensión (.jsp) configurado en
+		// WebConfig.java
+		return "jsp/home";
+	}
+
+	@RequestMapping("/assessmentLine-list")
+	public ModelAndView listAssessmentLines(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
+		modelAndView.addObject("assessmentLine", assessmentLineController.showAssessmentLines());
+		return modelAndView;
+	}
+
+	@RequestMapping("/dimension-list")
+	public ModelAndView listDimension(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
+		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
+		return modelAndView;
+	}
+
+	@RequestMapping("/product-list")
+	public ModelAndView listProduct(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productList");
+		modelAndView.addObject("productList", productController.showProducts());
+		return modelAndView;
+	}
+
+	@RequestMapping("/model-list")
+	public ModelAndView listModel(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/modelList");
+		modelAndView.addObject("modelList", modelController.showModels());
+		return modelAndView;
+	}
 	
-	@Autowired
-    private DimensionController dimensionController;
+	@RequestMapping("/questionnaire-list")
+	public ModelAndView listQuestionnaire(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/questionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
+	public String createDimension(Model model) {
+		model.addAttribute("dimension", new DimensionWrapper());
+		return "jsp/create/dimensionCreate";
+	}
+
+	@RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
+	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (dimensionController.createDimension(dimension.getName())) {
+				model.addAttribute("name", dimension.getName());
+				model.addAttribute("id", dimension.getId());
+				return "jsp/registrationSuccess";
+			} else {
+				bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
+			}
+		}
+		return "jsp/create/dimensionCreate";
+	}
+
+	@RequestMapping(value = "/create-product", method = RequestMethod.GET)
+	public String createProduct(Model model) {
+		model.addAttribute("product", new ProductWrapper());
+		return "jsp/create/productCreate";
+	}
+
+	@RequestMapping(value = "/create-product", method = RequestMethod.POST)
+	public String createProductSubmit(@Valid ProductWrapper product, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (productController.createProduct(product.getName(), product.getDescription(), product.getProvider(),
+					product.getVersion())) {
+				model.addAttribute("name", product.getName());
+				model.addAttribute("description", product.getDescription());
+				model.addAttribute("name", product.getProvider());
+				model.addAttribute("name", product.getVersion());
+				model.addAttribute("id", product.getId());
+				return "jsp/registrationSuccess";
+			} else {
+				bindingResult.rejectValue("name", "error.product", "Product ya existente");
+			}
+		}
+		return "jsp/create/createProduct";
+	}
+
+	@RequestMapping(value = "/create-model", method = RequestMethod.GET)
+	public String createModel(Model model) {
+		model.addAttribute("model", new ModelWrapper());
+		return "jsp/create/modelCreate";
+	}
+
+	@RequestMapping(value = "/create-model", method = RequestMethod.POST)
+	public String createModelSubmit(@Valid ModelWrapper modelw, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (modelController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
+					modelw.getDescription())) {
+				model.addAttribute("name", modelw.getName());				
+				model.addAttribute("year", modelw.getYear());
+				model.addAttribute("version", modelw.getVersion());
+				model.addAttribute("description", modelw.getDescription());
+				model.addAttribute("id", modelw.getId());
+				return "jsp/registrationSuccess";
+			} else {
+				bindingResult.rejectValue("name", "error.model", "Model ya existente");
+			}
+		}
+		return "jsp/create/createModel";
+	}
+
+	@RequestMapping(value = { "/delete-dimension/{id}" })
+	public String deleteDimension(@PathVariable int id, Model model) {
+		dimensionController.deleteDimension(id);
+		model.addAttribute("dimensionList", dimensionController.showDimensions());
+		return "jsp/list/dimensionList";
+	}
+
+	@RequestMapping(value = { "/delete-product/{id}" })
+	public String deleteProduct(@PathVariable int id, Model model) {
+		productController.deleteProduct(id);
+		model.addAttribute("productList", productController.showProducts());
+		return "jsp/list/productList";
+	}
 	
-	@Autowired
-    private ProductController productController;
-
-    // Se ejecuta siempre y antes. Añade un atributo al Model
-    @ModelAttribute("now")
-    public String now() {
-        return new SimpleDateFormat("EEEE, d MMM yyyy HH:mm:ss").format(new Date());
-    }
-
-    @RequestMapping("/home")
-    public String home(Model model) {
-        //La vista resultante no lleva extensión (.jsp) configurado en WebConfig.java
-        return "jsp/home";
-    }
-    
-    @RequestMapping("/assessmentLine-list")
-    public ModelAndView listAssessmentLines(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
-        modelAndView.addObject("assessmentLine", assessmentLineController.showAssessmentLines());
-        return modelAndView;
-    }
-    
-    @RequestMapping("/dimension-list")
-    public ModelAndView listDimension(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
-        modelAndView.addObject("dimensionList", dimensionController.showDimensions());
-        return modelAndView;
-    }
-    @RequestMapping("/product-list")
-    public ModelAndView listProduct(Model model) {
-        ModelAndView modelAndView = new ModelAndView("jsp/list/productList");
-        modelAndView.addObject("productList", productController.showProducts());
-        return modelAndView;
-    }
-    
-    
-    @RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
-    public String createDimension(Model model) {    	
-       	model.addAttribute("dimension", new DimensionWrapper());     
-        return "jsp/create/dimensionCreate";
-    }
-
-    @RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
-    public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
-    	if (!bindingResult.hasErrors()) {
-            if (dimensionController.createDimension(dimension.getName())) {
-            	model.addAttribute("name", dimension.getName());
-            	model.addAttribute("id", dimension.getId());
-                return "jsp/registrationSuccess";
-            } else {
-                bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
-            }
-        }
-        return "jsp/create/dimensionCreate";
-    }
-    
-    @RequestMapping(value = "/create-product", method = RequestMethod.GET)
-    public String createProduct(Model model) {    	
-       	model.addAttribute("product", new ProductWrapper());     
-        return "jsp/create/productCreate";
-    }
-
-    @RequestMapping(value = "/create-product", method = RequestMethod.POST)
-    public String createProductSubmit(@Valid ProductWrapper product, BindingResult bindingResult, Model model) {
-    	if (!bindingResult.hasErrors()) {
-            if (productController.createProduct(product.getName(),product.getDescription()
-            		,product.getProvider(),product.getVersion())) {
-            	model.addAttribute("name", product.getName());
-            	model.addAttribute("description", product.getDescription());
-            	model.addAttribute("name", product.getProvider());
-            	model.addAttribute("name", product.getVersion());
-            	model.addAttribute("id", product.getId());
-                return "jsp/registrationSuccess";
-            } else {
-                bindingResult.rejectValue("name", "error.product", "Product ya existente");
-            }
-        }
-        return "jsp/create/createProduct";
-    }
-    
-
-    @RequestMapping(value = {"/delete-dimension/{id}"})
-    public String deleteDimension(@PathVariable int id, Model model) {
-        dimensionController.deleteDimension(id);
-        model.addAttribute("dimensionList", dimensionController.showDimensions());
-        return "jsp/list/dimensionList";
-    }
-    
-    @RequestMapping(value = {"/delete-product/{id}"})
-    public String deleteProduct(@PathVariable int id, Model model) {
-        productController.deleteProduct(id);
-        model.addAttribute("productList", productController.showProducts());
-        return "jsp/list/productList";
-    }
+	@RequestMapping(value = { "/delete-model/{id}" })
+	public String deleteModel(@PathVariable int id, Model model) {
+		modelController.deleteModel(id);
+		model.addAttribute("modelList", modelController.showModels());
+		return "jsp/list/modelList";
+	}
 
 }

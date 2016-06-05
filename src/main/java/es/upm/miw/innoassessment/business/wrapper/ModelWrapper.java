@@ -1,36 +1,29 @@
-package es.upm.miw.innoassessment.data.entities;
+package es.upm.miw.innoassessment.business.wrapper;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
+import es.upm.miw.innoassessment.data.entities.Model;
 
-@Entity
-public class Model {	
-	@Id
-	@GeneratedValue
+public class ModelWrapper {
+
 	private int id;
-
-	@Column(unique = true, nullable = false)
 	private String name;
-
-	@Column(nullable = false)
 	private String year;
-
-	@Column(nullable = false)
 	private String version;
-	
-	@Column(nullable = false)
 	private String description;
-	
-	public Model(){	
+
+	public ModelWrapper() {
 	}
 
-	public Model(String name, String year, String version, String description) {
+	public ModelWrapper(int id, String name, String year, String version, String description) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.year = year;
 		this.version = version;
 		this.description = description;
+	}
+
+	public ModelWrapper(Model model) {
+		this(model.getId(), model.getName(), model.getYear(), model.getVersion(), model.getDescription());
 	}
 
 	public int getId() {
@@ -73,7 +66,4 @@ public class Model {
 		this.description = description;
 	}
 
-	
-
-	
 }

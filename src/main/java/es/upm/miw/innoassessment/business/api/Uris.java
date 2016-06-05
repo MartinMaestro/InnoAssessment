@@ -11,6 +11,10 @@ public class Uris {
     public static final String DIMENSIONS = "/dimensions";
     
     public static final String PRODUCTS = "/products";
+    
+    public static final String MODELS = "/models";
+    
+    public static final String QUESTIONNAIRE = "/questionnaire";
 
    
 

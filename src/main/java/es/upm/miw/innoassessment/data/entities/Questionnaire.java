@@ -24,10 +24,48 @@ public class Questionnaire {
 	@Column(nullable = false)
 	private String version;
 
+	public Questionnaire(){
+		
+	}
+	
 	public Questionnaire(Model model, String name, String version) {
 		this.model = model;
 		this.name = name;
 		this.version = version;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	
+	
 	
 }
