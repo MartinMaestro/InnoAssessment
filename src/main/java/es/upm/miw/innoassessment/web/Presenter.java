@@ -67,7 +67,7 @@ public class Presenter {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
 		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		return modelAndView;
-	}
+	} 
 
 	@RequestMapping("/product-list")
 	public ModelAndView listProduct(Model model) {
