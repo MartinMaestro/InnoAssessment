@@ -9,6 +9,8 @@ public class Uris {
     public static final String ADMINS = "/admins";
     
     public static final String DIMENSIONS = "/dimensions";
+    
+    public static final String PRODUCTS = "/products";
 
    
 

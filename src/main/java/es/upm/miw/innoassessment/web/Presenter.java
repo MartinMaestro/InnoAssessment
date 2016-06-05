@@ -12,7 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
+import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
+import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.validation.Valid;
@@ -27,6 +30,9 @@ public class Presenter {
 	
 	@Autowired
     private DimensionController dimensionController;
+	
+	@Autowired
+    private ProductController productController;
 
     // Se ejecuta siempre y antes. Añade un atributo al Model
     @ModelAttribute("now")
@@ -53,6 +59,13 @@ public class Presenter {
         modelAndView.addObject("dimensionList", dimensionController.showDimensions());
         return modelAndView;
     }
+    @RequestMapping("/product-list")
+    public ModelAndView listProduct(Model model) {
+        ModelAndView modelAndView = new ModelAndView("jsp/productList");
+        modelAndView.addObject("productList", productController.showProducts());
+        return modelAndView;
+    }
+    
     
     @RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
     public String createDimension(Model model) {    	
@@ -73,6 +86,31 @@ public class Presenter {
         }
         return "jsp/createDimension";
     }
+    
+    @RequestMapping(value = "/create-product", method = RequestMethod.GET)
+    public String createProduct(Model model) {    	
+       	model.addAttribute("product", new ProductWrapper());     
+        return "jsp/createProduct";
+    }
+
+    @RequestMapping(value = "/create-product", method = RequestMethod.POST)
+    public String createProductSubmit(@Valid ProductWrapper product, BindingResult bindingResult, Model model) {
+    	if (!bindingResult.hasErrors()) {
+            if (productController.createProduct(product.getName(),product.getDescription()
+            		,product.getProvider(),product.getVersion())) {
+            	model.addAttribute("name", product.getName());
+            	model.addAttribute("description", product.getDescription());
+            	model.addAttribute("name", product.getProvider());
+            	model.addAttribute("name", product.getVersion());
+            	model.addAttribute("id", product.getId());
+                return "jsp/registrationSuccess";
+            } else {
+                bindingResult.rejectValue("name", "error.product", "Product ya existente");
+            }
+        }
+        return "jsp/createProduct";
+    }
+    
 
     @RequestMapping(value = {"/delete-dimension/{id}"})
     public String deleteDimension(@PathVariable int id, Model model) {

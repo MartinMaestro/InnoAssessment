@@ -19,11 +19,15 @@ public class Product {
 
 	@Column(nullable = false)
 	private String provider;
-	
+
 	@Column(nullable = false)
 	private String description;
 
-	public Product(String name, String version, String provider, String description) {
+	public Product() {
+
+	}
+
+	public Product(String name, String description, String provider, String version) {
 		this.name = name;
 		this.version = version;
 		this.provider = provider;
@@ -70,6 +74,4 @@ public class Product {
 		this.description = description;
 	}
 
-	
-	
 }
