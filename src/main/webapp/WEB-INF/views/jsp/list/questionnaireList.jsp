@@ -25,7 +25,7 @@
 					<td>${questionnaire.id}</td>
 				    <td>${questionnaire.name}</td>
 				    <td>${questionnaire.version}</td>
-				    <td>${questionnaire.model}</td>				    
+				    <td>${questionnaire.modelId}</td>				    
 				    <td><a href="<c:url value='/delete-questionnaire/${questionnaire.id}' />">delete</a></td>
 				    				
 				</tr>

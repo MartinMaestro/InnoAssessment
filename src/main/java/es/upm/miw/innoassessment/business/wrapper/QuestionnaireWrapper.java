@@ -18,7 +18,6 @@ public class QuestionnaireWrapper {
 		this.name = name;
 		this.version = version;
 		this.modelId = modelId;
-		this.version = version;
 	}
 
 	public QuestionnaireWrapper(Questionnaire questionnaire) {
