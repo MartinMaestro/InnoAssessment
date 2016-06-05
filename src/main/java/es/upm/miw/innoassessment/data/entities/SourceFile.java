@@ -28,10 +28,6 @@ public class SourceFile {
 
 	@ManyToOne
 	@JoinColumn
-	private LineValue lineValue;
-
-	@ManyToOne
-	@JoinColumn
 	private Product product;
 
 	@Temporal(TemporalType.DATE)
@@ -48,11 +44,10 @@ public class SourceFile {
 	@Column(nullable = false)
 	private String realpath;
 
-	public SourceFile(Questionnaire questionnaire, AssessmentLine assessmentLine, LineValue lineValue, Product product, Date creationDate,
+	public SourceFile(Questionnaire questionnaire, AssessmentLine assessmentLine, Product product, Date creationDate,
 					  Date creationTime, String filename, String realpath) {
 		this.questionnaire = questionnaire;
 		this.assessmentLine = assessmentLine;
-		this.lineValue = lineValue;
 		this.product = product;
 		this.creationDate = creationDate;
 		this.creationTime = creationTime;

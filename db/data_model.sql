@@ -188,17 +188,14 @@ CREATE TABLE `SourceFile` (
   `filename` varchar(255) NOT NULL,
   `realpath` varchar(255) NOT NULL,
   `assessmentLine_id` int(11) DEFAULT NULL,
-  `lineValue_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `questionnaire_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_sllsan68kq606sxvtqplfc6rq` (`assessmentLine_id`),
-  KEY `FK_t7bfjqyhgkhekrre41hjb2yx8` (`lineValue_id`),
   KEY `FK_afii0n3xe2v0brl6kigp66gd4` (`product_id`),
   KEY `FK_t94i8woyg30fyuwaardmrlba2` (`questionnaire_id`),
   CONSTRAINT `FK_afii0n3xe2v0brl6kigp66gd4` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
   CONSTRAINT `FK_sllsan68kq606sxvtqplfc6rq` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`),
-  CONSTRAINT `FK_t7bfjqyhgkhekrre41hjb2yx8` FOREIGN KEY (`lineValue_id`) REFERENCES `LineValue` (`id`),
   CONSTRAINT `FK_t94i8woyg30fyuwaardmrlba2` FOREIGN KEY (`questionnaire_id`) REFERENCES `Questionnaire` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -216,15 +213,12 @@ CREATE TABLE `SourceUrl` (
   `creationTime` time NOT NULL,
   `url` varchar(255) NOT NULL,
   `assessmentLine_id` int(11) DEFAULT NULL,
-  `lineValue_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `questionnaire_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_i07j10igr57wjfks7qp7rsuvl` (`assessmentLine_id`),
-  KEY `FK_75t09eugos92s2gtym90yyy35` (`lineValue_id`),
   KEY `FK_g9s4uytpmf0j37eny6tatktyc` (`product_id`),
   KEY `FK_ribyvp1eojyvox40gx7gx9pog` (`questionnaire_id`),
-  CONSTRAINT `FK_75t09eugos92s2gtym90yyy35` FOREIGN KEY (`lineValue_id`) REFERENCES `LineValue` (`id`),
   CONSTRAINT `FK_g9s4uytpmf0j37eny6tatktyc` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
   CONSTRAINT `FK_i07j10igr57wjfks7qp7rsuvl` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`),
   CONSTRAINT `FK_ribyvp1eojyvox40gx7gx9pog` FOREIGN KEY (`questionnaire_id`) REFERENCES `Questionnaire` (`id`)

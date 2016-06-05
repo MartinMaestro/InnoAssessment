@@ -28,10 +28,6 @@ public class SourceUrl {
 
 	@ManyToOne
 	@JoinColumn
-	private LineValue lineValue;
-
-	@ManyToOne
-	@JoinColumn
 	private Product product;
 
 	@Temporal(TemporalType.DATE)
@@ -45,11 +41,10 @@ public class SourceUrl {
 	@Column(nullable = false)
 	private String url;
 
-	public SourceUrl(Questionnaire questionnaire, AssessmentLine assessmentLine, LineValue lineValue, Product product, Date creationDate,
+	public SourceUrl(Questionnaire questionnaire, AssessmentLine assessmentLine, Product product, Date creationDate,
 					 Date creationTime, String url) {
 		this.questionnaire = questionnaire;
 		this.assessmentLine = assessmentLine;
-		this.lineValue = lineValue;
 		this.product = product;
 		this.creationDate = creationDate;
 		this.creationTime = creationTime;
