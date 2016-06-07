@@ -21,7 +21,6 @@ public class ProductVersion {
 	private Product product;
 
 	public ProductVersion(String name, Product product) {
-		super();
 		this.name = name;
 		this.product = product;
 	}

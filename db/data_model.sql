@@ -223,6 +223,42 @@ CREATE TABLE `SourceUrl` (
   CONSTRAINT `FK_i07j10igr57wjfks7qp7rsuvl` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`),
   CONSTRAINT `FK_ribyvp1eojyvox40gx7gx9pog` FOREIGN KEY (`questionnaire_id`) REFERENCES `Questionnaire` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `Evaluation`
+--
+
+DROP TABLE IF EXISTS `Evaluation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Evaluation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `creationTimeStamp` datetime NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `questionnaire_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_mipcqurdbms3k50a6obq2q0pj` (`questionnaire_id`,`product_id`,`creationTimeStamp`),
+  KEY `FK_87wlublo2lltcv7kl3lvvowja` (`product_id`),
+  CONSTRAINT `FK_87wlublo2lltcv7kl3lvvowja` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
+  CONSTRAINT `FK_oniqd7wjcsy221x59v1ynpj7y` FOREIGN KEY (`questionnaire_id`) REFERENCES `Questionnaire` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ProductVersion`
+--
+
+DROP TABLE IF EXISTS `ProductVersion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ProductVersion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_hrp5ti9rpa4n243w1yw9ycuxm` (`product_id`),
+  CONSTRAINT `FK_hrp5ti9rpa4n243w1yw9ycuxm` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
