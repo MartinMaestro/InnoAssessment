@@ -17,6 +17,7 @@ import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,20 +86,47 @@ public class Presenter {
 	
 	@RequestMapping("/questionnaire-list")
 	public ModelAndView listQuestionnaire(Model model) {
+		System.out.println("-------------PRESENTER listQuestionnaire");
+
 		ModelAndView modelAndView = new ModelAndView("jsp/list/questionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
-	
+					 
 	@RequestMapping("/productQuestionnaire-list")
 	public ModelAndView listProductQuestionnaire(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaire");
-		modelAndView.addObject("productList", productController.showProducts());
-		
-		
+		System.out.println("-------------PRESENTER listProductQuestionnaire");
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
+	
+	
+	@RequestMapping(value = "/productQuestionnaire-list", method = RequestMethod.POST)
+	public String listProductQuestionnaireSelect(@Valid QuestionnaireWrapper questionnaire, BindingResult bindingResult, Model model) {
+		System.out.println("-------------PRESENTER listProductQuestionnaireSelect");
+		System.out.println("---- PRESENTER  " +questionnaire.getId() );
+		
+		return "jsp/list/productQuestionnaireList";
+	}
 
+	@RequestMapping(value = { "/search-questionnaire/{id}" })
+	public ModelAndView searchQuestionnaire(@PathVariable int id, Model model) {
+		System.out.println("---- PRESENTER searchQuestionnaire  " +id );
+		//model.addAttribute("productList", productController.showProducts());
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		
+		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
+		
+		return modelAndView;
+		
+		//return "jsp/list/productQuestionnaireList";
+	}
+	
+
+	
+	
 	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
 	public String createDimension(Model model) {
 		model.addAttribute("dimension", new DimensionWrapper());

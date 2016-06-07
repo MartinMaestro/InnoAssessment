@@ -15,6 +15,7 @@ public class Uris {
     public static final String MODELS = "/models";
     
     public static final String QUESTIONNAIRE = "/questionnaire";
+    public static final String QUESTIONNAIREBYMODEL = "/questionnaireByModel";
 
    
 

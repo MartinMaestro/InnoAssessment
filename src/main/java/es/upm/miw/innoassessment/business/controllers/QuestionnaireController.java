@@ -23,6 +23,15 @@ public class QuestionnaireController {
 		for (Questionnaire questionnaire : questionnaireDao.findAll()) {
 			questionnaireWrapperList.add(new QuestionnaireWrapper(questionnaire));
 		}
+		System.out.println("-------------CONTROLLER Questionnaire.SHOW");
+		return questionnaireWrapperList;
+	}
+	
+	public List<QuestionnaireWrapper> showQuestionnairesByModel(int modelId) {
+		List<QuestionnaireWrapper> questionnaireWrapperList = new ArrayList<>();
+		for (Questionnaire questionnaire : questionnaireDao.findByModelId(modelId)) {
+			questionnaireWrapperList.add(new QuestionnaireWrapper(questionnaire));
+		}
 		return questionnaireWrapperList;
 	}
 

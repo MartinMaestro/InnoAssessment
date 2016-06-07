@@ -9,6 +9,7 @@ public class QuestionnaireWrapper {
 	private String version;
 	private int modelId;
 	private String modelName;
+	private String modelYear;
 	private String modelVersion;
 	private String modelDescription;
 
@@ -22,23 +23,25 @@ public class QuestionnaireWrapper {
 		this.version = version;
 		this.modelId = modelId;
 	}
-	
-	public QuestionnaireWrapper(int id, String name, String version, int modelId
-			,String modelName, String modelVersion,String modelDescription) {
+
+	public QuestionnaireWrapper(int id, String name, String version, int modelId, String modelName, String modelYear,
+			String modelVersion, String modelDescription) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.version = version;
 		this.modelId = modelId;
 		this.modelName = modelName;
+		this.modelYear = modelYear;
 		this.modelVersion = modelVersion;
 		this.modelDescription = modelDescription;
 	}
 
 	public QuestionnaireWrapper(Questionnaire questionnaire) {
-		this(questionnaire.getId(), questionnaire.getName(), questionnaire.getVersion()
-				,questionnaire.getModel().getId(),questionnaire.getModel().getName()
-				,questionnaire.getModel().getVersion(),questionnaire.getModel().getDescription());
+		this(questionnaire.getId(), questionnaire.getName(), questionnaire.getVersion(),
+				questionnaire.getModel().getId(), questionnaire.getModel().getName(),
+				questionnaire.getModel().getYear(), questionnaire.getModel().getVersion(),
+				questionnaire.getModel().getDescription());
 	}
 
 	public int getId() {
@@ -97,6 +100,12 @@ public class QuestionnaireWrapper {
 		this.modelDescription = modelDescription;
 	}
 
-	
+	public String getModelYear() {
+		return modelYear;
+	}
+
+	public void setModelYear(String modelYear) {
+		this.modelYear = modelYear;
+	}
 
 }
