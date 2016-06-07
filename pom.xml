@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>innoAssessment</artifactId>
+	<artifactId>innoassessment</artifactId>
 	<groupId>es.upm.miw</groupId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
@@ -11,7 +11,7 @@
 	<name>${project.groupId}.${project.artifactId}.${project.version}</name>
 
 	<properties>
-		<deploy>${project.artifactId}.${project.version}</deploy>
+		<deploy>${project.artifactId}</deploy>
 		<!-- Java -->
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
@@ -105,7 +105,8 @@
 				<database.user>root</database.user>
 				<database.password></database.password>
 				<hibernate.hbm2ddl.auto>validate</hibernate.hbm2ddl.auto>
-				<tomcat.url></tomcat.url>
+				<tomcat.url>http://146.185.135.145:8080/manager/text</tomcat.url>
+				<tomcat.server>TomcatServer</tomcat.server>
 			</properties>
 		</profile>
 	</profiles>
@@ -305,8 +306,7 @@
 					<path>/${project.build.finalName}</path>
 					<update>true</update>
 					<url>${tomcat.url}</url>
-					<username>nyuron</username>
-					<password>nyuron.15</password>
+					<server>${tomcat.server}</server>
 				</configuration>
 			</plugin>
 		</plugins>
