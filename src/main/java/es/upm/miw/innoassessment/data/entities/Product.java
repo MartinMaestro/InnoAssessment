@@ -15,9 +15,6 @@ public class Product {
 	private String name;
 
 	@Column(nullable = false)
-	private String version;
-
-	@Column(nullable = false)
 	private String provider;
 
 	@Column(nullable = false)
@@ -29,7 +26,6 @@ public class Product {
 
 	public Product(String name, String description, String provider, String version) {
 		this.name = name;
-		this.version = version;
 		this.provider = provider;
 		this.description = description;
 	}
@@ -48,14 +44,6 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
 	}
 
 	public String getProvider() {
