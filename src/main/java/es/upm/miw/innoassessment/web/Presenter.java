@@ -13,9 +13,11 @@ import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
+import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
+import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
 
@@ -36,6 +38,9 @@ public class Presenter {
 
 	@Autowired
 	private ProductController productController;
+	
+	@Autowired
+	private ProductVersionController productVersionController;
 
 	@Autowired
 	private ModelController modelController;
@@ -74,6 +79,13 @@ public class Presenter {
 	public ModelAndView listProduct(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productList");
 		modelAndView.addObject("productList", productController.showProducts());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/productversion-list")
+	public ModelAndView listProductVersion(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productVersionList");
+		modelAndView.addObject("productVersionList", productVersionController.showProductVersions());
 		return modelAndView;
 	}
 
@@ -164,6 +176,26 @@ public class Presenter {
 			}
 		}
 		return "jsp/create/createProduct";
+	}
+	
+	@RequestMapping(value = "/create-productversion", method = RequestMethod.GET)
+	public String createProductVersion(Model model) {
+		model.addAttribute("productVersion", new ProductVersionWrapper());
+		return "jsp/create/productVersionCreate";
+	}
+
+	@RequestMapping(value = "/create-productversion", method = RequestMethod.POST)
+	public String createProductSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (productVersionController.createProductVersion(productVersion.getName(),productVersion.getProductId())) {
+				model.addAttribute("name", productVersion.getName());
+				model.addAttribute("productId", productVersion.getProductId());
+				return "jsp/list/productList";
+			} else {
+				bindingResult.rejectValue("name", "error.product", "Product version ya existente");
+			}
+		}
+		return "jsp/create/createProductVersion";
 	}
 
 	@RequestMapping(value = "/create-model", method = RequestMethod.GET)

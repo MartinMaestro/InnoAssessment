@@ -16,8 +16,8 @@
 				<th>Name</th>
 				<th>Description</th>
 				<th>Provider</th>
-				
-				
+				<th>#</th>
+				<th>#</th>
 				<th>#</th>
 			</tr>
 		</thead>
@@ -27,7 +27,9 @@
 					<td>${product.id}</td>
 				    <td>${product.name}</td>
 				    <td>${product.description}</td>
-				    <td>${product.provider}</td>				   
+				    <td>${product.provider}</td>
+				    <td><a href="<c:url value='/productVersion-list/${product.id}' />">List Product Version</a></td>       
+				    <td><a href="<c:url value='/create-productVersion/${product.id}' />">Create Product Version</a></td>				   
 				    <td><a href="<c:url value='/delete-product/${product.id}' />">delete</a></td>
 				    				
 				</tr>

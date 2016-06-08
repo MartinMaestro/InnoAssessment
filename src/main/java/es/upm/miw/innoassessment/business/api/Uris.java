@@ -12,6 +12,8 @@ public class Uris {
     
     public static final String PRODUCTS = "/products";
     
+    public static final String PRODUCTVERSIONS = "/productversions";
+    
     public static final String MODELS = "/models";
     
     public static final String QUESTIONNAIRE = "/questionnaire";
