@@ -28,15 +28,15 @@ public class Evaluation {
 
 	@ManyToOne
 	@JoinColumn
-	private Product product;
+	private ProductVersion productVersion;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	private Date creationTimeStamp;
 
-	public Evaluation(Questionnaire questionnaire, Product product, Date creationTimeStamp) {
+	public Evaluation(Questionnaire questionnaire, ProductVersion productVersion, Date creationTimeStamp) {
 		this.questionnaire = questionnaire;
-		this.product = product;
+		this.productVersion = productVersion;
 		this.creationTimeStamp = creationTimeStamp;
 	}	
 

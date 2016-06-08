@@ -39,7 +39,7 @@ public class Presenter {
 
 	@Autowired
 	private ModelController modelController;
-	
+
 	@Autowired
 	private QuestionnaireController questionnaireController;
 
@@ -68,7 +68,7 @@ public class Presenter {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
 		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		return modelAndView;
-	} 
+	}
 
 	@RequestMapping("/product-list")
 	public ModelAndView listProduct(Model model) {
@@ -83,7 +83,7 @@ public class Presenter {
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/questionnaire-list")
 	public ModelAndView listQuestionnaire(Model model) {
 		System.out.println("-------------PRESENTER listQuestionnaire");
@@ -92,7 +92,7 @@ public class Presenter {
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
-					 
+
 	@RequestMapping("/productQuestionnaire-list")
 	public ModelAndView listProductQuestionnaire(Model model) {
 		System.out.println("-------------PRESENTER listProductQuestionnaire");
@@ -100,33 +100,30 @@ public class Presenter {
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = "/productQuestionnaire-list", method = RequestMethod.POST)
-	public String listProductQuestionnaireSelect(@Valid QuestionnaireWrapper questionnaire, BindingResult bindingResult, Model model) {
+	public String listProductQuestionnaireSelect(@Valid QuestionnaireWrapper questionnaire, BindingResult bindingResult,
+			Model model) {
 		System.out.println("-------------PRESENTER listProductQuestionnaireSelect");
-		System.out.println("---- PRESENTER  " +questionnaire.getId() );
-		
+		System.out.println("---- PRESENTER  " + questionnaire.getId());
+
 		return "jsp/list/productQuestionnaireList";
 	}
 
 	@RequestMapping(value = { "/search-questionnaire/{id}" })
 	public ModelAndView searchQuestionnaire(@PathVariable int id, Model model) {
-		System.out.println("---- PRESENTER searchQuestionnaire  " +id );
-		//model.addAttribute("productList", productController.showProducts());
+		System.out.println("---- PRESENTER searchQuestionnaire  " + id);
+		// model.addAttribute("productList", productController.showProducts());
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
-		
-		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
-		
-		return modelAndView;
-		
-		//return "jsp/list/productQuestionnaireList";
-	}
-	
 
-	
-	
+		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
+
+		return modelAndView;
+
+		// return "jsp/list/productQuestionnaireList";
+	}
+
 	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
 	public String createDimension(Model model) {
 		model.addAttribute("dimension", new DimensionWrapper());
@@ -156,12 +153,10 @@ public class Presenter {
 	@RequestMapping(value = "/create-product", method = RequestMethod.POST)
 	public String createProductSubmit(@Valid ProductWrapper product, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
-			if (productController.createProduct(product.getName(), product.getDescription(), product.getProvider(),
-					product.getVersion())) {
+			if (productController.createProduct(product.getName(), product.getDescription(), product.getProvider())) {
 				model.addAttribute("name", product.getName());
 				model.addAttribute("description", product.getDescription());
 				model.addAttribute("name", product.getProvider());
-				model.addAttribute("name", product.getVersion());
 				model.addAttribute("id", product.getId());
 				return "jsp/registrationSuccess";
 			} else {
@@ -182,7 +177,7 @@ public class Presenter {
 		if (!bindingResult.hasErrors()) {
 			if (modelController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
 					modelw.getDescription())) {
-				model.addAttribute("name", modelw.getName());				
+				model.addAttribute("name", modelw.getName());
 				model.addAttribute("year", modelw.getYear());
 				model.addAttribute("version", modelw.getVersion());
 				model.addAttribute("description", modelw.getDescription());
@@ -208,7 +203,7 @@ public class Presenter {
 		model.addAttribute("productList", productController.showProducts());
 		return "jsp/list/productList";
 	}
-	
+
 	@RequestMapping(value = { "/delete-model/{id}" })
 	public String deleteModel(@PathVariable int id, Model model) {
 		modelController.deleteModel(id);

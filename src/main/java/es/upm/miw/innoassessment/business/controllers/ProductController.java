@@ -34,9 +34,9 @@ public class ProductController {
 		return true;
 	}
 
-	public boolean createProduct(String name, String description, String provider, String version) {
+	public boolean createProduct(String name, String description, String provider) {
 		// return dimensionDao.createDimensionDao(name);
-		productDao.saveAndFlush(new Product(name, description,provider,version));
+		productDao.saveAndFlush(new Product(name, description, provider));
 		return true;
 	}
 }

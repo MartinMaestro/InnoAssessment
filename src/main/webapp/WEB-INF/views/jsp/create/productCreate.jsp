@@ -26,10 +26,7 @@
             <form:errors path="provider" cssClass="error" />
         </p>
         
-        <p>Version:
-            <form:input path="version" placeholder="Version" />
-            <form:errors path="version" cssClass="error" />
-        </p>
+       
 		<p><input type="submit" value="Create"></p>
 	</form:form>
 

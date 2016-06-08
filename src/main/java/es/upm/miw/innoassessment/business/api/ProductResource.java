@@ -23,9 +23,8 @@ public class ProductResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void createProduct(@RequestParam(required = true) String name, String description, String provider,
-			String version) {
-		this.productController.createProduct(name, description, provider, version);
+	public void createProduct(@RequestParam(required = true) String name, String description, String provider) {
+		this.productController.createProduct(name, description, provider);
 	}
 
 	@RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
