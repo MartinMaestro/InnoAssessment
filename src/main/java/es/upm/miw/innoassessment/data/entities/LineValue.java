@@ -1,53 +1,39 @@
 package es.upm.miw.innoassessment.data.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.GeneratedValue;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-
 @Entity
-public class LineValue {
+public class LineValue {	
 	@Id
 	@GeneratedValue
 	private int id;
 
 	@ManyToOne
 	@JoinColumn
-	private Questionnaire questionnaire;
-
+	Evaluation evaluation;	
+	
 	@ManyToOne
 	@JoinColumn
 	private AssessmentLine assessmentLine;
 
-	@ManyToOne
-	@JoinColumn
-	private Product product;
-
+	@Enumerated(EnumType.STRING)
+	private ValueName valueName;
+	
 	@Column(nullable = false)
-	private String selectedValue;
+	private int valueData;
 
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
-	private Date creationDate;
-
-	@Temporal(TemporalType.TIME)
-	@Column(nullable = false)
-	private Date creationTime;
-
-	public LineValue(Questionnaire questionnaire, AssessmentLine assessmentLine, Product product, String selectedValue, Date creationDate, Date creationTime) {
-		this.questionnaire = questionnaire;
+	public LineValue(Evaluation evaluation, AssessmentLine assessmentLine, ValueName valueName, int valueData) {
+		this.evaluation = evaluation;
 		this.assessmentLine = assessmentLine;
-		this.product = product;
-		this.selectedValue = selectedValue;
-		this.creationDate = creationDate;
-		this.creationTime = creationTime;
+		this.valueName = valueName;
+		this.valueData = valueData;
 	}
 
 }
