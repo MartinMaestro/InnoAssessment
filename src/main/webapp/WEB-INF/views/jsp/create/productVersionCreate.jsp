@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Crear product Version</h1>
-	<form:form action="create-productVersion" modelAttribute="productVersion">		
+	<form:form action="create-productversion" modelAttribute="productVersion">		
 		
 		
 		<table border="1">

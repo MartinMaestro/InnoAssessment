@@ -28,8 +28,8 @@
 				    <td>${product.name}</td>
 				    <td>${product.description}</td>
 				    <td>${product.provider}</td>
-				    <td><a href="<c:url value='/productVersion-list/${product.id}' />">List Product Version</a></td>       
-				    <td><a href="<c:url value='/create-productVersion/${product.id}' />">Create Product Version</a></td>				   
+				    <td><a href="<c:url value='/search-productversion/${product.id}' />">List Product Version</a></td>       
+				    <td><a href="<c:url value='/create-productversion/${product.id}' />">Create Product Version</a></td>				   
 				    <td><a href="<c:url value='/delete-product/${product.id}' />">delete</a></td>
 				    				
 				</tr>
