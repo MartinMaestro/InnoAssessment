@@ -36,8 +36,7 @@ public class AssessmentLine {
 	}
 
 	public AssessmentType getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return type;
 	}
 	
 }
