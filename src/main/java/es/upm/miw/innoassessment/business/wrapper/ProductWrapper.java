@@ -8,22 +8,22 @@ public class ProductWrapper {
 	private String name;
 	private String description;
 	private String provider;
-	private String version;
+	
 
 	public ProductWrapper() {
 	}
 
-	public ProductWrapper(int id, String name, String description, String provider, String version) {
+	public ProductWrapper(int id, String name, String description, String provider) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.provider = provider;
-		this.version = version;
+		
 	}
 
 	public ProductWrapper(Product product) {
-		this(product.getId(), product.getName(), product.getDescription(), product.getProvider(), product.getVersion());
+		this(product.getId(), product.getName(), product.getDescription(), product.getProvider());
 	}
 
 	public int getId() {
@@ -55,15 +55,8 @@ public class ProductWrapper {
 	}
 
 	public void setProvider(String provider) {
-		this.provider = provider;
-	}
+		this.provider = provider;	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
+	
 
 }

@@ -10,7 +10,7 @@ public class ProductTest {
 
     @Test
     public void testProduct() {
-    	Product product = new Product("test","v0","demo provider","test product") ;       
+    	Product product = new Product("test","v0","demo provider") ;       
         assertTrue(product.getName() == "test");
     }
 

@@ -101,7 +101,7 @@ public class QuestionnaireWrapper {
 	}
 
 	public String getModelYear() {
-		return modelYear;
+		return modelYear; 
 	}
 
 	public void setModelYear(String modelYear) {

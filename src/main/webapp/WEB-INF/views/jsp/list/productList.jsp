@@ -16,7 +16,7 @@
 				<th>Name</th>
 				<th>Description</th>
 				<th>Provider</th>
-				<th>Version</th>
+				
 				
 				<th>#</th>
 			</tr>
@@ -27,8 +27,7 @@
 					<td>${product.id}</td>
 				    <td>${product.name}</td>
 				    <td>${product.description}</td>
-				    <td>${product.provider}</td>
-				     <td>${product.version}</td>
+				    <td>${product.provider}</td>				   
 				    <td><a href="<c:url value='/delete-product/${product.id}' />">delete</a></td>
 				    				
 				</tr>

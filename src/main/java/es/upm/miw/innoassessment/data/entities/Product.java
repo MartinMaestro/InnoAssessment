@@ -24,7 +24,7 @@ public class Product {
 
 	}
 
-	public Product(String name, String description, String provider, String version) {
+	public Product(String name, String description, String provider) {
 		this.name = name;
 		this.provider = provider;
 		this.description = description;
