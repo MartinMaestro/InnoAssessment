@@ -106,7 +106,8 @@ CREATE TABLE `Product` (
   `description` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `provider` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_gxubutkbk5o2a6aakbe7q9kww` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,6 +120,7 @@ DROP TABLE IF EXISTS `ProductVersion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ProductVersion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
