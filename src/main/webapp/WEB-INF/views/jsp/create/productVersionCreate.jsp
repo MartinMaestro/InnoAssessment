@@ -31,6 +31,9 @@
                             </tr>
            </table>
 		<form:form action="create-productversion" modelAttribute="productVersion">    
+		
+			<form:input path="id" placeholder="Id" required="required" type="hidden"/>		
+		   
 		<p>Name:
 			<form:input path="name" placeholder="Name" required="required" />		
 		</p>
