@@ -124,7 +124,7 @@ CREATE TABLE `ProductVersion` (
   `name` varchar(255) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_hrp5ti9rpa4n243w1yw9ycuxm` (`product_id`),
+  UNIQUE KEY `UK_ckc9klxmxxb0pkgbmw9e55jq4` (`product_id`,`name`),
   CONSTRAINT `FK_hrp5ti9rpa4n243w1yw9ycuxm` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -248,6 +248,28 @@ CREATE TABLE `SourceUrl` (
   CONSTRAINT `FK_i07j10igr57wjfks7qp7rsuvl` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `EvaluationResult`
+--
+
+DROP TABLE IF EXISTS `EvaluationResult`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `EvaluationResult` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `evaluationResultType` varchar(255) DEFAULT NULL,
+  `value` float NOT NULL,
+  `dimension_id` int(11) DEFAULT NULL,
+  `evaluation_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_86cmh9pwmmyxkhy4bqp4h2bj6` (`dimension_id`),
+  KEY `FK_dy2cigtaw7giuan5atysjmj3i` (`evaluation_id`),
+  CONSTRAINT `FK_86cmh9pwmmyxkhy4bqp4h2bj6` FOREIGN KEY (`dimension_id`) REFERENCES `Dimension` (`id`),
+  CONSTRAINT `FK_dy2cigtaw7giuan5atysjmj3i` FOREIGN KEY (`evaluation_id`) REFERENCES `Evaluation` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
