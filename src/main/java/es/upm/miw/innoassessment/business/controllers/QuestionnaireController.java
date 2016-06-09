@@ -23,7 +23,6 @@ public class QuestionnaireController {
 		for (Questionnaire questionnaire : questionnaireDao.findAll()) {
 			questionnaireWrapperList.add(new QuestionnaireWrapper(questionnaire));
 		}
-		System.out.println("-------------CONTROLLER Questionnaire.SHOW");
 		return questionnaireWrapperList;
 	}
 	

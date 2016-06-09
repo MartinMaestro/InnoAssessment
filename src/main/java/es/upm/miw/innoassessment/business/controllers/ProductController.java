@@ -28,14 +28,16 @@ public class ProductController {
 		return productWrapperList;
 	}
 
+	public ProductWrapper showProduct(int id) {
+		return new ProductWrapper(productDao.findOne(id));
+	}
+
 	public boolean deleteProduct(int id) {
-		// return dimensionDao.deleteDimensionDao(id);
 		productDao.delete(id);
 		return true;
 	}
 
 	public boolean createProduct(String name, String description, String provider) {
-		// return dimensionDao.createDimensionDao(name);
 		productDao.saveAndFlush(new Product(name, description, provider));
 		return true;
 	}

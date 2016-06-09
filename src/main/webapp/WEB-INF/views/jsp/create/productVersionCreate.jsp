@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Crear product Version</h1>
-	<form:form action="create-productversion" modelAttribute="productVersion">		
+		
 		
 		
 		<table border="1">
@@ -22,17 +22,23 @@
             </tr>
                             
                              <tr>
-                <th>${productVersion.productId}</th>
-                <th>${productVersion.productName}</th>
-                <th>${productVersion.productDescription}</th>
-                <th>${productVersion.productProvider}</th>
+                <th>${product.id}</th>
+                <th>${product.name}</th>
+                <th>${product.description}</th>
+                <th>${product.provider}</th>
                             </tr>
            </table>
+		<form:form action="create-productversion" modelAttribute="productVersion">    
+		<p>Name:
+			<form:input path="name" placeholder="Name" required="required" />		
+		</p>
 		
 		<p>Name:
-			<form:input path="name" placeholder="Name" required="required" />
-			<form:errors path="name" cssClass="error" />
-		</p>
+            <form:input path="description" placeholder="Description" />       
+        </p>
+		<p>Product Id:
+            <form:input path="productId" readonly="true"/>       
+        </p>
 		
 		     
        

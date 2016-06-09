@@ -14,6 +14,10 @@ public class ProductVersionWrapper {
 
 	public ProductVersionWrapper() {
 	}
+	
+	public ProductVersionWrapper(int productId) {
+		this.productId = productId;
+	}
 
 	public ProductVersionWrapper(int id, String name,String description, int productId, String productName, String productDescription,
 			String productProvider) {
@@ -28,11 +32,18 @@ public class ProductVersionWrapper {
 	}
 
 	public ProductVersionWrapper(ProductVersion productVersion) {
-		this(productVersion.getId(), productVersion.getName(), productVersion.getDescription(),
+		this(productVersion.getId() , productVersion.getName(), productVersion.getDescription(),
 				productVersion.getProduct().getId(), productVersion.getProduct().getName(),
 				productVersion.getProduct().getDescription(), productVersion.getProduct().getDescription());
 	}
-
+	
+	/*
+	public void ProductVersionWrapper2(ProductVersion productVersion) {
+		this(String.valueOf(productVersion.getId()) , productVersion.getName(), productVersion.getDescription(),
+				productVersion.getProduct().getId(), productVersion.getProduct().getName(),
+				productVersion.getProduct().getDescription(), productVersion.getProduct().getDescription());
+	}
+*/
 	public int getId() {
 		return id;
 	}
@@ -88,5 +99,14 @@ public class ProductVersionWrapper {
 	public void setProductProvider(String productProvider) {
 		this.productProvider = productProvider;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductVersionWrapper [id=" + id + ", name=" + name + ", description=" + description + ", productId="
+				+ productId + ", productName=" + productName + ", productDescription=" + productDescription
+				+ ", productProvider=" + productProvider + "]";
+	}
+	
+	
 
 }

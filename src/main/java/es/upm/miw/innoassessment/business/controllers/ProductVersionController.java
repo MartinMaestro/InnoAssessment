@@ -30,6 +30,7 @@ public class ProductVersionController {
 	}
 
 	public List<ProductVersionWrapper> showProductVersions() {
+		System.out.println("-------------ProductVersionController" + productVersionDao.findAll());
 		List<ProductVersionWrapper> productVersionWrapperList = new ArrayList<>();
 		for (ProductVersion productVersion : productVersionDao.findAll()) {
 			productVersionWrapperList.add(new ProductVersionWrapper(productVersion));

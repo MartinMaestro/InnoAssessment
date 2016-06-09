@@ -12,6 +12,7 @@
     <p><a href="<c:url value='/dimension-list'/>">- Lista de Dimension</a></p>
     <p><a href="<c:url value='/create-dimension'/>">- Crear una dimension</a></p>
     <p><a href="<c:url value='/product-list'/>">- Lista de Product</a></p>
+    <p><a href="<c:url value='/productversion-list'/>">- Lista de Product Versions</a></p>
     <p><a href="<c:url value='/create-product'/>">- Crear Product</a></p>
     <p><a href="<c:url value='/model-list'/>">- Lista de Models</a></p>
     <p><a href="<c:url value='/create-model'/>">- Crear Models</a></p>

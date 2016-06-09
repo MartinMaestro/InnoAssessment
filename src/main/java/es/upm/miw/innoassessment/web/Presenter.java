@@ -38,7 +38,7 @@ public class Presenter {
 
 	@Autowired
 	private ProductController productController;
-	
+
 	@Autowired
 	private ProductVersionController productVersionController;
 
@@ -81,7 +81,7 @@ public class Presenter {
 		modelAndView.addObject("productList", productController.showProducts());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/productversion-list")
 	public ModelAndView listProductVersion(Model model) {
 		System.out.println("-------------PRESENTER listProductVersion");
@@ -89,18 +89,13 @@ public class Presenter {
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersions());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = { "/search-productversion/{id}" })
 	public ModelAndView searchProductVersion(@PathVariable int id, Model model) {
 		System.out.println("---- PRESENTER searchProductVersion  " + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(id));
-
-		//modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
-
-		return modelAndView;
-
-		// return "jsp/list/productQuestionnaireList";
+		return modelAndView;		
 	}
 
 	@RequestMapping("/model-list")
@@ -112,8 +107,6 @@ public class Presenter {
 
 	@RequestMapping("/questionnaire-list")
 	public ModelAndView listQuestionnaire(Model model) {
-		System.out.println("-------------PRESENTER listQuestionnaire");
-
 		ModelAndView modelAndView = new ModelAndView("jsp/list/questionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
@@ -121,7 +114,6 @@ public class Presenter {
 
 	@RequestMapping("/productQuestionnaire-list")
 	public ModelAndView listProductQuestionnaire(Model model) {
-		System.out.println("-------------PRESENTER listProductQuestionnaire");
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
@@ -191,18 +183,37 @@ public class Presenter {
 		}
 		return "jsp/create/createProduct";
 	}
-	
+
 	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.GET)
-	public String createProductVersion(@PathVariable int id,Model model) {
-		System.out.println("-------------PRESENTER createProductVersion");
-		model.addAttribute("productVersion", new ProductVersionWrapper());
-		return "jsp/create/productVersionCreate";
+	public ModelAndView createProductVersion(@PathVariable int id, Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/create/productVersionCreate");
+		modelAndView.addObject("product", productController.showProduct(id));
+		modelAndView.addObject("productVersion", new ProductVersionWrapper(id));
+		return modelAndView;
 	}
 
-	@RequestMapping(value = "/create-productversion", method = RequestMethod.POST)
-	public String createProductSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.POST)
+	public String createProductVersionSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult,
+			Model model) {
 		if (!bindingResult.hasErrors()) {
-			if (productVersionController.createProductVersion(productVersion.getName(),productVersion.getProductId())) {
+			if (productVersionController.createProductVersion(productVersion.getName(), productVersion.getProductId())) {
+				model.addAttribute("name", productVersion.getName());
+				model.addAttribute("description", productVersion.getDescription());
+				model.addAttribute("productId", productVersion.getProductId());
+				return "jsp/list/productList";
+			} else {
+				bindingResult.rejectValue("name", "error.product", "Product version ya existente");
+			}
+		}
+		return "jsp/list/productList";
+	}
+
+	@RequestMapping(value = "/create-productversionold", method = RequestMethod.POST)
+	public String createProductVersionSubmitold(@Valid ProductVersionWrapper productVersion,
+			BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (productVersionController.createProductVersion(productVersion.getName(),
+					productVersion.getProductId())) {
 				model.addAttribute("name", productVersion.getName());
 				model.addAttribute("productId", productVersion.getProductId());
 				return "jsp/list/productList";
@@ -249,6 +260,12 @@ public class Presenter {
 		productController.deleteProduct(id);
 		model.addAttribute("productList", productController.showProducts());
 		return "jsp/list/productList";
+	}
+	@RequestMapping(value = { "/delete-productversion/{id}" })
+	public String deleteProductVersion(@PathVariable int id, Model model) {
+		productVersionController.deleteProductVersion(id);
+		model.addAttribute("productVersionList", productVersionController.showProductVersions());
+		return "jsp/list/productVersionList";
 	}
 
 	@RequestMapping(value = { "/delete-model/{id}" })
