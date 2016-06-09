@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="shortcut icon"
+ href="<c:url value='/static/images/bulb-favicon.png' />"/>
 <meta charset="utf-8">
 <title>Spring MVC. assessmentLine List</title>
 </head>
