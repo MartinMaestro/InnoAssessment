@@ -35,7 +35,7 @@
 			<form:input path="name" placeholder="Name" required="required" />		
 		</p>
 		
-		<p>Name:
+		<p>Description:
             <form:input path="description" placeholder="Description" />       
         </p>
 		<p>Product Id:

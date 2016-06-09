@@ -34,7 +34,8 @@
                     <td>${productVersion.productName}</td>
 				    <td>${productVersion.productDescription}</td>
 				    <td>${product.productProvider}</td>
-				    <td><a href="<c:url value='/delete-productversion/${productversion.id}' />">delete</a></td>				   
+				    
+				    <td><a href="<c:url value='/delete-productversion/${productVersion.id}' />">delete</a></td>				   
 				</tr>
 			</c:forEach>
 		</tbody>

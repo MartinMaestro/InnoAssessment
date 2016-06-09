@@ -84,7 +84,6 @@ public class Presenter {
 
 	@RequestMapping("/productversion-list")
 	public ModelAndView listProductVersion(Model model) {
-		System.out.println("-------------PRESENTER listProductVersion");
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersions());
 		return modelAndView;
@@ -130,8 +129,6 @@ public class Presenter {
 
 	@RequestMapping(value = { "/search-questionnaire/{id}" })
 	public ModelAndView searchQuestionnaire(@PathVariable int id, Model model) {
-		System.out.println("---- PRESENTER searchQuestionnaire  " + id);
-		// model.addAttribute("productList", productController.showProducts());
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 
@@ -195,7 +192,10 @@ public class Presenter {
 	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.POST)
 	public String createProductVersionSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult,
 			Model model) {
+		System.out.println("--- CREATE PRODUCT VERSION:" +productVersion.getName()+"-" + productVersion.getProductId());
+		System.out.println(bindingResult.toString());
 		if (!bindingResult.hasErrors()) {
+			System.out.println("--- CREAR");
 			if (productVersionController.createProductVersion(productVersion.getName(), productVersion.getProductId())) {
 				model.addAttribute("name", productVersion.getName());
 				model.addAttribute("description", productVersion.getDescription());
