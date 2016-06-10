@@ -36,7 +36,7 @@ public enum EvaluationResultType {
     	}
     }	
 
-    public String getName(){
+    public String evaluationResultTypeName(){
     	return name;
     }
 

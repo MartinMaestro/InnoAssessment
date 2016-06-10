@@ -24,7 +24,7 @@ public enum AssessmentType {
     	}
     }	
 
-    public String AssessmentTypeName(){
+    public String assessmentTypeName(){
     	return name;
     }
     
