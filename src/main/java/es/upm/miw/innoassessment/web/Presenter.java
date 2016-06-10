@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
+import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
@@ -44,6 +45,10 @@ public class Presenter {
 
 	@Autowired
 	private ModelController modelController;
+	
+	@Autowired
+	private ModelItemController modelItemController;
+
 
 	@Autowired
 	private QuestionnaireController questionnaireController;
@@ -101,6 +106,13 @@ public class Presenter {
 	public ModelAndView listModel(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/modelList");
 		modelAndView.addObject("modelList", modelController.showModels());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/modelitem-list")
+	public ModelAndView listModelItem(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/modelItemList");
+		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
 		return modelAndView;
 	}
 

@@ -21,7 +21,7 @@
     <p><a href="<c:url value='/questionnaire-list'/>">- Lista questionarios</a></p>
     <p><a href="<c:url value='/productQuestionnaire-list'/>">- Asociar producto questionarios</a></p>
     <p><a href="<c:url value='/productAssesmentQuestionnaire-list'/>">- Product innovation assessment questionnaire</a></p>
-    
+    <p><a href="<c:url value='/modelitem-list'/>">- Model Item List</a></p>
 
 </body>
 </html>

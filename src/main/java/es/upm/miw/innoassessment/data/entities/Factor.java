@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 
 @Entity
-public class Factor {	
+public class Factor {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -16,6 +16,9 @@ public class Factor {
 
 	@Column(nullable = false, length = 2048)
 	private String definition;
+
+	public Factor() {
+	}
 
 	public Factor(String name, String definition) {
 		this.name = name;
@@ -46,9 +49,4 @@ public class Factor {
 		this.definition = definition;
 	}
 
-	
-	
-	
-
-	
 }

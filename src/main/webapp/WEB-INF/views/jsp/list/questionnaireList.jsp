@@ -6,11 +6,11 @@
 <link rel="shortcut icon"
  href="<c:url value='/static/images/bulb-favicon.png' />"/>
 <meta charset="utf-8">
-<title>Spring MVC. Questionnaire List List</title>
+<title>Spring MVC. ModelItem List</title>
 </head>
 
 <body>
-    <H1>Questionnaire List</H1>
+    <H1>ModelItem List</H1>
 	<table border="1">
 		<thead>
 			<tr>
