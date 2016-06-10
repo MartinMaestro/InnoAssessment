@@ -20,6 +20,7 @@
     <p><a href="<c:url value='/create-model'/>">- Crear Models</a></p>
     <p><a href="<c:url value='/questionnaire-list'/>">- Lista questionarios</a></p>
     <p><a href="<c:url value='/productQuestionnaire-list'/>">- Asociar producto questionarios</a></p>
+    <p><a href="<c:url value='/productAssesmentQuestionnaire-list'/>">- Product innovation assessment questionnaire</a></p>
     
 
 </body>

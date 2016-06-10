@@ -131,11 +131,34 @@ public class Presenter {
 	public ModelAndView searchQuestionnaire(@PathVariable int id, Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
-
 		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
-
 		return modelAndView;
 
+		// return "jsp/list/productQuestionnaireList";
+	}
+	@RequestMapping("/productAssesmentQuestionnaire-list")
+	public ModelAndView listProductAssessmentQuestionnaire(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = { "/search-productAssessmentQuestionnaire/{id}" })
+	public ModelAndView searchProductAssessmentQuestionnaire(@PathVariable int id, Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
+		return modelAndView;
+		// return "jsp/list/productQuestionnaireList";
+	}
+	
+	@RequestMapping(value = { "/build-questionnaire/{id}" })
+	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model) {
+		System.out.println("-------------PRESENTER buildQuestionnaire");
+		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
+		return modelAndView;
 		// return "jsp/list/productQuestionnaireList";
 	}
 
