@@ -20,11 +20,11 @@ public class ModelItem {
 	@ManyToOne
 	@JoinColumn
 	private Dimension dimension;
-	
+
 	@ManyToOne
 	@JoinColumn
 	private Factor factor;
-	
+
 	@Column(nullable = false)
 	private String impact;
 
@@ -33,9 +33,13 @@ public class ModelItem {
 
 	@Column(nullable = false, length = 2048)
 	private String interpretation;
-	
+
 	@Column(nullable = false, length = 2048)
 	private String help;
+
+	public ModelItem() {
+
+	}
 
 	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, String weight,
 			String interpretation, String help) {
@@ -48,5 +52,68 @@ public class ModelItem {
 		this.help = help;
 	}
 
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
+	}
+
+	public Factor getFactor() {
+		return factor;
+	}
+
+	public void setFactor(Factor factor) {
+		this.factor = factor;
+	}
+
+	public String getImpact() {
+		return impact;
+	}
+
+	public void setImpact(String impact) {
+		this.impact = impact;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+	public String getInterpretation() {
+		return interpretation;
+	}
+
+	public void setInterpretation(String interpretation) {
+		this.interpretation = interpretation;
+	}
+
+	public String getHelp() {
+		return help;
+	}
+
+	public void setHelp(String help) {
+		this.help = help;
+	}
+
 }

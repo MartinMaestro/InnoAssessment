@@ -154,9 +154,8 @@ public class Presenter {
 	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model) {
-		System.out.println("-------------PRESENTER buildQuestionnaire");
-		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
-		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
+		System.out.println("-------------PRESENTER buildQuestionnaire" + id);
+		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
 		return modelAndView;
 		// return "jsp/list/productQuestionnaireList";
