@@ -130,6 +130,14 @@ public class Presenter {
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
+	
+	@RequestMapping("/assessmentline-list")
+	public ModelAndView listAssessmentLine(Model model) {
+		System.out.println("--------------PRESENTER assessmentline");
+		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/productQuestionnaire-list", method = RequestMethod.POST)
 	public String listProductQuestionnaireSelect(@Valid QuestionnaireWrapper questionnaire, BindingResult bindingResult,
@@ -212,7 +220,7 @@ public class Presenter {
 			} else {
 				bindingResult.rejectValue("name", "error.product", "Product ya existente");
 			}
-		}
+		} 
 		return "jsp/create/createProduct";
 	}
 
@@ -242,6 +250,7 @@ public class Presenter {
 		}
 		return "jsp/list/productList";
 	}
+	
 
 	@RequestMapping(value = "/create-productversionold", method = RequestMethod.POST)
 	public String createProductVersionSubmitold(@Valid ProductVersionWrapper productVersion,

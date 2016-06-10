@@ -20,23 +20,56 @@ public class AssessmentLine {
 	@ManyToOne
 	@JoinColumn
 	private ModelItem modelItem;
-	
-	
+
 	@Enumerated(EnumType.STRING)
 	private AssessmentType type;
+
+	public AssessmentLine() {
+	}
 
 	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, AssessmentType type) {
 		this.questionnaire = questionnaire;
 		this.modelItem = modelItem;
 		this.type = type;
 	}
-	
-	public AssessmentLine(AssessmentType type) {		
+
+	public AssessmentLine(AssessmentType type) {
 		this.type = type;
 	}
 
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+	public ModelItem getModelItem() {
+		return modelItem;
+	}
+
+	public void setModelItem(ModelItem modelItem) {
+		this.modelItem = modelItem;
+	}
+	
 	public AssessmentType getType() {
 		return type;
 	}
+
+	public void setType(AssessmentType type) {
+		this.type = type;
+	}
 	
+
 }

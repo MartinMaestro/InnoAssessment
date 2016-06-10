@@ -42,6 +42,7 @@
                 <legend>Evaluation Date</legend><p />
                 Model: <b>${questionnaireChoice.modelName} </b> 
                 - Questionnaire: <b>complete</b>
+                Date: <input name='evaluation_date' value='${now}'/>
                 Date: <input name='evaluation_date' type='date' value='${now}'/>
                 Time: <input name='evaluation_time' type='time' value='12:32'/>
                 <input type='hidden' name='model' value='modelBa1997u' />
