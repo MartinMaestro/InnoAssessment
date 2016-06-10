@@ -36,7 +36,7 @@ public enum ValueName {
     	}
     }	
 
-    public String getName(){
+    public String valueNameName(){
     	return name;
     }
 
