@@ -36,6 +36,7 @@
 				<tr>
 					<td>${modelItem.id}</td>
 					<td>${modelItem.modelId}</td>
+					<td>${modelItem.modelName}</td>
 					<td>${modelItem.modelYear}</td>
 					<td>${modelItem.modelVersion}</td>
 					<td>${modelItem.modelDescription}</td>
@@ -48,6 +49,7 @@
 					<td>${modelItem.weight}</td>
 					<td>${modelItem.factorName}</td>
 					<td>${modelItem.interpretation}</td>
+					<td>${modelItem.help}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

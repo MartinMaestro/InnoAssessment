@@ -113,6 +113,7 @@ public class Presenter {
 	public ModelAndView listModelItem(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/modelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
+		//modelAndView.addObject("modelItemList", modelItemController.showModelItemsByModelAndDimension(1, 1));
 		return modelAndView;
 	}
 
