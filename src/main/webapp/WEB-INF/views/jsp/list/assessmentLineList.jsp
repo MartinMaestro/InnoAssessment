@@ -15,7 +15,13 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				
+				<th>modelItemModelName</th>
+				<th>modelItemDimensionName</th>
+				<th>modelItemFactorName</th>
+				<th>modelItemImpact</th>
+				<th>modelItemWeight</th>
+				<th>modelItemInterpretation</th>
+				<th>modelItemHelp</th>				
 				<th>#</th>
 			</tr>
 		</thead>
@@ -23,6 +29,15 @@
 			<c:forEach items="${assessmentLineList}" var="assessmentLine">
 				<tr>
 					<td>${assessmentLine.id}</td>
+					<td>${assessmentLine.modelItemModelName}</td>
+					<td>${assessmentLine.modelItemDimensionName}</td>
+					<td>${assessmentLine.modelItemFactorName}</td>					
+					<td>${assessmentLine.modelItemImpact}</td>
+					<td>${assessmentLine.modelItemWeight}</td>
+					<td>${assessmentLine.modelItemInterpretation}</td>	
+					<td>${assessmentLine.modelItemHelp}</td>
+					<td></td>			
+							
 				
 				</tr>
 			</c:forEach>
