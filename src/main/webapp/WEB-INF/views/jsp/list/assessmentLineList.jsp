@@ -15,7 +15,6 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Active</th>
 				
 				<th>#</th>
 			</tr>
@@ -23,7 +22,7 @@
 		<tbody>
 			<c:forEach items="${assessmentLineList}" var="assessmentLine">
 				<tr>
-					<td>${assessmentLine.Id}</td>
+					<td>${assessmentLine.id}</td>
 				
 				</tr>
 			</c:forEach>

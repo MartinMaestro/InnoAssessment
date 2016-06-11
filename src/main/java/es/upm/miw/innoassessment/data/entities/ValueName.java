@@ -15,28 +15,7 @@ public enum ValueName {
 		this.name = name;
 	}
 
-    public static ValueName getValueNameById(int i){
-    	switch(i){
-    		case 0:
-    			return UNKNOWN;
-    		case 1:
-    			return NOT_APPLICABLE;
-    		case 2:
-    			return VERY_FEW;
-    		case 3:
-    			return FEW;
-    		case 4:
-    			return MEDIUM;
-    		case 5:
-    			return HIGH;
-    		case 6:
-    			return VERY_HIGH;
-    		default:
-    			return null;
-    	}
-    }	
-
-    public String valueNameName(){
+    public String getName(){
     	return name;
     }
 

@@ -69,7 +69,7 @@ public class Presenter {
 	@RequestMapping("/assessmentLine-list")
 	public ModelAndView listAssessmentLines(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
-		modelAndView.addObject("assessmentLine", assessmentLineController.showAssessmentLines());
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
 

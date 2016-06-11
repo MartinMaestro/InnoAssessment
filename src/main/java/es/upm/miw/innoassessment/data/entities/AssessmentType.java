@@ -11,20 +11,7 @@ public enum AssessmentType {
 		this.name = name;
 	}
 
-    public static AssessmentType getAssessmentTypeById(int i){
-    	switch(i){
-    		case 0:
-    			return BOTH;
-    		case 1:
-    			return POSITIVE;
-    		case 2:
-    			return NEGATIVE;
-    		default:
-    			return null;
-    	}
-    }	
-
-    public String assessmentTypeName(){
+    public String getName(){
     	return name;
     }
     

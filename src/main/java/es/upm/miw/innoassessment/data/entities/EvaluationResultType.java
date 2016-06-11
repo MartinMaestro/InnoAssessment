@@ -15,28 +15,7 @@ public enum EvaluationResultType {
 		this.name = name;
 	}
 
-    public static EvaluationResultType getEvaluationResultTypeById(int i){
-    	switch(i){
-    		case 0:
-    			return REAL_DIMENSION_IMPACT;
-    		case 1:
-    			return MAXIMUM_ACHIEVABLE_IMPACT;
-    		case 2:
-    			return MINIMUM_ACHIEVABLE_IMPACT;
-    		case 3:
-    			return OPTIMUM_ACHIEVABLE_IMPACT;
-    		case 4:
-    			return UPPER_LIMIT_IMPACT;
-    		case 5:
-    			return LOWER_LIMIT_IMPACT;
-    		case 6:
-    			return OPTIMUM_LIMIT_IMPACT;
-    		default:
-    			return null;
-    	}
-    }	
-
-    public String evaluationResultTypeName(){
+    public String getName(){
     	return name;
     }
 
