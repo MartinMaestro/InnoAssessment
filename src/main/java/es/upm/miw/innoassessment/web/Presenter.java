@@ -133,9 +133,15 @@ public class Presenter {
 	
 	@RequestMapping("/assessmentline-list")
 	public ModelAndView listAssessmentLine(Model model) {
-		System.out.println("--------------PRESENTER assessmentline");
 		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
+		return modelAndView;
+	}
+	
+	@RequestMapping("/assessmentlinedimension-list")
+	public ModelAndView listAssessmentDimensionLine(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineListByDimension");
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(2));
 		return modelAndView;
 	}
 

@@ -10,7 +10,9 @@
 </head>
 <body>
 <h1>- INNOASSESSMENT -</h1>
+
     <p><a href="<c:url value='/assessmentLine-list'/>">- Lista de Assessment</a></p>
+    <p><a href="<c:url value='/assessmentlinedimension-list'/>">- Lista de Assessment by dimension</a></p>
     <p><a href="<c:url value='/dimension-list'/>">- Lista de Dimension</a></p>
     <p><a href="<c:url value='/create-dimension'/>">- Crear una dimension</a></p>
     <p><a href="<c:url value='/product-list'/>">- Lista de Product</a></p>
