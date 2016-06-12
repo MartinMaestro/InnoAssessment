@@ -21,7 +21,7 @@
 </td>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/questionnaire-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Questionnaire By Innovation Product -</a>
+    <a href="<c:url value='/model-questionnaire'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Questionnaire By Innovation Product -</a>
 </td>
 </tr>
 <tr>

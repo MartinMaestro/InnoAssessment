@@ -96,17 +96,24 @@ public class QuestionnaireProductPresenter {
 		// return "jsp/list/productQuestionnaireList";
 	}
 	*/
-	@RequestMapping("/questionnaire-product")
-	public ModelAndView listQuestionnaireProducts(Model model
-			,@RequestParam(value="modelId", required=false, defaultValue="0") int modelId
-			,@RequestParam(value="productId", required=false, defaultValue="0") int productId) {
-		System.out.println("------------- RequestParam modelId: " + modelId);
-		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
+	@RequestMapping("/model-questionnaire")
+	public ModelAndView listModelQuestionnaire(Model model
+			,@RequestParam(value="modelId", required=false, defaultValue="0") int modelId) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/selectModelQuestionnaire");
 		modelAndView.addObject("modelList", modelController.showModels());
 		if (modelId != 0) {
 			modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnairesByModel(modelId));
-			modelAndView.addObject("productList", productController.showProducts());
-		}
+		}			
+		return modelAndView;
+	}
+	
+	@RequestMapping("/questionnaire-product")
+	public ModelAndView listQuestionnaireProduct(Model model
+			,@RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId
+			,@RequestParam(value="productId", required=false, defaultValue="0") int productId) {
+		System.out.println("------------- RequestParam modelId: " + questionnaireId);
+		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
+		modelAndView.addObject("productList", productController.showProducts());
 		if (productId != 0)
 		{
 			System.out.println("------------- RequestParam productId: " + productId);
