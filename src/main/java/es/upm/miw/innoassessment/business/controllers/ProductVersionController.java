@@ -55,4 +55,8 @@ public class ProductVersionController {
 		productVersionDao.delete(id);
 		return true;
 	}
+
+	public ProductVersionWrapper showProductVersion(int productVersionId) {
+		return new ProductVersionWrapper(productVersionDao.findOne(productVersionId));
+	}
 }

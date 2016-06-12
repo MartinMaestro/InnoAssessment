@@ -33,10 +33,54 @@ public class Evaluation {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	private Date creationTimeStamp;
+	
+
+	public Evaluation() {}
+
 
 	public Evaluation(Questionnaire questionnaire, ProductVersion productVersion, Date creationTimeStamp) {
 		this.questionnaire = questionnaire;
 		this.productVersion = productVersion;
+		this.creationTimeStamp = creationTimeStamp;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+
+	public ProductVersion getProductVersion() {
+		return productVersion;
+	}
+
+
+	public void setProductVersion(ProductVersion productVersion) {
+		this.productVersion = productVersion;
+	}
+
+
+	public Date getCreationTimeStamp() {
+		return creationTimeStamp;
+	}
+
+
+	public void setCreationTimeStamp(Date creationTimeStamp) {
 		this.creationTimeStamp = creationTimeStamp;
 	}	
 
