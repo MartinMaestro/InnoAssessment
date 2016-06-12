@@ -58,7 +58,7 @@ public class Presenter {
 	public String now() {
 		return new SimpleDateFormat("EEEE, d MMM yyyy HH:mm:ss").format(new Date());
 	}
-
+	
 	@RequestMapping("/home")
 	public String home(Model model) {
 		// La vista resultante no lleva extensión (.jsp) configurado en
@@ -181,11 +181,13 @@ public class Presenter {
 	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model) {
-		System.out.println("-------------PRESENTER buildQuestionnaire" + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
-		modelAndView.addObject("questionnaireListChoice", questionnaireController.showQuestionnairesByModel(id));
+		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
+		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
+		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
+
 		return modelAndView;
-		// return "jsp/list/productQuestionnaireList";
+		
 	}
 
 	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)

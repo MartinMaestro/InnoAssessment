@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
 import es.upm.miw.innoassessment.data.daos.QuestionnaireDao;
 import es.upm.miw.innoassessment.data.entities.Questionnaire;
@@ -25,7 +27,11 @@ public class QuestionnaireController {
 		}
 		return questionnaireWrapperList;
 	}
-	
+
+	public QuestionnaireWrapper showQuestionnaire(int questionnaireId) {
+		return new QuestionnaireWrapper(questionnaireDao.findOne(questionnaireId));
+	}
+
 	public List<QuestionnaireWrapper> showQuestionnairesByModel(int modelId) {
 		List<QuestionnaireWrapper> questionnaireWrapperList = new ArrayList<>();
 		for (Questionnaire questionnaire : questionnaireDao.findByModelId(modelId)) {
@@ -35,9 +41,10 @@ public class QuestionnaireController {
 	}
 
 	public boolean createQuestionnaire(String name, String version, int model) {
-		//TODO
-		//questionnaireDao.findByModelId(id)
-		//questionnaireDao.saveAndFlush(new Questionnaire(name, version,  description));
+		// TODO
+		// questionnaireDao.findByModelId(id)
+		// questionnaireDao.saveAndFlush(new Questionnaire(name, version,
+		// description));
 		return true;
 	}
 

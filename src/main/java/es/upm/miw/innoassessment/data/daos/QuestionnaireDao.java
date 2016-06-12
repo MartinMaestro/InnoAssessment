@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface QuestionnaireDao extends JpaRepository<Questionnaire, Integer> {
 	List<Questionnaire> findByModel(Model model);
 	List<Questionnaire> findByModelId(int id);
+	
+	
 }

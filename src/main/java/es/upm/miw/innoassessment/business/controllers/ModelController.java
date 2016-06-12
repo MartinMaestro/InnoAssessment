@@ -25,6 +25,12 @@ public class ModelController {
 		}
 		return modelWrapperList;
 	}
+	
+	public ModelWrapper showModel(int modelId) {
+		System.out.println("---------------- MODEL CONTROLLER: " + modelDao.findOne(modelId).getName() );
+		return new ModelWrapper(modelDao.findOne(modelId));
+	}
+	
 
 	public boolean createModel(String name, String year, String version, String description) {
 		modelDao.saveAndFlush(new Model(name, year, version, description));
