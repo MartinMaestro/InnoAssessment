@@ -4,7 +4,7 @@
 <html lang="es">
 <head>
 <link rel="shortcut icon"
- href="<c:url value='/static/images/bulb-favicon.png' />"/>
+ href="<c:url value='/static/images/vitruvio.png' />"/>
 <meta charset="utf-8">
 <title>Spring MVC. CreateProduct Version</title>
 <style>.error {	color: red;}</style>
