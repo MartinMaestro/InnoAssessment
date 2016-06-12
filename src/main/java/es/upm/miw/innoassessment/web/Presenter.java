@@ -185,7 +185,8 @@ public class Presenter {
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
-
+		modelAndView.addObject("productList", productController.showProducts());
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(2));
 		return modelAndView;
 		
 	}

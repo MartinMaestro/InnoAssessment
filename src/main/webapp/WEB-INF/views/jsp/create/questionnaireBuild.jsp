@@ -165,24 +165,11 @@
             </fieldset>
             <fieldset name='product_information'>
                 <legend>Product details</legend><p />
-                <table>
-                    <tr>
-                    <td align='right'>Name</td>
-                    <td><input type='text' name ='name' placeholder='Write the product name' size = '50' required></td>
-                    </tr>
-                    <tr>
-                    <td align='right'>Version</td>
-                    <td><input type='text' name ='version' placeholder='Write the product version' size = '10'></td>
-                    </tr>
-                    <tr>
-                    <td align='right'>Provider</td>
-                    <td><input type='text' name ='provider' placeholder='Write the product provider' size = '50'></td>
-                    </tr>
-                    <tr>
-                    <td align='right'>Description</td>
-                    <td><textarea name ='description' placeholder='Write the product description' cols = '50' rows = '4'></textarea></td>
-                    </tr>
-                </table>
+                <select name="product" id = "idProduct">
+                <c:forEach items="${productList}" var="product" varStatus="status">
+  					<option value="${product.id}">${product.name}</option>
+				</c:forEach> 
+				</select>               
             </fieldset>
             <input type = 'hidden' name = 'numdim' value = '4' >
             <div id='pestanas'>
