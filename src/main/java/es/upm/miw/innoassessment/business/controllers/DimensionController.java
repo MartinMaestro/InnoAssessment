@@ -28,6 +28,14 @@ public class DimensionController {
 		return dimensionWrapperList;
 	}
 
+	public List<DimensionWrapper> showDimensionsByQuestionnaireId(int questionnaireId) {
+		List<DimensionWrapper> dimensionWrapperList = new ArrayList<>();
+		for (Dimension dimension : dimensionDao.findByQuestionnaireId(questionnaireId)) {
+			dimensionWrapperList.add(new DimensionWrapper(dimension));
+		}
+		return dimensionWrapperList;
+	}
+
 	public boolean deleteDimension(int id) {
 		// return dimensionDao.deleteDimensionDao(id);
 		dimensionDao.delete(id);
