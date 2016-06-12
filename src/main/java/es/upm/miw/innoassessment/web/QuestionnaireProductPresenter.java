@@ -98,12 +98,18 @@ public class QuestionnaireProductPresenter {
 	*/
 	@RequestMapping("/questionnaire-product")
 	public ModelAndView listQuestionnaireProducts(Model model
-			,@RequestParam(value="modelId", required=false, defaultValue="0") int modelId) {
+			,@RequestParam(value="modelId", required=false, defaultValue="0") int modelId
+			,@RequestParam(value="productId", required=false, defaultValue="0") int productId) {
 		System.out.println("------------- RequestParam modelId: " + modelId);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
 		modelAndView.addObject("modelList", modelController.showModels());
 		if (modelId != 0) {
 			modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnairesByModel(modelId));
+			modelAndView.addObject("productList", productController.showProducts());
+		}
+		if (productId != 0)
+		{
+			System.out.println("------------- RequestParam productId: " + productId);
 		}
 			
 		return modelAndView;

@@ -14,16 +14,28 @@ function showEvaluations(productVersionId) {
 	reloadPage('productVersionId='+productVersionId);
 }
 
+function changeFunc() {
+    var selectBox = document.getElementById("ddlProduct");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    alert(selectedValue);
+    reloadPage('productId='+productId);
+   }
+
 function reloadPage(param){
-	var url = window.location.href;    
+	alert("aqui!!!");
+	var url = window.location.href; 
+	alert("reloadPage: " + url + " - param:" + param);
 	if (url.indexOf('?') > -1){
 	 	var res = url.substring(0,url.indexOf('?'))
 	 	url = res + '?' + param
 	}else{
 	   	url += '?' + param
 	}
+	alert("reloadPage2: " + url + " - param:" + param);
 	window.location.href = url;
 }
+
+
 </script>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <title>Innoassessment</title>
@@ -83,6 +95,15 @@ function reloadPage(param){
             </c:forEach>
         </tbody>
     </table>
+    <div class="myheader2" align='center'>Select a Product
+    <select name="product" id = "ddlProduct" onchange="changeFunc();">
+                <c:forEach items="${productList}" var="product" varStatus="status">
+  					<option value="${product.id}">${product.name}</option>
+				</c:forEach> 
+	</select>
+	</div>   
+    
+    
     </c:if>   
     
 	
