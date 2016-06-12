@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"
- href="<c:url value='/static/images/bulb-favicon.png' />"/>
+ href="<c:url value='/static/images/vitruvio.png' />"/>
 <script type="text/javascript">
 function showProductVersions(productId) {
 	reloadPage('productId='+productId);

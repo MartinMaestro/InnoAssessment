@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="shortcut icon" href="<c:url value='/static/images/bulb-favicon.png' />" />
+<link rel="shortcut icon" href="<c:url value='/static/images/vitruvio.png' />" />
 <script type='text/javascript'>
             function showSubmit() {
                         var btnsubmit = document.getElementById('btn_submit');
