@@ -7,31 +7,45 @@
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
 <script type="text/javascript">
 function showQuestionnaires(modelId) {
-	reloadPage('modelId='+modelId);
+	reloadPage('modelId',modelId);
 }
 
 function showEvaluations(productVersionId) {
-	reloadPage('productVersionId='+productVersionId);
+	reloadPage('productVersionId',productVersionId);
+}
+
+function existParam(param){
+	var url = window.location.href; 
+	return url.search(param)>0;
 }
 
 function changeFunc() {
 	var selectBox = document.getElementById("ddlProduct");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    alert("changeFunc" + selectedValue);
-    reloadPage('productId='+productId);
+    //alert("changeFunc" + selectedValue);
+    reloadPage('productId',selectedValue);
    }
 
-function reloadPage(param){
-	alert("aqui!!!");
+function reloadPage(param,value){
+	param = param + "=" + value;
 	var url = window.location.href; 
-	alert("reloadPage: " + url + " - param:" + param);
+	//alert("reloadPage: " + url + " - param:" + param);
 	if (url.indexOf('?') > -1){
+		if (existParam(param)){
+			alert("si existe param")
+		}
+		if (param.substring(0,7) == "modelId"){
+			//alert("param modelId" + param.substring(0,7));
 	 	var res = url.substring(0,url.indexOf('?'))
 	 	url = res + '?' + param
+		}
+		else {
+			url +=  '&' + param;
+		}
 	}else{
 	   	url += '?' + param
 	}
-	alert("reloadPage2: " + url + " - param:" + param);
+	//alert("reloadPage2: " + url + " - param:" + param);
 	window.location.href = url;
 }
 
@@ -96,13 +110,21 @@ function reloadPage(param){
         </tbody>
     </table>
     <div class="myheader2" align='center'>Select a Product
-    <select name="product" id = "ddlProduct" onchange="changeFunc();">
+    	<select name="product" id = "ddlProduct" onchange="changeFunc();">
                 <c:forEach items="${productList}" var="product" varStatus="status">
   					<option value="${product.id}">${product.name}</option>
 				</c:forEach> 
-	</select>
+		</select>
 	</div>   
-    
+     <c:if test="${!empty param.productId && param.productId > 0}">
+    	<div class="myheader2" align='center'>Select a Product Version
+    	<select name="productVersion" id = "ddlProductVersion" onchange="changeFunc();">
+                <c:forEach items="${productVersionList}" var="productVersion" varStatus="status">
+  					<option value="${productVersion.id}">${productVersion.name} - ${productVersion.name}</option>
+				</c:forEach> 
+		</select>
+       </div>
+    </c:if>   
     
     </c:if>   
     

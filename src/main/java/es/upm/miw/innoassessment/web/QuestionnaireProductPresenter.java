@@ -110,6 +110,7 @@ public class QuestionnaireProductPresenter {
 		if (productId != 0)
 		{
 			System.out.println("------------- RequestParam productId: " + productId);
+			modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(productId));
 		}
 			
 		return modelAndView;
