@@ -106,6 +106,16 @@ label {
 	position: relative;    
 }
 
+.myheader2 {
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+    padding-top: 3em;
+    padding-right: 1em;
+    padding-left: 1em;
+	position: relative;    
+}
+
 .myheader > img {
   max-height: 100%;
   max-width: 100%;

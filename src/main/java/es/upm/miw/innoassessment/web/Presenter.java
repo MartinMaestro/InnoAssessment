@@ -179,6 +179,13 @@ public class Presenter {
 		// return "jsp/list/productQuestionnaireList";
 	}
 	
+	@RequestMapping("/questionnaire-product2")
+	public ModelAndView listQuestionnaireProducts2(Model model) {
+		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
+		modelAndView.addObject("modelList", modelController.showModels());
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
 			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {

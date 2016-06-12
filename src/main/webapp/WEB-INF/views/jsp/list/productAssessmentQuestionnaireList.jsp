@@ -3,8 +3,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="shortcut icon"
- href="<c:url value='/static/images/bulb-favicon.png' />"/>
+<link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
+<script type="text/javascript">
+function showQuestionnaires(modelId) {
+	reloadPage('modelId='+modelId);
+}
+
+function showEvaluations(productVersionId) {
+	reloadPage('productVersionId='+productVersionId);
+}
+
+function reloadPage(param){
+	var url = window.location.href;    
+	if (url.indexOf('?') > -1){
+	   url += '&' + param
+	}else{
+	   url += '?' + param
+	}
+	window.location.href = url;
+}
+</script>
 <meta charset="utf-8">
 <title>Spring MVC. Asociate Product questionaire</title>
 </head>
@@ -38,6 +56,7 @@
                     <td>${questionnaire.modelVersion}</td> 
                     <td>${questionnaire.modelDescription}</td>
                     <td><a href="<c:url value='/search-productAssessmentQuestionnaire/${questionnaire.modelId}' />">Select</a></td>          
+                	<td><input id="model" type='radio' name='model' value="${questionnaire.modelId}" onchange="showQuestionnaires(${questionnaire.modelId});" ${param.modelId==questionnaire.modelId?'checked':''}></td>			    				
                 </tr>
             </c:forEach>
         </tbody>
