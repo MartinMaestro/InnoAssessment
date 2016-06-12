@@ -65,6 +65,13 @@ public class Presenter {
 		// WebConfig.java
 		return "jsp/home";
 	}
+	
+	@RequestMapping("/homeDevelop")
+	public String homedevelop(Model model) {
+		// La vista resultante no lleva extensión (.jsp) configurado en
+		// WebConfig.java
+		return "jsp/homeDevelop";
+	}
 
 	@RequestMapping("/assessmentLine-list")
 	public ModelAndView listAssessmentLines(Model model) {

@@ -16,92 +16,17 @@
         </div><h3 style='text-align: center; font-weight: normal;'><i style='border: double; padding: 2px 10px 2px 10px; border-radius: 8px;'>Product Innovation Assessment Tool</i></h3>
 <table align='center' >
 <tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
-    <a href="<c:url value='/assessmentLine-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Assessment -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/dimension-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Dimension -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/create-dimension'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear una dimension -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/product-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Product -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productversion-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Product Versions -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/create-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Product -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/model-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Models -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/create-model'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Models -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/questionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista questionarios -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productQuestionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Asociar producto questionarios -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productAssesmentQuestionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Product innovation assessment questionnaire -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/modelitem-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Model Item List -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productversion-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Product Versions -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productAssesmentQuestionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Product innovation assessment questionnaire -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/modelitem-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Model Item List -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/assessmentlinedimension-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Assessment by dimension -</a>
-</td>
-</tr>
-<tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/assessment-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Assessment By Innovation Product -</a>
 </td>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/questionnaire-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Questionnaire By Innovation Product -</a>
+</td>
+</tr>
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
+    <a href="<c:url value='/homeDevelop'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Develop -</a>
 </td>
 </tr>
 </table>

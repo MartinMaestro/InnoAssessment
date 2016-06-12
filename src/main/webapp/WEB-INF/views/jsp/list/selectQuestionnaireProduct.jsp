@@ -15,9 +15,9 @@ function showEvaluations(productVersionId) {
 }
 
 function changeFunc() {
-    var selectBox = document.getElementById("ddlProduct");
+	var selectBox = document.getElementById("ddlProduct");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    alert(selectedValue);
+    alert("changeFunc" + selectedValue);
     reloadPage('productId='+productId);
    }
 
