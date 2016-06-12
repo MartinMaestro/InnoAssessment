@@ -15,7 +15,6 @@ import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
-import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
