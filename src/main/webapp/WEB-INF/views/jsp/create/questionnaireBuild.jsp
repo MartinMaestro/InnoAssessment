@@ -83,17 +83,23 @@
                         container.appendChild (newDiv);
                         n++;
             }
-            function changeTabs1(btnId, divId, dim) {
-                        for(var i = 0; i < dim; i++) {
+            function changeTabs1(dimId,btnId, divId, dim) {
+            	  
+            	/*
+            	for(var i = 0; i < dim; i++) {
                                     document.getElementById('pesta' + i).style.display = 'none';
                                     document.getElementById('btn' + i).style.border = 'none';
                         }
                         document.getElementById(divId).style.display='block';
                         document.getElementById(btnId).style.border='2px solid #568FBD';
+                 */
+                               
+                        showAssessments(dimId);
             }
             var j = 0;
             function changeTabs2(divId, dim, n, btn) {
-                        for(var i = 0; i < dim; i++) {
+                        
+            	for(var i = 0; i < dim; i++) {
                                     document.getElementById(divId + i).style.display = 'none';
                                     document.getElementById(btn + i).style.border = 'none';
                         }
@@ -143,6 +149,21 @@
                         myChart.setXMLData (chartValues [divId]);
                         myChart.render (chartDivs [divId]);
             }
+            
+            function showAssessments(dimensionId) {
+            	reloadPage('dimensionId='+dimensionId);
+            }
+
+            function reloadPage(param){
+            	var url = window.location.href;    
+            	if (url.indexOf('?') > -1){
+            	 	var res = url.substring(0,url.indexOf('?'))
+            	 	url = res + '?' + param
+            	}else{
+            	   	url += '?' + param
+            	}
+            	window.location.href = url;
+            }
     </script>
     <script language='Javascript' src='js/FusionCharts.js'></script>
     <script language='Javascript' src='js/overlib.js'>
@@ -153,7 +174,7 @@
             Product innovation assessment questionnaire
             <img src="images/syst_logo.png" alt="" />
         </div>
-        <form id = 'questionnaire' action = 'processquestionnaire.php' method = 'post' enctype='multipart/form-data'>
+        <!-- form id = 'questionnaire' action = 'processquestionnaire.php' method = 'post' enctype='multipart/form-data'  -->>
             <fieldset name='date_evaluation'>
                 <legend>Evaluation Date</legend><p />
                 Model: <b>${questionnaireDetail.modelName}</b> 
@@ -171,18 +192,20 @@
 				</c:forEach> 
 				</select>               
             </fieldset>
+         
             <input type = 'hidden' name = 'numdim' value = '4' >
             <div id='pestanas'>
                 <div id='dTabs' style='padding-left: 1%;'>
-                    <input id='btn0' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1('btn0','pesta0', 4)" value='Organization' >
-                    <input id='btn1' type='button' class='tab' style='border: none;' onClick="changeTabs1('btn1','pesta1', 4)" value='Market' >
-                    <input id='btn2' type='button' class='tab' style='border: none;' onClick="changeTabs1('btn2','pesta2', 4)" value='Environment' >
-                    <input id='btn3' type='button' class='tab' style='border: none;' onClick="changeTabs1('btn3','pesta3', 4)" value='Technology' >
+                    <input id='btn0' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(1,'btn0','pesta0', 4)" value='Organization' >
+                    <input id='btn1' type='button' class='tab' style='border: none;' onClick="changeTabs1(2,'btn1','pesta1', 4)" value='Market' >
+                    <input id='btn2' type='button' class='tab' style='border: none;' onClick="changeTabs1(3,'btn2','pesta2', 4)" value='Environment' >
+                    <input id='btn3' type='button' class='tab' style='border: none;' onClick="changeTabs1(4,'btn3','pesta3', 4)" value='Technology' >
                 </div>
                 <div id='cont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>
                     <div id='pesta0' style='display:block;'>
                          <c:forEach items="${assessmentLineList}" var="assessmentLine">
-                        <fieldset name='line_u_1_01'>
+                         Dimension: <b>${assessmentLine.modelItemDimensionName}</b> 
+                        <fieldset name='${assessmentLine.id}'>
                             <legend>${assessmentLine.modelItemFactorName}<a onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> It should be rated with <i>Very high</i> when the team has the perception about the success of the project and with <i>Very low</i> it is not clear if the project is going to be finished.',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');" onmouseout='return nd();' style='position: relative;top: 1.5px;left: 4px;'><img src='images/icon_help.gif' alt='Help' height='16px' width='16px'></a></legend>
                             <table width='100%'>
                                 <tr>
@@ -248,6 +271,6 @@
                     </div>                </div>
             </div>
             <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit">Submit Questionnaire</button>
-        </form>
+        <!--  /form-->>
     </body>
 </html>

@@ -180,13 +180,16 @@ public class Presenter {
 	}
 	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
-	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model) {
+	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
+			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
+		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("productList", productController.showProducts());
-		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(2));
+		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(dimensionId));
 		return modelAndView;
 		
 	}
