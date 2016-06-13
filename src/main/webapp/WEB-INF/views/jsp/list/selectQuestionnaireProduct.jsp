@@ -117,7 +117,7 @@ function reloadPage(param,value){
     	</c:otherwise>
 		</c:choose>
       
-       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}'&productId="${product.id};>>Build Questionnaire</button>
+       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}?productId=${product.id}'";>>Build Questionnaire</button>
       
     
     
