@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
+<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+
 <script type="text/javascript">
 function showQuestionnaires(modelId) {
 	reloadPage('modelId',modelId);
@@ -29,7 +31,6 @@ function reloadPage(param,value){
 
 
 </script>
-<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <title>Innoassessment</title>
 </head>
 

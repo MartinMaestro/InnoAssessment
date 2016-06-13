@@ -123,10 +123,12 @@ public class QuestionnaireProductPresenter {
 		return modelAndView;
 	}
 	
-	/*
+	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
+			,@RequestParam(value="productId", required=true) int productId
 			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
+		System.out.println("------------- RequestParam questionnaire: " + id + "-productId: "+ productId);
 		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
@@ -138,7 +140,7 @@ public class QuestionnaireProductPresenter {
 		return modelAndView;
 		
 	}
-	*/
+	
 
 	
 

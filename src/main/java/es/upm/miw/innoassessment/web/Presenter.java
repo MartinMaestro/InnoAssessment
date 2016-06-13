@@ -193,7 +193,7 @@ public class Presenter {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = { "/build-questionnaire/{id}" })
+	@RequestMapping(value = { "/build-questionnaireOLD/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
 			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
 		System.out.println("------------- RequestParam dimensionId: " + dimensionId);

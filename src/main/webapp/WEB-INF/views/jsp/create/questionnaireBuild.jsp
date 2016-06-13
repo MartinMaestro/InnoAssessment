@@ -4,6 +4,8 @@
 <html lang="es">
 <head>
 <link rel="shortcut icon" href="<c:url value='/static/images/vitruvio.png' />" />
+<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+
 <script type='text/javascript'>
             function showSubmit() {
                         var btnsubmit = document.getElementById('btn_submit');
@@ -167,6 +169,7 @@
     </script>
     <script language='Javascript' src='js/FusionCharts.js'></script>
     <script language='Javascript' src='js/overlib.js'>
+
 <!-- overLIB (c) Erik Bosrup --></script>
     </head>
     <body>

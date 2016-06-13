@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
+<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+
 <script type="text/javascript">
 function showProductVersions(productId) {
 	reloadPage('productId',productId);
@@ -48,7 +50,6 @@ function reloadPage(param,value){
 
 
 </script>
-<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <title>Innoassessment</title>
 </head>
 
@@ -116,7 +117,7 @@ function reloadPage(param,value){
     	</c:otherwise>
 		</c:choose>
       
-       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit">Build Questionnaire</button>
+       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}'&productId="${product.id};>>Build Questionnaire</button>
       
     
     
