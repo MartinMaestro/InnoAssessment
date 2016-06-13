@@ -11,26 +11,19 @@
 function showProductVersions(productId) {
 	reloadPage('productId',productId);
 }
-function existParam(param){
-	var url = window.location.href; 
-	return url.search(param)>0;
+
+function loadBuildQuestionnaire(questionnaireId){
+	var selectBox = document.getElementById("ddlProductVersion");
+    var productVersionId = selectBox.options[selectBox.selectedIndex].value;
+	var url = '/innoassessment/build-questionnaire/'+questionnaireId + '?productVersionId='+productVersionId;
+	window.location.href = url;
 }
-function changeFunc() {
-	var selectBox = document.getElementById("ddlProduct");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    //alert("changeFunc" + selectedValue);
-    reloadPage('productId',selectedValue);
-   }
+
 function reloadPage(param,value){
 	param = param + "=" + value;
 	var url = window.location.href; 
-	//alert("reloadPage: " + url + " - param:" + param);
 	if (url.indexOf('?') > -1){
-		if (existParam(param)){
-			alert("si existe param")
-		}
 		if (param.substring(0,8) == "productId"){
-			//alert("param modelId" + param.substring(0,7));
 	 	var res = url.substring(0,url.indexOf('?'))
 	 	url = res + '?' + param
 		}
@@ -40,7 +33,6 @@ function reloadPage(param,value){
 	}else{
 	   	url += '?' + param
 	}
-	//alert("reloadPage2: " + url + " - param:" + param);
 	window.location.href = url;
 }
 </script>
@@ -59,7 +51,7 @@ function reloadPage(param,value){
                 Date: <input name='evaluation_date' value='${fecha}'/>
                 Time: <input name='evaluation_time' value='${hora}'/>
                 <input type='hidden' name='model' value='questionnaireDetail.modelId' />
-                <input type='hidden' name='questionnaire' value='questionnaireDetail.id' /></br></br>
+                <input type='hidden' name='questionnaire' value='questionnaireDetail.id'/></br></br>
                 <a href="<c:url value='/model-questionnaire/'/>">Change Model</a>
       </fieldset>
       
@@ -75,13 +67,13 @@ function reloadPage(param,value){
        <fieldset name='product_version'>
         <legend>Product Version</legend><p/>
          Select a version of the product:
-    	<select name="product" id = "ddlProductVersion" onchange="changeFunc();">
+    	<select name="product" id = "ddlProductVersion" >
                 <c:forEach items="${productVersionList}" var="productVersion" varStatus="status">
   					<option value="${productVersion.id}">${productVersion.name}</option>
 				</c:forEach> 
 		</select>
-		
 		</fieldset>
+		 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="loadBuildQuestionnaire(${questionnaireDetail.id});">Build Questionnaire</button>
     	</c:when>    
     	<c:otherwise>
          <div class="myheader2" align='center'>Product List</div>
@@ -106,19 +98,9 @@ function reloadPage(param,value){
                 </tr>
             </c:forEach>
         	</tbody>
-    		</table>
-      
+    		</table>      
     	</c:otherwise>
-		</c:choose>
-      
-       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}?productId=${product.id}'";>Build Questionnaire</button>
-      
-    
-    
-	
+		</c:choose>   
 	<p><a href="<c:url value='/home'/>">Home</a></p>
-
-
-
 </body>
 </html>
