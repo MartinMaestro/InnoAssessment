@@ -157,6 +157,25 @@ label {
     margin: 10px auto;	
 }
 
+.mybutton2 {
+	font-size: large;
+	text-align: left;
+    background: -webkit-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+  	background: -o-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+    background: linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 15px #AAAAAA inset;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: #4682B4;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin-bottom: 0%;
+    cursor: pointer;
+    border: 2px solid #568FBD;	
+}
+
 .edit{
 	position: absolute;
 	width: 96.35%;

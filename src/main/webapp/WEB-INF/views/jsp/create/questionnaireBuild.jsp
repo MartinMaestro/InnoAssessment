@@ -187,14 +187,25 @@
                 <input type='hidden' name='model' value='questionnaireDetail.modelId' />
                 <input type='hidden' name='questionnaire' value='questionnaireDetail.Id' />
             </fieldset>
-            <fieldset name='product_information'>
-                <legend>Product details</legend><p />
-                <select name="product" id = "idProduct">
-                <c:forEach items="${productList}" var="product" varStatus="status">
-  					<option value="${product.id}">${product.name}</option>
-				</c:forEach> 
-				</select>               
-            </fieldset>
+            <fieldset name='product_evaluation'>
+                <legend>Product</legend><p/>
+                Name: <b>${productVersion.productName}</b> 
+                - Description: <b>${productVersion.productDescription}</b></br>
+                Version of Product: <b>${productVersion.name}</b>
+                <input type='hidden' name='productVersion' value='productVersion.id' /></br></br>     
+      	
+      		</fieldset>          
+			        
+            <div id='pestanas0'>
+                <div id='dTabs0' style='padding-left: 1%;'>
+                     <c:forEach items="${dimensionList}" var="dimension">
+  				     <input id='btn${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(1,'btn0','pesta0', 4)" value= '${dimension.name}' >
+  				</c:forEach> 
+                </div>
+              </div>
+         
+         
+         
          
             <input type = 'hidden' name = 'numdim' value = '4' >
             <div id='pestanas'>

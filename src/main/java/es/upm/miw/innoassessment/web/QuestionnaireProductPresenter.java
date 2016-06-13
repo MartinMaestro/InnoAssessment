@@ -126,15 +126,20 @@ public class QuestionnaireProductPresenter {
 	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
-			,@RequestParam(value="productId", required=true) int productId
+			,@RequestParam(value="productVersionId", required=true) int productVersionId
 			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
-		System.out.println("------------- RequestParam questionnaire: " + id + "-productId: "+ productId);
+		System.out.println("------------- RequestParam questionnaire: " + id + "-productId: "+ productVersionId);
 		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
+		modelAndView.addObject("productVersion", productVersionController.showProductVersion(productVersionId));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
-		modelAndView.addObject("productList", productController.showProducts());
+		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(id));
+
+		//System.out.println("-------------dimension: " + dimensionController.showDimensionsByQuestionnaireId(id).toString());
+		
+		//modelAndView.addObject("productList", productController.showProducts());
 		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(dimensionId));
 		return modelAndView;

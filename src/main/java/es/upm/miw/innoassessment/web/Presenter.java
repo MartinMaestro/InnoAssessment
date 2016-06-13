@@ -194,7 +194,7 @@ public class Presenter {
 	}
 	
 	@RequestMapping(value = { "/build-questionnaireOLD/{id}" })
-	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model
+	public ModelAndView buildQuestionnaireOLD(@PathVariable int id, Model model
 			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
 		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
