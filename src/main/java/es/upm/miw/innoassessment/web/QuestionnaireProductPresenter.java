@@ -105,12 +105,15 @@ public class QuestionnaireProductPresenter {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/questionnaire-product")
-	public ModelAndView listQuestionnaireProduct(Model model
+	@RequestMapping("/questionnaire-product/{id}")
+	public ModelAndView listQuestionnaireProduct(Model model,@PathVariable int id
 			,@RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId
 			,@RequestParam(value="productId", required=false, defaultValue="0") int productId) {
-		System.out.println("------------- RequestParam modelId: " + questionnaireId);
+		System.out.println("------------- RequestParam questionnaire: " + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
+		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
+		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
+		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("productList", productController.showProducts());
 		if (productId != 0)
 		{

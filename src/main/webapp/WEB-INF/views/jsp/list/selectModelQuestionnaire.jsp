@@ -81,7 +81,7 @@ function reloadPage(param,value){
                     <td>${questionnaire.id}</td>
                     <td>${questionnaire.name}</td>
                     <td>${questionnaire.version}</td>
-                    <td><a href="<c:url value='/build-questionnaire/${questionnaire.id}' />">Add Product</a></td>          
+                    <td><a href="<c:url value='/questionnaire-product/${questionnaire.id}' />">Add Product</a></td>          
                    
                 </tr>
             </c:forEach>
