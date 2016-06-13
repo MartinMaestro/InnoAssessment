@@ -14,6 +14,7 @@ public interface AssessmentLineDao extends JpaRepository<AssessmentLine, Integer
 
 	List<AssessmentLine> findByModelItem(ModelItem modelItem);
 	List<AssessmentLine> findByQuestionnaire(Questionnaire questionnarie);
+	//List<AssessmentLine> findByQuestionnaireIdByOrderByIdAsc(int questionnaireId);	
+	List<AssessmentLine> findByQuestionnaireId(int id);	
 	
-	 
 }

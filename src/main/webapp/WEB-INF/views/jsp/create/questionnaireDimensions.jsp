@@ -7,6 +7,34 @@
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 
 <script type='text/javascript'>
+function esconde_div(){
+	   var elemento = document.getElementById("capa");
+	   elemento.style.display = 'none';
+	}
+	 
+	function visible_div(){
+	   var elemento = document.getElementById("capa");
+	   elemento.style.display = 'block';
+	}
+
+	function changeTabs1(dimId,btnId, divId, dim) {
+	  
+	/*
+	for(var i = 0; i < dim; i++) {
+                        document.getElementById('pesta' + i).style.display = 'none';
+                        document.getElementById('btn' + i).style.border = 'none';
+            }
+            document.getElementById(divId).style.display='block';
+            document.getElementById(btnId).style.border='2px solid #568FBD';
+     */
+            alert("changeTabs1 - dim: " + dimId);
+            showAssessments(dimId);
+}
+
+
+
+
+/*******************************************/
             function showSubmit() {
                         var btnsubmit = document.getElementById('btn_submit');
                         btnsubmit.style.display = "block";
@@ -85,19 +113,7 @@
                         container.appendChild (newDiv);
                         n++;
             }
-            function changeTabs1(dimId,btnId, divId, dim) {
-            	  
-            	/*
-            	for(var i = 0; i < dim; i++) {
-                                    document.getElementById('pesta' + i).style.display = 'none';
-                                    document.getElementById('btn' + i).style.border = 'none';
-                        }
-                        document.getElementById(divId).style.display='block';
-                        document.getElementById(btnId).style.border='2px solid #568FBD';
-                 */
-                               
-                        showAssessments(dimId);
-            }
+            
             var j = 0;
             function changeTabs2(divId, dim, n, btn) {
                         
@@ -178,44 +194,26 @@
             <img src="images/syst_logo.png" alt="" />
         </div>
         <!-- form id = 'questionnaire' action = 'processquestionnaire.php' method = 'post' enctype='multipart/form-data'  -->>
-            <fieldset name='date_evaluation'>
-                <legend>Evaluation Date</legend><p />
-                Model: <b>${questionnaireDetail.modelName}</b> 
-                - Questionnaire: <b>${questionnaireDetail.name}</b>
-                Date: <input name='evaluation_date' value='${fecha}'/>
-                Time: <input name='evaluation_time' value='${hora}'/>
-                <input type='hidden' name='model' value='questionnaireDetail.modelId' />
-                <input type='hidden' name='questionnaire' value='questionnaireDetail.Id' />
-            </fieldset>
-            <fieldset name='product_evaluation'>
-                <legend>Product</legend><p/>
-                Name: <b>${productVersion.productName}</b> 
-                - Description: <b>${productVersion.productDescription}</b></br>
-                Version of Product: <b>${productVersion.name}</b>
-                <input type='hidden' name='productVersion' value='productVersion.id' /></br></br>     
-      	
-      		</fieldset>          
-			        
-            <div id='pestanas0'>
-                <div id='dTabs0' style='padding-left: 1%;'>
-                     
-                </div>
-              </div>
-         
-         
-         
-         
+                    
             <input type = 'hidden' name = 'numdim' value = '4' >
             <div id='pestanas'>
                 <div id='dTabs' style='padding-left: 1%;'>
                     <c:forEach items="${dimensionList}" var="dimension">
-  				     	<input id='btn${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(1,'btn0','pesta0', 4)" value= '${dimension.name}' >
+  				     	<input id='btn${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(${dimension.id},'btn0','pesta0', 4)" value= '${dimension.name}' >
   					</c:forEach> 
                 </div>
+                
+                <c:forEach items="${dimensionList}" var="dimension">
+                  	<div id='pesta${dimension.id}' style='display:block;'>
+                  	 pestaña dimension: ${dimension.id}
+                  	</div>
+  				</c:forEach> 
+                
                 <div id='cont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>
                     <div id='pesta0' style='display:block;'>
                          <c:forEach items="${assessmentLineList}" var="assessmentLine">
                          Dimension: <b>${assessmentLine.modelItemDimensionName}</b> 
+                        <div id='${assessmentLine.id}'>
                         <fieldset name='${assessmentLine.id}'>
                             <legend>${assessmentLine.modelItemFactorName}<a onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> It should be rated with <i>Very high</i> when the team has the perception about the success of the project and with <i>Very low</i> it is not clear if the project is going to be finished.',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');" onmouseout='return nd();' style='position: relative;top: 1.5px;left: 4px;'><img src='images/icon_help.gif' alt='Help' height='16px' width='16px'></a></legend>
                             <table width='100%'>
@@ -275,10 +273,25 @@
                                                 </table>
                                     </div>
                         </fieldset>
-                        </c:forEach>
-                        
-                        
-                       
+                        </div>
+                         CONDICION:                           
+                            <c:choose>
+                            <c:when test="${empty param.dimensionId}">
+        						dimension por defecto
+    						</c:when>   						
+    						<c:when test="${!empty param.dimensionId && param.dimensionId == assessmentLine.modelItemDimensionId}">
+        						DIMENSION IGUAL VISIBLE
+    						</c:when>                            
+                              <c:when test="${valuedimension != assetdimension}">
+                               ID: ${assessmentLine.id} </br> 
+                               DIFERENTES: NO VISIBLE - DIMENSION: ${param.dimensionId} - ASSET: ${assessmentLine.modelItemDimensionId} </br>
+                              
+                              </c:when>    
+    	                      <c:otherwise>
+    	                        OTHERWISE: VISIBLE -  DIMENSION: ${param.dimensionId} - ASSET: ${assessmentLine.modelItemDimensionId}</br>
+    	                      </c:otherwise>
+		                      </c:choose> 
+                        </c:forEach>                       
                     </div>                </div>
             </div>
             <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit">Submit Questionnaire</button>

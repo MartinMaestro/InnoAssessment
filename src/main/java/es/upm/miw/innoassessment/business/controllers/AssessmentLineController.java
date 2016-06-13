@@ -44,4 +44,12 @@ public class AssessmentLineController {
 		return assessmentLineWrapperList;
 	}
 
+	public List<AssessmentLineWrapper> showAssessmentLinesByQuestionnaire(int questionnaireId) {
+		List<AssessmentLineWrapper> assessmentLineWrapperList = new ArrayList<>();
+		for (AssessmentLine assessmentLine : assessmentLineDao.findByQuestionnaireId(questionnaireId)) {
+			assessmentLineWrapperList.add(new AssessmentLineWrapper(assessmentLine));
+		}
+		return assessmentLineWrapperList;
+	}
+
 }
