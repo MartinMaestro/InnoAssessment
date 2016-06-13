@@ -64,37 +64,43 @@ function reloadPage(param,value){
                 Date: <input name='evaluation_date' value='${fecha}'/>
                 Time: <input name='evaluation_time' value='${hora}'/>
                 <input type='hidden' name='model' value='questionnaireDetail.modelId' />
-                <input type='hidden' name='questionnaire' value='questionnaireDetail.Id' />
+                <input type='hidden' name='questionnaire' value='questionnaireDetail.id' /></br></br>
+                <a href="<c:url value='/model-questionnaire/'/>">Change Model</a>
       </fieldset>
-      <c:if test="${!empty param.productId && param.productId > 0}">
-      <fieldset name='product_evaluation'>
+      
+      <c:choose>
+    <c:when test="${!empty param.productId && param.productId > 0}">
+       <fieldset name='product_evaluation'>
                 <legend>Product</legend><p/>
-                Name: <b>${productVersion.productName}</b> 
-                - Description: <b>${productVersion.productDescription}</b>
-                <input type='hidden' name='product' value='product.id' />                
-      </fieldset>
-      <div class="myheader2" align='center'>Product Versions</div>
-    	<div class="myheader2" align='center'>Select Version
+                Name: <b>${product.name}</b> 
+                - Description: <b>${product.description}</b>
+                <input type='hidden' name='product' value='product.id' /></br></br>              
+      	<a href="<c:url value='/questionnaire-product/${questionnaireDetail.id}'/>">Change Product</a>
+      	</fieldset>
+       <fieldset name='product_version'>
+        <legend>Product Version</legend><p/>
+         Select a version of the product:
     	<select name="product" id = "ddlProductVersion" onchange="changeFunc();">
-                <c:forEach items="${productVersionList}" var="product" varStatus="status">
+                <c:forEach items="${productVersionList}" var="productVersion" varStatus="status">
   					<option value="${productVersion.id}">${productVersion.name}</option>
 				</c:forEach> 
 		</select>
-	</div>
-      </c:if>  
-   
-    <div class="myheader2" align='center'>Product List</div>
-    <table border="1" align='center'>
-        <thead>
-            <tr>
-            	<th>Product Id</th>
-                <th>Model Name</th>
-                <th>Model Description</th>
-                <th>Model Provider</th>  
-                <th>#</th>                                             
-            </tr>
-        </thead>
-        <tbody>
+		
+		</fieldset>
+    	</c:when>    
+    	<c:otherwise>
+         <div class="myheader2" align='center'>Product List</div>
+    		<table border="1" align='center'>
+        		<thead>
+           		 <tr>
+            		<th>Product Id</th>
+                	<th>Model Name</th>
+               	 	<th>Model Description</th>
+               		<th>Model Provider</th>  
+                	<th>#</th>                                             
+            	</tr>
+        		</thead>
+        	<tbody>
             <c:forEach items="${productList}" var="product">
                 <tr>
                     <td>${product.id}</td>
@@ -104,11 +110,15 @@ function reloadPage(param,value){
                 	<td><input id="product" type='radio' name='product' value="${product.id}" onchange="showProductVersions(${product.id});" ${param.productId==product.id?'checked':''}></td>			    				
                 </tr>
             </c:forEach>
-        </tbody>
-    </table>
-    <c:if test="${!empty param.productId && param.productId > 0}">
-          
-    </c:if>   
+        	</tbody>
+    		</table>
+      
+    	</c:otherwise>
+		</c:choose>
+      
+       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit">Build Questionnaire</button>
+      
+    
     
 	
 	<p><a href="<c:url value='/home'/>">Home</a></p>

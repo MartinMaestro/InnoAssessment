@@ -109,7 +109,6 @@ public class QuestionnaireProductPresenter {
 	public ModelAndView listQuestionnaireProduct(Model model,@PathVariable int id
 			,@RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId
 			,@RequestParam(value="productId", required=false, defaultValue="0") int productId) {
-		System.out.println("------------- RequestParam questionnaire: " + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
@@ -117,7 +116,7 @@ public class QuestionnaireProductPresenter {
 		modelAndView.addObject("productList", productController.showProducts());
 		if (productId != 0)
 		{
-			System.out.println("------------- RequestParam productId: " + productId);
+			modelAndView.addObject("product", productController.showProduct(productId));
 			modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(productId));
 		}
 			
