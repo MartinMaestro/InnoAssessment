@@ -36,6 +36,38 @@ public class EvaluationResult {
 		this.dimension = dimension;
 		this.evaluationResultType = evaluationResultType;
 		this.value = value;
+	}
+
+	public Evaluation getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(Evaluation evaluation) {
+		this.evaluation = evaluation;
+	}
+
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
+	}
+
+	public EvaluationResultType getEvaluationResultType() {
+		return evaluationResultType;
+	}
+
+	public void setEvaluationResultType(EvaluationResultType evaluationResultType) {
+		this.evaluationResultType = evaluationResultType;
+	}
+
+	public float getValue() {
+		return value;
+	}
+
+	public void setValue(float value) {
+		this.value = value;
 	}	
 
 }

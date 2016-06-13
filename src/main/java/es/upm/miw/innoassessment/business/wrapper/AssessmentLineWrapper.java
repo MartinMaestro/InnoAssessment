@@ -1,7 +1,6 @@
 package es.upm.miw.innoassessment.business.wrapper;
 
 import es.upm.miw.innoassessment.data.entities.AssessmentLine;
-import es.upm.miw.innoassessment.data.entities.AssessmentType;
 
 public class AssessmentLineWrapper {
 

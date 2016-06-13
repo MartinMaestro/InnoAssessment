@@ -217,15 +217,10 @@ DROP TABLE IF EXISTS `SourceFile`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SourceFile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` longblob,
+  `content_type` varchar(255) DEFAULT NULL,
   `filename` varchar(255) NOT NULL,
-  `realpath` varchar(255) NOT NULL,
-  `assessmentLine_id` int(11) DEFAULT NULL,
-  `evaluation_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_sllsan68kq606sxvtqplfc6rq` (`assessmentLine_id`),
-  KEY `FK_2f7ew4g3jv6v0gff6qtqbcaj0` (`evaluation_id`),
-  CONSTRAINT `FK_2f7ew4g3jv6v0gff6qtqbcaj0` FOREIGN KEY (`evaluation_id`) REFERENCES `Evaluation` (`id`),
-  CONSTRAINT `FK_sllsan68kq606sxvtqplfc6rq` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -239,13 +234,42 @@ DROP TABLE IF EXISTS `SourceUrl`;
 CREATE TABLE `SourceUrl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
-  `assessmentLine_id` int(11) DEFAULT NULL,
-  `evaluation_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_i07j10igr57wjfks7qp7rsuvl` (`assessmentLine_id`),
-  KEY `FK_e5jkqx7xnwygruv03ohlyudmu` (`evaluation_id`),
-  CONSTRAINT `FK_e5jkqx7xnwygruv03ohlyudmu` FOREIGN KEY (`evaluation_id`) REFERENCES `Evaluation` (`id`),
-  CONSTRAINT `FK_i07j10igr57wjfks7qp7rsuvl` FOREIGN KEY (`assessmentLine_id`) REFERENCES `AssessmentLine` (`id`)
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Table structure for table `LineValue_SourceFile`
+--
+
+DROP TABLE IF EXISTS `LineValue_SourceFile`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LineValue_SourceFile` (
+  `LineValue_id` int(11) NOT NULL,
+  `sourcesFiles_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_f74jb0rg03vscxc3eol8yuvox` (`sourcesFiles_id`),
+  KEY `FK_p1d1pddad16sw80tcv1fv81ij` (`LineValue_id`),
+  CONSTRAINT `FK_f74jb0rg03vscxc3eol8yuvox` FOREIGN KEY (`sourcesFiles_id`) REFERENCES `SourceFile` (`id`),
+  CONSTRAINT `FK_p1d1pddad16sw80tcv1fv81ij` FOREIGN KEY (`LineValue_id`) REFERENCES `LineValue` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `LineValue_SourceUrl`
+--
+
+DROP TABLE IF EXISTS `LineValue_SourceUrl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LineValue_SourceUrl` (
+  `LineValue_id` int(11) NOT NULL,
+  `sourcesUrls_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_jc9xnr4tx8go38nhltr4uom7u` (`sourcesUrls_id`),
+  KEY `FK_1fochcep0pxl3lfwblmajvjfn` (`LineValue_id`),
+  CONSTRAINT `FK_1fochcep0pxl3lfwblmajvjfn` FOREIGN KEY (`LineValue_id`) REFERENCES `LineValue` (`id`),
+  CONSTRAINT `FK_jc9xnr4tx8go38nhltr4uom7u` FOREIGN KEY (`sourcesUrls_id`) REFERENCES `SourceUrl` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

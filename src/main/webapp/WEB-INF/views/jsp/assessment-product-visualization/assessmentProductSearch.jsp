@@ -31,10 +31,10 @@ function reloadPage(param){
 <title>Innoassessment</title>
 </head>
 <body>
-        <div class="myheader">
-            Assessed Products
-            <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
-        </div>
+    <div class="myheader">
+        Assessed Products
+        <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
+    </div>
 	<table border="1" align='center'>
 		<thead>
 			<tr align='center'>
@@ -54,7 +54,7 @@ function reloadPage(param){
 		</tbody>
 	</table>
 	<c:if test="${!empty param.productId && param.productId > 0}">
-	<div align='center'><a href="<c:url value='/assessment-product'/>">Reload Products</a></div>
+	<div align='center'><a href="<c:url value='/assessment-product-search'/>">Reload Products</a></div>
     <H3 align='center'>Versions</H3>
 	<table border="1" align='center'>
 		<thead>
@@ -76,7 +76,7 @@ function reloadPage(param){
 	</table>
 	
 	<c:if test="${!empty param.productVersionId && param.productVersionId > 0}">
-	<div align='center'><a href="<c:url value='/assessment-product'>
+	<div align='center'><a href="<c:url value='/assessment-product-search'>
 				    	<c:param name="productId" value="${param.productId}"/>
 				    </c:url>">Reload Versions</a></div>
     <H3 align='center'>Assessments</H3>
@@ -95,7 +95,7 @@ function reloadPage(param){
 					<td>${evaluation.id}</td>
 				    <td>${evaluation.questionnaire.name}</td>	
 				    <td>${evaluation.creationTimeStamp}</td>	
-				    <td><a href="<c:url value='/show-assessment'>
+				    <td><a href="<c:url value='/assessment-product-view'>
 				    	<c:param name="evaluationId" value="${evaluation.id}"/>
 				    </c:url>">Show Assessment</a></td>		    				
 				</tr>
@@ -104,6 +104,6 @@ function reloadPage(param){
 	</table>	
 	</c:if>
 	</c:if>
-	<button class = 'mybutton' type='button' style = 'display: block;' onclick="location.href='/innoassessment/home'";>Go to the begining</button>
+	<button class = 'mybutton' type='button' style = 'display: block;' onclick="location.href='/innoassessment/home'";>Go to the beginning</button>
 </body>	
 </html>

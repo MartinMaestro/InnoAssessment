@@ -21,4 +21,8 @@ public class EvaluationController {
 	public List<Evaluation> findByProductVersionId(int productVersionId){
 		return evaluationDao.findByProductVersionIdOrderByQuestionnaireId(productVersionId);
 	}
+	
+	public Evaluation findOne(int evaluationId){
+		return evaluationDao.findOne(evaluationId);
+	}
 }

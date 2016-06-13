@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.EvaluationController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+import es.upm.miw.innoassessment.data.entities.Evaluation;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -32,11 +34,13 @@ public class AssessmentProductPresenter {
 	@Autowired
 	private EvaluationController evaluationController;
 
-	@RequestMapping("/assessment-product")
+	@Autowired
+	private DimensionController dimensionController;
+
+	@RequestMapping("/assessment-product-search")
 	public ModelAndView listAssessmentLines(Model model, @RequestParam(value="productId", required=false, defaultValue="0") int productId
 			, @RequestParam(value="productVersionId", required=false, defaultValue="0") int productVersionId) {
-		System.out.println("******************************************* productId: " + productId);
-		ModelAndView modelAndView = new ModelAndView("jsp/selectAssessmentProduct");
+		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductSearch");
 		if(productId == 0){
 			modelAndView.addObject("productList", productController.showProducts());
 		} else if(productVersionId == 0){
@@ -57,6 +61,24 @@ public class AssessmentProductPresenter {
 			modelAndView.addObject("evaluationList", evaluationController.findByProductVersionId(productVersionId));		
 		}
 		return modelAndView;
-	}	
+	}
+
+	@RequestMapping("/assessment-product-view")
+	public ModelAndView showAssessmentLine(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductView");
+		Evaluation evaluation = evaluationController.findOne(evaluationId);
+		modelAndView.addObject("evaluation", evaluation);
+		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));		
+
+		return modelAndView;
+	}
+
+	@RequestMapping("/assessment-product-chart")
+	public ModelAndView showAssessmentLineChart(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductChart");
+
+		return modelAndView;
+	}
+	
 
 }
