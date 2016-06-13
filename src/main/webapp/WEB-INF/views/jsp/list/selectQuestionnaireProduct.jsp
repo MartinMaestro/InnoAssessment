@@ -11,20 +11,16 @@
 function showProductVersions(productId) {
 	reloadPage('productId',productId);
 }
-
-
 function existParam(param){
 	var url = window.location.href; 
 	return url.search(param)>0;
 }
-
 function changeFunc() {
 	var selectBox = document.getElementById("ddlProduct");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     //alert("changeFunc" + selectedValue);
     reloadPage('productId',selectedValue);
    }
-
 function reloadPage(param,value){
 	param = param + "=" + value;
 	var url = window.location.href; 
@@ -47,8 +43,6 @@ function reloadPage(param,value){
 	//alert("reloadPage2: " + url + " - param:" + param);
 	window.location.href = url;
 }
-
-
 </script>
 <title>Innoassessment</title>
 </head>
@@ -117,7 +111,7 @@ function reloadPage(param,value){
     	</c:otherwise>
 		</c:choose>
       
-       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}?productId=${product.id}'";>>Build Questionnaire</button>
+       <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="location.href='/innoassessment/build-questionnaire/${questionnaireDetail.id}?productId=${product.id}'";>Build Questionnaire</button>
       
     
     
