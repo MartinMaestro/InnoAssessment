@@ -32,10 +32,11 @@ public class DimensionFactorPresenter {
 		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		return modelAndView;
 	}
-
+	
 	@RequestMapping("/factor-list")
 	public ModelAndView listFactor(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/factorList");
+		System.out.println("prueba listFactor");
 		modelAndView.addObject("factorList", factorController.showFactors());
 		return modelAndView;
 	}
@@ -73,7 +74,7 @@ public class DimensionFactorPresenter {
 				model.addAttribute("name", factor.getName());
 				model.addAttribute("definition", factor.getDefinition());
 				model.addAttribute("id", factor.getId());
-				return "jsp/list/factorList";
+				return "jsp/list/factorList";				
 			} else {
 				bindingResult.rejectValue("name", "error.factor", "Exist factor");
 			}

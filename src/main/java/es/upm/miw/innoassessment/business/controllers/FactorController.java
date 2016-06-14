@@ -37,8 +37,16 @@ public class FactorController {
 	}
 
 	public boolean createFactor(String name, String definition) {
-		factorDao.saveAndFlush(new Factor(name, definition));
-		return true;
+		System.out.println("CONTROLLER create factor:"+ name +" - " +  factorDao.findByName(name).getName() );
+		if (factorDao.findByName(name) == null) {
+			System.out.println("create NO EXISTE factor: " );
+			factorDao.saveAndFlush(new Factor(name, definition));
+			return true;
+		} else {
+			System.out.println("create EXISTE factor: " );
+
+			return false;
+		}
 	}
 
 	public boolean deleteFactor(int id) {

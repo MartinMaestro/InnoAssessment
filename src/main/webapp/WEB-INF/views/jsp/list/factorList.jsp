@@ -6,6 +6,7 @@
 <link rel="shortcut icon"
  href="<c:url value='/static/images/vitruvio.png' />"/>
  <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+  <link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
  
 <meta charset="utf-8">
 <title>Innoassessment</title>
@@ -16,11 +17,11 @@
             Factor
             <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
      </div>
-
+	</br>
 	<fieldset name='factor_list'>
-		<legend>List</legend>
-		<p />
-		<table border="0.8">
+		<legend  align="center">Factor's list</legend>
+		<p/>
+		<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>

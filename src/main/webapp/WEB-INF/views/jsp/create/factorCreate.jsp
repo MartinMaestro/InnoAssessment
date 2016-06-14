@@ -6,7 +6,8 @@
 <link rel="shortcut icon"
 	href="<c:url value='/static/images/vitruvio.png' />" />
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
-
+<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+<link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 <meta charset="utf-8">
 <title>Innoassessment</title>
 <style>
@@ -25,7 +26,6 @@
 		<legend>Create</legend>
 		<p />
 		<form:form action="create-factor" modelAttribute="factor">
-
 			<p>
 				Name:
 				<form:input path="name" placeholder="Name" required="required" />
@@ -37,7 +37,7 @@
 				<form:errors path="definition" cssClass="error" />
 			</p>
 			<p>
-				<input type="submit" class = 'mybutton' style = 'display: block;' value="Create">
+				<input type="submit" class="btn btn-default" style = 'display: block;' value="Create">
 			</p>
 		</form:form>
 	</fieldset>
