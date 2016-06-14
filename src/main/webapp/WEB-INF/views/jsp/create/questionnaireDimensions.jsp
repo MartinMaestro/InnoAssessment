@@ -7,6 +7,14 @@
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 
 <script type='text/javascript'>
+
+function myFunction(){
+	alert ("----------ONLOAD");
+	RecorrerForm(1);
+	alert ("----------ONLOAD FIN");
+
+}
+
 function esconde_div(){
 	   var elemento = document.getElementById("capa");
 	   elemento.style.display = 'none';
@@ -29,8 +37,85 @@ function esconde_div(){
      */
             alert("changeTabs1 - dim: " + dimId);
             showAssessments(dimId);
-}
+}	
+	function showAssessments(dimensionId) {
+    	reloadPage('dimensionId',dimensionId);
+    	RecorrerForm(dimensionId);
+    }
+	
+	function RecorrerForm(dimensionId)
+    {
+		var sAux="";
+		var sAux2="";
 
+    	capas=document.getElementsByTagName('div');
+		for (i=0;i<capas.length;i++){	
+			switch(capas[i].id.substr(0,3)) {
+		    case 'al_':
+		    	if (capas[i].id.substr(3,1) == dimensionId){
+				 	capas[i].style.display='block';
+			  	} else {
+			  		capas[i].style.display='none';
+			  	}
+		        break;
+		    case 'sf_':
+		    	capas[i].style.display='none';
+		        break;
+		    default:
+		    	capas[i].style.display='block';
+			}		
+		}   	
+    }
+	
+	
+	function RecorrerFormORIGOK(dimensionId)
+    {
+		var sAux="";
+		var sAux2="";
+
+    	capas=document.getElementsByTagName('div');
+		for (i=0;i<capas.length;i++){			
+			if (capas[i].id.substr(0,3) == 'al_'){
+				// Capa de assessmentLine al_
+				//alert("capa dim: " + capas[i].id.substr(3,1));
+				 if (capas[i].id.substr(3,1) == dimensionId){
+				 	sAux += "capa VISIBLE " +  i + "- id: "   + capas[i].id + "\n";
+				 	capas[i].style.display='block';
+			  	} else {
+			  		sAux2 += "capa NOVISIBLE " +  i + "- id: "   + capas[i].id + "\n";
+			  		capas[i].style.display='none';
+			  	}
+			}	 
+			else
+				sf_
+				{
+				sAux += "capa VISIBLE " +  i + "- id: "   + capas[i].id + "\n";
+				 capas[i].style.display='block';
+				}
+		}
+		alert("CAPAS VISIBLES:" + sAux);
+		alert("CAPAS NOVISIBLES:" + sAux2);
+
+		sAux="";
+    	
+    	
+    }
+
+    function reloadPage(param, value){
+    	//RecorrerForm(value);
+    	alert("reloadPage - param: " + param);
+    	param +="="+value;
+    	var url = window.location.href;    
+    	if (url.indexOf('?') > -1){
+    	 	var res = url.substring(0,url.indexOf('?'))
+    	 	url = res + '?' + param
+    	}else{
+    	   	url += '?' + param
+    	}
+    	window.location.href = url;
+    }
+    
+    
 
 
 
@@ -168,33 +253,19 @@ function esconde_div(){
                         myChart.render (chartDivs [divId]);
             }
             
-            function showAssessments(dimensionId) {
-            	reloadPage('dimensionId='+dimensionId);
-            }
-
-            function reloadPage(param){
-            	var url = window.location.href;    
-            	if (url.indexOf('?') > -1){
-            	 	var res = url.substring(0,url.indexOf('?'))
-            	 	url = res + '?' + param
-            	}else{
-            	   	url += '?' + param
-            	}
-            	window.location.href = url;
-            }
+            
     </script>
     <script language='Javascript' src='js/FusionCharts.js'></script>
     <script language='Javascript' src='js/overlib.js'>
 
 <!-- overLIB (c) Erik Bosrup --></script>
     </head>
-    <body>
+    <body onload="myFunction()">
         <div class="myheader">
             Product innovation assessment questionnaire
             <img src="images/syst_logo.png" alt="" />
         </div>
         <!-- form id = 'questionnaire' action = 'processquestionnaire.php' method = 'post' enctype='multipart/form-data'  -->>
-                    
             <input type = 'hidden' name = 'numdim' value = '4' >
             <div id='pestanas'>
                 <div id='dTabs' style='padding-left: 1%;'>
@@ -213,7 +284,7 @@ function esconde_div(){
                     <div id='pesta0' style='display:block;'>
                          <c:forEach items="${assessmentLineList}" var="assessmentLine">
                          Dimension: <b>${assessmentLine.modelItemDimensionName}</b> 
-                        <div id='${assessmentLine.id}'>
+                        <div id='al_${assessmentLine.modelItemDimensionId}-${assessmentLine.id}'>
                         <fieldset name='${assessmentLine.id}'>
                             <legend>${assessmentLine.modelItemFactorName}<a onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> It should be rated with <i>Very high</i> when the team has the perception about the success of the project and with <i>Very low</i> it is not clear if the project is going to be finished.',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');" onmouseout='return nd();' style='position: relative;top: 1.5px;left: 4px;'><img src='images/icon_help.gif' alt='Help' height='16px' width='16px'></a></legend>
                             <table width='100%'>
@@ -243,7 +314,7 @@ function esconde_div(){
                                     </td>
                                 </tr>
                             </table>
-                                    <div id='${assessmentLine.id}' style='display: none;'>
+                                    <div id='sf_${assessmentLine.id}' style='display: none;'>
                                                 <table width='100%'>
                                                 <tr>
                                                             <td width='50%'>
@@ -274,23 +345,7 @@ function esconde_div(){
                                     </div>
                         </fieldset>
                         </div>
-                         CONDICION:                           
-                            <c:choose>
-                            <c:when test="${empty param.dimensionId}">
-        						dimension por defecto
-    						</c:when>   						
-    						<c:when test="${!empty param.dimensionId && param.dimensionId == assessmentLine.modelItemDimensionId}">
-        						DIMENSION IGUAL VISIBLE
-    						</c:when>                            
-                              <c:when test="${valuedimension != assetdimension}">
-                               ID: ${assessmentLine.id} </br> 
-                               DIFERENTES: NO VISIBLE - DIMENSION: ${param.dimensionId} - ASSET: ${assessmentLine.modelItemDimensionId} </br>
-                              
-                              </c:when>    
-    	                      <c:otherwise>
-    	                        OTHERWISE: VISIBLE -  DIMENSION: ${param.dimensionId} - ASSET: ${assessmentLine.modelItemDimensionId}</br>
-    	                      </c:otherwise>
-		                      </c:choose> 
+                        
                         </c:forEach>                       
                     </div>                </div>
             </div>
