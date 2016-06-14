@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+<link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 
 <script type="text/javascript">
 function showQuestionnaires(modelId) {
@@ -41,7 +42,7 @@ function reloadPage(param,value){
      </div>
    
     <div class="myheader2" align='center'>Model List</div>
-    <table border="1" align='center'>
+    <table border="1" align='center' class="table table-bordered">
         <thead>
             <tr>
             	<th>Model Id</th>
@@ -67,7 +68,7 @@ function reloadPage(param,value){
     </table>
     <c:if test="${!empty param.modelId && param.modelId > 0}">
     <div class="myheader2" align='center'>Questionnnaire</div>
-    <table border="1" align='center'>
+    <table border="1" align='center' class="table table-bordered">
         <thead>
             <tr>
                 <th>Questionnaire Id</th>

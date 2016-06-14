@@ -80,9 +80,10 @@ public class QuestionnaireProductPresenter {
 
 	@RequestMapping(value = { "/build-questionnaireDimensions/" })
 	public ModelAndView buildQuestionnaireDimensions(Model model,
-			@RequestParam(value = "dimensionId", required = false, defaultValue = "1") int dimensionId) {
+			@RequestParam(value = "dimensionId", required = false,defaultValue = "0") int dimensionId) {
 		int questionnaireId = 1;
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireDimensions");
+		//TODO CAMBIAR id questionario
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(1));
 
 		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE DIMENSION: " + dimensionId);
@@ -114,9 +115,11 @@ public class QuestionnaireProductPresenter {
 		// modelAndView.addObject("productList",
 		// productController.showProducts());
 		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
-		modelAndView.addObject("assessmentLineList",
+		
+			modelAndView.addObject("assessmentLineList",		
 				assessmentLineController.showAssessmentLinesByDimension(dimensionId));
-		return modelAndView;
+		
+			return modelAndView;
 
 	}
 

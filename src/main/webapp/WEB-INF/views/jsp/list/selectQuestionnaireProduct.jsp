@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+<link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 
 <script type="text/javascript">
 function showProductVersions(productId) {
@@ -77,7 +78,7 @@ function reloadPage(param,value){
     	</c:when>    
     	<c:otherwise>
          <div class="myheader2" align='center'>Product List</div>
-    		<table border="1" align='center'>
+    		<table align='center' class="table table-bordered">
         		<thead>
            		 <tr>
             		<th>Product Id</th>
