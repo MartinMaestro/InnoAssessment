@@ -80,12 +80,7 @@ public class Presenter {
 		return modelAndView;
 	}
 
-	@RequestMapping("/dimension-list")
-	public ModelAndView listDimension(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/dimensionList");
-		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
-		return modelAndView;
-	}
+	
 
 	@RequestMapping("/product-list")
 	public ModelAndView listProduct(Model model) {
@@ -208,25 +203,7 @@ public class Presenter {
 		
 	}
 
-	@RequestMapping(value = "/create-dimension", method = RequestMethod.GET)
-	public String createDimension(Model model) {
-		model.addAttribute("dimension", new DimensionWrapper());
-		return "jsp/create/dimensionCreate";
-	}
-
-	@RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
-	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
-		if (!bindingResult.hasErrors()) {
-			if (dimensionController.createDimension(dimension.getName())) {
-				model.addAttribute("name", dimension.getName());
-				model.addAttribute("id", dimension.getId());
-				return "jsp/registrationSuccess";
-			} else {
-				bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
-			}
-		}
-		return "jsp/create/dimensionCreate";
-	}
+	
 
 	@RequestMapping(value = "/create-product", method = RequestMethod.GET)
 	public String createProduct(Model model) {
@@ -318,12 +295,7 @@ public class Presenter {
 		return "jsp/create/createModel";
 	}
 
-	@RequestMapping(value = { "/delete-dimension/{id}" })
-	public String deleteDimension(@PathVariable int id, Model model) {
-		dimensionController.deleteDimension(id);
-		model.addAttribute("dimensionList", dimensionController.showDimensions());
-		return "jsp/list/dimensionList";
-	}
+	
 
 	@RequestMapping(value = { "/delete-product/{id}" })
 	public String deleteProduct(@PathVariable int id, Model model) {

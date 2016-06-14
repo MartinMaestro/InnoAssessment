@@ -29,7 +29,15 @@
 </td>
 </tr>
 <tr>
-
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/factor-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Factores -</a>
+</td>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/create-factor'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Factor -</a>
+</td>
+</tr>
+<tr>
 </tr>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  

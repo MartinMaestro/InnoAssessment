@@ -36,15 +36,14 @@ public class DimensionController {
 		return dimensionWrapperList;
 	}
 
+	public boolean createDimension(String name) {
+		dimensionDao.saveAndFlush(new Dimension(name));
+		return true;
+	}
+
 	public boolean deleteDimension(int id) {
-		// return dimensionDao.deleteDimensionDao(id);
 		dimensionDao.delete(id);
 		return true;
 	}
 
-	public boolean createDimension(String name) {
-		// return dimensionDao.createDimensionDao(name);
-		dimensionDao.saveAndFlush(new Dimension(name));
-		return true;
-	}
 }
