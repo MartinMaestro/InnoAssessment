@@ -78,7 +78,7 @@ public class QuestionnaireProductPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/build-questionnaireDimensions/" })
+	@RequestMapping(value = { "/build-questionnaireDimensions" })
 	public ModelAndView buildQuestionnaireDimensions(Model model,
 			@RequestParam(value = "dimensionId", required = false,defaultValue = "0") int dimensionId) {
 		int questionnaireId = 1;

@@ -17,7 +17,7 @@
 <body>
 	<div class="myheader">
 		Product innovation assessment questionnaire <img
-			src="images/syst_logo.png" alt="" />
+			src="/static/images/syst_logo.png" alt="" />
 	</div>
 	<input type='hidden' name='numdim' value='4'>
 	<div id='pestanas'>
@@ -39,11 +39,11 @@
 						id='al_${assessmentLine.modelItemDimensionId}-${assessmentLine.id}'>
 						<fieldset name='${assessmentLine.id}'>
 							<legend>${assessmentLine.modelItemFactorName}<a
-									onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> It should be rated with <i>Very high</i> when the team has the perception about the success of the project and with <i>Very low</i> it is not clear if the project is going to be finished.',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');"
+									onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> ${assessmentLine.modelItemHelp}',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');"
 									onmouseout='return nd();'
-									style='position: relative; top: 1.5px; left: 4px;'> <img
-									src='/static/images/icon_help.gif' alt='Help' height='16px'
-									width='16px'></a>
+									style='position: relative; top: 1.5px; left: 4px;'> 
+									<img src='/static/images/icon_help.gif' alt='Help' height='16px'
+									width='16px'/></a>
 							</legend>
 							<table width='100%'>
 								<tr>
