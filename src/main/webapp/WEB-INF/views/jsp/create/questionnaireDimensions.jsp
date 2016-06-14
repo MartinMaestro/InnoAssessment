@@ -8,22 +8,23 @@
 
 <script type='text/javascript'>
 
-function myFunction(){
-	alert ("----------ONLOAD");
-	RecorrerForm(1);
-	alert ("----------ONLOAD FIN");
-
+function getVarDimensionUrl(){
+    var url= location.search.replace("?", "");
+    var arrUrl = url.split("&");
+    var dimValue=1;
+    for(var i=0; i<arrUrl.length; i++){
+        var x= arrUrl[i].split("=");
+        if (x[0] == 'dimensionId'){
+        	dimValue = x[1];
+        }              
+    }
+    return dimValue;
 }
 
-function esconde_div(){
-	   var elemento = document.getElementById("capa");
-	   elemento.style.display = 'none';
-	}
-	 
-	function visible_div(){
-	   var elemento = document.getElementById("capa");
-	   elemento.style.display = 'block';
-	}
+function loadPage(){
+	var dimValue = getVarDimensionUrl();
+	putAssesstmentsByDimension(dimValue);
+}
 
 	function changeTabs1(dimId,btnId, divId, dim) {
 	  
@@ -35,20 +36,32 @@ function esconde_div(){
             document.getElementById(divId).style.display='block';
             document.getElementById(btnId).style.border='2px solid #568FBD';
      */
-            alert("changeTabs1 - dim: " + dimId);
+            //alert("changeTabs1 - dim: " + dimId);
             showAssessments(dimId);
 }	
 	function showAssessments(dimensionId) {
     	reloadPage('dimensionId',dimensionId);
-    	RecorrerForm(dimensionId);
+    	//putAssesstmentsByDimension(dimensionId);
     }
 	
-	function RecorrerForm(dimensionId)
+	function putButton(dimensionId){
+		buttons=document.getElementsByTagName('input');
+		for (i=0;i<buttons.length;i++){	
+			if (buttons[i].id.substr(0,6) == 'btnDim'){
+				if (buttons[i].id.substr(6,1) == dimensionId){
+					buttons[i].style.border='2px solid #568FBD';
+				}
+				else {
+					buttons[i].style.border='none';
+				}
+			}
+		}
+	}
+	
+	function putAssesstmentsByDimension(dimensionId)
     {
-		var sAux="";
-		var sAux2="";
-
-    	capas=document.getElementsByTagName('div');
+		putButton(dimensionId);
+		capas=document.getElementsByTagName('div');
 		for (i=0;i<capas.length;i++){	
 			switch(capas[i].id.substr(0,3)) {
 		    case 'al_':
@@ -65,41 +78,7 @@ function esconde_div(){
 		    	capas[i].style.display='block';
 			}		
 		}   	
-    }
-	
-	
-	function RecorrerFormORIGOK(dimensionId)
-    {
-		var sAux="";
-		var sAux2="";
-
-    	capas=document.getElementsByTagName('div');
-		for (i=0;i<capas.length;i++){			
-			if (capas[i].id.substr(0,3) == 'al_'){
-				// Capa de assessmentLine al_
-				//alert("capa dim: " + capas[i].id.substr(3,1));
-				 if (capas[i].id.substr(3,1) == dimensionId){
-				 	sAux += "capa VISIBLE " +  i + "- id: "   + capas[i].id + "\n";
-				 	capas[i].style.display='block';
-			  	} else {
-			  		sAux2 += "capa NOVISIBLE " +  i + "- id: "   + capas[i].id + "\n";
-			  		capas[i].style.display='none';
-			  	}
-			}	 
-			else
-				sf_
-				{
-				sAux += "capa VISIBLE " +  i + "- id: "   + capas[i].id + "\n";
-				 capas[i].style.display='block';
-				}
-		}
-		alert("CAPAS VISIBLES:" + sAux);
-		alert("CAPAS NOVISIBLES:" + sAux2);
-
-		sAux="";
-    	
-    	
-    }
+    }	
 
     function reloadPage(param, value){
     	//RecorrerForm(value);
@@ -260,7 +239,7 @@ function esconde_div(){
 
 <!-- overLIB (c) Erik Bosrup --></script>
     </head>
-    <body onload="myFunction()">
+    <body onload="loadPage()">
         <div class="myheader">
             Product innovation assessment questionnaire
             <img src="images/syst_logo.png" alt="" />
@@ -270,20 +249,14 @@ function esconde_div(){
             <div id='pestanas'>
                 <div id='dTabs' style='padding-left: 1%;'>
                     <c:forEach items="${dimensionList}" var="dimension">
-  				     	<input id='btn${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(${dimension.id},'btn0','pesta0', 4)" value= '${dimension.name}' >
+  				     	<input id='btnDim${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="changeTabs1(${dimension.id},'btn0','pesta0', 4)" value= '${dimension.name}' >
   					</c:forEach> 
                 </div>
                 
-                <c:forEach items="${dimensionList}" var="dimension">
-                  	<div id='pesta${dimension.id}' style='display:block;'>
-                  	 pestaña dimension: ${dimension.id}
-                  	</div>
-  				</c:forEach> 
-                
+                             
                 <div id='cont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>
                     <div id='pesta0' style='display:block;'>
                          <c:forEach items="${assessmentLineList}" var="assessmentLine">
-                         Dimension: <b>${assessmentLine.modelItemDimensionName}</b> 
                         <div id='al_${assessmentLine.modelItemDimensionId}-${assessmentLine.id}'>
                         <fieldset name='${assessmentLine.id}'>
                             <legend>${assessmentLine.modelItemFactorName}<a onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> It should be rated with <i>Very high</i> when the team has the perception about the success of the project and with <i>Very low</i> it is not clear if the project is going to be finished.',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');" onmouseout='return nd();' style='position: relative;top: 1.5px;left: 4px;'><img src='images/icon_help.gif' alt='Help' height='16px' width='16px'></a></legend>
@@ -309,7 +282,7 @@ function esconde_div(){
                                     </td>
                                     <td>
                                 <div id='btnSee' style='text-align:center'>
-                                    <input id='btnUploads_${assessmentLine.id}' type='button' value='Add Files' onclick= "showDivUploads('${assessmentLine.id}', 'btnUploads_${assessmentLine.id}');" />
+                                    <input id='btnUploads_${assessmentLine.id}' type='button' value='Add Files' onclick= "showDivUploads('sf_${assessmentLine.id}', 'btnUploads_${assessmentLine.id}');" />
                                 </div>
                                     </td>
                                 </tr>
