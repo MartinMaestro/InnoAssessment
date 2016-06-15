@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
 import es.upm.miw.innoassessment.data.daos.QuestionnaireDao;
 import es.upm.miw.innoassessment.data.entities.Questionnaire;
@@ -16,7 +15,7 @@ public class QuestionnaireController {
 	private QuestionnaireDao questionnaireDao;
 
 	@Autowired
-	public void setModelDao(QuestionnaireDao questionnaireDao) {
+	public void setQuestionnaireDao(QuestionnaireDao questionnaireDao) {
 		this.questionnaireDao = questionnaireDao;
 	}
 

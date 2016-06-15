@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
+import es.upm.miw.innoassessment.business.controllers.EvaluationController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
@@ -43,6 +44,9 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private QuestionnaireController questionnaireController;
+	
+	@Autowired
+	private EvaluationController evaluationController;
 
 	@RequestMapping("/model-questionnaire")
 	public ModelAndView listModelQuestionnaire(Model model,
@@ -78,9 +82,15 @@ public class QuestionnaireProductPresenter {
 
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
-			@RequestParam(value = "productVersionId", required = true) int productVersionId) 
+			@RequestParam(value = "productVersionId", required = true) int productVersionId 
+			,@RequestParam(value = "processQuestionnaire", required = false, defaultValue="0") int processQuestionnaire)
 	//incluir campo procesado que se marcara 1 cuando haya que procesar...(tras forzado )
 	{
+		if (processQuestionnaire == 1)
+		{
+			System.out.println(	"------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
+			evaluationController.createEvaluation(id, productVersionId);
+		}
 		System.out.println(
 				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
