@@ -23,9 +23,7 @@
 	<div id='pestanas'>
 		<div id='dTabs' style='padding-left: 1%;'>
 			<c:forEach items="${dimensionList}" var="dimension">
-				<input id='btnDim${dimension.id}' type='button' class='tab'
-					style='border: 2px solid #568FBD;'
-					onClick="showAssessments(${dimension.id})"
+				<input id='btnDim${dimension.id}' type='button' class='tab' style='border: 2px solid #568FBD;' onClick="showAssessments(${dimension.id})"
 					value='${dimension.name}'>
 			</c:forEach>
 		</div>
@@ -42,7 +40,7 @@
 									onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> ${assessmentLine.modelItemHelp}',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');"
 									onmouseout='return nd();'
 									style='position: relative; top: 1.5px; left: 4px;'> 
-									<img src='/static/images/icon_help.gif' alt='Help' height='16px'
+									<img src="<c:url value='/static/images/icon_help.gif' />" alt='Help' height='16px'
 									width='16px'/></a>
 							</legend>
 							<table width='100%'>

@@ -294,6 +294,22 @@ public class Presenter {
 		}
 		return "jsp/create/createModel";
 	}
+	
+	@RequestMapping(value = { "/build-questionnaireDimensions" })
+	public ModelAndView buildQuestionnaireDimensions(Model model) {
+		int questionnaireId = 1;
+		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireDimensions");
+		// TODO CAMBIAR id questionario
+		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(1));
+
+		// System.out.println("----------------------- PRESENTER
+		// BUIDQUESTIONNAIRE DIMENSION: " + dimensionId);
+		modelAndView.addObject("assessmentLineList",
+				// assessmentLineController.showAssessmentLinesByDimension(dimensionId)
+				assessmentLineController.showAssessmentLinesByQuestionnaire(questionnaireId));
+		return modelAndView;
+
+	}
 
 	
 

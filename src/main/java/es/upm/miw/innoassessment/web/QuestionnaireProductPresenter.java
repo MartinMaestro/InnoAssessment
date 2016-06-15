@@ -15,14 +15,8 @@ import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
-import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
-import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
-import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
-import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.validation.Valid;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -63,7 +57,8 @@ public class QuestionnaireProductPresenter {
 
 	@RequestMapping("/questionnaire-product/{id}")
 	public ModelAndView listQuestionnaireProduct(Model model, @PathVariable int id,
-			@RequestParam(value = "questionnaireId", required = false, defaultValue = "0") int questionnaireId,
+			// @RequestParam(value = "questionnaireId", required = false,
+			// defaultValue = "0") int questionnaireId,
 			@RequestParam(value = "productId", required = false, defaultValue = "0") int productId) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
@@ -74,53 +69,26 @@ public class QuestionnaireProductPresenter {
 			modelAndView.addObject("product", productController.showProduct(productId));
 			modelAndView.addObject("productVersionList",
 					productVersionController.showProductVersionsByProduct(productId));
+			modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(id));
 		}
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/build-questionnaireDimensions" })
-	public ModelAndView buildQuestionnaireDimensions(Model model,
-			@RequestParam(value = "dimensionId", required = false,defaultValue = "0") int dimensionId) {
-		int questionnaireId = 1;
-		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireDimensions");
-		//TODO CAMBIAR id questionario
-		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(1));
-
-		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE DIMENSION: " + dimensionId);
-		modelAndView.addObject("assessmentLineList",
-				//assessmentLineController.showAssessmentLinesByDimension(dimensionId)
-				assessmentLineController.showAssessmentLinesByQuestionnaire(questionnaireId)
-				);
-		return modelAndView;
-
-	}
 	
-	
+
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
-			@RequestParam(value = "productVersionId", required = true) int productVersionId,
-			@RequestParam(value = "dimensionId", required = false, defaultValue = "1") int dimensionId) {
-		System.out.println("------------- RequestParam questionnaire: " + id + "-productId: " + productVersionId);
-		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
+			@RequestParam(value = "productVersionId", required = true) int productVersionId) {
+		System.out.println(
+				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("productVersion", productVersionController.showProductVersion(productVersionId));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(id));
-
-		// System.out.println("-------------dimension: " +
-		// dimensionController.showDimensionsByQuestionnaireId(id).toString());
-
-		// modelAndView.addObject("productList",
-		// productController.showProducts());
-		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
-		
-			modelAndView.addObject("assessmentLineList",		
-				assessmentLineController.showAssessmentLinesByDimension(dimensionId));
-		
-			return modelAndView;
-
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByQuestionnaire(id));
+		return modelAndView;
 	}
 
 }

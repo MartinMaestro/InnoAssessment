@@ -15,11 +15,7 @@
             <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
         </div><h3 style='text-align: center; font-weight: normal;'><i style='border: double; padding: 2px 10px 2px 10px; border-radius: 8px;'>Product Innovation Assessment Tool</i></h3>
 <table align='center' >
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/build-questionnaireDimensions'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- TEMP  BuidQuestionnaire Dimensions -</a>
-</td>
-</tr>
+
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
     <a href="<c:url value='/assessmentLine-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Assessment -</a>
@@ -103,6 +99,11 @@
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/build-questionnaireDimensions/'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- BuidQuestionnaire Dimensions -</a>
+</td>
+</tr>
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/build-questionnaireDimensions'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- TEMP  BuidQuestionnaire Dimensions -</a>
 </td>
 </tr>
 

@@ -6,7 +6,6 @@
 <link rel="shortcut icon"
 	href="<c:url value='/static/images/vitruvio.png' />" />
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
-<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 <meta charset="utf-8">
 <title>Innoassessment</title>
