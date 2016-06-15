@@ -46,13 +46,14 @@ public class EvaluationController {
 		return evaluationDao.findOne(evaluationId);
 	}
 	
-	public boolean createEvaluation(int questionnaireId,int productVersionId) {
+	public int createEvaluation(int questionnaireId,int productVersionId) {
 		//Calendar fecha = Calendar.getInstance();	
 		//TODO MIRAR TIPO FECHA EVALUATION Date --> Calendar
 		Date fecha = new Date();
 		Questionnaire questionnaire = questionnaireDao.findOne(questionnaireId);
 		ProductVersion productVersion = productVersionDao.findOne(productVersionId);
-		evaluationDao.saveAndFlush(new Evaluation(questionnaire, productVersion,fecha));
-		return true;
+		Evaluation evaluation = new Evaluation(questionnaire, productVersion,fecha);
+		evaluationDao.saveAndFlush(evaluation);
+		return evaluation.getId();
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.EvaluationController;
+import es.upm.miw.innoassessment.business.controllers.LineValueController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
@@ -47,6 +48,9 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private EvaluationController evaluationController;
+	
+	@Autowired
+	private LineValueController lineValueController;
 
 	@RequestMapping("/model-questionnaire")
 	public ModelAndView listModelQuestionnaire(Model model,
@@ -84,7 +88,10 @@ public class QuestionnaireProductPresenter {
 			@RequestParam(value = "processQuestionnaire", required = false, defaultValue = "0") int processQuestionnaire) {
 		if (processQuestionnaire == 1) {
 			System.out.println("------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
-			evaluationController.createEvaluation(id, productVersionId);
+			int evaluationId = evaluationController.createEvaluation(id, productVersionId);
+			System.out.println("------------- PRESENTER buildQuestionnaire : EVALUACION CREADA ID: "+ evaluationId);
+			// lineValue: seria listAssestment?  no uno solo, pero entonces EVALUATION se repite con ASSESMENTE, cuando es solo uno
+			//lineValueController.createLineValue(evaluationId, assessmentLineId, valueName, valueData, sourcesUrls, sourcesFiles)
 		}
 		System.out.println(
 				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
