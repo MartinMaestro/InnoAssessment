@@ -44,7 +44,7 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private QuestionnaireController questionnaireController;
-	
+
 	@Autowired
 	private EvaluationController evaluationController;
 
@@ -78,17 +78,12 @@ public class QuestionnaireProductPresenter {
 		return modelAndView;
 	}
 
-	
-
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
-			@RequestParam(value = "productVersionId", required = true) int productVersionId 
-			,@RequestParam(value = "processQuestionnaire", required = false, defaultValue="0") int processQuestionnaire)
-	//incluir campo procesado que se marcara 1 cuando haya que procesar...(tras forzado )
-	{
-		if (processQuestionnaire == 1)
-		{
-			System.out.println(	"------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
+			@RequestParam(value = "productVersionId", required = true) int productVersionId,
+			@RequestParam(value = "processQuestionnaire", required = false, defaultValue = "0") int processQuestionnaire) {
+		if (processQuestionnaire == 1) {
+			System.out.println("------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
 			evaluationController.createEvaluation(id, productVersionId);
 		}
 		System.out.println(

@@ -30,6 +30,13 @@ public class ModelItemController {
 	public void setModelItemDao(ModelItemDao modelItemDao) {
 		this.modelItemDao = modelItemDao;
 	}
+	
+	
+	@Autowired
+	public void setDimensionDao(DimensionDao dimensionDao) {
+		this.dimensionDao = dimensionDao;
+	}
+
 
 	public List<ModelItemWrapper> showModelItems() {
 		List<ModelItemWrapper> modelItemWrapperList = new ArrayList<>();
