@@ -78,7 +78,9 @@ public class QuestionnaireProductPresenter {
 
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
-			@RequestParam(value = "productVersionId", required = true) int productVersionId) {
+			@RequestParam(value = "productVersionId", required = true) int productVersionId) 
+	//incluir campo procesado que se marcara 1 cuando haya que procesar...(tras forzado )
+	{
 		System.out.println(
 				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");

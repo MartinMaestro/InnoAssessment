@@ -9,6 +9,15 @@
 	<link rel="shortcut icon" href="<c:url value='/static/images/vitruvio.png' />" />
 	<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 	<script language='Javascript' src="<c:url value='/static/js/tabsQuestionnaire.js' />"></script>
+	<script type="text/javascript">
+	function processQuestionnaire(questionnaireId){
+		var selectBox = document.getElementById("ddlProductVersion");
+	    var productVersionId = selectBox.options[selectBox.selectedIndex].value;
+		var url = '/innoassessment/process-questionnaire/'+questionnaireId + '?productVersionId='+productVersionId;
+		window.location.href = url;
+	}
+
+	</script>
 	<title>Innoassessment</title>
 </head>
     <body>
@@ -133,6 +142,6 @@
            
          
            
-            <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit">Submit Questionnaire</button>
+            <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"  onclick="processQuestionnaire(${questionnaireDetail.id});"value="Submit">Submit Questionnaire</button>
     </body>
 </html>
