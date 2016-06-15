@@ -17,7 +17,7 @@ public class EvaluationResultController {
 	}
 	
 	public List<EvaluationResult> findByEvaluationId(int evaluationId){
-		return evaluationResultDao.findByEvaluationIdOrderByDimensionId(evaluationId);
+		return evaluationResultDao.findByEvaluationIdOrderByEvaluationResultType(evaluationId);
 	}
 	
 }

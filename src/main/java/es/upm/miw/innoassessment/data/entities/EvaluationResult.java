@@ -38,6 +38,8 @@ public class EvaluationResult {
 		this.value = value;
 	}
 
+	public EvaluationResult() {}
+
 	public Evaluation getEvaluation() {
 		return evaluation;
 	}

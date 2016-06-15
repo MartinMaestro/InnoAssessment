@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.EvaluationController;
+import es.upm.miw.innoassessment.business.controllers.EvaluationResultController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
@@ -36,6 +37,9 @@ public class AssessmentProductPresenter {
 
 	@Autowired
 	private DimensionController dimensionController;
+
+	@Autowired
+	private EvaluationResultController evaluationResultController;
 
 	@RequestMapping("/assessment-product-search")
 	public ModelAndView listAssessmentLines(Model model, @RequestParam(value="productId", required=false, defaultValue="0") int productId
@@ -68,7 +72,8 @@ public class AssessmentProductPresenter {
 		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductView");
 		Evaluation evaluation = evaluationController.findOne(evaluationId);
 		modelAndView.addObject("evaluation", evaluation);
-		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));		
+		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));
+		modelAndView.addObject("evaluationResultList", evaluationResultController.findByEvaluationId(evaluationId));	
 
 		return modelAndView;
 	}
