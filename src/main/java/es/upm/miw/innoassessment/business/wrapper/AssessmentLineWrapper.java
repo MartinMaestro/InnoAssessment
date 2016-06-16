@@ -23,6 +23,8 @@ public class AssessmentLineWrapper {
 	private String modelItemWeight;
 	private String modelItemInterpretation;
 	private String modelItemHelp;
+	
+	public AssessmentLineWrapper(){}
 
 	public AssessmentLineWrapper(int id, int questionnaireId, String questionnaireName, String questionnaireVersion,
 			int modelItemId, int modelItemModelId, String modelItemModelName, String modelItemModelYear,

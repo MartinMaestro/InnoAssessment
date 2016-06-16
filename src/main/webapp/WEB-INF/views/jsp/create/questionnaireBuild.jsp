@@ -78,7 +78,7 @@
 								<tr>
 									<td>
 									
-									 <input name="assessmentList[${status.index}].id" value='${assessmentLine.id}'/>
+									 <input name="assessmentList[${status.index}].modelItemDimensionName" value='${assessmentLine.modelItemDimensionName}'/>
 									
 									<!--  
 										<div style='text-align: center'>

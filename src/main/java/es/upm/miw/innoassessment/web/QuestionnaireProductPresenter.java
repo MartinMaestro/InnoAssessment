@@ -128,7 +128,7 @@ public class QuestionnaireProductPresenter {
 		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
 		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: " );
 
-		System.out.println("------------- PRESENTER ASSESSTEMENT: " //+ listAssessmentLine.getListAssessmentLineWrapper().toString()
+		System.out.println("------------- PRESENTER ASSESSTEMENT: "  + listAssessmentLine.getAssessmentList().get(1).getModelItemDimensionName()
 				);
 		return "jsp/home";
 
