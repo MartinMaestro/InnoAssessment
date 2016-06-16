@@ -65,6 +65,9 @@
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/modelitem-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Model Item List -</a>
 </td>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/create-modelItem'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Model Items -</a>
+</td>
 </tr>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  

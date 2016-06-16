@@ -11,12 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
+import es.upm.miw.innoassessment.business.controllers.FactorController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
+import es.upm.miw.innoassessment.business.wrapper.ModelItemWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
@@ -36,6 +38,9 @@ public class Presenter {
 
 	@Autowired
 	private DimensionController dimensionController;
+	
+	@Autowired
+	private FactorController factorController;
 
 	@Autowired
 	private ProductController productController;
@@ -226,6 +231,8 @@ public class Presenter {
 		} 
 		return "jsp/create/createProduct";
 	}
+	
+	
 
 	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.GET)
 	public ModelAndView createProductVersion(@PathVariable int id, Model model) {
@@ -246,7 +253,7 @@ public class Presenter {
 				model.addAttribute("name", productVersion.getName());
 				model.addAttribute("description", productVersion.getDescription());
 				model.addAttribute("productId", productVersion.getProductId());
-				return "jsp/list/productList";
+
 			} else {
 				bindingResult.rejectValue("name", "error.product", "Product version ya existente");
 			}
@@ -293,6 +300,47 @@ public class Presenter {
 			}
 		}
 		return "jsp/create/createModel";
+	}
+	
+	@RequestMapping(value = "/create-modelItem", method = RequestMethod.GET)
+	public String createModelItem(Model model) {
+		model.addAttribute("modelItem", new ModelItemWrapper());
+		System.out.println("--- MODELITEM CREATE");
+		model.addAttribute("modelList", modelController.showModels());
+		model.addAttribute("dimensionList", dimensionController.showDimensions());
+		model.addAttribute("factorList", factorController.showFactors());
+		return "jsp/create/modelItemCreate";
+	}
+
+	@RequestMapping(value = "/create-modelItem", method = RequestMethod.POST)
+	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model
+			//@RequestParam(value = "dimensionId", required = true) int dimensionId
+			//@PathVariable int dimensionId
+			) {
+		System.out.println("-----createModelSubmit - Impact" + modelItem.getImpact());
+		System.out.println("-----createModelSubmit - Dimension" + modelItem.getDimensionId());
+		//String id = (String) request.getParameter("dimension");
+		//model.addAttribute("modelList", modelController.showModels());
+		
+		//model.addAttribute("dimensionList", dimensionController.showDimensions());
+		
+		//model.addAttribute("factorList", factorController.showFactors());
+
+		if (!bindingResult.hasErrors()) {
+			/*
+			if (modelItemController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
+					modelw.getDescription())) {
+				model.addAttribute("name", modelw.getName());
+				model.addAttribute("year", modelw.getYear());
+				model.addAttribute("version", modelw.getVersion());
+				model.addAttribute("description", modelw.getDescription());
+				model.addAttribute("id", modelw.getId());
+				return "jsp/registrationSuccess";
+			} else {
+				bindingResult.rejectValue("name", "error.model", "Model ya existente");
+			}*/
+		}
+		return "jsp/create/modelItemCreate";
 	}
 	
 	@RequestMapping(value = { "/build-questionnaireDimensions" })
