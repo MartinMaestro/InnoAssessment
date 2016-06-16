@@ -15,7 +15,9 @@
 		var url = window.location.href; 
 		url += "&processQuestionnaire=1";
 		//var url = '/innoassessment/process-questionnaire/'+questionnaireId + '?productVersionId='+productVersionId;
-		window.location.href = url;
+		//window.location.href = url;
+		var urltemp ="/innoassessment/build-questionnaire/1/productversion/1";
+		window.location.href = urltemp;
 	}
 
 	</script>
@@ -45,6 +47,8 @@
       		</fieldset>
       		
       		
+    
+
       		<div id='pestanas'>
 		<div id='dTabs' style='padding-left: 1%;'>
 			<c:forEach items="${dimensionList}" var="dimension">
@@ -53,11 +57,11 @@
 			</c:forEach>
 		</div>
 
-
+<form:form method="post" action="/innoassessment/build-questionnaire/1/productversion/1" modelAttribute="listAssessmentLine">
 		<div id='cont'
 			style='border: 1px solid #4682B4; border-radius: 8px; padding: 1%; margin-top: -0.9%;'>
 			<div id='pesta0' style='display: block;'>
-				<c:forEach items="${assessmentLineList}" var="assessmentLine">
+				<c:forEach items="${listAssessmentLine.assessmentList}" var="assessmentLine" varStatus = "status">
 					<div
 						id='al_${assessmentLine.modelItemDimensionId}-${assessmentLine.id}'>
 						<fieldset name='${assessmentLine.id}'>
@@ -69,27 +73,33 @@
 									
 									</a>
 							</legend>
+							
 							<table width='100%'>
 								<tr>
 									<td>
+									
+									 <input name="assessmentList[${status.index}].id" value='${assessmentLine.id}'/>
+									
+									<!--  
 										<div style='text-align: center'>
-											<input type='radio' name='${assessmentLine.id}' id='opcion0'
+											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion0'
 												value='Unknown' checked='checked'> <label
 												for='opcion0'>Unknown</label> <input type='radio'
-												name='${assessmentLine.id}' id='opcion9'
+												name='assessmentList[${status.index}].modelItemModelYear' id='opcion9'
 												value='Not Applicable'> <label for='opcion9'>Not
-												Applicable</label> <input type='radio' name='${assessmentLine.id}'
+												Applicable</label> <input type='radio' name='assessmentList[${status.index}].modelItemModelYear'
 												id='opcion1' value='Very Few'> <label for='opcion1'>Very
-												Few</label> <input type='radio' name='${assessmentLine.id}'
+												Few</label> <input type='radio' name='assessmentList[${status.index}].modelItemModelYear'
 												id='opcion2' value='Few'> <label for='opcion2'>Few</label>
-											<input type='radio' name='${assessmentLine.id}' id='opcion3'
+											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion3'
 												value='Medium'> <label for='opcion3'>Medium</label>
-											<input type='radio' name='${assessmentLine.id}' id='opcion4'
+											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion4'
 												value='High'> <label for='opcion4'>High</label> <input
-												type='radio' name='${assessmentLine.id}' id='opcion5'
+												type='radio' name='list[${status.index}].modelItemModelYear' id='opcion5'
 												value='Very High'> <label for='opcion5'>Very
 												High</label>
 										</div>
+										-->
 									</td>
 									<td>
 										<div id='btnSee' style='text-align: center'>
@@ -138,11 +148,13 @@
 				</c:forEach>
 			</div>
 		</div>
-	</div>          
+	</div>  
+	 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"   value="Submit">Submit Questionnaire</button>   
+	</form:form>     
 			        
            
          
            
-            <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"  onclick="processQuestionnaire(${questionnaireDetail.id},${productVersion.id});" value="Submit">Submit Questionnaire</button>
+           
     </body>
 </html>

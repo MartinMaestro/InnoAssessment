@@ -83,7 +83,7 @@
 				<tr>
 					<td>${dimension.id}</td>
 				    <td>${dimension.name}</td>
-                	<td><input id="dimension" type='radio' name='dimension' value="${dimension.id}" ></td>			    				
+                	<td><input id="dimensionId" type='radio' name='sdimension' value="${dimension.id}" ></td>			    				
 				    <!--  form:input path="dimensionId" type='radio' name = 'dimension' value="${dimension.id}"/-->		
 				    				
 				</tr>

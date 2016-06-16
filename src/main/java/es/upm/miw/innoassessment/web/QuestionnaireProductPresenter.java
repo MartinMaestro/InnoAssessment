@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,8 +18,15 @@ import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
+import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
+import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
+import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.validation.Valid;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -81,6 +89,9 @@ public class QuestionnaireProductPresenter {
 		}
 		return modelAndView;
 	}
+	
+	
+
 
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
@@ -90,6 +101,10 @@ public class QuestionnaireProductPresenter {
 			System.out.println("------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
 			int evaluationId = evaluationController.createEvaluation(id, productVersionId);
 			System.out.println("------------- PRESENTER buildQuestionnaire : EVALUACION CREADA ID: "+ evaluationId);
+			System.out.println("-----PRESENTER buildQuestionnaire  - assestmentLine valor"  );
+			
+			//recorrer todos  los assesstmente: y crear un assestmen + evaluation = LINEVALUE
+			//CREACIÓN ASSESSTEMENT: QUESTIONARIO Y MODELITEM
 			// lineValue: seria listAssestment?  no uno solo, pero entonces EVALUATION se repite con ASSESMENTE, cuando es solo uno
 			//lineValueController.createLineValue(evaluationId, assessmentLineId, valueName, valueData, sourcesUrls, sourcesFiles)
 		}
@@ -101,8 +116,23 @@ public class QuestionnaireProductPresenter {
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(id));
-		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByQuestionnaire(id));
-		return modelAndView;
+		ListAssessmentLine listAssessmentLine =  new ListAssessmentLine();
+		listAssessmentLine.setAssessmentList(assessmentLineController.showAssessmentLinesByQuestionnaire(id)); 
+		modelAndView.addObject("listAssessmentLine", listAssessmentLine);
+		return new  ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine", listAssessmentLine);
 	}
+	
+	@RequestMapping(value = { "/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
+	public String buildQuestionnaireSubmit(@ModelAttribute ("listAssessmentLine") ListAssessmentLine listAssessmentLine
+	, BindingResult bindingResult,  Model model) {
+		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
+		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: " );
+
+		System.out.println("------------- PRESENTER ASSESSTEMENT: " //+ listAssessmentLine.getListAssessmentLineWrapper().toString()
+				);
+		return "jsp/home";
+
+	}
+	
 
 }

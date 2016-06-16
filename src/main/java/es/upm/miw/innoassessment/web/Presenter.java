@@ -318,7 +318,7 @@ public class Presenter {
 			//@PathVariable int dimensionId
 			) {
 		System.out.println("-----createModelSubmit - Impact" + modelItem.getImpact());
-		System.out.println("-----createModelSubmit - Dimension" + modelItem.getDimensionId());
+		System.out.println("-----createModelSubmit - Dimension" + modelItem.getSdimension());
 		//String id = (String) request.getParameter("dimension");
 		//model.addAttribute("modelList", modelController.showModels());
 		

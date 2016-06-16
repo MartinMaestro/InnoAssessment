@@ -12,6 +12,7 @@ public class ModelItemWrapper {
 	private String modelVersion;
 	private String modelDescription;
 	private int dimensionId;
+	private String sdimension;
 	private String dimensionName;
 	private int factorId;
 	private String factorName;
@@ -25,7 +26,7 @@ public class ModelItemWrapper {
 	}
 
 	public ModelItemWrapper(int id, int modelId, String modelName, String modelYear, String modelVersion,
-			String modelDescription, int dimensionId, String dimensionName, int factorId, String factorName,
+			String modelDescription, int dimensionId,String sdimension, String dimensionName, int factorId, String factorName,
 			String factorDefinition, String impact, String weight, String interpretation, String help) {
 		super();
 		this.id = id;
@@ -35,6 +36,7 @@ public class ModelItemWrapper {
 		this.modelVersion = modelVersion;
 		this.modelDescription = modelDescription;
 		this.dimensionId = dimensionId;
+		this.sdimension = sdimension;
 		this.dimensionName = dimensionName;
 		this.factorId = factorId;
 		this.factorName = factorName;
@@ -48,7 +50,7 @@ public class ModelItemWrapper {
 	public ModelItemWrapper(ModelItem modelItem) {
 		this(modelItem.getId(), modelItem.getModel().getId(), modelItem.getModel().getName(),
 				modelItem.getModel().getYear(), modelItem.getModel().getVersion(),
-				modelItem.getModel().getDescription(), modelItem.getDimension().getId(),
+				modelItem.getModel().getDescription(), modelItem.getDimension().getId(),null,
 				modelItem.getDimension().getName(), modelItem.getFactor().getId(), modelItem.getFactor().getName(),
 				modelItem.getFactor().getDefinition(), modelItem.getImpact(), modelItem.getWeight(),
 				modelItem.getInterpretation(), modelItem.getHelp());
@@ -172,6 +174,14 @@ public class ModelItemWrapper {
 
 	public void setHelp(String help) {
 		this.help = help;
+	}
+
+	public String getSdimension() {
+		return sdimension;
+	}
+
+	public void setSdimension(String sdimension) {
+		this.sdimension = sdimension;
 	}
 
 }
