@@ -304,8 +304,8 @@ public class Presenter {
 	
 	@RequestMapping(value = "/create-modelItem", method = RequestMethod.GET)
 	public String createModelItem(Model model) {
-		model.addAttribute("modelItem", new ModelItemWrapper());
-		System.out.println("--- MODELITEM CREATE");
+		model.addAttribute("modelItem", new ModelItemWrapper());		
+		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		model.addAttribute("factorList", factorController.showFactors());
@@ -314,31 +314,23 @@ public class Presenter {
 
 	@RequestMapping(value = "/create-modelItem", method = RequestMethod.POST)
 	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model
-			//@RequestParam(value = "dimensionId", required = true) int dimensionId
-			//@PathVariable int dimensionId
+			
 			) {
-		System.out.println("-----createModelSubmit - Impact" + modelItem.getImpact());
-		System.out.println("-----createModelSubmit - Dimension" + modelItem.getSdimension());
-		//String id = (String) request.getParameter("dimension");
-		//model.addAttribute("modelList", modelController.showModels());
-		
-		//model.addAttribute("dimensionList", dimensionController.showDimensions());
-		
-		//model.addAttribute("factorList", factorController.showFactors());
-
-		if (!bindingResult.hasErrors()) {
-			/*
-			if (modelItemController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
-					modelw.getDescription())) {
-				model.addAttribute("name", modelw.getName());
+		System.out.println("-----createModelSubmit - Impact: " + modelItem.getImpact() + "-Model Id: " + modelItem.getModelId());
+		System.out.println("-----createModelSubmit - Dimension" + modelItem.getDimensionId() +"-Factor: " + modelItem.getFactorId());
+		if (!bindingResult.hasErrors()) {			
+			if (modelItemController.createModelItem(modelItem.getModelId(),modelItem.getDimensionId(),modelItem.getFactorId(),modelItem.getImpact()
+					,modelItem.getWeight(),modelItem.getInterpretation(),modelItem.getHelp())) {
+				/*model.addAttribute("name", modelw.getName());
 				model.addAttribute("year", modelw.getYear());
 				model.addAttribute("version", modelw.getVersion());
 				model.addAttribute("description", modelw.getDescription());
 				model.addAttribute("id", modelw.getId());
+				*/
 				return "jsp/registrationSuccess";
 			} else {
 				bindingResult.rejectValue("name", "error.model", "Model ya existente");
-			}*/
+			}
 		}
 		return "jsp/create/modelItemCreate";
 	}

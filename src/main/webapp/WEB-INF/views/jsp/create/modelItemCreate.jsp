@@ -24,11 +24,20 @@
 	<fieldset name='modelItem_create'>
 		<legend>Create</legend>
 		<p />
+		
+		<p>
+				Impact:<select name="impact" id = "ddlProductVersion" >
+                <c:forEach items="${impactValuesList}" var="impact" varStatus="status">
+  					<option value="${impact.name}">${impact.name}</option>
+				</c:forEach> 
+		</select>
+		</p>
 		<form:form action="create-modelItem" modelAttribute="modelItem">
 			<p>
 				Impact:
-				<form:input path="impact" placeholder="Impact" required="required" />
+				<!--  form:input path="impact" placeholder="Impact" required="required" /-->
 			</p>
+			
 			<p>
 				Weight:
 				<form:input path="weight" placeholder="Weight" required="required" />
@@ -41,6 +50,8 @@
 				Help:
 				<form:input path="help" placeholder="Help" required="required"  />
 			</p>
+			
+			
 			
 			
     <div class="myheader2" align='center'>Model List</div>
@@ -63,7 +74,7 @@
                     <td>${model.year}</td>
                     <td>${model.version}</td>                   
                     <td>${model.description}</td>                   
-                	<td><input id="model" type='radio' name='model' value="${model.id}" ></td>			    				
+                	<td><input id="model" type='radio' name='modelId' value="${model.id}" ></td>			    				
                 </tr>
             </c:forEach>
         </tbody>
@@ -83,8 +94,8 @@
 				<tr>
 					<td>${dimension.id}</td>
 				    <td>${dimension.name}</td>
-                	<td><input id="dimensionId" type='radio' name='sdimension' value="${dimension.id}" ></td>			    				
-				    <!--  form:input path="dimensionId" type='radio' name = 'dimension' value="${dimension.id}"/-->		
+                	<td><input id="dimensionId" type='radio' name='dimensionId' value="${dimension.id}" ></td>			    				
+                	<!--  form:input path="dimensionId" type='radio' name = 'dimension' value="${dimension.id}"/-->		
 				    				
 				</tr>
 			</c:forEach>
@@ -111,7 +122,7 @@
 					<td>${factor.id}</td>
 				    <td>${factor.name}</td>
 				    <td>${factor.definition}</td>				    
-				    <td><input id="factor" type='radio' name='factor' value="${factor.id}" ></td>			
+                	<td><input id="dimensionId" type='radio' name='factorId' value="${factor.id}" ></td>			    				
 				    				
 				</tr>
 			</c:forEach>
