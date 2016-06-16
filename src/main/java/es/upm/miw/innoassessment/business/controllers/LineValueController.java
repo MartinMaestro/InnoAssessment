@@ -1,6 +1,5 @@
 package es.upm.miw.innoassessment.business.controllers;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import es.upm.miw.innoassessment.data.daos.LineValueDao;
 import es.upm.miw.innoassessment.data.entities.AssessmentLine;
 import es.upm.miw.innoassessment.data.entities.Evaluation;
 import es.upm.miw.innoassessment.data.entities.LineValue;
-import es.upm.miw.innoassessment.data.entities.ProductVersion;
-import es.upm.miw.innoassessment.data.entities.Questionnaire;
 import es.upm.miw.innoassessment.data.entities.SourceFile;
 import es.upm.miw.innoassessment.data.entities.SourceUrl;
 import es.upm.miw.innoassessment.data.entities.ValueName;
@@ -42,7 +39,7 @@ public class LineValueController {
 		this.assessmentLineDao = assessmentLineDao;
 	}
 	
-	List<LineValue> findByEvaluationId(int evaluationId){
+	public List<LineValue> findByEvaluationId(int evaluationId){
 		return lineValueDao.findByEvaluationIdOrderByAssessmentLineId(evaluationId);
 	}
 	
