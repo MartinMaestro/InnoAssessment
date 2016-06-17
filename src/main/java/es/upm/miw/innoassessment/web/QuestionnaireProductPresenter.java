@@ -119,17 +119,20 @@ public class QuestionnaireProductPresenter {
 		ListAssessmentLine listAssessmentLine =  new ListAssessmentLine();
 		listAssessmentLine.setAssessmentList(assessmentLineController.showAssessmentLinesByQuestionnaire(id)); 
 		modelAndView.addObject("listAssessmentLine", listAssessmentLine);
-		return new  ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine", listAssessmentLine);
+		return modelAndView;		
+		//return new  ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine", listAssessmentLine);
 	}
 	
 	@RequestMapping(value = { "/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
 	public String buildQuestionnaireSubmit(@ModelAttribute ("listAssessmentLine") ListAssessmentLine listAssessmentLine
 	, BindingResult bindingResult,  Model model) {
-		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
-		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: " );
+		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO v: " +listAssessmentLine.getAssessmentList().get(0).getQuestionnaireId() );
+		System.out.println("------------- ----> LIST SIZE: "  + listAssessmentLine.getAssessmentList().size());
+		for (int i = 0; i<listAssessmentLine.getAssessmentList().size();i++){
+			System.out.println("------------- ----> POS: " +i +" | " + "-ID ASSESSMENT: "  + listAssessmentLine.getAssessmentList().get(i).getId() +"&&" +listAssessmentLine.getAssessmentList().get(i).getRadioValue2() );
+			//System.out.println("------------- ----> POS: " +i + "-VALUE: "  + listAssessmentLine.getAssessmentList().get(i).toString());
 
-		System.out.println("------------- PRESENTER ASSESSTEMENT: "  + listAssessmentLine.getAssessmentList().get(1).getModelItemDimensionName()
-				);
+		}
 		return "jsp/home";
 
 	}

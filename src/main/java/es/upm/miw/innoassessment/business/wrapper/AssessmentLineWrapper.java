@@ -23,6 +23,9 @@ public class AssessmentLineWrapper {
 	private String modelItemWeight;
 	private String modelItemInterpretation;
 	private String modelItemHelp;
+	private int radioValue;
+	private String radioValue2;
+
 	
 	public AssessmentLineWrapper(){}
 
@@ -31,7 +34,7 @@ public class AssessmentLineWrapper {
 			String modelItemModelVersion, String modelItemModelDescription, int modelItemDimensionId,
 			String modelItemDimensionName, int modelItemFactorId, String modelItemFactorName,
 			String modelItemFactorDefinition, String modelItemImpact, String modelItemWeight,
-			String modelItemInterpretation, String modelItemHelp) {
+			String modelItemInterpretation, String modelItemHelp, int radioValue,int radioValue2) {
 		super();
 		this.id = id;
 		this.questionnaireId = questionnaireId;
@@ -52,6 +55,8 @@ public class AssessmentLineWrapper {
 		this.modelItemWeight = modelItemWeight;
 		this.modelItemInterpretation = modelItemInterpretation;
 		this.modelItemHelp = modelItemHelp;
+		this.radioValue = radioValue;
+		this.radioValue = radioValue2;
 	}
 
 	public AssessmentLineWrapper(AssessmentLine assessmentLine) {
@@ -66,7 +71,7 @@ public class AssessmentLineWrapper {
 				assessmentLine.getModelItem().getFactor().getId(), assessmentLine.getModelItem().getFactor().getName(),
 				assessmentLine.getModelItem().getFactor().getDefinition(), assessmentLine.getModelItem().getImpact(),
 				assessmentLine.getModelItem().getWeight(), assessmentLine.getModelItem().getInterpretation(),
-				assessmentLine.getModelItem().getHelp());
+				assessmentLine.getModelItem().getHelp(),0,0);
 	}
 
 	public int getId() {
@@ -219,6 +224,22 @@ public class AssessmentLineWrapper {
 
 	public void setModelItemHelp(String modelItemHelp) {
 		this.modelItemHelp = modelItemHelp;
+	}
+
+	public int getRadioValue() {
+		return radioValue;
+	}
+
+	public void setRadioValue(int radioValue) {
+		this.radioValue = radioValue;
+	}
+
+	public String getRadioValue2() {
+		return radioValue2;
+	}
+
+	public void setRadioValue2(String radioValue2) {
+		this.radioValue2 = radioValue2;
 	}
 
 }

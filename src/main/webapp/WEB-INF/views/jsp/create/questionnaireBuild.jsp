@@ -9,6 +9,8 @@
 	<link rel="shortcut icon" href="<c:url value='/static/images/vitruvio.png' />" />
 	<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 	<script language='Javascript' src="<c:url value='/static/js/tabsQuestionnaire.js' />"></script>
+	<script language='Javascript' src="<c:url value='/static/js/overlib.js' />"></script>
+	
 	<script type="text/javascript">
 	function processQuestionnaire(questionnaireId,productVersionId){
 		alert("processQuestionnaire");
@@ -42,8 +44,7 @@
                 Name: <b>${productVersion.productName}</b> 
                 - Description: <b>${productVersion.productDescription}</b></br>
                 Version of Product: <b>${productVersion.name}</b>
-                <input type='hidden' name='productVersion' value='productVersion.id' /></br></br>     
-      	
+                <input type='hidden' name='productVersion' value='productVersion.id' /></br></br>     	
       		</fieldset>
       		
       		
@@ -57,7 +58,7 @@
 			</c:forEach>
 		</div>
 
-<form:form method="post" action="/innoassessment/build-questionnaire/1/productversion/1" modelAttribute="listAssessmentLine">
+<form:form method="post" action="/innoassessment/build-questionnaire/${questionnaireDetail.modelId}/productversion/1" modelAttribute="listAssessmentLine">
 		<div id='cont'
 			style='border: 1px solid #4682B4; border-radius: 8px; padding: 1%; margin-top: -0.9%;'>
 			<div id='pesta0' style='display: block;'>
@@ -76,30 +77,35 @@
 							
 							<table width='100%'>
 								<tr>
-									<td>
-									
-									 <input name="assessmentList[${status.index}].modelItemDimensionName" value='${assessmentLine.modelItemDimensionName}'/>
-									
-									<!--  
+									<td>									
+									 <input name="assessmentList[${status.index}].id" value='${assessmentLine.id}'  type="hidden"/>									
+									  
 										<div style='text-align: center'>
-											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion0'
-												value='Unknown' checked='checked'> <label
-												for='opcion0'>Unknown</label> <input type='radio'
-												name='assessmentList[${status.index}].modelItemModelYear' id='opcion9'
-												value='Not Applicable'> <label for='opcion9'>Not
-												Applicable</label> <input type='radio' name='assessmentList[${status.index}].modelItemModelYear'
-												id='opcion1' value='Very Few'> <label for='opcion1'>Very
-												Few</label> <input type='radio' name='assessmentList[${status.index}].modelItemModelYear'
-												id='opcion2' value='Few'> <label for='opcion2'>Few</label>
-											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion3'
-												value='Medium'> <label for='opcion3'>Medium</label>
-											<input type='radio' name='assessmentList[${status.index}].modelItemModelYear' id='opcion4'
-												value='High'> <label for='opcion4'>High</label> <input
-												type='radio' name='list[${status.index}].modelItemModelYear' id='opcion5'
-												value='Very High'> <label for='opcion5'>Very
-												High</label>
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion0' value='Unknown' checked='checked'> 
+												<label for='opcion0'>Unknown</label> 
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion9' value='Not Applicable'> 
+												<label for='opcion9'>Not Applicable</label> 
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion1' value='Very Few'> 
+												<label for='opcion1'>Very Few</label>
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion2' value='Few'> 
+												<label for='opcion2'>Few</label> 
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion3' value='Medium'> 
+												<label for='opcion3'>Medium</label> 
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion4' value='High'>
+												<label for='opcion4'>High</label> 
+												<input type='radio' name='assessmentList[${status.index}].id' id='opcion5' value='Very High'>
+												<label for='opcion5'>Very High</label>
+												
+												
+
+
+
+												
+												
+												
+												
 										</div>
-										-->
+										
 									</td>
 									<td>
 										<div id='btnSee' style='text-align: center'>
