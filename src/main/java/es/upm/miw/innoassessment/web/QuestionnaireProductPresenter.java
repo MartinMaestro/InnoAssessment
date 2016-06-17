@@ -56,7 +56,7 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private EvaluationController evaluationController;
-	
+
 	@Autowired
 	private LineValueController lineValueController;
 
@@ -89,9 +89,6 @@ public class QuestionnaireProductPresenter {
 		}
 		return modelAndView;
 	}
-	
-	
-
 
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
@@ -100,13 +97,17 @@ public class QuestionnaireProductPresenter {
 		if (processQuestionnaire == 1) {
 			System.out.println("------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
 			int evaluationId = evaluationController.createEvaluation(id, productVersionId);
-			System.out.println("------------- PRESENTER buildQuestionnaire : EVALUACION CREADA ID: "+ evaluationId);
-			System.out.println("-----PRESENTER buildQuestionnaire  - assestmentLine valor"  );
-			
-			//recorrer todos  los assesstmente: y crear un assestmen + evaluation = LINEVALUE
-			//CREACIÓN ASSESSTEMENT: QUESTIONARIO Y MODELITEM
-			// lineValue: seria listAssestment?  no uno solo, pero entonces EVALUATION se repite con ASSESMENTE, cuando es solo uno
-			//lineValueController.createLineValue(evaluationId, assessmentLineId, valueName, valueData, sourcesUrls, sourcesFiles)
+			System.out.println("------------- PRESENTER buildQuestionnaire : EVALUACION CREADA ID: " + evaluationId);
+			System.out.println("-----PRESENTER buildQuestionnaire  - assestmentLine valor");
+
+			// recorrer todos los assesstmente: y crear un assestmen +
+			// evaluation = LINEVALUE
+			// CREACIÓN ASSESSTEMENT: QUESTIONARIO Y MODELITEM
+			// lineValue: seria listAssestment? no uno solo, pero entonces
+			// EVALUATION se repite con ASSESMENTE, cuando es solo uno
+			// lineValueController.createLineValue(evaluationId,
+			// assessmentLineId, valueName, valueData, sourcesUrls,
+			// sourcesFiles)
 		}
 		System.out.println(
 				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
@@ -116,25 +117,29 @@ public class QuestionnaireProductPresenter {
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(id));
-		ListAssessmentLine listAssessmentLine =  new ListAssessmentLine();
-		listAssessmentLine.setAssessmentList(assessmentLineController.showAssessmentLinesByQuestionnaire(id)); 
+		ListAssessmentLine listAssessmentLine = new ListAssessmentLine();
+		listAssessmentLine.setAssessmentList(assessmentLineController.showAssessmentLinesByQuestionnaire(id));
 		modelAndView.addObject("listAssessmentLine", listAssessmentLine);
-		return modelAndView;		
-		//return new  ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine", listAssessmentLine);
+		return modelAndView;
+		// return new
+		// ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine",
+		// listAssessmentLine);
 	}
-	
-	@RequestMapping(value = { "/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
-	public String buildQuestionnaireSubmit(@ModelAttribute ("listAssessmentLine") ListAssessmentLine listAssessmentLine
-	, BindingResult bindingResult,  Model model) {
-		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
-		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: " );
-		for(AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()){
-		System.out.println("------------- assessmentLine id: " + assessmentLine.getId() + " getModelItemDimensionName: "  + assessmentLine.getModelItemDimensionName()
-				);
-		}
-		return "jsp/home";
 
+	@RequestMapping(value = {
+			"/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
+	public String buildQuestionnaireSubmit(@PathVariable int questionnaireId, @PathVariable int productVersionId,
+			@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine, BindingResult bindingResult,
+			Model model) {
+		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
+		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: ");
+		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
+			System.out.println("------------- assessmentLine id: " + assessmentLine.getId()
+					+ " getModelItemDimensionName: " + assessmentLine.getModelItemDimensionName());
+		}
+		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
+		return "jsp/home";
+ 
 	}
-	
 
 }
