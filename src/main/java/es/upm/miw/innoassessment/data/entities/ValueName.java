@@ -18,5 +18,26 @@ public enum ValueName {
     public String getName(){
     	return name;
     }
+    
+    public ValueName getByName(String name){
+    	switch(name){
+			case "Unknown":
+				return UNKNOWN;
+			case "Not Applicable":
+				return NOT_APPLICABLE;
+			case "Very Few":
+				return VERY_FEW;
+			case "Few":
+				return FEW;
+			case "Medium":
+				return MEDIUM;
+			case "High":
+				return HIGH;
+			case "Very High":
+				return VERY_HIGH;
+    		default:
+    			return null;
+    	}
+    }
 
 }
