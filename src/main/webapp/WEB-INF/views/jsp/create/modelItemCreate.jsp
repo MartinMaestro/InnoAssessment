@@ -26,16 +26,15 @@
 		<p />
 		
 		<p>
+				
+		</p>
+		<form:form action="create-modelItem" modelAttribute="modelItem">
+			<p>
 				Impact:<select name="impact" id = "ddlProductVersion" >
                 <c:forEach items="${impactValuesList}" var="impact" varStatus="status">
   					<option value="${impact.name}">${impact.name}</option>
 				</c:forEach> 
 		</select>
-		</p>
-		<form:form action="create-modelItem" modelAttribute="modelItem">
-			<p>
-				Impact:
-				<!--  form:input path="impact" placeholder="Impact" required="required" /-->
 			</p>
 			
 			<p>

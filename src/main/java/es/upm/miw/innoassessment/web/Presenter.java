@@ -38,7 +38,7 @@ public class Presenter {
 
 	@Autowired
 	private DimensionController dimensionController;
-	
+
 	@Autowired
 	private FactorController factorController;
 
@@ -50,10 +50,9 @@ public class Presenter {
 
 	@Autowired
 	private ModelController modelController;
-	
+
 	@Autowired
 	private ModelItemController modelItemController;
-
 
 	@Autowired
 	private QuestionnaireController questionnaireController;
@@ -63,14 +62,14 @@ public class Presenter {
 	public String now() {
 		return new SimpleDateFormat("EEEE, d MMM yyyy HH:mm:ss").format(new Date());
 	}
-	
+
 	@RequestMapping("/home")
 	public String home(Model model) {
 		// La vista resultante no lleva extensión (.jsp) configurado en
 		// WebConfig.java
 		return "jsp/home";
 	}
-	
+
 	@RequestMapping("/homeDevelop")
 	public String homedevelop(Model model) {
 		// La vista resultante no lleva extensión (.jsp) configurado en
@@ -84,8 +83,6 @@ public class Presenter {
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
-
-	
 
 	@RequestMapping("/product-list")
 	public ModelAndView listProduct(Model model) {
@@ -106,7 +103,7 @@ public class Presenter {
 		System.out.println("---- PRESENTER searchProductVersion  " + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(id));
-		return modelAndView;		
+		return modelAndView;
 	}
 
 	@RequestMapping("/model-list")
@@ -115,12 +112,13 @@ public class Presenter {
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/modelitem-list")
 	public ModelAndView listModelItem(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/modelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
-		//modelAndView.addObject("modelItemList", modelItemController.showModelItemsByModelAndDimension(1, 1));
+		// modelAndView.addObject("modelItemList",
+		// modelItemController.showModelItemsByModelAndDimension(1, 1));
 		return modelAndView;
 	}
 
@@ -137,14 +135,14 @@ public class Presenter {
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/assessmentline-list")
 	public ModelAndView listAssessmentLine(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineList");
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/assessmentlinedimension-list")
 	public ModelAndView listAssessmentDimensionLine(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/assessmentLineListByDimension");
@@ -170,13 +168,14 @@ public class Presenter {
 
 		// return "jsp/list/productQuestionnaireList";
 	}
+
 	@RequestMapping("/productAssesmentQuestionnaire-list")
 	public ModelAndView listProductAssessmentQuestionnaire(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = { "/search-productAssessmentQuestionnaire/{id}" })
 	public ModelAndView searchProductAssessmentQuestionnaire(@PathVariable int id, Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productAssessmentQuestionnaireList");
@@ -185,17 +184,17 @@ public class Presenter {
 		return modelAndView;
 		// return "jsp/list/productQuestionnaireList";
 	}
-	
+
 	@RequestMapping("/questionnaire-product2")
 	public ModelAndView listQuestionnaireProducts2(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = { "/build-questionnaireOLD/{id}" })
-	public ModelAndView buildQuestionnaireOLD(@PathVariable int id, Model model
-			,@RequestParam(value="dimensionId", required=false, defaultValue="1") int dimensionId) {
+	public ModelAndView buildQuestionnaireOLD(@PathVariable int id, Model model,
+			@RequestParam(value = "dimensionId", required = false, defaultValue = "1") int dimensionId) {
 		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
@@ -203,12 +202,11 @@ public class Presenter {
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
 		modelAndView.addObject("productList", productController.showProducts());
 		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
-		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLinesByDimension(dimensionId));
+		modelAndView.addObject("assessmentLineList",
+				assessmentLineController.showAssessmentLinesByDimension(dimensionId));
 		return modelAndView;
-		
-	}
 
-	
+	}
 
 	@RequestMapping(value = "/create-product", method = RequestMethod.GET)
 	public String createProduct(Model model) {
@@ -228,11 +226,9 @@ public class Presenter {
 			} else {
 				bindingResult.rejectValue("name", "error.product", "Product ya existente");
 			}
-		} 
+		}
 		return "jsp/create/createProduct";
 	}
-	
-	
 
 	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.GET)
 	public ModelAndView createProductVersion(@PathVariable int id, Model model) {
@@ -245,11 +241,13 @@ public class Presenter {
 	@RequestMapping(value = "/create-productversion/{id}", method = RequestMethod.POST)
 	public String createProductVersionSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult,
 			Model model) {
-		System.out.println("--- CREATE PRODUCT VERSION:" +productVersion.getName()+"-" + productVersion.getProductId());
+		System.out.println(
+				"--- CREATE PRODUCT VERSION:" + productVersion.getName() + "-" + productVersion.getProductId());
 		System.out.println(bindingResult.toString());
 		if (!bindingResult.hasErrors()) {
 			System.out.println("--- CREAR");
-			if (productVersionController.createProductVersion(productVersion.getName(), productVersion.getProductId())) {
+			if (productVersionController.createProductVersion(productVersion.getName(),
+					productVersion.getProductId())) {
 				model.addAttribute("name", productVersion.getName());
 				model.addAttribute("description", productVersion.getDescription());
 				model.addAttribute("productId", productVersion.getProductId());
@@ -260,7 +258,6 @@ public class Presenter {
 		}
 		return "jsp/list/productList";
 	}
-	
 
 	@RequestMapping(value = "/create-productversionold", method = RequestMethod.POST)
 	public String createProductVersionSubmitold(@Valid ProductVersionWrapper productVersion,
@@ -301,10 +298,10 @@ public class Presenter {
 		}
 		return "jsp/create/createModel";
 	}
-	
+
 	@RequestMapping(value = "/create-modelItem", method = RequestMethod.GET)
 	public String createModelItem(Model model) {
-		model.addAttribute("modelItem", new ModelItemWrapper());		
+		model.addAttribute("modelItem", new ModelItemWrapper());
 		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
@@ -313,28 +310,19 @@ public class Presenter {
 	}
 
 	@RequestMapping(value = "/create-modelItem", method = RequestMethod.POST)
-	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model
-			
-			) {
-		System.out.println("-----createModelSubmit - Impact: " + modelItem.getImpact() + "-Model Id: " + modelItem.getModelId());
-		System.out.println("-----createModelSubmit - Dimension" + modelItem.getDimensionId() +"-Factor: " + modelItem.getFactorId());
-		if (!bindingResult.hasErrors()) {			
-			if (modelItemController.createModelItem(modelItem.getModelId(),modelItem.getDimensionId(),modelItem.getFactorId(),modelItem.getImpact()
-					,modelItem.getWeight(),modelItem.getInterpretation(),modelItem.getHelp())) {
-				/*model.addAttribute("name", modelw.getName());
-				model.addAttribute("year", modelw.getYear());
-				model.addAttribute("version", modelw.getVersion());
-				model.addAttribute("description", modelw.getDescription());
-				model.addAttribute("id", modelw.getId());
-				*/
-				return "jsp/registrationSuccess";
+	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model) {
+		if (!bindingResult.hasErrors()) {
+			if (modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),
+					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
+					modelItem.getInterpretation(), modelItem.getHelp())) {
+				return "jsp/home";
 			} else {
 				bindingResult.rejectValue("name", "error.model", "Model ya existente");
 			}
 		}
 		return "jsp/create/modelItemCreate";
 	}
-	
+
 	@RequestMapping(value = { "/build-questionnaireDimensions" })
 	public ModelAndView buildQuestionnaireDimensions(Model model) {
 		int questionnaireId = 1;
@@ -351,14 +339,13 @@ public class Presenter {
 
 	}
 
-	
-
 	@RequestMapping(value = { "/delete-product/{id}" })
 	public String deleteProduct(@PathVariable int id, Model model) {
 		productController.deleteProduct(id);
 		model.addAttribute("productList", productController.showProducts());
 		return "jsp/list/productList";
 	}
+
 	@RequestMapping(value = { "/delete-productversion/{id}" })
 	public String deleteProductVersion(@PathVariable int id, Model model) {
 		productVersionController.deleteProductVersion(id);
