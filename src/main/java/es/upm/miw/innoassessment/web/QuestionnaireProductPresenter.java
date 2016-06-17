@@ -126,12 +126,11 @@ public class QuestionnaireProductPresenter {
 	@RequestMapping(value = { "/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
 	public String buildQuestionnaireSubmit(@ModelAttribute ("listAssessmentLine") ListAssessmentLine listAssessmentLine
 	, BindingResult bindingResult,  Model model) {
-		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO v: " +listAssessmentLine.getAssessmentList().get(0).getQuestionnaireId() );
-		System.out.println("------------- ----> LIST SIZE: "  + listAssessmentLine.getAssessmentList().size());
-		for (int i = 0; i<listAssessmentLine.getAssessmentList().size();i++){
-			System.out.println("------------- ----> POS: " +i +" | " + "-ID ASSESSMENT: "  + listAssessmentLine.getAssessmentList().get(i).getId() +"&&" +listAssessmentLine.getAssessmentList().get(i).getRadioValue2() );
-			//System.out.println("------------- ----> POS: " +i + "-VALUE: "  + listAssessmentLine.getAssessmentList().get(i).toString());
-
+		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
+		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: " );
+		for(AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()){
+		System.out.println("------------- assessmentLine id: " + assessmentLine.getId() + " getModelItemDimensionName: "  + assessmentLine.getModelItemDimensionName()
+				);
 		}
 		return "jsp/home";
 

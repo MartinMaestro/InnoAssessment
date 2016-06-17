@@ -77,35 +77,31 @@
 							
 							<table width='100%'>
 								<tr>
-									<td>									
-									 <input name="assessmentList[${status.index}].id" value='${assessmentLine.id}'  type="hidden"/>									
-									  
+									<td>																											 
 										<div style='text-align: center'>
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion0' value='Unknown' checked='checked'> 
-												<label for='opcion0'>Unknown</label> 
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion9' value='Not Applicable'> 
-												<label for='opcion9'>Not Applicable</label> 
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion1' value='Very Few'> 
-												<label for='opcion1'>Very Few</label>
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion2' value='Few'> 
-												<label for='opcion2'>Few</label> 
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion3' value='Medium'> 
-												<label for='opcion3'>Medium</label> 
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion4' value='High'>
-												<label for='opcion4'>High</label> 
-												<input type='radio' name='assessmentList[${status.index}].id' id='opcion5' value='Very High'>
-												<label for='opcion5'>Very High</label>
-												
-												
-
-
-
-												
-												
-												
-												
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion0'
+												value='Unknown' checked='checked'> <label for='opcion0'>
+												Unknown</label> 
+											<input type='radio'	name='assessmentList[${status.index}].modelItemDimensionName' id='opcion9'
+												value='Not Applicable'> <label for='opcion9'>
+												Not	Applicable</label> 
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName'
+												id='opcion1' value='Very Few'> <label for='opcion1'>
+												Very Few</label> 
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName'
+												id='opcion2' value='Few'> <label for='opcion2'>
+												Few</label>
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' 
+												id='opcion3' value='Medium'> <label for='opcion3'>
+												Medium</label>
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion4'
+												value='High'> <label for='opcion4'>
+												High</label> 
+											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion5'
+												value='Very High'> <label for='opcion5'>
+												Very High</label>
+											<input type='hidden' name='assessmentList[${status.index}].id' value='${assessmentLine.id}'/>
 										</div>
-										
 									</td>
 									<td>
 										<div id='btnSee' style='text-align: center'>
