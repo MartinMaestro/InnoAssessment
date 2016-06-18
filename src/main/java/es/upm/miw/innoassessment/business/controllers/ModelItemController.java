@@ -15,6 +15,7 @@ import es.upm.miw.innoassessment.data.entities.ModelItem;
 import es.upm.miw.innoassessment.data.entities.Model;
 import es.upm.miw.innoassessment.data.entities.AssessmentType;
 import es.upm.miw.innoassessment.data.entities.Dimension;
+import es.upm.miw.innoassessment.data.entities.Factor;
 
 @Controller
 public class ModelItemController {
@@ -26,7 +27,7 @@ public class ModelItemController {
 	private DimensionDao dimensionDao;
 
 	private FactorDao factorDao;
-	
+
 	private AssessmentLineDao assessmentLineDao;
 
 	@Autowired
@@ -48,7 +49,7 @@ public class ModelItemController {
 	public void setFactorDao(FactorDao factorDao) {
 		this.factorDao = factorDao;
 	}
-	
+
 	@Autowired
 	public void setAssessmentLineDao(AssessmentLineDao assessmentLineDao) {
 		this.assessmentLineDao = assessmentLineDao;
@@ -61,18 +62,18 @@ public class ModelItemController {
 		}
 		return modelItemWrapperList;
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public AssessmentType[] showAssessmentTypes() {
 		AssessmentType assessmentType = null;
-		return  assessmentType.values();
+		return assessmentType.values();
 	}
-	
 
 	public boolean createModelItem(int modelId, int dimensionId, int factorId, String impact, String weight,
 			String interpretation, String help) {
-		modelItemDao.saveAndFlush(new ModelItem(modelDao.findOne(modelId), dimensionDao.findOne(dimensionId),
-				factorDao.findOne(factorId), impact, weight, interpretation, help));
+
+		modelItemDao.saveAndFlush(new ModelItem(new Model(modelId), new Dimension(dimensionId), new Factor(factorId),
+				impact, weight, interpretation, help));
 		return true;
 	}
 

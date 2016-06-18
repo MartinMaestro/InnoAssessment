@@ -17,6 +17,10 @@ public class Dimension {
 	public Dimension() {
 	}
 
+	public Dimension(int id) {
+		this.id = id;
+	}
+
 	public Dimension(String name) {
 		this.name = name;
 	}

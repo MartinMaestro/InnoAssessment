@@ -19,7 +19,8 @@ public enum ValueName {
     	return name;
     }
     
-    public ValueName getByName(String name){
+    
+    public static ValueName getByName(String name){
     	switch(name){
 			case "Unknown":
 				return UNKNOWN;

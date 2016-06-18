@@ -20,6 +20,10 @@ public class Factor {
 	public Factor() {
 	}
 
+	public Factor(int id) {
+		this.id = id;
+	}
+
 	public Factor(String name, String definition) {
 		this.name = name;
 		this.definition = definition;

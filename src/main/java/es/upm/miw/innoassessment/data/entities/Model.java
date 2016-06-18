@@ -26,6 +26,9 @@ public class Model {
 	public Model() {
 	}
 
+	public Model (int id){
+		this.id = id;
+	}
 	public Model(String name, String year, String version, String description) {
 		this.name = name;
 		this.year = year;

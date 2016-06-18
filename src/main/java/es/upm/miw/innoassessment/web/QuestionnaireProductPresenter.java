@@ -21,6 +21,8 @@ import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+import es.upm.miw.innoassessment.data.entities.LineValue;
+import es.upm.miw.innoassessment.data.entities.ValueName;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -120,10 +122,7 @@ public class QuestionnaireProductPresenter {
 		ListAssessmentLine listAssessmentLine = new ListAssessmentLine();
 		listAssessmentLine.setAssessmentList(assessmentLineController.showAssessmentLinesByQuestionnaire(id));
 		modelAndView.addObject("listAssessmentLine", listAssessmentLine);
-		return modelAndView;
-		// return new
-		// ModelAndView("jsp/create/questionnaireBuild","listAssessmentLine",
-		// listAssessmentLine);
+		return modelAndView;		
 	}
 
 	@RequestMapping(value = {
@@ -131,13 +130,10 @@ public class QuestionnaireProductPresenter {
 	public String buildQuestionnaireSubmit(@PathVariable int questionnaireId, @PathVariable int productVersionId,
 			@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine, BindingResult bindingResult,
 			Model model) {
-		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO_ " + questionnaireId + " - Id productVersion:" +productVersionId);
-		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: ");
-		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
-			System.out.println("------------- assessmentLine id: " + assessmentLine.getId()
-					+ " getModelItemDimensionName: " + assessmentLine.getRadioValue());
-		}
 		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
+		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
+			lineValueController.createLineValue(evaluationId, assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null, null);
+		}
 		return "jsp/home"; 
 	}
 

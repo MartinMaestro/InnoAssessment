@@ -14,9 +14,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints={
-		   @UniqueConstraint(columnNames={"questionnaire_id", "productVersion_id", "creationTimeStamp"})
-		})
+@Table(uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "questionnaire_id", "productVersion_id", "creationTimeStamp" }) })
 public class Evaluation {
 	@Id
 	@GeneratedValue
@@ -33,10 +32,13 @@ public class Evaluation {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	private Date creationTimeStamp;
-	
 
-	public Evaluation() {}
+	public Evaluation() {
+	}
 
+	public Evaluation(int id) {
+		this.id = id;
+	}
 
 	public Evaluation(Questionnaire questionnaire, ProductVersion productVersion, Date creationTimeStamp) {
 		this.questionnaire = questionnaire;
@@ -44,44 +46,36 @@ public class Evaluation {
 		this.creationTimeStamp = creationTimeStamp;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public Questionnaire getQuestionnaire() {
 		return questionnaire;
 	}
-
 
 	public void setQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaire = questionnaire;
 	}
 
-
 	public ProductVersion getProductVersion() {
 		return productVersion;
 	}
-
 
 	public void setProductVersion(ProductVersion productVersion) {
 		this.productVersion = productVersion;
 	}
 
-
 	public Date getCreationTimeStamp() {
 		return creationTimeStamp;
 	}
 
-
 	public void setCreationTimeStamp(Date creationTimeStamp) {
 		this.creationTimeStamp = creationTimeStamp;
-	}	
+	}
 
 }

@@ -101,6 +101,9 @@
 												value='Very High'> <label for='opcion5'>
 												Very High</label>
 											<input type='hidden' name='assessmentList[${status.index}].id' value='${assessmentLine.id}'/>
+											<input type='hidden' name='assessmentList[${status.index}].modelItemImpact' value='${assessmentLine.modelItemImpact}'/>
+											<input type='hidden' name='assessmentList[${status.index}].modelItemWeight' value='${assessmentLine.modelItemWeight}'/>
+											
 										</div>
 									</td>
 									<td>

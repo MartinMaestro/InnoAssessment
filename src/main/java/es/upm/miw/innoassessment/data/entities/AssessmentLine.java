@@ -27,6 +27,10 @@ public class AssessmentLine {
 	public AssessmentLine() {
 	}
 
+	public AssessmentLine(int id) {
+		this.id = id;
+	}
+
 	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, AssessmentType type) {
 		this.questionnaire = questionnaire;
 		this.modelItem = modelItem;
@@ -36,8 +40,6 @@ public class AssessmentLine {
 	public AssessmentLine(AssessmentType type) {
 		this.type = type;
 	}
-
-	
 
 	public int getId() {
 		return id;
@@ -62,7 +64,7 @@ public class AssessmentLine {
 	public void setModelItem(ModelItem modelItem) {
 		this.modelItem = modelItem;
 	}
-	
+
 	public AssessmentType getType() {
 		return type;
 	}
@@ -70,6 +72,5 @@ public class AssessmentLine {
 	public void setType(AssessmentType type) {
 		this.type = type;
 	}
-	
 
 }

@@ -13,40 +13,33 @@ import es.upm.miw.innoassessment.data.entities.Evaluation;
 import es.upm.miw.innoassessment.data.entities.LineValue;
 import es.upm.miw.innoassessment.data.entities.SourceFile;
 import es.upm.miw.innoassessment.data.entities.SourceUrl;
-import es.upm.miw.innoassessment.data.entities.ValueName;
 
 @Controller
 public class LineValueController {
 
 	private LineValueDao lineValueDao;
-	
-	private EvaluationDao evaluationDao;
-	
-	private AssessmentLineDao assessmentLineDao;
 
 	@Autowired
 	public void setLineValueDao(LineValueDao lineValueDao) {
 		this.lineValueDao = lineValueDao;
 	}
-	
+
 	@Autowired
-	public void setEvaluationDao(EvaluationDao evaluationDao){
-		this.evaluationDao = evaluationDao;
+	public void setEvaluationDao(EvaluationDao evaluationDao) {
 	}
-	
+
 	@Autowired
 	public void setAssessmentLineDao(AssessmentLineDao assessmentLineDao) {
-		this.assessmentLineDao = assessmentLineDao;
 	}
-	
-	public List<LineValue> findByEvaluationId(int evaluationId){
+
+	public List<LineValue> findByEvaluationId(int evaluationId) {
 		return lineValueDao.findByEvaluationIdOrderByAssessmentLineId(evaluationId);
 	}
-	
-	public boolean createLineValue(int evaluationId,int assessmentLineId,ValueName valueName, int valueData, List<SourceUrl> sourcesUrls, List<SourceFile> sourcesFiles) {
-		Evaluation evaluation = evaluationDao.findOne(evaluationId);
-		AssessmentLine assessmentLine = assessmentLineDao.findOne(assessmentLineId);
-		lineValueDao.saveAndFlush(new LineValue(evaluation, assessmentLine,valueName,valueData,sourcesUrls,sourcesFiles));
+
+	public boolean createLineValue(int evaluationId, int assessmentLineId, String valueName, int valueData,
+			List<SourceUrl> sourcesUrls, List<SourceFile> sourcesFiles) {
+		lineValueDao.saveAndFlush(new LineValue(new Evaluation(evaluationId), new AssessmentLine(assessmentLineId),
+				valueName, valueData, sourcesUrls, sourcesFiles));
 		return true;
 	}
 }
