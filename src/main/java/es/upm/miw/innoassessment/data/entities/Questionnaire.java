@@ -26,7 +26,11 @@ public class Questionnaire {
 	public Questionnaire() {
 
 	}
-
+	public Questionnaire(int id){
+		this.id = id;
+		
+	}
+	
 	public Questionnaire(Model model, String name, String version) {
 		this.model = model;
 		this.name = name;

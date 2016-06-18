@@ -131,15 +131,14 @@ public class QuestionnaireProductPresenter {
 	public String buildQuestionnaireSubmit(@PathVariable int questionnaireId, @PathVariable int productVersionId,
 			@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine, BindingResult bindingResult,
 			Model model) {
-		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO");
+		System.out.println("------------- PRESENTER POST buildQuestionnaire : PROCESAR QUESTIONNARIO_ " + questionnaireId + " - Id productVersion:" +productVersionId);
 		System.out.println("------------- PRESENTER ASSESSTEMENT LIST: ");
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
 			System.out.println("------------- assessmentLine id: " + assessmentLine.getId()
-					+ " getModelItemDimensionName: " + assessmentLine.getModelItemDimensionName());
+					+ " getModelItemDimensionName: " + assessmentLine.getRadioValue());
 		}
 		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
-		return "jsp/home";
- 
+		return "jsp/home"; 
 	}
 
 }

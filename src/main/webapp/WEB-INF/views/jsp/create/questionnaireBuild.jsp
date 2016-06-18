@@ -58,7 +58,7 @@
 			</c:forEach>
 		</div>
 
-<form:form method="post" action="/innoassessment/build-questionnaire/${questionnaireDetail.modelId}/productversion/1" modelAttribute="listAssessmentLine">
+<form:form method="post" action="/innoassessment/build-questionnaire/${questionnaireDetail.modelId}/productversion/${productVersion.id}" modelAttribute="listAssessmentLine">
 		<div id='cont'
 			style='border: 1px solid #4682B4; border-radius: 8px; padding: 1%; margin-top: -0.9%;'>
 			<div id='pesta0' style='display: block;'>
@@ -79,25 +79,25 @@
 								<tr>
 									<td>																											 
 										<div style='text-align: center'>
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion0'
+											<input type='radio' name='assessmentList[${status.index}].radioValue' id='opcion0'
 												value='Unknown' checked='checked'> <label for='opcion0'>
 												Unknown</label> 
-											<input type='radio'	name='assessmentList[${status.index}].modelItemDimensionName' id='opcion9'
+											<input type='radio'	name='assessmentList[${status.index}].radioValue' id='opcion9'
 												value='Not Applicable'> <label for='opcion9'>
 												Not	Applicable</label> 
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName'
+											<input type='radio' name='assessmentList[${status.index}].radioValue'
 												id='opcion1' value='Very Few'> <label for='opcion1'>
 												Very Few</label> 
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName'
+											<input type='radio' name='assessmentList[${status.index}].radioValue'
 												id='opcion2' value='Few'> <label for='opcion2'>
 												Few</label>
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' 
+											<input type='radio' name='assessmentList[${status.index}].radioValue' 
 												id='opcion3' value='Medium'> <label for='opcion3'>
 												Medium</label>
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion4'
+											<input type='radio' name='assessmentList[${status.index}].radioValue' id='opcion4'
 												value='High'> <label for='opcion4'>
 												High</label> 
-											<input type='radio' name='assessmentList[${status.index}].modelItemDimensionName' id='opcion5'
+											<input type='radio' name='assessmentList[${status.index}].radioValue' id='opcion5'
 												value='Very High'> <label for='opcion5'>
 												Very High</label>
 											<input type='hidden' name='assessmentList[${status.index}].id' value='${assessmentLine.id}'/>

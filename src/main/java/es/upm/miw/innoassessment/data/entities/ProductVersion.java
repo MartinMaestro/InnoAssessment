@@ -28,6 +28,10 @@ public class ProductVersion {
 	@JoinColumn
 	private Product product;
 
+	public ProductVersion(int id) {
+		this.id = id;
+	}
+	
 	public ProductVersion() {
 
 	}
