@@ -28,14 +28,18 @@ public class EvaluationResult {
 	
 	@Column(nullable = false)	
 	private float value;
+	
+	@Column(nullable = false)	
+	private float percentageValue;	
+	
 
 	public EvaluationResult(Evaluation evaluation, Dimension dimension, EvaluationResultType evaluationResultType,
-			float value) {
-		super();
+			float value, float percentageValue) {
 		this.evaluation = evaluation;
 		this.dimension = dimension;
 		this.evaluationResultType = evaluationResultType;
 		this.value = value;
+		this.percentageValue = percentageValue;
 	}
 
 	public EvaluationResult() {}
@@ -70,6 +74,19 @@ public class EvaluationResult {
 
 	public void setValue(float value) {
 		this.value = value;
-	}	
+	}
+
+	public float getPercentageValue() {
+		return percentageValue;
+	}
+
+	public void setPercentageValue(float percentageValue) {
+		this.percentageValue = percentageValue;
+	}
+	
+	@Override
+	public String toString(){
+		return "{ \"id\":"+this.id+",\"evaluationId\":"+this.evaluation.getId()+",\"dimensionId\":"+this.dimension.getId()+",\"evaluationResultType\":\""+this.evaluationResultType.getName()+"\",\"value\":"+this.value+",\"percentageValue\":"+this.percentageValue+"}";
+	}
 
 }

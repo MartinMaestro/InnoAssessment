@@ -1,7 +1,5 @@
 package es.upm.miw.innoassessment.business.wrapper;
 
-import es.upm.miw.innoassessment.data.entities.AssessmentLine;
-import es.upm.miw.innoassessment.data.entities.AssessmentType;
 import es.upm.miw.innoassessment.data.entities.Dimension;
 
 public class DimensionWrapper {
@@ -37,7 +35,10 @@ public class DimensionWrapper {
 		// TODO Auto-generated method stub
 		this.name = name;
 	}
-
-    
+	
+	@Override
+	public String toString(){
+		return "{ \"id\":"+this.id+",\"name\":\""+this.name+"\"}";
+	}
 
 }

@@ -17,6 +17,7 @@
         Assessment Result
         <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
     </div>
+    <H3>${dimensionList.toString()}</H3>
             <div id='chartContainer' style='text-align: center; padding-top: 1%;'>The chart will load here!</div>
         <script type='text/javascript'><!--
             FusionCharts.setCurrentRenderer('javascript');

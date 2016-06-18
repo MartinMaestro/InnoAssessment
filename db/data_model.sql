@@ -284,6 +284,7 @@ CREATE TABLE `EvaluationResult` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `evaluationResultType` varchar(255) DEFAULT NULL,
   `value` float NOT NULL,
+  `percentageValue` float NOT NULL,
   `dimension_id` int(11) DEFAULT NULL,
   `evaluation_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
