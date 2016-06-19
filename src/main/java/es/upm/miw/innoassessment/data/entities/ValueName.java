@@ -17,8 +17,7 @@ public enum ValueName {
 
     public String getName(){
     	return name;
-    }
-    
+    }    
     
     public static ValueName getByName(String name){
     	switch(name){

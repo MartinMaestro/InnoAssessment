@@ -1,13 +1,13 @@
 package es.upm.miw.innoassessment.data.entities;
 
 public enum EvaluationResultType {
-    REAL_DIMENSION_IMPACT("Real Dimension impact"), 
-    MAXIMUM_ACHIEVABLE_IMPACT("Maximum achievable impact"), 
-    MINIMUM_ACHIEVABLE_IMPACT("Minimum achievable impact"),
-    OPTIMUM_ACHIEVABLE_IMPACT("Optimum achievable impact"), 
-    UPPER_LIMIT_IMPACT("Upper limit impact"),
-    LOWER_LIMIT_IMPACT("Lower limit impact"), 
-    OPTIMUM_LIMIT_IMPACT("Optimum Upper limit impact");
+    REAL_DIMENSION_IMPACT("Real Dimension Impact"), 
+    MAXIMUM_ACHIEVABLE_IMPACT("Maximum Achievable Impact"), 
+    MINIMUM_ACHIEVABLE_IMPACT("Minimum Achievable Impact"),
+    OPTIMUM_ACHIEVABLE_IMPACT("Optimum Achievable Impact"), 
+    UPPER_LIMIT_IMPACT("Upper Limit Impact"),
+    LOWER_LIMIT_IMPACT("Lower Limit Impact"), 
+    OPTIMUM_LIMIT_IMPACT("Optimum Upper Limit Impact");
 	
 	private final String name;
 	

@@ -87,6 +87,7 @@ public class AssessmentProductPresenter {
 	public ModelAndView showAssessmentLineChart(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
 		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductChart");
 		Evaluation evaluation = evaluationController.findOne(evaluationId);
+		modelAndView.addObject("evaluation", evaluation);
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));
 		modelAndView.addObject("evaluationResultList", evaluationResultController.findByEvaluationId(evaluationId));
 
