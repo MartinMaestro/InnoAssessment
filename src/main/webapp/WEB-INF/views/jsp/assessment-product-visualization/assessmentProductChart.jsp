@@ -10,7 +10,7 @@
  href="<c:url value='/static/images/vitruvio.png' />"/>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <script language='Javascript' src="<c:url value='/static/js/FusionCharts.js' />"></script>
-<script language='Javascript' src="<c:url value='/static/js/charts.js' />"></script>
+<script language='Javascript' src="<c:url value='/static/js/radioCharts.js' />"></script>
 <title>Innoassessment</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
         	
             FusionCharts.setCurrentRenderer('javascript');
             
-            var myChart1 = new FusionCharts( radioChart(productName, dimensions, lineValues) );
+            var myChart1 = new FusionCharts( generateRadioChartData(productName, dimensions, lineValues) );
             myChart1.render('chartContainer');
         </script>
 <a href='javascript:window.close()' style='text-decoration:none;'><button class = 'mybutton' style = 'display: block;'>Close</button></a>    </body>
