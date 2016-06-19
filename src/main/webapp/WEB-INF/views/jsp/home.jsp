@@ -26,7 +26,12 @@
 </tr>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
-    <a href="<c:url value='/homeDevelop'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Develop -</a>
+    <a href="<c:url value='/home-develop'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Develop -</a>
+</td>
+</tr>
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
+    <a href="<c:url value='/home-administration'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Administration -</a>
 </td>
 </tr>
 </table>

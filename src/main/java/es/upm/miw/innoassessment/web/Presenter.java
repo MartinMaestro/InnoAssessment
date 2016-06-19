@@ -70,12 +70,20 @@ public class Presenter {
 		return "jsp/home";
 	}
 
-	@RequestMapping("/homeDevelop")
-	public String homedevelop(Model model) {
+	@RequestMapping("/home-develop")
+	public String homeDevelop(Model model) {
 		// La vista resultante no lleva extensión (.jsp) configurado en
 		// WebConfig.java
 		return "jsp/homeDevelop";
 	}
+	
+	@RequestMapping("/home-administration")
+	public String homeAdministration(Model model) {
+		// La vista resultante no lleva extensión (.jsp) configurado en
+		// WebConfig.java
+		return "jsp/homeAdministration";
+	}
+	
 
 	@RequestMapping("/assessmentLine-list")
 	public ModelAndView listAssessmentLines(Model model) {
@@ -106,21 +114,7 @@ public class Presenter {
 		return modelAndView;
 	}
 
-	@RequestMapping("/model-list")
-	public ModelAndView listModel(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/modelList");
-		modelAndView.addObject("modelList", modelController.showModels());
-		return modelAndView;
-	}
-
-	@RequestMapping("/modelitem-list")
-	public ModelAndView listModelItem(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/modelItemList");
-		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
-		// modelAndView.addObject("modelItemList",
-		// modelItemController.showModelItemsByModelAndDimension(1, 1));
-		return modelAndView;
-	}
+	
 
 	@RequestMapping("/questionnaire-list")
 	public ModelAndView listQuestionnaire(Model model) {
@@ -275,53 +269,7 @@ public class Presenter {
 		return "jsp/create/createProductVersion";
 	}
 
-	@RequestMapping(value = "/create-model", method = RequestMethod.GET)
-	public String createModel(Model model) {
-		model.addAttribute("model", new ModelWrapper());
-		return "jsp/create/modelCreate";
-	}
-
-	@RequestMapping(value = "/create-model", method = RequestMethod.POST)
-	public String createModelSubmit(@Valid ModelWrapper modelw, BindingResult bindingResult, Model model) {
-		if (!bindingResult.hasErrors()) {
-			if (modelController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
-					modelw.getDescription())) {
-				model.addAttribute("name", modelw.getName());
-				model.addAttribute("year", modelw.getYear());
-				model.addAttribute("version", modelw.getVersion());
-				model.addAttribute("description", modelw.getDescription());
-				model.addAttribute("id", modelw.getId());
-				return "jsp/registrationSuccess";
-			} else {
-				bindingResult.rejectValue("name", "error.model", "Model ya existente");
-			}
-		}
-		return "jsp/create/createModel";
-	}
-
-	@RequestMapping(value = "/create-modelItem", method = RequestMethod.GET)
-	public String createModelItem(Model model) {
-		model.addAttribute("modelItem", new ModelItemWrapper());
-		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
-		model.addAttribute("modelList", modelController.showModels());
-		model.addAttribute("dimensionList", dimensionController.showDimensions());
-		model.addAttribute("factorList", factorController.showFactors());
-		return "jsp/create/modelItemCreate";
-	}
-
-	@RequestMapping(value = "/create-modelItem", method = RequestMethod.POST)
-	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model) {
-		if (!bindingResult.hasErrors()) {
-			if (modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),
-					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
-					modelItem.getInterpretation(), modelItem.getHelp())) {
-				return "jsp/home";
-			} else {
-				bindingResult.rejectValue("name", "error.model", "Model ya existente");
-			}
-		}
-		return "jsp/create/modelItemCreate";
-	}
+	
 
 	@RequestMapping(value = { "/build-questionnaireDimensions" })
 	public ModelAndView buildQuestionnaireDimensions(Model model) {
@@ -353,11 +301,6 @@ public class Presenter {
 		return "jsp/list/productVersionList";
 	}
 
-	@RequestMapping(value = { "/delete-model/{id}" })
-	public String deleteModel(@PathVariable int id, Model model) {
-		modelController.deleteModel(id);
-		model.addAttribute("modelList", modelController.showModels());
-		return "jsp/list/modelList";
-	}
+	
 
 }

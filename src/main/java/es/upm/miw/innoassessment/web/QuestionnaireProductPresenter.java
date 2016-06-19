@@ -96,23 +96,7 @@ public class QuestionnaireProductPresenter {
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
 			@RequestParam(value = "productVersionId", required = true) int productVersionId,
 			@RequestParam(value = "processQuestionnaire", required = false, defaultValue = "0") int processQuestionnaire) {
-		if (processQuestionnaire == 1) {
-			System.out.println("------------- PRESENTER buildQuestionnaire : PROCESAR QUESTIONNARIO");
-			int evaluationId = evaluationController.createEvaluation(id, productVersionId);
-			System.out.println("------------- PRESENTER buildQuestionnaire : EVALUACION CREADA ID: " + evaluationId);
-			System.out.println("-----PRESENTER buildQuestionnaire  - assestmentLine valor");
-
-			// recorrer todos los assesstmente: y crear un assestmen +
-			// evaluation = LINEVALUE
-			// CREACIÓN ASSESSTEMENT: QUESTIONARIO Y MODELITEM
-			// lineValue: seria listAssestment? no uno solo, pero entonces
-			// EVALUATION se repite con ASSESMENTE, cuando es solo uno
-			// lineValueController.createLineValue(evaluationId,
-			// assessmentLineId, valueName, valueData, sourcesUrls,
-			// sourcesFiles)
-		}
-		System.out.println(
-				"------------- PRESENTER buildQuestionnaire questionnaire: " + id + "-productId: " + productVersionId);
+		
 		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("productVersion", productVersionController.showProductVersion(productVersionId));

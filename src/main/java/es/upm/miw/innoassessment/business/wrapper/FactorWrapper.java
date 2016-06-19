@@ -7,20 +7,22 @@ public class FactorWrapper {
 	private int id;
 	private String name;
 	private String definition;
+	private String radioValue;
 
+	
 	public FactorWrapper() {
 	}
 
-	public FactorWrapper(int id, String name, String definition) {
+	public FactorWrapper(int id, String name, String definition,String radioValue) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.definition = definition;
-
+		this.radioValue = radioValue;
 	}
 
 	public FactorWrapper(Factor factor) {
-		this(factor.getId(), factor.getName(), factor.getDefinition());
+		this(factor.getId(), factor.getName(), factor.getDefinition(),null);
 	}
 
 	public int getId() {
@@ -45,6 +47,14 @@ public class FactorWrapper {
 
 	public void setDefinition(String definition) {
 		this.definition = definition;
+	}
+
+	public String getRadioValue() {
+		return radioValue;
+	}
+
+	public void setRadioValue(String radioValue) {
+		this.radioValue = radioValue;
 	}
 
 }

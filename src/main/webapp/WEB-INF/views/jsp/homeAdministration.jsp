@@ -17,11 +17,6 @@
 <table align='center' >
 
 <tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
-    <a href="<c:url value='/assessmentLine-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Assessment -</a>
-</td>
-</tr>
-<tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/dimension-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Dimension -</a>
 </td>
@@ -37,8 +32,6 @@
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/create-factor'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Factor -</a>
 </td>
-</tr>
-<tr>
 </tr>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
@@ -71,58 +64,13 @@
 </tr>
 <tr>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/model-dimension'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Model Items (develop) -</a>
+    <a href="<c:url value='/model-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Model Items (develop) -</a>
 </td>
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/create-modelItems'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Crear Model Items (final) -</a>
 </td>
 </tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/questionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista questionarios -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productQuestionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Asociar producto questionarios -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/productAssesmentQuestionnaire-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Product innovation assessment questionnaire -</a>
-</td>
-</tr>
 
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/assessmentlinedimension-list'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Lista de Assessment by dimension -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/assessment-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Assessment By Innovation Product -</a>
-</td>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/questionnaire-product'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Select Questionnaire By Innovation Product -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/build-questionnaireDimensions/'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- BuidQuestionnaire Dimensions -</a>
-</td>
-</tr>
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/build-questionnaireDimensions'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- TEMP  BuidQuestionnaire Dimensions -</a>
-</td>
-</tr>
-
-<tr>
-<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
-    <a href="<c:url value='/factor-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Factor Select -</a>
-</td>
-</tr>
 
 </table>
 </body>
