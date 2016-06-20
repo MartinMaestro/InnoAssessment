@@ -20,10 +20,13 @@
 	</br>
     <input name='model' value='${modelid}'/>
 	
-	<fieldset name='factor_list'>
+	
+<form:form method="post" action = "/innoassessment/factor-select/${modelid}" modelAttribute="listFactor">		
+
+	   	 <fieldset name='factor_list'>
 		<legend  align="center">Factor's list</legend>
 		<p/>
-<form:form method="post" action = "/innoassesment/factor-select/${modelid}" modelAttribute="listFactor">		
+	   	 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"   value="Submit">Submit Questionnaire</button>   
 	   
 	    <input aligh = "right" type="submit" class="btn btn-default" style = 'display: block;' value="Add Factors">
 		<table class="table table-bordered">
@@ -41,8 +44,9 @@
 					<td>${factor.id}</td>
 				    <td>${factor.name}</td>
 				    <td>${factor.definition}</td>	
-				    <td> <input type='checkbox' name='factorList[${status.index}].radioValue' value='${factor.id}'></td>				    				
-					<input type='hidden' name='factorList[${status.index}].id' value='${factor.id}'/>
+				    <td> <input type='checkbox' name='factorList[${status.index}].radioValue' value='${factor.id}'>
+				    <input type='hidden' name='factorList[${status.index}].id' value='${factor.id}'/>
+				    </td>				    				
 			</tr>
 			</c:forEach>		
 		</tbody>

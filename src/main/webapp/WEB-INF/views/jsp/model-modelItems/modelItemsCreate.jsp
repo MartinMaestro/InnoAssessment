@@ -6,13 +6,36 @@
 <link rel="shortcut icon"
 	href="<c:url value='/static/images/vitruvio.png' />" />
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
-<link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/static/css/bootstrap.css' />">
 <script type="text/javascript">
-function setDimension(){
-	alert("aqui");
+	function getValueDimension(){
+		elem = document.getElementsByName('dimensioncheck');
+		for (i = 0; i < elem.length; i++)
+			if (elem[i].checked) {
+				valor = elem[i].value;
+			}
+		return valor;
+	}
+
+	function getDimension(){
+		var valor = getValueDimension();
+		var url = window.location.href;
+		url+= "?dimensionid=" + valor;
+		window.location.href = url;
+	}
 	
-	//ddlDimensions
-}
+	function getDimension2() {
+		var valor = getValueDimension();
+		var url = window.location.href;
+		var url2 = url.substring(0, url.search("create-modelItems"));			
+		var modelid = url.substr(url.search("create-modelItems")+ 18,1);
+		var urlIni = url.substring(0, url.search("create-modelItems") + 17) + "2/";			
+		urlIni += modelid;
+		url = urlIni + "/dimension/" + valor;
+		//alert("url: " + url);
+		window.location.href = url;
+	}
 </script>
 <meta charset="utf-8">
 <title>Innoassessment</title>
@@ -23,102 +46,98 @@ function setDimension(){
 </style>
 </head>
 <body>
-	 <div class="myheader">
-            Model Item
-            <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
-     </div>
-     
-     
-      <fieldset name='model'>
-                <legend>Model</legend><p />
-                Model: <b>${model.name}</b> 
-                - Year: <b>${model.year}</b>
-                - Version: <b>${model.version}</b></br>
-                Description: <b>${model.description}</b></br>
-                <input type='hidden' name='model' value='model.id' />
-                <a href="<c:url value='/model-select/'/>">Change Model</a>
-      </fieldset>
-     
-
-	<fieldset name='modelItem_create'>
-		<legend>Create</legend>
-		<p />	
-		
-		<form:form action="create-modelItem" modelAttribute="modelItem">
-			<p>
-				Impact:<select name="impact" id = "ddlProductVersion" >
-                <c:forEach items="${impactValuesList}" var="impact" varStatus="status">
-  					<option value="${impact.name}">${impact.name}</option>
-				</c:forEach> 
-		</select>
-			</p>
-			
-			<p>
-				Weight:
-				<form:input path="weight" placeholder="Weight" required="required" />
-			</p>
-			<p>
-				Interpretation:
-				<form:input path="interpretation" placeholder="Interpretation" required="required"  />
-			</p>
-			<p>
-				Help:
-				<form:input path="help" placeholder="Help" required="required"  />
-			</p>
-			
-			
-			
-			
-   
-      <fieldset name='dimension'>
-           <legend>Dimension</legend><p />
-           Select a dimension:
-         <select name="dimension" id = "ddlDimensions">
-                <c:forEach items="${dimensionList}" var="dimension" varStatus="status">
-  					<option value="${dimension.id}">${dimension.name}</option>
-				</c:forEach>     
-     	</select>     		
-      </fieldset>
-      
-    
-     </br>
-		<fieldset name='factor_list'>
-		<legend  align="center">Factor's list</legend>
-		<p/>
-        <input aligh = "right" type="submit" class="btn btn-default" style = 'display: block;' value="Add Factors">
-		<a href="<c:url value='/factor-select/${model.id}'/>">Select Factors</a>
-		
-		<div class="table-responsive">
-		
-		<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Definition</th>
-				<th>#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${factorList}" var="factor">
-				<tr>
-					<td>${factor.id}</td>
-				    <td>${factor.name}</td>
-				    <td>${factor.definition}</td>				    
-				    <td><input type="checkbox" name="factorId" value="${factor.id}" ><br></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<div class="myheader">
+		Model Item <img src="<c:url value='/static/images/syst_logo.png' />"
+			alt="" />
 	</div>
-	</fieldset>		
+
+	<form:form method="post" action="/innoassessment/create-modelItems/${modelid}/dimension/${dimensionDetail.id} }"
+		modelAttribute="listFactor">
+		<fieldset name='model'>
+			<legend>Model</legend>
+			<p />
+			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b></br>
+			Description: <b>${model.description}</b></br> <input type='hidden'
+				name='model' value='model.id' /> <a
+				href="<c:url value='/model-select/'/>">Change Model</a>
+		</fieldset>
+		<c:if test="${empty param.dimensionid }">
+			<fieldset name='dimension'>
+				<legend>Dimension</legend>
+				<p />
+				Select a dimension:
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${dimensionList}" var="dimension">
+								<tr>
+									<td>${dimension.id}</td>
+									<td>${dimension.name}</td>
+									<td><input type='radio' name='dimensioncheck'
+										value='${dimension.id}' checked='checked'
+										onclick="getDimension();"></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+		</c:if>
+		</fieldset>
+		<c:if test="${!empty param.dimensionid && param.dimensionid > 0}">
+			<fieldset name='dimensionDetail'>
+				<legend>Dimension</legend>
+				<p />
+				Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
+					name='dimensionDetail' value='dimensionDetail.id' /></br> <a
+					href="<c:url value='/create-modelItems/${modelid}'/>">Change
+					Dimension</a>
+			</fieldset>
+			</br>
+			<fieldset name='factor_list'>
+				<legend align="center">Factor's list</legend>
+				<p />
+				Select factors:
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name</th>
+								<th>Definition</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${listFactor.factorList}" var="factor"
+								varStatus="status">
+								<tr>
+									<td>${factor.id}</td>
+									<td>${factor.name}</td>
+									<td>${factor.definition}</td>
+									<td><input type='checkbox'
+										name='factorList[${status.index}].radioValue'
+										value='${factor.id}'> <input type='hidden'
+										name='factorList[${status.index}].id' value='${factor.id}' />
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
 			<p>
-				<input type="submit" class="btn btn-default" style = 'display: block;' value="Create">
+				<input type="submit" class="btn btn-default" style='display: block;'
+					value="Next">
 			</p>
-		</form:form>
-	</fieldset>
-
+		</c:if>
+	</form:form>
 	<a href="<c:url value="/home"/>">Home</a>
-
 </body>
 </html>

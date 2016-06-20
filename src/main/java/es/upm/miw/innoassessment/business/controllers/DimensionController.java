@@ -20,6 +20,10 @@ public class DimensionController {
 		this.dimensionDao = dimensionDao;
 	}
 
+	public DimensionWrapper showDimension(int id) {
+		return new DimensionWrapper(dimensionDao.findOne(id));
+	}
+
 	public List<DimensionWrapper> showDimensions() {
 		List<DimensionWrapper> dimensionWrapperList = new ArrayList<>();
 		for (Dimension dimension : dimensionDao.findAllByOrderByIdAsc()) {

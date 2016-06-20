@@ -17,7 +17,9 @@ import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
+import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
+import es.upm.miw.innoassessment.business.wrapper.FactorWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
 import es.upm.miw.innoassessment.business.wrapper.ListFactor;
 import es.upm.miw.innoassessment.business.wrapper.ModelItemWrapper;
@@ -59,38 +61,42 @@ public class ModelItemPresenter {
 	@Autowired
 	private QuestionnaireController questionnaireController;
 
-	
 	@RequestMapping("/model-select")
 	public ModelAndView listModelDimension(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
 		ModelAndView modelAndView = new ModelAndView("jsp/list/selectModel");
-		modelAndView.addObject("modelList", modelController.showModels());		
+		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
-		
-	@RequestMapping("/factor-select/{modelid}")
-	public ModelAndView listFactor(Model model,@PathVariable int modelid) {
+
+	@RequestMapping(value = "/factor-select/{modelid}")
+	public ModelAndView listFactor(Model model, @PathVariable int modelid) {
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/factorList");
 		modelAndView.addObject("model", modelid);
 		modelAndView.addObject("factorList", factorController.showFactors());
-		
 		ListFactor listFactor = new ListFactor();
 		listFactor.setFactorList(factorController.showFactors());
 		modelAndView.addObject("listFactor", listFactor);
-		
+		System.out.println("---- LIST FACTOR GET - MODELID: " + modelid);
+		System.out.println("---- LIST FACTOR GET - MODELANDVIEW " + modelAndView.toString());
+
 		return modelAndView;
 	}
-	
-	@RequestMapping(value={"/factor-select/{modelid}"}, method = RequestMethod.POST)
-	public String listFactorSubmit(Model model,@PathVariable int modelid
-			,@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine) {
+
+	@RequestMapping(value = { "/factor-select/{modelid}" }, method = RequestMethod.POST)
+	public String listFactorSubmit(Model model, @PathVariable int modelid,
+			@ModelAttribute("listFactor") ListFactor listFactor) {
 		System.out.println("---- LIST FACTOR SUBMIT - MODELID: " + modelid);
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/factorList");
 		modelAndView.addObject("factorList", factorController.showFactors());
-		return "/innoassessment/factor-select/{modelid}"; 
+		for (FactorWrapper factor : listFactor.getFactorList()) {
+			// lineValueController.createLineValue(evaluationId,
+			// assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null,
+			// null);
+			System.out.println("FACTORS: " + factor.getId() + " - " + factor.getRadioValue());
+		}
+		return "jsp/model-modelItems/modelItemsCreate";
 	}
-	
-	
 
 	@RequestMapping(value = "/create-model", method = RequestMethod.GET)
 	public String createModel(Model model) {
@@ -121,7 +127,7 @@ public class ModelItemPresenter {
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("modelItem", new ModelItemWrapper());
 		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
-		
+
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		model.addAttribute("factorList", factorController.showFactors());
 		return "jsp/model-modelItems/modelItemsCreate";
@@ -140,18 +146,91 @@ public class ModelItemPresenter {
 		}
 		return "jsp/model-modelItems/modelItemCreate";
 	}
-	
-	
+
 	@RequestMapping(value = "/create-modelItems/{modelid}", method = RequestMethod.GET)
-	public String createModelItems(Model model, @PathVariable int modelid) {
-		model.addAttribute("model", modelController.showModel(modelid));
-		model.addAttribute("modelItem", new ModelItemWrapper());
-		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
-		model.addAttribute("dimensionList", dimensionController.showDimensions());
-		model.addAttribute("factorList", factorController.showFactors());
-		return "jsp/model-modelItems/modelItemsCreate";
+	public ModelAndView createModelItemsDimension(Model model, @PathVariable int modelid,
+			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {
+		System.out.println("createModelItems DIMENSION - GET : " + modelid + "-" + dimensionid);
+		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreate");
+		modelAndView.addObject("model", modelController.showModel(modelid));
+		// modelAndView.addObject("modelItem", new ModelItemWrapper());
+		// modelAndView.addObject("impactValuesList",
+		// modelItemController.showAssessmentTypes());ç
+		if (dimensionid != 0) {
+			modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
+			System.out.println("dimension choose: " + dimensionid);
+		} else {
+			modelAndView.addObject("dimensionList", dimensionController.showDimensions());
+		}
+		modelAndView.addObject("factorList", factorController.showFactors());
+		ListFactor listFactor = new ListFactor();
+		listFactor.setFactorList(factorController.showFactors());
+		modelAndView.addObject("listFactor", listFactor);
+		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/create-modelItems2/{modelid}/dimension/{dimensionid}", method = RequestMethod.GET)
+	public ModelAndView createModelItemsDimension2(Model model, @PathVariable int modelid,
+			@PathVariable int dimensionid) {
+		System.out.println("createModelItems2 DIMENSION - GET : " + modelid + "-" + dimensionid);
+		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreate");
+		modelAndView.addObject("model", modelController.showModel(modelid));
+		// modelAndView.addObject("modelItem", new ModelItemWrapper());
+		// modelAndView.addObject("impactValuesList",
+		// modelItemController.showAssessmentTypes());ç
+		if (dimensionid != 0) {
+			modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
+			System.out.println("dimension choose: " + dimensionid);
+		} else {
+			modelAndView.addObject("dimensionList", dimensionController.showDimensions());
+		}
+		modelAndView.addObject("factorList", factorController.showFactors());
+		ListFactor listFactor = new ListFactor();
+		listFactor.setFactorList(factorController.showFactors());
+		modelAndView.addObject("listFactor", listFactor);
+		return modelAndView;
+	}
+	
+
+	@RequestMapping(value = { "/create-modelItems/{modelid}" }, method = RequestMethod.POST)
+	public ModelAndView createModelItems(Model model, @PathVariable int modelid
+			,@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid
+			,@ModelAttribute("listFactor") ListFactor listFactor) {
+		System.out.println("createModelItems - POST : " + modelid + " - " + dimensionid);
+		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreate");
+		modelAndView.addObject("model", modelController.showModel(modelid));
+		// modelAndView.addObject("modelItem", new ModelItemWrapper());
+		// modelAndView.addObject("impactValuesList",
+		// modelItemController.showAssessmentTypes());
+		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
+		modelAndView.addObject("factorList", factorController.showFactors());
+		for (FactorWrapper factor : listFactor.getFactorList()) {
+			// lineValueController.createLineValue(evaluationId,
+			// assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null,
+			// null);
+			System.out.println("FACTORS: " + factor.getId() + " - " + factor.getRadioValue());
+		}
+		ListFactor listFactor2 = new ListFactor();
+		listFactor.setFactorList(factorController.showFactors());
+		modelAndView.addObject("listFactor", listFactor);
+		return modelAndView;
+
+	}
+
+	@RequestMapping(value = { "/create-modelItemsMAL/{modelid}" }, method = RequestMethod.POST)
+	public String createModelItemsSubmitMAL(@PathVariable int modelid, @ModelAttribute("listFactor") ListFactor listFactor,
+			BindingResult bindingResult, Model model) {
+		System.out.println("createModelItems - POST : " + modelid);
+		for (FactorWrapper factor : listFactor.getFactorList()) {
+			// lineValueController.createLineValue(evaluationId,
+			// assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null,
+			// null);
+			System.out.println(
+					" createModelItemsSubmit - FACTORS POST: " + factor.getId() + " - " + factor.getRadioValue());
+		}		
+		return "jsp/home";
+	}
+
 
 	@RequestMapping("/model-list")
 	public ModelAndView listModel(Model model) {
@@ -168,8 +247,7 @@ public class ModelItemPresenter {
 		// modelItemController.showModelItemsByModelAndDimension(1, 1));
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = { "/delete-model/{id}" })
 	public String deleteModel(@PathVariable int id, Model model) {
 		modelController.deleteModel(id);
