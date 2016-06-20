@@ -9,18 +9,18 @@ function generateRadioChartData(productName, dimensions, lineValues){
 				"chart": {
     		        "caption": productName,
 			        "bgColor": "FFFFFF", 
-			        	"bgAlpha": "50",
-			        	"anchoralpha": "50", 
-			        	"radarborderalpha": "50", 
-			        	"radarborderthickness": "2", 
-			        	"radarfillcolor": "FFFFFF", 
-			        	"yAxisMaxValue": "100", 
-			        	"bordercolor": "000000", 
-			        	"captionpadding": "20", 
-			        	"showlabels": "1", 
-			        	"drawanchors": "0", 
-			        	"showlimits": "1", 
-			        	"legendborderalpha":"1"     				
+		        	"bgAlpha": "50",
+		        	"anchoralpha": "50", 
+		        	"radarborderalpha": "50", 
+		        	"radarborderthickness": "2", 
+		        	"radarfillcolor": "FFFFFF", 
+		        	"yAxisMaxValue": "100", 
+		        	"bordercolor": "000000", 
+		        	"captionpadding": "20", 
+		        	"showlabels": "1", 
+		        	"drawanchors": "0", 
+		        	"showlimits": "1", 
+		        	"legendborderalpha":"1"     				
 				},
 				"categories": {}
 		}
@@ -33,7 +33,7 @@ function createCategorie(label){
     return {
                 "label": label
             };        		
-};
+}
 
 function createValue(value){
 	return {
@@ -43,7 +43,7 @@ function createValue(value){
 
 function generateFullDimensionChartData(dimensions, lineValues, chartData){
 	var category = [];
-	var optimalUpperLimitImpactData = [];
+	var optimalUpperLimitImpact = [];
 	var upperLimitImpact = [];
 	var optimumAchievableImpact = [];
 	var maximumAchievableImpact = [];
@@ -51,7 +51,7 @@ function generateFullDimensionChartData(dimensions, lineValues, chartData){
 	var minimumAchievableImpact = [];
 	var lowerLimitImpact = [];
 	var dataset = {
-			"Optimum Upper Limit Impact": optimalUpperLimitImpactData,
+			"Optimum Upper Limit Impact": optimalUpperLimitImpact,
 			"Upper Limit Impact": upperLimitImpact,
 			"Optimum Achievable Impact": optimumAchievableImpact,
 			"Maximum Achievable Impact": maximumAchievableImpact,
@@ -63,7 +63,7 @@ function generateFullDimensionChartData(dimensions, lineValues, chartData){
 			            {
 			                "seriesname": "Optimum Upper Limit Impact",
 			                "alpha": "25",
-			                "data": optimalUpperLimitImpactData
+			                "data": optimalUpperLimitImpact
 			            },
 			            {
 			                "seriesname": "Upper Limit Impact",

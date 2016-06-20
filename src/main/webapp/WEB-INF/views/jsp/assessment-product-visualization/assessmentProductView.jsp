@@ -12,6 +12,7 @@
     <script language='Javascript' src="<c:url value='/static/js/FusionCharts.js' />"></script>
     <script language='Javascript' src="<c:url value='/static/js/overlib.js' />"></script>
     <script language='Javascript' src="<c:url value='/static/js/tabs.js' />"></script>
+    <script language='Javascript' src="<c:url value='/static/js/column2DCharts.js' />"></script>
 <title>Innoassessment</title>
 </head>
 <body>    
@@ -47,7 +48,14 @@
     </fieldset>
     <div id='pestanas'>
     	<c:forEach items="${dimensionList}" var="dimension" varStatus="status">
-    		<input id='btn${status.index}' type='button' class='tab' style='border: none;' onClick="changeTabs2('pesta', ${dimensionList.size()},${status.index}, 'btn');/*changeTabs2('pestaEdit', 4,${status.index}, 'btnEdit');*/" value='${dimension.name}'>
+	    	<script type="text/javascript">
+	    		chartDivs[${status.index}] = "chartContainer${status.index}";
+		    	var dimension = ${dimension.toString()};
+		        var index = ${status.index};
+		        var lineValues = ${evaluationResultList.toString()};
+		        var jsonChartData${status.index} = generate2DChartData(dimension, index, lineValues);
+		    </script>
+    		<input id='btn${status.index}' type='button' class='tab' style='border: none;' onClick="changeTabs2('pesta', ${dimensionList.size()}, ${status.index}, 'btn', jsonChartData${status.index});/*changeTabs2('pestaEdit', 4,${status.index}, 'btnEdit');*/" value='${dimension.name}'>
     	</c:forEach>
 		<div id='cont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>		
     	<c:forEach items="${dimensionList}" var="dimension" varStatus="status">
@@ -92,24 +100,13 @@
                          <td valign = 'top'>
                              <table border='3' cellpadding='5' style='text-align: center; border-color: #4682B4;' align='center' valign='top'>
                                  <tr><th>Resulting impact</th><th>Value</th>
-                                 <script>
-                                 	dimension${dimension.id} = {};
-                                 </script>
                                  <c:forEach items="${evaluationResultList}" var="evaluationResult">
                                  	<c:if test="${evaluationResult.dimension.name == dimension.name}">
                                  		<tr><td style='text-align: left;'>${evaluationResult.evaluationResultType.name}</td><td>${evaluationResult.value}</td></tr>
-                                 		<script>
-                                 			dimension${dimension.id}['${evaluationResult.evaluationResultType}'] = ${evaluationResult.value};
-                                 		</script>
                                  	</c:if>
                                  </c:forEach>
                              </table>
                              <div id='chartContainer${status.index}' style='text-align: center; padding-top: 1%;'>The chart will load here!</div>
-                             <script>
-                             	
-                                 chartValues[${status.index}] = "<chart caption='${dimension.name}' yAxisMaxValue='"+Math.round(dimension${dimension.id}['OPTIMUM_LIMIT_IMPACT']*110)/100+"' yAxisMinValue='0' ><set label='Maximum achievable impact' value='"+dimension${dimension.id}['MAXIMUM_ACHIEVABLE_IMPACT']+"' /><set label='Optimum achievable impact' value='"+dimension${dimension.id}['OPTIMUM_ACHIEVABLE_IMPACT']+"' /><set label='Minimum achievable impact' value='"+dimension${dimension.id}['MINIMUM_ACHIEVABLE_IMPACT']+"' /><trendlines><line startValue='"+dimension${dimension.id}['UPPER_LIMIT_IMPACT']+"' color='FF0000' displayValue='Upper Limit Impact' showOnTop='1'  thickness='3'/><line startValue='"+dimension${dimension.id}['REAL_DIMENSION_IMPACT']+"' color='91C728' displayValue='Real Impact' showOnTop='1'  thickness='3'/><line startValue='"+dimension${dimension.id}['LOWER_LIMIT_IMPACT']+"' color='FF0000' displayValue='Lower Limit Impact' showOnTop='1'  thickness='3'/></trendlines></chart>";
-                                 chartDivs[${status.index}] = "chartContainer${status.index}";
-                             </script>
                          </td>
                          <td valign='top'>
                              <button type='button' style='color: #4682B4; font-weight: bold; font-size: 100%; height: 26px; width: 70px;padding-right: 0px;' onclick="showDiv2('editDiv')">Edit</button>
@@ -135,7 +132,7 @@
        </tbody>
     </table>
         <script>
-            window.onload = changeTabs2('pesta', 0, 0, 'btn'); 
+            window.onload = changeTabs2('pesta', 0, 0, 'btn', jsonChartData0); 
         </script>	    
 	<button class = 'mybutton' type='button' style = 'display: block;' onclick="location.href='/innoassessment/home'">Go to the beginning</button>
 </body>
