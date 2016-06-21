@@ -23,5 +23,9 @@ public class ListFactor {
 	public void setFactorList(List<FactorWrapper> factorList) {
 		this.factorList = factorList;
 	}
+	
+	public void deleteFactorList(FactorWrapper factor) {
+		factorList.remove(factor);
+	}
 
 }
