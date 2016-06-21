@@ -1,8 +1,5 @@
 package es.upm.miw.innoassessment.data.entities;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum AssessmentType {
 	BOTH("RadioBoth"), POSITIVE("RadioPositive"), NEGATIVE("RadioNegative");
 
@@ -16,14 +13,15 @@ public enum AssessmentType {
 		return name;
 	}
 
-	public static String getByName(String name) {
+
+	public static AssessmentType getByName(String name) {
 		switch (name) {
 		case "RadioBoth":
-			return "BOTH";
+			return BOTH;
 		case "RadioPositive":
-			return "POSITIVE";
+			return POSITIVE;
 		case "RadioNegative":
-			return "NEGATIVE";
+			return NEGATIVE;
 		default:
 			return null;
 		}
