@@ -62,6 +62,14 @@ public class ModelItemController {
 		}
 		return modelItemWrapperList;
 	}
+	
+	public List<ModelItemWrapper> showModelItemsOrderByIdDesc() {
+		List<ModelItemWrapper> modelItemWrapperList = new ArrayList<>();
+		for (ModelItem modelItem : modelItemDao.findAllByOrderByIdDesc()) {
+			modelItemWrapperList.add(new ModelItemWrapper(modelItem));
+		}
+		return modelItemWrapperList;
+	}
 
 	@SuppressWarnings("static-access")
 	public AssessmentType[] showAssessmentTypes() {

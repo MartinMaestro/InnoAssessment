@@ -101,14 +101,21 @@
 								<input type='hidden' name='modelItemList[${status.index}].factorId' value='${modelItem.factorId}' />
 								</td>
 								<th>
-								<input value='${modelItem.impact}' name='modelItemList[${status.index}].impact'/>
+								<input type='radio' name='modelItemList[${status.index}].impact'id='opcion0' value='Both' checked='checked'> 
+								<label for='opcion0'>Both</label> 
+								<input type='radio' name='modelItemList[${status.index}].impact'id='opcion1' value='Positive'> 
+								<label for='opcion1'>Positive</label>
+								<input type='radio' name='modelItemList[${status.index}].impact'id='opcion2' value='Negative'> 
+								<label for='opcion2'>Negative</label>
 								</th>
 								<th>
-								<input value='${modelItem.weight}' name='modelItemList[${status.index}].weight'/>
+								<input  value='${modelItem.weight}' name='modelItemList[${status.index}].weight' required="required"/>
 								</th>
-								<td><input value='${modelItem.interpretation}' name='modelItemList[${status.index}].interpretation'/>
+								<td>
+								<textarea class=estilotextarea rows="2" cols="30" name='modelItemList[${status.index}].interpretation'>${modelItem.interpretation}</textarea> 
 								</td>
-								<td><input value='${modelItem.help}' name='modelItemList[${status.index}].help'/>
+								<td>
+								<textarea class=estilotextarea rows="2" cols="30" name='modelItemList[${status.index}].help'/>${modelItem.help}</textarea> 
 								</td>								
 							</tr>
 						</c:forEach>

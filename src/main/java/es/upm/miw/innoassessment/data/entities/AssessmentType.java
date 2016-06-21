@@ -16,7 +16,7 @@ public enum AssessmentType {
 		return name;
 	}
 
-	public String getByName(String name) {
+	public static String getByName(String name) {
 		switch (name) {
 		case "RadioBoth":
 			return "BOTH";

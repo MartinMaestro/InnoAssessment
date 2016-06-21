@@ -14,6 +14,8 @@ public interface ModelItemDao extends JpaRepository<ModelItem, Integer> {
 	
 	List<ModelItem> findByDimension(Dimension dimension); 
 	
+	List<ModelItem>findAllByOrderByIdDesc();
+	
 	//List<ModelItem> findByModelByDimension(Model model,Dimension dimension);
 	//@Query("select distinct author.name from Book bookjoin book.authorListauthor") 
 	// @Query("select distinct author.name from ModelItem bookjoin book.authorListauthor") 

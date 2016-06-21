@@ -65,7 +65,7 @@
 			<fieldset name='dimension'>
 				<legend>Dimension</legend>
 				<p />
-				Select a dimension:
+				Select one dimension:
 				<div class="table-responsive">
 					<table class="table table-bordered">
 						<thead>
@@ -81,7 +81,7 @@
 									<td>${dimension.id}</td>
 									<td>${dimension.name}</td>
 									<td><input type='radio' name='dimensioncheck'
-										value='${dimension.id}' checked='checked'
+										value='${dimension.id}' 
 										onclick="getDimension();"></td>
 								</tr>
 							</c:forEach>
@@ -103,7 +103,7 @@
 			<fieldset name='factor_list'>
 				<legend align="center">Factor's list</legend>
 				<p />
-				Select factors:
+				Select all the factors as you required, and click next:
 				<div class="table-responsive">
 					<table class="table table-bordered">
 						<thead>

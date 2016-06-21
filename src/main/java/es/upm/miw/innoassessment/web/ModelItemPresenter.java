@@ -199,12 +199,14 @@ public class ModelItemPresenter {
 	@RequestMapping(value = { "/create-modelItemsExecute" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsExecute(Model model,@ModelAttribute("listModelItem") ListModelItem listModelItem
 			) {
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
+		//ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
 		
 		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
 				modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),modelItem.getFactorId(),modelItem.getImpact(), modelItem.getWeight(),modelItem.getInterpretation(), modelItem.getHelp());
 				System.out.println(" CREATE MODEL ITEM: dimensionID: " + modelItem.getDimensionId() +" - WEIGHT: " + modelItem.getWeight() +" - HELP" + modelItem.getHelp() + "- INTERPRETATION: " +modelItem.getInterpretation() );
-		}		
+		}
+		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemList");
+		modelAndView.addObject("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
 		return modelAndView;
 	}
 	
