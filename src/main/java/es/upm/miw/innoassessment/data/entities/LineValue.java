@@ -100,8 +100,8 @@ public class LineValue {
 		this.valueName = valueName;
 	}
 
-	public void setValueNameByName(String name) {
-		this.valueName = this.valueName.getByName(name);
+	public void setValueNameByName(ValueName name) {
+		this.valueName = name;
 	}
 
 	public int getValueData() {
