@@ -118,7 +118,7 @@ public class Presenter {
 
 	@RequestMapping("/questionnaire-list")
 	public ModelAndView listQuestionnaire(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/questionnaireList");
+		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/questionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}

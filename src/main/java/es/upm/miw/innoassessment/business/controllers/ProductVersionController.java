@@ -46,7 +46,7 @@ public class ProductVersionController {
 	}
 
 	public boolean createProductVersion(String name, int productId) {
-		Product product = productDao.findOne(productId);
+		Product product = new Product(productId);
 		productVersionDao.saveAndFlush(new ProductVersion(name, product));
 		return true;
 	}

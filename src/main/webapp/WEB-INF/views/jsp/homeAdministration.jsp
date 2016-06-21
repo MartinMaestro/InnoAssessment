@@ -66,9 +66,12 @@
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/model-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Create Model Items Massive -</a>
 </td>
-
 </tr>
-
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/modelq-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Create Questionnaire -</a>
+</td>
+</tr>
 
 </table>
 </body>

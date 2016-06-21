@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
 import es.upm.miw.innoassessment.data.daos.QuestionnaireDao;
+import es.upm.miw.innoassessment.data.entities.Model;
 import es.upm.miw.innoassessment.data.entities.Questionnaire;
 
 @Controller
@@ -39,11 +40,9 @@ public class QuestionnaireController {
 		return questionnaireWrapperList;
 	}
 
-	public boolean createQuestionnaire(String name, String version, int model) {
-		// TODO
-		// questionnaireDao.findByModelId(id)
-		// questionnaireDao.saveAndFlush(new Questionnaire(name, version,
-		// description));
+	public boolean createQuestionnaire(String name, String version, int modelId) {
+		Model model = new Model(modelId);
+		questionnaireDao.saveAndFlush(new Questionnaire(model, name, version));
 		return true;
 	}
 

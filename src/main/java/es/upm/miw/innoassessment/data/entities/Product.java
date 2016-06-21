@@ -24,6 +24,10 @@ public class Product {
 
 	}
 
+	public Product(int id) {
+		this.id = id;
+	}
+
 	public Product(String name, String description, String provider) {
 		this.name = name;
 		this.provider = provider;
