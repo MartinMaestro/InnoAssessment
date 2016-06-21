@@ -66,10 +66,18 @@ public class QuestionnairePresenter {
 	private QuestionnaireController questionnaireController;
 
 	@RequestMapping("/modelq-select")
-	public ModelAndView listModelDimension(Model model,
+	public ModelAndView listModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
 		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/selectModelq");
 		modelAndView.addObject("modelList", modelController.showModels());
+		return modelAndView;
+	}
+
+	@RequestMapping("/questionnaire-select")
+	public ModelAndView listQuestionnaire(Model model,
+			@RequestParam(value = "questionnaireId", required = false, defaultValue = "0") int questionnaireId) {
+		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/selectQuestionnaire");
+		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
 
@@ -94,8 +102,33 @@ public class QuestionnairePresenter {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/create-assessments/{questionnaireid}", method = RequestMethod.GET)
+	public ModelAndView createAssessments(Model model, @PathVariable int questionnaireid) {
+		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/assessmentsCreate");
+		modelAndView.addObject("questionnaire", questionnaireController.showQuestionnaire(questionnaireid));
+		ListModelItem listModelItem = new ListModelItem();
+		listModelItem.setModelItemList(modelItemController.showModelItems());
+		modelAndView.addObject("listModelItem", listModelItem);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/create-assessments/{questionnaireid}", method = RequestMethod.POST)
+	public ModelAndView createAssessmentsSubmit(Model model, @PathVariable int questionnaireid,
+			@ModelAttribute("listModelItem") ListModelItem listModelItem) {
+
+		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
+			if (modelItem.getRadioValue() != null) {
+				String type = "MIRAR";
+				assessmentLineController.createAssessmentLine(questionnaireid, modelItem.getId(), null);
+			}
+		}
+		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/assessmentLineList");
+		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
+		return modelAndView;
+	}
+
 	@RequestMapping(value = { "/delete-questionnaire/{id}" })
-	public ModelAndView deleteProduct(@PathVariable int id, Model model) {
+	public ModelAndView deleteQuestionnaire(@PathVariable int id, Model model) {
 		questionnaireController.deleteQuestionnaire(id);
 		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/questionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());

@@ -4,7 +4,7 @@
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
+<link rel="shortcut icon"  href="<c:url value='/static/images/vitruvio.png' />"/>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 <link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 

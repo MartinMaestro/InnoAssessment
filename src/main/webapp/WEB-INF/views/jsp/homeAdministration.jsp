@@ -71,6 +71,9 @@
 <td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
     <a href="<c:url value='/modelq-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Create Questionnaire -</a>
 </td>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">  
+    <a href="<c:url value='/questionnaire-select'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Create Assessment: add modelItems TO questionnaire  -</a>
+</td>
 </tr>
 
 </table>

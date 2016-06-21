@@ -20,13 +20,15 @@ public class ModelItemWrapper {
 	private String weight;
 	private String interpretation;
 	private String help;
+	private String radioValue;
 
 	public ModelItemWrapper() {
 	}
 
 	public ModelItemWrapper(int id, int modelId, String modelName, String modelYear, String modelVersion,
 			String modelDescription, int dimensionId, String dimensionName, int factorId, String factorName,
-			String factorDefinition, String impact, String weight, String interpretation, String help) {
+			String factorDefinition, String impact, String weight, String interpretation, String help,
+			String radioValue) {
 		super();
 		this.id = id;
 		this.modelId = modelId;
@@ -43,25 +45,27 @@ public class ModelItemWrapper {
 		this.weight = weight;
 		this.interpretation = interpretation;
 		this.help = help;
+		this.radioValue = radioValue;
 	}
-	
-	public ModelItemWrapper(int modelId, String modelName, int dimensionId, String dimensionName, int factorId, String factorName
-			, String impact, String weight, String interpretation, String help) {
+
+	public ModelItemWrapper(int modelId, String modelName, int dimensionId, String dimensionName, int factorId,
+			String factorName, String impact, String weight, String interpretation, String help) {
 		super();
 		this.modelId = modelId;
 		this.modelName = modelName;
 		this.dimensionId = dimensionId;
 		this.dimensionName = dimensionName;
 		this.factorId = factorId;
-		this.factorName = factorName;		
+		this.factorName = factorName;
 		this.impact = impact;
 		this.weight = weight;
 		this.interpretation = interpretation;
 		this.help = help;
 	}
-	
-	public ModelItemWrapper( int modelId, int dimensionId, int factorId,String impact, String weight, String interpretation, String help) {
-		super();		
+
+	public ModelItemWrapper(int modelId, int dimensionId, int factorId, String impact, String weight,
+			String interpretation, String help) {
+		super();
 		this.modelId = modelId;
 		this.dimensionId = dimensionId;
 		this.factorId = factorId;
@@ -77,7 +81,7 @@ public class ModelItemWrapper {
 				modelItem.getModel().getDescription(), modelItem.getDimension().getId(),
 				modelItem.getDimension().getName(), modelItem.getFactor().getId(), modelItem.getFactor().getName(),
 				modelItem.getFactor().getDefinition(), modelItem.getImpact(), modelItem.getWeight(),
-				modelItem.getInterpretation(), modelItem.getHelp());
+				modelItem.getInterpretation(), modelItem.getHelp(),null);
 	}
 
 	public int getId() {
@@ -198,6 +202,14 @@ public class ModelItemWrapper {
 
 	public void setHelp(String help) {
 		this.help = help;
+	}
+
+	public String getRadioValue() {
+		return radioValue;
+	}
+
+	public void setRadioValue(String radioValue) {
+		this.radioValue = radioValue;
 	}
 
 }

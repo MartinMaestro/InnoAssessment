@@ -4,20 +4,21 @@
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon"
-	href="<c:url value='/static/images/vitruvio.png' />" />
+<link rel="shortcut icon"  href="<c:url value='/static/images/vitruvio.png' />"/>
 <link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/static/css/bootstrap.css' />">
+<link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
+
 <title>Innoassessment</title>
 </head>
-<body>
-	<div class="myheader">
-		Questionnaire <img src="<c:url value='/static/images/syst_logo.png' />"
-			alt="" />
-	</div>
-	<div class="myheader2" align='center'>Questionnaire List</div>
-	<table border="1" align='center' class="table table-bordered">
+
+<body>   
+     <div class="myheader">
+            Questionnaire
+            <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
+     </div>
+   
+    <div class="myheader2" align='center'>Questionnaire List</div>
+   <table border="1" align='center' class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -37,16 +38,12 @@
 					<td>${questionnaire.modelName}</td>
 					<td>${questionnaire.modelVersion}</td>
 					<td>${questionnaire.modelDescription}</td>
-					<td><a href="<c:url value='/delete-questionnaire/${questionnaire.id}'/>">Delete</a></td>
+					<td><a href="<c:url value='/create-assessments/${questionnaire.id}'/>">Select</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
-	<p>
-		<a href="<c:url value='/home'/>">Home</a>
-	</p>
-
-	<p>UPM-MIW --- ${now}</p>
+	</table>   
+	<p><a href="<c:url value='/home'/>">Home</a></p>
 
 </body>
 </html>

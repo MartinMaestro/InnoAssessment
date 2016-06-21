@@ -131,7 +131,6 @@ public class ModelItemPresenter {
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("modelItem", new ModelItemWrapper());
 		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
-
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		model.addAttribute("factorList", factorController.showFactors());
 		return "jsp/model-modelItems/modelItemsCreate";
@@ -161,7 +160,6 @@ public class ModelItemPresenter {
 		} else {
 			modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		}
-		modelAndView.addObject("factorList", factorController.showFactors());
 		ListFactor listFactor = new ListFactor();
 		listFactor.setFactorList(factorController.showFactors());
 		modelAndView.addObject("listFactor", listFactor);
@@ -171,7 +169,6 @@ public class ModelItemPresenter {
 	@RequestMapping(value = { "/create-modelItems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsSubmit(Model model, @PathVariable int modelid, @PathVariable int dimensionid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
-		System.out.println(" createModelItemsSubmit - POST : " + modelid + " - " + dimensionid);
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
 		ModelWrapper modelw = modelController.showModel(modelid);
 		modelAndView.addObject("model", modelw);
@@ -183,33 +180,30 @@ public class ModelItemPresenter {
 		for (FactorWrapper factor : listFactor.getFactorList()) {
 			if (factor.getRadioValue() != null) {
 				listFactorFinal.add(factor);
-				//modelItem = new ModelItemWrapper(modelid,dimensionid, factor.getId(), null, null, factor.getName(),factor.getDefinition());
-				modelItem = new ModelItemWrapper(modelid,modelw.getName(),dimensionid, dimensionw.getName(), factor.getId(),factor.getName(), null, null, factor.getName(),factor.getDefinition());
+				modelItem = new ModelItemWrapper(modelid, modelw.getName(), dimensionid, dimensionw.getName(),
+						factor.getId(), factor.getName(), null, null, factor.getName(), factor.getDefinition());
 				listModelItemWrapper.add(modelItem);
-			} 
+			}
 		}
-		modelAndView.addObject("factorList",listFactorFinal);
+		modelAndView.addObject("factorList", listFactorFinal);
 		ListModelItem listModelItem = new ListModelItem();
 		listModelItem.setModelItemList(listModelItemWrapper);
 		modelAndView.addObject("listModelItem", listModelItem);
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = { "/create-modelItemsExecute" }, method = RequestMethod.POST)
-	public ModelAndView createModelItemsExecute(Model model,@ModelAttribute("listModelItem") ListModelItem listModelItem
-			) {
-		//ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
-		
+	public ModelAndView createModelItemsExecute(Model model,
+			@ModelAttribute("listModelItem") ListModelItem listModelItem) {
 		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
-				modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),modelItem.getFactorId(),modelItem.getImpact(), modelItem.getWeight(),modelItem.getInterpretation(), modelItem.getHelp());
-				System.out.println(" CREATE MODEL ITEM: dimensionID: " + modelItem.getDimensionId() +" - WEIGHT: " + modelItem.getWeight() +" - HELP" + modelItem.getHelp() + "- INTERPRETATION: " +modelItem.getInterpretation() );
+			modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),
+					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
+					modelItem.getInterpretation(), modelItem.getHelp());
 		}
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
 		return modelAndView;
 	}
-	
 
 	@RequestMapping("/model-list")
 	public ModelAndView listModel(Model model) {
@@ -222,8 +216,6 @@ public class ModelItemPresenter {
 	public ModelAndView listModelItem(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
-		// modelAndView.addObject("modelItemList",
-		// modelItemController.showModelItemsByModelAndDimension(1, 1));
 		return modelAndView;
 	}
 
