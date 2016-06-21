@@ -22,6 +22,7 @@ import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.FactorWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
 import es.upm.miw.innoassessment.business.wrapper.ListFactor;
+import es.upm.miw.innoassessment.business.wrapper.ListModelItem;
 import es.upm.miw.innoassessment.business.wrapper.ModelItemWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
@@ -153,15 +154,10 @@ public class ModelItemPresenter {
 	@RequestMapping(value = "/create-modelItems/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createModelItems(Model model, @PathVariable int modelid,
 			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {
-		System.out.println("createModelItems DIMENSION - GET : " + modelid + "-" + dimensionid);
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreate");
 		modelAndView.addObject("model", modelController.showModel(modelid));
-		// modelAndView.addObject("modelItem", new ModelItemWrapper());
-		// modelAndView.addObject("impactValuesList",
-		// modelItemController.showAssessmentTypes());ç
 		if (dimensionid != 0) {
 			modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
-			System.out.println("dimension choose: " + dimensionid);
 		} else {
 			modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		}
@@ -175,23 +171,43 @@ public class ModelItemPresenter {
 	@RequestMapping(value = { "/create-modelItems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsSubmit(Model model, @PathVariable int modelid, @PathVariable int dimensionid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
-		System.out.println("createModelItems - POST : " + modelid + " - " + dimensionid);
+		System.out.println(" createModelItemsSubmit - POST : " + modelid + " - " + dimensionid);
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
-		modelAndView.addObject("model", modelController.showModel(modelid));
-		modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
+		ModelWrapper modelw = modelController.showModel(modelid);
+		modelAndView.addObject("model", modelw);
+		DimensionWrapper dimensionw = dimensionController.showDimension(dimensionid);
+		modelAndView.addObject("dimensionDetail", dimensionw);
 		List<FactorWrapper> listFactorFinal = new ArrayList<>();
+		List<ModelItemWrapper> listModelItemWrapper = new ArrayList<>();
+		ModelItemWrapper modelItem;
 		for (FactorWrapper factor : listFactor.getFactorList()) {
 			if (factor.getRadioValue() != null) {
-				System.out.println(" ADD FACTOR POST: " + factor.getId() +" - "+ factor.getName() +  " - " + factor.getRadioValue());
 				listFactorFinal.add(factor);
+				//modelItem = new ModelItemWrapper(modelid,dimensionid, factor.getId(), null, null, factor.getName(),factor.getDefinition());
+				modelItem = new ModelItemWrapper(modelid,modelw.getName(),dimensionid, dimensionw.getName(), factor.getId(),factor.getName(), null, null, factor.getName(),factor.getDefinition());
+				listModelItemWrapper.add(modelItem);
 			} 
 		}
 		modelAndView.addObject("factorList",listFactorFinal);
-		//listFactor.setFactorList(listFactorFinal);
-		//modelAndView.addObject("listFactor", listFactor);
+		ListModelItem listModelItem = new ListModelItem();
+		listModelItem.setModelItemList(listModelItemWrapper);
+		modelAndView.addObject("listModelItem", listModelItem);
 		return modelAndView;
-
 	}
+	
+	
+	@RequestMapping(value = { "/create-modelItemsExecute" }, method = RequestMethod.POST)
+	public ModelAndView createModelItemsExecute(Model model,@ModelAttribute("listModelItem") ListModelItem listModelItem
+			) {
+		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
+		
+		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
+				modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),modelItem.getFactorId(),modelItem.getImpact(), modelItem.getWeight(),modelItem.getInterpretation(), modelItem.getHelp());
+				System.out.println(" CREATE MODEL ITEM: dimensionID: " + modelItem.getDimensionId() +" - WEIGHT: " + modelItem.getWeight() +" - HELP" + modelItem.getHelp() + "- INTERPRETATION: " +modelItem.getInterpretation() );
+		}		
+		return modelAndView;
+	}
+	
 
 	@RequestMapping("/model-list")
 	public ModelAndView listModel(Model model) {

@@ -44,6 +44,32 @@ public class ModelItemWrapper {
 		this.interpretation = interpretation;
 		this.help = help;
 	}
+	
+	public ModelItemWrapper(int modelId, String modelName, int dimensionId, String dimensionName, int factorId, String factorName
+			, String impact, String weight, String interpretation, String help) {
+		super();
+		this.modelId = modelId;
+		this.modelName = modelName;
+		this.dimensionId = dimensionId;
+		this.dimensionName = dimensionName;
+		this.factorId = factorId;
+		this.factorName = factorName;		
+		this.impact = impact;
+		this.weight = weight;
+		this.interpretation = interpretation;
+		this.help = help;
+	}
+	
+	public ModelItemWrapper( int modelId, int dimensionId, int factorId,String impact, String weight, String interpretation, String help) {
+		super();		
+		this.modelId = modelId;
+		this.dimensionId = dimensionId;
+		this.factorId = factorId;
+		this.impact = impact;
+		this.weight = weight;
+		this.interpretation = interpretation;
+		this.help = help;
+	}
 
 	public ModelItemWrapper(ModelItem modelItem) {
 		this(modelItem.getId(), modelItem.getModel().getId(), modelItem.getModel().getName(),

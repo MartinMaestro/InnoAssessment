@@ -21,9 +21,8 @@
 		Model Item <img src="<c:url value='/static/images/syst_logo.png' />"
 			alt="" />
 	</div>
-
-	<form:form method="post" action="/innoassessment/create-modelItems/${modelid}/dimension/${dimensionDetail.id}"
-		modelAttribute="listFactor">
+ 
+	<form:form method="post" action="/innoassessment/create-modelItemsExecute" modelAttribute="listModelItem">
 		<fieldset name='model'>
 			<legend>Model</legend>
 			<p />
@@ -33,98 +32,99 @@
 				href="<c:url value='/model-select/'/>">Change Model</a>
 		</fieldset>
 		<fieldset name='dimensionDetail'>
-				<legend>Dimension</legend>
-				<p />
-				Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
-					name='dimensionDetail' value='dimensionDetail.id' /></br> <a
-					href="<c:url value='/create-modelItems/${modelid}'/>">Change
-					Dimension</a>
+			<legend>Dimension</legend>
+			<p />
+			Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
+				name='dimensionDetail' value='dimensionDetail.id' /></br> <a
+				href="<c:url value='/create-modelItems/${modelid}'/>">Change
+				Dimension</a>
 		</fieldset>
-		
+
 		<fieldset name='factor_list'>
-		<legend  align="center">Factor's list</legend>
-		<p/>
-		<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Definition</th>
-				
-				<th>#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${factorList}" var="factor">
-				<tr>
-					<td>${factor.id}</td>
-				    <td>${factor.name}</td>
-				    <td>${factor.definition}</td>				    
-				    <td><a href="<c:url value='/delete-factor/${factor.id}' />">delete</a></td>
-				    				
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	</fieldset>
-	
-		
-		<fieldset name='factor_list'>
-				<legend align="center">Factor's list</legend>
-				<p />
-				Select factors:
-				<div class="table-responsive">
-					<table class="table table-bordered">
-						<thead>
+			<legend align="center">Factor's list</legend>
+			<p />
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Definition</th>
+
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${factorList}" var="factor">
+						<tr>
+							<td>${factor.id}</td>
+							<td>${factor.name}</td>
+							<td>${factor.definition}</td>
+							<td><p>
+							Weight:
+							
+							</p></td>
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</fieldset>
+		<fieldset name='modelItem_list'>
+			<legend align="center">Model Item list</legend>
+			<p />
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Model Id</th>
+							<th>Dimension Id</th>
+							<th>Factor Id</th>
+							<th>Impact</th>
+							<th>Weight</th>
+							<th>Interpretation</th>
+							<th>Help</th>
+							
+							<th>#</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${listModelItem.modelItemList}" var="modelItem"
+							varStatus="status">
 							<tr>
-								<th>Id</th>
-								<th>Name</th>
-								<th>Definition</th>
-								<th>#</th>
+								<td>${modelItem.modelId} - ${modelItem.modelName}
+								<input type='hidden' name='modelItemList[${status.index}].modelId' value='${modelItem.modelId}' />
+								</td>								
+								<td>${modelItem.dimensionId} - ${modelItem.dimensionName}
+								<input type='hidden' name='modelItemList[${status.index}].dimensionId' value='${modelItem.dimensionId}' />
+								</td>
+								<td>${modelItem.factorId} - - ${modelItem.factorName}
+								<input type='hidden' name='modelItemList[${status.index}].factorId' value='${modelItem.factorId}' />
+								</td>
+								<th>
+								<input value='${modelItem.impact}' name='modelItemList[${status.index}].impact'/>
+								</th>
+								<th>
+								<input value='${modelItem.weight}' name='modelItemList[${status.index}].weight'/>
+								</th>
+								<td><input value='${modelItem.interpretation}' name='modelItemList[${status.index}].interpretation'/>
+								</td>
+								<td><input value='${modelItem.help}' name='modelItemList[${status.index}].help'/>
+								</td>								
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${listFactor.factorList}" var="factor"
-								varStatus="status">
-								<tr>
-									<td>${factor.id}</td>
-									<td>${factor.name}</td>
-									<td>${factor.definition}</td>
-									<td><input type='checkbox'
-										name='factorList[${status.index}].radioValue'
-										value='${factor.id}'> <input type='hidden'
-										name='factorList[${status.index}].id' value='${factor.id}' />
-									</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</fieldset>
-		
-		<c:if test="${empty param.dimensionid }">
-			<fieldset name='dimension'>
-				<legend>Dimension</legend>
-				<p />
-				Select a dimension:
-						</c:if>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</fieldset>
-		<c:if test="${!empty param.dimensionid && param.dimensionid > 0}">
-			<fieldset name='dimensionDetail'>
-				<legend>Dimension</legend>
-				<p />
-				Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
-					name='dimensionDetail' value='dimensionDetail.id' /></br> <a
-					href="<c:url value='/create-modelItems/${modelid}'/>">Change
-					Dimension</a>
-			</fieldset>
-			</br>
-			
+
+		
+		
+
 			<p>
 				<input type="submit" class="btn btn-default" style='display: block;'
-					value="Next">
+					value="Confirm">
 			</p>
-		</c:if>
+		
 	</form:form>
 	<a href="<c:url value="/home"/>">Home</a>
 </body>
