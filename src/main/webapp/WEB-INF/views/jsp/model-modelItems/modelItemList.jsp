@@ -3,26 +3,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"
 	href="<c:url value='/static/images/vitruvio.png' />" />
-<meta charset="utf-8">
-<title>Spring MVC. ModelItem List</title>
+<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/static/css/bootstrap.css' />">
+<title>Innoassessment</title>
 </head>
 
 <body>
-	<H1>ModelItem List</H1>
-	<table border="1">
+	<div class="myheader">
+		Model Item <img
+			src="<c:url value='/static/images/syst_logo.png' />" alt="" />
+	</div>
+	<div class="myheader2" align='center'>Model Item List</div>
+	<div class="table-responsive">
+	<table border="1" class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Model Id</th>
 				<th>Model Name</th>
 				<th>Model Year</th>
 				<th>Model Version</th>
 				<th>Model Description</th>
-				<th>Dimension Id</th>
 				<th>Dimension Name</th>
-				<th>Factor Id</th>
 				<th>Factor Name</th>
 				<th>Factor Definition</th>
 				<th>Impact</th>
@@ -35,25 +40,23 @@
 			<c:forEach items="${modelItemList}" var="modelItem">
 				<tr>
 					<td>${modelItem.id}</td>
-					<td>${modelItem.modelId}</td>
 					<td>${modelItem.modelName}</td>
 					<td>${modelItem.modelYear}</td>
 					<td>${modelItem.modelVersion}</td>
 					<td>${modelItem.modelDescription}</td>
-					<td>${modelItem.dimensionId}</td>
 					<td>${modelItem.dimensionName}</td>
-					<td>${modelItem.factorId}</td>
 					<td>${modelItem.factorName}</td>
 					<td>${modelItem.factorDefinition}</td>
 					<td>${modelItem.impact}</td>
 					<td>${modelItem.weight}</td>
-					<td>${modelItem.factorName}</td>
 					<td>${modelItem.interpretation}</td>
 					<td>${modelItem.help}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
+	
 	<p>
 		<a href="<c:url value='/home'/>">Home</a>
 	</p>

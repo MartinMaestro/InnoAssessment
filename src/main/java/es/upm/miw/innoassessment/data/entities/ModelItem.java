@@ -41,6 +41,10 @@ public class ModelItem {
 
 	}
 
+	public ModelItem(int id) {
+		this.id = id;
+	}
+
 	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, Float weight,
 			String interpretation, String help) {
 		this.model = model;

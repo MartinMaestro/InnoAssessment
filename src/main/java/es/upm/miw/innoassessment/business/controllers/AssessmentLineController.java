@@ -74,9 +74,7 @@ public class AssessmentLineController {
 	}
 
 	public boolean createAssessmentLine(int questionnaireId, int modelItemId, String type) {
-		Questionnaire questionnaire = questionnaireDao.findOne(questionnaireId);
-		ModelItem modelItem = modelItemDao.findOne(modelItemId);
-		assessmentLineDao.saveAndFlush(new AssessmentLine(questionnaire, modelItem, type));
+		assessmentLineDao.saveAndFlush(new AssessmentLine(new Questionnaire(questionnaireId), new ModelItem(modelItemId), type));
 		return true;
 	}
 

@@ -57,22 +57,15 @@ public class ModelItemPresenter {
 		ListFactor listFactor = new ListFactor();
 		listFactor.setFactorList(factorController.showFactors());
 		modelAndView.addObject("listFactor", listFactor);
-		System.out.println("---- LIST FACTOR GET - MODELID: " + modelid);
-		System.out.println("---- LIST FACTOR GET - MODELANDVIEW " + modelAndView.toString());
-
 		return modelAndView;
 	}
 
 	@RequestMapping(value = { "/factor-select/{modelid}" }, method = RequestMethod.POST)
 	public String listFactorSubmit(Model model, @PathVariable int modelid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
-		System.out.println("---- LIST FACTOR SUBMIT - MODELID: " + modelid);
 		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/factorList");
 		modelAndView.addObject("factorList", factorController.showFactors());
 		for (FactorWrapper factor : listFactor.getFactorList()) {
-			// lineValueController.createLineValue(evaluationId,
-			// assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null,
-			// null);
 			System.out.println("FACTORS: " + factor.getId() + " - " + factor.getRadioValue());
 		}
 		return "jsp/model-modelItems/modelItemsCreate";
