@@ -36,6 +36,12 @@ public class AssessmentLine {
 		this.modelItem = modelItem;
 		this.type = type;
 	}
+	
+	public AssessmentLine(Questionnaire questionnaire, ModelItem modelItem, String type) {
+		this.questionnaire = questionnaire;
+		this.modelItem = modelItem;
+		this.type = AssessmentType.getByName2(type);
+	}
 
 	public AssessmentLine(AssessmentType type) {
 		this.type = type;

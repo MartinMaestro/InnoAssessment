@@ -68,7 +68,11 @@
 									name='modelItemList[${status.index}].radioValue'
 									value='${modelItem.id}'> <input type='hidden'
 									name='modelItemList[${status.index}].id'
-									value='${modelItem.id}' /></td>
+									value='${modelItem.id}' />
+									<input type='hidden'
+									name='modelItemList[${status.index}].impact'
+									value='${modelItem.impact}' />
+									</td>
 							</tr>
 						</c:forEach>
 					</tbody>

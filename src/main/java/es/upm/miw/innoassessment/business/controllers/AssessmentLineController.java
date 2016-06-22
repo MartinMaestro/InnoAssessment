@@ -73,7 +73,7 @@ public class AssessmentLineController {
 		return assessmentLineWrapperList;
 	}
 
-	public boolean createAssessmentLine(int questionnaireId, int modelItemId, AssessmentType type) {
+	public boolean createAssessmentLine(int questionnaireId, int modelItemId, String type) {
 		Questionnaire questionnaire = questionnaireDao.findOne(questionnaireId);
 		ModelItem modelItem = modelItemDao.findOne(modelItemId);
 		assessmentLineDao.saveAndFlush(new AssessmentLine(questionnaire, modelItem, type));

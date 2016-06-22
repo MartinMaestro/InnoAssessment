@@ -28,6 +28,7 @@ import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
+import es.upm.miw.innoassessment.data.entities.AssessmentType;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -118,8 +119,12 @@ public class QuestionnairePresenter {
 
 		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
 			if (modelItem.getRadioValue() != null) {
-				String type = "MIRAR";
-				assessmentLineController.createAssessmentLine(questionnaireid, modelItem.getId(), null);
+				System.out.println("Questionnaire Presenter: impact " + modelItem.getImpact());
+				System.out
+						.println("Questionnaire Presenter: impact " + AssessmentType.getByName(modelItem.getImpact()));
+
+				assessmentLineController.createAssessmentLine(questionnaireid, modelItem.getId(),
+						modelItem.getImpact());
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/assessmentLineList");

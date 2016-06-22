@@ -26,5 +26,24 @@ public enum AssessmentType {
 			return null;
 		}
 	}
+	
+	public static AssessmentType getByName2(String name) {
+		switch (name) {
+		case "Both":
+			return BOTH;
+		case "both":
+			return BOTH;
+		case "Positive":
+			return POSITIVE;
+		case "positive":
+			return POSITIVE;
+		case "Negative":
+			return NEGATIVE;
+		case "negative":
+			return NEGATIVE;
+		default:
+			return null;
+		}
+	}
 
 }
