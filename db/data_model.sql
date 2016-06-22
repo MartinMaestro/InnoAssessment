@@ -80,7 +80,7 @@ CREATE TABLE `ModelItem` (
   `help` varchar(2048) NOT NULL,
   `impact` varchar(255) NOT NULL,
   `interpretation` varchar(2048) NOT NULL,
-  `weight` varchar(255) NOT NULL,
+  `weight` float,
   `dimension_id` int(11) DEFAULT NULL,
   `factor_id` int(11) DEFAULT NULL,
   `model_id` int(11) DEFAULT NULL,

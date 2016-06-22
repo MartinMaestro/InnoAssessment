@@ -5,6 +5,6 @@ import es.upm.miw.innoassessment.data.entities.ValueName;
 
 public interface RepresentationFactoryMethod {
 
-	Representation createRepresentation(AssessmentType assessmentType, ValueName valueName);
+	Representation createRepresentation(AssessmentType assessmentType, ValueName valueName, Float weight);
 	
 }

@@ -14,21 +14,17 @@ import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.EvaluationController;
 import es.upm.miw.innoassessment.business.controllers.LineValueController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
-import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
-import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
+import es.upm.miw.innoassessment.data.entities.AssessmentLine;
+import es.upm.miw.innoassessment.data.entities.Evaluation;
 import es.upm.miw.innoassessment.data.entities.LineValue;
-import es.upm.miw.innoassessment.data.entities.ValueName;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import javax.validation.Valid;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -49,9 +45,6 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private ModelController modelController;
-
-	@Autowired
-	private ModelItemController modelItemController;
 
 	@Autowired
 	private QuestionnaireController questionnaireController;
@@ -115,9 +108,12 @@ public class QuestionnaireProductPresenter {
 			@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine, BindingResult bindingResult,
 			Model model) {
 		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
+		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
-			lineValueController.createLineValue(evaluationId, assessmentLine.getId(),assessmentLine.getRadioValue(), 0, null, null);
+			lineValues.add(new LineValue(new Evaluation(evaluationId), new AssessmentLine(assessmentLine.getId()),
+					assessmentLine.getRadioValue(), 0, null, null));
 		}
+		lineValueController.createLineValues(lineValues, questionnaireId, evaluationId);
 		return "jsp/home"; 
 	}
 

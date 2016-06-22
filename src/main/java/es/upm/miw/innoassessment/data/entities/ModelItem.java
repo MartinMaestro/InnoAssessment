@@ -29,7 +29,7 @@ public class ModelItem {
 	private String impact;
 
 	@Column(nullable = false)
-	private String weight;
+	private Float weight;
 
 	@Column(nullable = false, length = 2048)
 	private String interpretation;
@@ -41,7 +41,7 @@ public class ModelItem {
 
 	}
 
-	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, String weight,
+	public ModelItem(Model model, Dimension dimension, Factor factor, String impact, Float weight,
 			String interpretation, String help) {
 		this.model = model;
 		this.dimension = dimension;
@@ -92,11 +92,11 @@ public class ModelItem {
 		this.impact = impact;
 	}
 
-	public String getWeight() {
+	public Float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(Float weight) {
 		this.weight = weight;
 	}
 

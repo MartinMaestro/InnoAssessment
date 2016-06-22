@@ -1,6 +1,5 @@
 package es.upm.miw.innoassessment.business.wrapper;
 
-import es.upm.miw.innoassessment.data.entities.Model;
 import es.upm.miw.innoassessment.data.entities.ModelItem;
 
 public class ModelItemWrapper {
@@ -80,7 +79,7 @@ public class ModelItemWrapper {
 				modelItem.getModel().getYear(), modelItem.getModel().getVersion(),
 				modelItem.getModel().getDescription(), modelItem.getDimension().getId(),
 				modelItem.getDimension().getName(), modelItem.getFactor().getId(), modelItem.getFactor().getName(),
-				modelItem.getFactor().getDefinition(), modelItem.getImpact(), modelItem.getWeight(),
+				modelItem.getFactor().getDefinition(), modelItem.getImpact(), modelItem.getWeight() != null? modelItem.getWeight().toString(): "",
 				modelItem.getInterpretation(), modelItem.getHelp(),null);
 	}
 

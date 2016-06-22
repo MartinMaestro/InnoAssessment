@@ -11,15 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.upm.miw.innoassessment.business.controllers.AssessmentLineController;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
-import es.upm.miw.innoassessment.business.controllers.FactorController;
 import es.upm.miw.innoassessment.business.controllers.ModelController;
-import es.upm.miw.innoassessment.business.controllers.ModelItemController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
-import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
-import es.upm.miw.innoassessment.business.wrapper.ModelItemWrapper;
-import es.upm.miw.innoassessment.business.wrapper.ModelWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductVersionWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ProductWrapper;
 import es.upm.miw.innoassessment.business.wrapper.QuestionnaireWrapper;
@@ -40,9 +35,6 @@ public class Presenter {
 	private DimensionController dimensionController;
 
 	@Autowired
-	private FactorController factorController;
-
-	@Autowired
 	private ProductController productController;
 
 	@Autowired
@@ -50,9 +42,6 @@ public class Presenter {
 
 	@Autowired
 	private ModelController modelController;
-
-	@Autowired
-	private ModelItemController modelItemController;
 
 	@Autowired
 	private QuestionnaireController questionnaireController;

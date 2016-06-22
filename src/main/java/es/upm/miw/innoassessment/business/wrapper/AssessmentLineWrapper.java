@@ -68,7 +68,7 @@ public class AssessmentLineWrapper {
 				assessmentLine.getModelItem().getDimension().getName(),
 				assessmentLine.getModelItem().getFactor().getId(), assessmentLine.getModelItem().getFactor().getName(),
 				assessmentLine.getModelItem().getFactor().getDefinition(), assessmentLine.getModelItem().getImpact(),
-				assessmentLine.getModelItem().getWeight(), assessmentLine.getModelItem().getInterpretation(),
+				assessmentLine.getModelItem().getWeight() != null? assessmentLine.getModelItem().getWeight().toString() : "", assessmentLine.getModelItem().getInterpretation(),
 				assessmentLine.getModelItem().getHelp(), null);
 	}
 

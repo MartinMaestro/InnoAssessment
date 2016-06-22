@@ -16,19 +16,24 @@ public class RadioNegative extends Representation {
 		VALUES.put(ValueName.VERY_HIGH, -5f);
 	}
 
-	public RadioNegative(ValueName valueName) {		
-		super(valueName);
+	public RadioNegative(ValueName valueName, Float weight) {		
+		super(valueName, weight);
 		this.setValue(VALUES.get(valueName));
 	}
 
 	@Override
 	public float getMinimum() {
-		return VALUES.get(ValueName.VERY_HIGH);
+		return this.getWeight() != null? VALUES.get(ValueName.VERY_HIGH)*this.getWeight(): VALUES.get(ValueName.VERY_HIGH);
 	}
 
 	@Override
 	public float getMaximum() {
-		return VALUES.get(ValueName.VERY_FEW);
+		return this.getWeight() != null? VALUES.get(ValueName.VERY_FEW)*this.getWeight(): VALUES.get(ValueName.VERY_FEW);
+	}
+
+	@Override
+	public float getOptimum() {
+		return 0;
 	}
 
 }
