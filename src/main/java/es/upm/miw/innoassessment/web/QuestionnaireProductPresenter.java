@@ -19,7 +19,6 @@ import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
 import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
-import es.upm.miw.innoassessment.data.daos.AssessmentLineDao;
 import es.upm.miw.innoassessment.data.entities.AssessmentLine;
 import es.upm.miw.innoassessment.data.entities.Evaluation;
 import es.upm.miw.innoassessment.data.entities.LineValue;
@@ -55,13 +54,6 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private LineValueController lineValueController;
-
-	private AssessmentLineDao assessmentLineDao;
-
-	@Autowired
-	public void setAssessmentLineDao(AssessmentLineDao assessmentLineDao) {
-		this.assessmentLineDao = assessmentLineDao;
-	}
 
 	@RequestMapping("/model-questionnaire")
 	public ModelAndView listModelQuestionnaire(Model model,
@@ -116,21 +108,9 @@ public class QuestionnaireProductPresenter {
 		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
 		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
-			System.out.println("================= BUILD QUESTIONNAIRE - ASSESMENT ID: " + assessmentLine.getId() + " - "
-					+ assessmentLine.getRadioValue());
-			// PROBLEMA: esta en el new AssessmentLine(assessmentLine.getId());
-			// NO coge el assessmentLine
-			// Prueba a cambiar find y OK:
-			AssessmentLine assessmentLine2 = assessmentLineDao.findOne(assessmentLine.getId());
-			System.out.println("================= BUILD QUESTIONNAIRE - ASSESMENT NEW ASSESMENT2: "
-					+ assessmentLine2.getId() + " -" + assessmentLine2.getType().toString());
-
-			lineValues.add(new LineValue(new Evaluation(evaluationId), assessmentLine2, assessmentLine.getRadioValue(),
-					0, null, null));
-			// ORIGINAL:
-			// lineValues.add(new LineValue(new Evaluation(evaluationId), new
-			// AssessmentLine(assessmentLine.getId()),
-			// assessmentLine.getRadioValue(), 0, null, null));
+			lineValues.add(new LineValue(new Evaluation(evaluationId), new
+			AssessmentLine(assessmentLine.getId()),
+			assessmentLine.getRadioValue(), 0, null, null));
 		}
 
 		lineValueController.createLineValues(lineValues, questionnaireId, evaluationId);
