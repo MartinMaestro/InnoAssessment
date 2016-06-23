@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import es.upm.miw.innoassessment.business.charts.Chart;
 import es.upm.miw.innoassessment.business.charts.representation.Representation;
 import es.upm.miw.innoassessment.business.charts.representation.RepresentationFactory;
+import es.upm.miw.innoassessment.business.charts.representation.RepresentationFactoryMethod;
 import es.upm.miw.innoassessment.data.daos.DimensionDao;
 import es.upm.miw.innoassessment.data.daos.EvaluationResultDao;
 import es.upm.miw.innoassessment.data.daos.LineValueDao;
@@ -47,16 +48,17 @@ public class LineValueController {
 	}
 
 	public boolean createLineValues(List<LineValue> lineValues, int questionnaireId, int evaluationId) {
-		List<LineValue> lineValuesSaved = lineValueDao.save(lineValues);
+		lineValueDao.save(lineValues);
 		lineValueDao.flush();
-		generateCharts(lineValuesSaved, questionnaireId, evaluationId);	
+		generateCharts(questionnaireId, evaluationId);	
 		return true;
 	}
 	
-	private void generateCharts(List<LineValue> lineValuesSaved, int questionnaireId, int evaluationId){
-		RepresentationFactory representationFactory = new RepresentationFactory();
+	private void generateCharts(int questionnaireId, int evaluationId){
+		RepresentationFactoryMethod representationFactory = new RepresentationFactory();
 		HashMap<Integer, Chart> dimensionChartHashMap = getDimensionChartHashMap(questionnaireId);
-		for(LineValue lineValue : lineValuesSaved){
+		List<LineValue> lineValues = lineValueDao.findByEvaluationIdOrderByAssessmentLineId(evaluationId);
+		for(LineValue lineValue : lineValues){
 			Representation representation = representationFactory.createRepresentation(lineValue.getAssessmentLine().getType(), lineValue.getValueName(), lineValue.getAssessmentLine().getModelItem().getWeight());
 			Chart chart = dimensionChartHashMap.get(lineValue.getAssessmentLine().getModelItem().getDimension().getId());
 			chart.addUpperLimitImpact(representation.getMaximum());

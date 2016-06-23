@@ -76,19 +76,19 @@
                                           <th>Files</th>
                                       </tr>
                                       <c:forEach items="${lineValueList}" var="lineValue">
-                                      	<c:if test="${lineValue.evaluationResult.dimension.name == dimension.name}">
+                                      	<c:if test="${lineValue.assessmentLine.modelItem.dimension.name == dimension.name}">
 	                                      	<tr>
 	                                      		<td>${lineValue.assessmentLine.modelItem.factor.name}</td>
                                                 <td>${lineValue.valueName.name}</td>
                                                 <td>${lineValue.assessmentLine.modelItem.impact}</td>
                                                 <td>${lineValue.assessmentLine.modelItem.weight}</td>
                                                 <td>
-                                                	<c:forEach items="${lineValueList.sourcesUrls}" var="sourceUrl" varStatus="sourceUrlStatus">
+                                                	<c:forEach items="${lineValue.sourcesUrls}" var="sourceUrl" varStatus="sourceUrlStatus">
                                                 		${sourceUrlStatus.index}.  <a href="${sourceUrl.url}">${sourceUrl.url}</a>
                                                 	</c:forEach>
                                                 </td>
                                                 <td>
-                                                	<c:forEach items="${lineValueList.sourcesFiles}" var="sourcesFile" varStatus="sourcesFileStatus">
+                                                	<c:forEach items="${lineValue.sourcesFiles}" var="sourcesFile" varStatus="sourcesFileStatus">
                                                 		${sourcesFileStatus.index}.  <a href="/file/${sourcesFile.id}">${sourcesFile.name}</a>
                                                 	</c:forEach> 
                                                 </td>                                        
