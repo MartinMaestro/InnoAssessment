@@ -17,8 +17,6 @@ public class ProductVersionController {
 
 	private ProductVersionDao productVersionDao;
 
-	private ProductDao productDao;
-
 	@Autowired
 	public void setProductVersionDao(ProductVersionDao productVersionDao) {
 		this.productVersionDao = productVersionDao;
@@ -26,7 +24,6 @@ public class ProductVersionController {
 
 	@Autowired
 	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
 	}
 
 	public List<ProductVersionWrapper> showProductVersions() {
