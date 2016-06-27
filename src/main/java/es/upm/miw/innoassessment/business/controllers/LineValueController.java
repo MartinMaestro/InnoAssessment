@@ -53,6 +53,17 @@ public class LineValueController {
 		generateCharts(questionnaireId, evaluationId);	
 		return true;
 	}
+
+	public boolean saveLineValues(List<LineValue> lineValues) {
+		lineValueDao.save(lineValues);
+		lineValueDao.flush();
+		int evaluationId = lineValues.get(0).getEvaluation().getId();
+		List<EvaluationResult> evaluationResultList = evaluationResultDao.findByEvaluationIdOrderByEvaluationResultType(evaluationId);
+		int questionnaireId = evaluationResultList.get(0).getEvaluation().getQuestionnaire().getId();
+		evaluationResultDao.delete(evaluationResultList);
+		generateCharts(questionnaireId, evaluationId);	
+		return true;
+	}
 	
 	private void generateCharts(int questionnaireId, int evaluationId){
 		RepresentationFactoryMethod representationFactory = new RepresentationFactory();

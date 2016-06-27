@@ -55,7 +55,7 @@
 		        var lineValues = ${evaluationResultList.toString()};
 		        var jsonChartData${status.index} = generate2DChartData(dimension, index, lineValues);
 		    </script>
-    		<input id='btn${status.index}' type='button' class='tab' style='border: none;' onClick="changeTabs2('pesta', ${dimensionList.size()}, ${status.index}, 'btn', jsonChartData${status.index});/*changeTabs2('pestaEdit', 4,${status.index}, 'btnEdit');*/" value='${dimension.name}'>
+    		<input id='btn${status.index}' type='button' class='tab' style='border: none;' onClick="changeTabs2(${dimensionList.size()}, ${status.index}, jsonChartData${status.index});" value='${dimension.name}'>
     	</c:forEach>
 		<div id='cont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>		
     	<c:forEach items="${dimensionList}" var="dimension" varStatus="status">
@@ -132,8 +132,77 @@
        </tbody>
     </table>
         <script>
-            window.onload = changeTabs2('pesta', 0, 0, 'btn', jsonChartData0); 
+            window.onload = function(){
+            	changeTabs2(${dimensionList.size()}, 0, jsonChartData0);
+            	}; 
         </script>	    
 	<button class = 'mybutton' type='button' style = 'display: block;' onclick="location.href='/innoassessment/home'">Go to the beginning</button>
+	<form:form id = 'lineValuesForm' action = '/innoassessment/assessment-product-update' method = 'post' modelAttribute="listLineValue">
+		<div id='editDiv' class='edit' style='display: none;'>
+                <fieldset style='margin: 0px;'>
+                    <legend>Editing</legend>
+				    	<c:forEach items="${dimensionList}" var="dimension" varStatus="status">
+				    		<input id='btnEdit${status.index}' type='button' class='tab' style='border: none;' onClick="changeTabs2(${dimensionList.size()}, ${status.index}, jsonChartData${status.index});" value='${dimension.name}'>
+				    	</c:forEach>
+				    	 <div id='editCont' style='border: 1px solid #4682B4;border-radius: 8px;padding: 1%;margin-top: -0.9%;'>
+				    	 	<c:forEach items="${dimensionList}" var="dimension" varStatus="dimensionStatus">
+				    	 		<div id='pestaEdit${dimensionStatus.index}' style='display:block;'>
+					    	 		<c:forEach items="${listLineValue.lineValueWrapperList}" var="lineValueWrapper" varStatus="lineValueStatus">
+	                                      	<c:if test="${lineValueWrapper.lineValue.assessmentLine.modelItem.dimension.name == dimension.name}">
+	                                      		<fieldset name="factor${lineValueWrapper.lineValue.assessmentLine.modelItem.factor.id}">
+		                                      		<legend>${lineValueWrapper.lineValue.assessmentLine.modelItem.factor.name}
+		                                      			<a onmouseover="return overlib('<b><i>${lineValueWrapper.lineValue.assessmentLine.modelItem.factor.name}</i></b><br><br><b>Definition:</b><br>${lineValueWrapper.lineValue.assessmentLine.modelItem.factor.definition}<br><br><b>Interpretation:</b><br>${lineValueWrapper.lineValue.assessmentLine.modelItem.interpretation}<br><br><b>Help:</b><br>${lineValueWrapper.lineValue.assessmentLine.modelItem.help}',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');" onmouseout="return nd();" style="position: relative;top: 1.5px;left: 4px;"><img src="static/images/icon_help.gif" alt="Help" height="16px" width="16px"></a>		                                      			
+		                                      		</legend>
+	                                      			<table width="100%">
+					                                    <tbody>
+						                                    <tr>
+						                                        <td>
+						                                            <div style="text-align:center">
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion0" value="Unknown" ${lineValueWrapper.lineValue.valueName.getName()=="Unknown"?"checked":""}>
+						                                                <label for="opcion0">Unknown</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion9" value="Not Applicable" ${lineValueWrapper.lineValue.valueName.getName()=="Not Applicable"?"checked":""}>
+						                                                <label for="opcion9">Not Applicable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion1" value="Very Few" ${lineValueWrapper.lineValue.valueName.getName()=="Very Few"?"checked":""}>
+						                                                <label for="opcion1">Very Few</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion2" value="Few" ${lineValueWrapper.lineValue.valueName.getName()=="Few"?"checked":""}>
+						                                                <label for="opcion2">Few</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion3" value="Medium" ${lineValueWrapper.lineValue.valueName.getName()=="Medium"?"checked":""}>
+						                                                <label for="opcion3">Medium</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion4" value="High" ${lineValueWrapper.lineValue.valueName.getName()=="High"?"checked":""}>
+						                                                <label for="opcion4">High</label>
+						                                                <input type="radio" name="lineValueWrapperList[${lineValueStatus.index}].radioValue" id="opcion5" value="Very High" ${lineValueWrapper.lineValue.valueName.getName()=="Very High"?"checked":""}>
+						                                                <label for="opcion5">Very High</label>
+																		<input type='hidden' name='lineValueWrapperList[${lineValueStatus.index}].id' value='${lineValueWrapper.lineValue.id}'/>
+																		<input type='hidden' name='lineValueWrapperList[${lineValueStatus.index}].evaluationId' value='${lineValueWrapper.lineValue.evaluation.id}'/>
+																		<input type='hidden' name='lineValueWrapperList[${lineValueStatus.index}].assessmentLineId' value='${lineValueWrapper.lineValue.assessmentLine.id}'/>
+						                                            </div>
+						                                        </td>
+							                                    <td>
+									                                <div id="btnSee" style="text-align:center">
+									                                    <input id="btnUploads_${lineValueWrapper.lineValue.id}" type="button" value="Add Files" onclick="">
+									                                </div>
+							                                    </td>
+							                                </tr>
+						                            	</tbody>
+					                                </table>
+	                                      		</fieldset>
+	                                      	</c:if>
+	                                </c:forEach>
+				    	 		</div>
+				    	 	</c:forEach>
+				    	 </div>
+				    	 <table style='width: 100%;'>
+	                        <tr>
+	                            <td>
+	                                <button class = 'mybutton' style = 'display: block; margin-left: 82%;' type="submit" value="Submit">Submit</button>
+	                            </td>
+	                            <td>
+	                                <button class = 'mybutton' type='button' style = 'display: block; margin-left: 2%;' onclick="showDiv2('editDiv');">Cancel</button>
+	                            </td>
+	                        </tr>
+	                    </table>
+                </fieldset>
+        </div>    
+	</form:form>
 </body>
 </html>

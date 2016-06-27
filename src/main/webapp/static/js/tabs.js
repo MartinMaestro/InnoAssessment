@@ -7,13 +7,17 @@ function showDiv2(element) {
                                     layer.style.display = "block";
 }
 
-function changeTabs2(divId, dim, n, btn, jsonChartData) {
+function changeTabs2(dim, n, jsonChartData) {
             for(var i = 0; i < dim; i++) {
-                        document.getElementById(divId + i).style.display = 'none';
-                        document.getElementById(btn + i).style.border = 'none';
+                document.getElementById('pesta' + i).style.display = 'none';
+                document.getElementById('pestaEdit' + i).style.display = 'none';
+                document.getElementById('btn' + i).style.border = 'none';
+                document.getElementById('btnEdit' + i).style.border = 'none';
             }
-            document.getElementById(divId + n).style.display = 'block';
-            document.getElementById(btn + n).style.border = '2px solid #568FBD';
+            document.getElementById('pesta' + n).style.display = 'block';
+            document.getElementById('pestaEdit' + n).style.display = 'block';
+            document.getElementById('btn' + n).style.border = '2px solid #568FBD';
+            document.getElementById('btnEdit' + n).style.border = '2px solid #568FBD';
             showDivChart (n, jsonChartData);
 }
 
