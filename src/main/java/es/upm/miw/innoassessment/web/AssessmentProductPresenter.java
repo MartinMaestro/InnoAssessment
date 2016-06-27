@@ -120,7 +120,6 @@ public class AssessmentProductPresenter {
 	@RequestMapping("/assessment-product-view")
 	public ModelAndView showAssessmentLine(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
 		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductView");
-		Integer evaluationTest = (Integer) modelAndView.getModel().get("evaluationId");
 		Evaluation evaluation = evaluationController.findOne(evaluationId);
 		modelAndView.addObject("evaluation", evaluation);
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));
