@@ -10,19 +10,7 @@
 	<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
 	<script language='Javascript' src="<c:url value='/static/js/tabsQuestionnaire.js' />"></script>
 	<script language='Javascript' src="<c:url value='/static/js/overlib.js' />"></script>
-	
-	<script type="text/javascript">
-	function processQuestionnaire(questionnaireId,productVersionId){
-		alert("processQuestionnaire");
-		var url = window.location.href; 
-		url += "&processQuestionnaire=1";
-		//var url = '/innoassessment/process-questionnaire/'+questionnaireId + '?productVersionId='+productVersionId;
-		//window.location.href = url;
-		var urltemp ="/innoassessment/build-questionnaire/1/productversion/1";
-		window.location.href = urltemp;
-	}
 
-	</script>
 	<title>Innoassessment</title>
 </head>
     <body>
@@ -123,10 +111,10 @@
 												<legend>Add url</legend>
 												<div id='${assessmentLine.id}_url'>
 													<input type='url' id='urlstoupload_${assessmentLine.id}'
-														name='urlstoupload_${assessmentLine.id}' multiple=''>
+														name='assessmentList[${status.index}].arrayUrl[0]' multiple=''>
 												</div>
 												<a href='#'
-													onclick="addFieldUrl('${assessmentLine.id}_url', '${assessmentLine.id}')">
+													onclick="addFieldUrl('${assessmentLine.id}_url','${assessmentLine.id}','${status.index}')">
 													<button type='button'>Add more</button>
 												</a>
 											</fieldset>

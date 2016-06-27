@@ -17,14 +17,17 @@ import es.upm.miw.innoassessment.business.controllers.ModelController;
 import es.upm.miw.innoassessment.business.controllers.ProductController;
 import es.upm.miw.innoassessment.business.controllers.ProductVersionController;
 import es.upm.miw.innoassessment.business.controllers.QuestionnaireController;
+import es.upm.miw.innoassessment.business.controllers.SourceUrlController;
 import es.upm.miw.innoassessment.business.wrapper.AssessmentLineWrapper;
 import es.upm.miw.innoassessment.business.wrapper.ListAssessmentLine;
 import es.upm.miw.innoassessment.data.entities.AssessmentLine;
 import es.upm.miw.innoassessment.data.entities.Evaluation;
 import es.upm.miw.innoassessment.data.entities.LineValue;
+import es.upm.miw.innoassessment.data.entities.SourceUrl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -54,6 +57,11 @@ public class QuestionnaireProductPresenter {
 
 	@Autowired
 	private LineValueController lineValueController;
+	
+	@Autowired
+	private SourceUrlController sourceUrlController;
+	
+	
 
 	@RequestMapping("/model-questionnaire")
 	public ModelAndView listModelQuestionnaire(Model model,
@@ -108,11 +116,17 @@ public class QuestionnaireProductPresenter {
 		int evaluationId = evaluationController.createEvaluation(questionnaireId, productVersionId);
 		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
-			lineValues.add(new LineValue(new Evaluation(evaluationId), new
-			AssessmentLine(assessmentLine.getId()),
-			assessmentLine.getRadioValue(), 0, null, null));
+			String [] arrayURLInit = assessmentLine.getArrayUrl();
+			List<SourceUrl> sourcesUrls = new ArrayList();
+			for (int i = 0; i < arrayURLInit.length; i++) {
+				if (arrayURLInit[i] != null && arrayURLInit[i] != ""){
+					sourcesUrls.add(new SourceUrl(arrayURLInit[i]));
+				}				
+			}; 
+			sourceUrlController.createSourceUrl(sourcesUrls);
+			lineValues.add(new LineValue(new Evaluation(evaluationId), new AssessmentLine(assessmentLine.getId()),
+					assessmentLine.getRadioValue(), 0, sourcesUrls, null));
 		}
-
 		lineValueController.createLineValues(lineValues, questionnaireId, evaluationId);
 		return "jsp/home";
 	}

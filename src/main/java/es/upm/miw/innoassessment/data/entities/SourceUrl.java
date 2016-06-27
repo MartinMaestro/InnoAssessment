@@ -15,6 +15,9 @@ public class SourceUrl {
 	@Column(nullable = false)
 	private String url;
 
+	public SourceUrl() {
+	}
+
 	public SourceUrl(String url) {
 		this.url = url;
 	}

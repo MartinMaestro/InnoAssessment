@@ -175,21 +175,7 @@ public class Presenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/build-questionnaireOLD/{id}" })
-	public ModelAndView buildQuestionnaireOLD(@PathVariable int id, Model model,
-			@RequestParam(value = "dimensionId", required = false, defaultValue = "1") int dimensionId) {
-		System.out.println("------------- RequestParam dimensionId: " + dimensionId);
-		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
-		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
-		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
-		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
-		modelAndView.addObject("productList", productController.showProducts());
-		System.out.println("----------------------- PRESENTER BUIDQUESTIONNAIRE " + dimensionId);
-		modelAndView.addObject("assessmentLineList",
-				assessmentLineController.showAssessmentLinesByDimension(dimensionId));
-		return modelAndView;
-
-	}
+	
 
 	@RequestMapping(value = "/create-product", method = RequestMethod.GET)
 	public String createProduct(Model model) {

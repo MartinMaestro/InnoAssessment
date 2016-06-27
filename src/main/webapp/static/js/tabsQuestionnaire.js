@@ -79,12 +79,13 @@ function delField(evt) {
 function rObj(evt) {
 	return evt.srcElement ? evt.srcElement : evt.target;
 }
+
 var n = 1;
-function addFieldUrl(layer, id) {
+function addFieldUrl(layer, id, index) {
 	var newDiv = document.createElement('div');
 	newDiv.id = 'url' + n;
 	var newField = document.createElement('input');
-	newField.name = 'urlstoupload_' + id + '_' + n;
+	newField.name = 'assessmentList['+index+'].arrayUrl['+n+']';
 	newField.id = 'urlstoupload_' + id + '_' + n;
 	newField.type = 'url';
 	var newlink = document.createElement('button');

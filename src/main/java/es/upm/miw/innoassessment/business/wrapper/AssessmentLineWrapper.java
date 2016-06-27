@@ -24,6 +24,7 @@ public class AssessmentLineWrapper {
 	private String modelItemInterpretation;
 	private String modelItemHelp;
 	private String radioValue;
+	private String[] arrayUrl;
 
 	public AssessmentLineWrapper() {
 	}
@@ -33,7 +34,7 @@ public class AssessmentLineWrapper {
 			String modelItemModelVersion, String modelItemModelDescription, int modelItemDimensionId,
 			String modelItemDimensionName, int modelItemFactorId, String modelItemFactorName,
 			String modelItemFactorDefinition, String modelItemImpact, String modelItemWeight,
-			String modelItemInterpretation, String modelItemHelp, String radioValue) {
+			String modelItemInterpretation, String modelItemHelp, String radioValue, String[] arrayUrl) {
 		super();
 		this.id = id;
 		this.questionnaireId = questionnaireId;
@@ -55,6 +56,7 @@ public class AssessmentLineWrapper {
 		this.modelItemInterpretation = modelItemInterpretation;
 		this.modelItemHelp = modelItemHelp;
 		this.radioValue = radioValue;
+		this.setArrayUrl(arrayUrl);
 	}
 
 	public AssessmentLineWrapper(AssessmentLine assessmentLine) {
@@ -69,7 +71,7 @@ public class AssessmentLineWrapper {
 				assessmentLine.getModelItem().getFactor().getId(), assessmentLine.getModelItem().getFactor().getName(),
 				assessmentLine.getModelItem().getFactor().getDefinition(), assessmentLine.getModelItem().getImpact(),
 				assessmentLine.getModelItem().getWeight() != null? assessmentLine.getModelItem().getWeight().toString() : "", assessmentLine.getModelItem().getInterpretation(),
-				assessmentLine.getModelItem().getHelp(), null);
+				assessmentLine.getModelItem().getHelp(), null,null);
 	}
 
 	public int getId() {
@@ -230,6 +232,14 @@ public class AssessmentLineWrapper {
 
 	public void setRadioValue(String radioValue) {
 		this.radioValue = radioValue;
+	}
+
+	public String[] getArrayUrl() {
+		return arrayUrl;
+	}
+
+	public void setArrayUrl(String[] arrayUrl) {
+		this.arrayUrl = arrayUrl;
 	}
 
 }
