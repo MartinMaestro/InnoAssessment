@@ -39,6 +39,11 @@
     <a href="<c:url value='/home-administration'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- Administration -</a>
 </td>
 </tr>
+<tr>
+<td style="background: url(<c:url value='/static/images/option.png' />); height: 50px; width: 584px;">
+    <a href="<c:url value='/template'/>" style='padding-left: 30%; color: #ddebf6; text-decoration: none;'>- New design -</a>
+</td>
+</tr>
 </table>
 </body>
 </html>

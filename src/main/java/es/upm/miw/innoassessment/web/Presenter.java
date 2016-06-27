@@ -52,6 +52,13 @@ public class Presenter {
 		return new SimpleDateFormat("EEEE, d MMM yyyy HH:mm:ss").format(new Date());
 	}
 
+	@RequestMapping("/template")
+	public String template(Model model) {
+		// La vista resultante no lleva extensión (.jsp) configurado en
+		// WebConfig.java
+		return "jsp/template";
+	}
+	
 	@RequestMapping("/home")
 	public String home(Model model) {
 		// La vista resultante no lleva extensión (.jsp) configurado en
@@ -66,12 +73,7 @@ public class Presenter {
 		return "jsp/homeDevelop";
 	}
 	
-	@RequestMapping("/home-administration")
-	public String homeAdministration(Model model) {
-		// La vista resultante no lleva extensión (.jsp) configurado en
-		// WebConfig.java
-		return "jsp/homeAdministration";
-	}
+	
 	
 
 	@RequestMapping("/assessmentLine-list")
