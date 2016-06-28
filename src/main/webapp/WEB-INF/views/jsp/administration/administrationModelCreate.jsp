@@ -34,6 +34,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
 		<div class="masthead">
 			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
+
 			<nav>
 				<ul class="nav nav-justified">
 					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
@@ -48,51 +49,47 @@
 		<p></p>
 		<p></p>
 		<p></p>
+
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Factor List</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Name</th>
-							<th scope="col">Definition</th>
-							<th scope="col">#</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${factorList}" var="factor">
-							<tr>
-								<td>${factor.id}</td>
-								<td>${factor.name}</td>
-								<td>${factor.definition}</td>
-								<td><a
-									href="<c:url value='/administration-delete-factor/${factor.id}' />">Delete</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-factor"
-						role="button">Create Factor »</a>
-				</p>
+				<p class="lead">Create Model</p>
 			</div>
 		</div>
 
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
+		<div class="row">
+			<div class="col-sm-12" align="center">
+				<form:form action="administration-create-model"
+					modelAttribute="model">
+					<p>
+						Name:
+						<form:input path="name" placeholder="Name" required="required" />
+						<form:errors path="name" cssClass="error" />
+					</p>
+					<p>
+						Year:
+						<form:input path="year" placeholder="Year" />
+						<form:errors path="year" cssClass="error" />
+					</p>					<p>
+						Version:
+						<form:input path="version" placeholder="Version" />
+						<form:errors path="version" cssClass="error" />
+					</p>
+					<p>
+						Description:
+						<form:input path="description" placeholder="Description" />
+						<form:errors path="description" cssClass="error" />
+					</p>
+					<p>
+						<input class="btn btn-primary" type="submit" value="Create »">
+					</p>
+				</form:form>
+			</div>
+		</div>
 	</div>
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>© 2016 MiW, Inc.</p>
+	</footer>
 	<!-- /container -->
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

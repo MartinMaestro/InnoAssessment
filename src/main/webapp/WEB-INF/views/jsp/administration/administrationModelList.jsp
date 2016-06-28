@@ -50,28 +50,32 @@
 		<p></p>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Factor List</p>
+				<p class="lead">Model List</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="table table-bordered">
+				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Name</th>
-							<th scope="col">Definition</th>
-							<th scope="col">#</th>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Year</th>
+							<th>Version</th>
+							<th>Description</th>
+							<th>#</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${factorList}" var="factor">
+						<c:forEach items="${modelList}" var="model">
 							<tr>
-								<td>${factor.id}</td>
-								<td>${factor.name}</td>
-								<td>${factor.definition}</td>
+								<td>${model.id}</td>
+								<td>${model.name}</td>
+								<td>${model.year}</td>
+								<td>${model.version}</td>
+								<td>${model.description}</td>
 								<td><a
-									href="<c:url value='/administration-delete-factor/${factor.id}' />">Delete</a></td>
+									href="<c:url value='/administration-delete-model/${model.id}' />">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -82,8 +86,8 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-factor"
-						role="button">Create Factor »</a>
+						href="/innoassessment/administration-create-model" role="button">Create
+						Model »</a>
 				</p>
 			</div>
 		</div>
