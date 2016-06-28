@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://getbootstrap.com/examples/justified-nav/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -42,16 +43,14 @@
       <div class="jumbotron">
         <h1>Administration</h1>
         <p class="lead">Welcome to the administration section</p>
-        <p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Create Product</a></p>
-        <p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Create Factor</a></p>
-      </div>
+       </div>
 
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
           <h2>Factors and Dimensions</h2>
-          <p class="text-danger">Product innovation assessment is seen as a multi-dimensional factors composition. </p>
-          <p>where factors on each dimension could impact in the success of a software product</p>
+          <p>Product innovation assessment is seen as a multi-dimensional factors composition. 
+          where factors on each dimension could impact in the success of a software product</p>
           <table >
 			<thead>
 				<tr>
@@ -65,17 +64,25 @@
 				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-dimension" role="button">Create Dimension »</a></p></td>
 				</tr>  		
 			</tbody>
-			</table>
-          
-          
-          
-         
-        
+			</table>        
         </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="http://getbootstrap.com/examples/justified-nav/#" role="button">View details »</a></p>
+          <h2>Model and ModelItems</h2>
+          <p>A product innovation assessment model is a composition of ModelItems.</p>
+          <table >
+			<thead>
+				<tr>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-model" role="button">View Models »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-model" role="button">Create Model »</a></p></th>
+				</tr>
+			</thead>
+			<tbody> 		
+				<tr>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-dimension" role="button">View ModelItems »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-dimension" role="button">Create ModelItems »</a></p></td>
+				</tr>  		
+			</tbody>
+			</table>          
        </div>
         <div class="col-lg-4">
           <h2>Heading</h2>

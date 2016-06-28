@@ -32,7 +32,7 @@ public class AdministrationDimensionFactorPresenter {
 		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/administration-list-factor")
 	public ModelAndView listFactor(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationFactorList");
@@ -50,7 +50,7 @@ public class AdministrationDimensionFactorPresenter {
 	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (dimensionController.createDimension(dimension.getName())) {
-				model.addAttribute("dimensionList", dimensionController.showDimensions());				
+				model.addAttribute("dimensionList", dimensionController.showDimensions());
 				return "jsp/administration/administrationDimensionList";
 			} else {
 				bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
@@ -69,15 +69,13 @@ public class AdministrationDimensionFactorPresenter {
 	public String createFactorSubmit(@Valid FactorWrapper factor, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (factorController.createFactor(factor.getName(), factor.getDefinition())) {
-				model.addAttribute("name", factor.getName());
-				model.addAttribute("definition", factor.getDefinition());
-				model.addAttribute("id", factor.getId());
-				return "jsp/administration/administrationFactorList";				
+				model.addAttribute("factorList", factorController.showFactors());
+				return "jsp/administration/administrationFactorList";
 			} else {
 				bindingResult.rejectValue("name", "error.factor", "Exist factor");
 			}
 		}
-		return "jsp/administration/factorCreate";
+		return "jsp/administration/administrationFactorCreate";
 	}
 
 	@RequestMapping(value = { "/administration-delete-dimension/{id}" })

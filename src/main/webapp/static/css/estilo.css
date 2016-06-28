@@ -128,6 +128,24 @@ label {
 	position: relative;
 }
 
+.myheadermodern {
+	background: -webkit-linear-gradient(90deg, #4682B4, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA;
+	padding-right: 1em;
+	padding-left: 1em;
+	position: relative;
+}
+
 .myheader2 {
 	font-size: large;
 	font-weight: bold;
@@ -139,6 +157,13 @@ label {
 }
 
 .myheader>img {
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	right: 2%;
+}
+
+.myheadermodern>img {
 	max-height: 100%;
 	max-width: 100%;
 	position: absolute;
