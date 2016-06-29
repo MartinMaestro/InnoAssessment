@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 @SessionAttributes("name")
 public class AdministrationModelItemPresenter {
-
+	static final String PATH = "jsp/administration/model-modelitem";
 	@Autowired
 	private DimensionController dimensionController;
 
@@ -43,14 +43,14 @@ public class AdministrationModelItemPresenter {
 
 	@RequestMapping("/administration-list-model")
 	public ModelAndView listModel(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelList");
+		ModelAndView modelAndView = new ModelAndView( PATH + "/administrationModelList");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
 
 	@RequestMapping("/administration-list-modelitem")
 	public ModelAndView listModelItem(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemList");
+		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
 		return modelAndView;
 	}
@@ -58,7 +58,7 @@ public class AdministrationModelItemPresenter {
 	@RequestMapping(value = "/administration-create-model", method = RequestMethod.GET)
 	public String createModel(Model model) {
 		model.addAttribute("model", new ModelWrapper());
-		return "jsp/administration/administrationModelCreate";
+		return PATH + "/administrationModelCreate";
 	}
 
 	@RequestMapping(value = "/administration-create-model", method = RequestMethod.POST)
@@ -67,12 +67,12 @@ public class AdministrationModelItemPresenter {
 			if (modelController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
 					modelw.getDescription())) {
 				model.addAttribute("modelList", modelController.showModels());
-				return "jsp/administration/administrationModelList";
+				return PATH +"/administrationModelList";
 			} else {
 				bindingResult.rejectValue("name", "error.model", "Model ya existente");
 			}
 		}
-		return "jsp/administration/administrationModelCreate";
+		return PATH +"/administrationModelCreate";
 	}
 
 	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.GET)
@@ -82,7 +82,7 @@ public class AdministrationModelItemPresenter {
 		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		model.addAttribute("factorList", factorController.showFactors());
-		return "jsp/administration/administrationModelItemCreate";
+		return PATH + "/administrationModelItemCreate";
 	}
 
 	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.POST)
@@ -92,18 +92,18 @@ public class AdministrationModelItemPresenter {
 					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
 					modelItem.getInterpretation(), modelItem.getHelp())) {
 				model.addAttribute("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
-				return "jsp/administration/administrationModelItemList";
+				return PATH +"/administrationModelItemList";
 			} else {
 				bindingResult.rejectValue("name", "error.model", "Model ya existente");
 			}
 		}
-		return "jsp/administration/administrationModelItemCreate";
+		return PATH +"/administrationModelItemCreate";
 	}
 
 	@RequestMapping("/administration-create-modelitems-select-model")
 	public ModelAndView createModelItemsSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreateSelectModel");
+		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreateSelectModel");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
@@ -111,7 +111,7 @@ public class AdministrationModelItemPresenter {
 	@RequestMapping(value = "/administration-create-modelitems/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createModelItems(Model model, @PathVariable int modelid,
 			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreate");
+		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreate");
 		modelAndView.addObject("model", modelController.showModel(modelid));
 		if (dimensionid != 0) {
 			modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
@@ -128,7 +128,7 @@ public class AdministrationModelItemPresenter {
 			"/administration-create-modelitems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsSubmit(Model model, @PathVariable int modelid, @PathVariable int dimensionid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreateConfirm");
+		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreateConfirm");
 		ModelWrapper modelw = modelController.showModel(modelid);
 		modelAndView.addObject("model", modelw);
 		DimensionWrapper dimensionw = dimensionController.showDimension(dimensionid);
@@ -159,7 +159,7 @@ public class AdministrationModelItemPresenter {
 					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
 					modelItem.getInterpretation(), modelItem.getHelp());
 		}
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemList");
+		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
 		return modelAndView;
 	}	
@@ -168,7 +168,7 @@ public class AdministrationModelItemPresenter {
 	public String deleteModel(@PathVariable int id, Model model) {
 		modelController.deleteModel(id);
 		model.addAttribute("modelList", modelController.showModels());
-		return "jsp/administration/administrationModelList";
+		return PATH + "/administrationModelList";
 	}
 
 }

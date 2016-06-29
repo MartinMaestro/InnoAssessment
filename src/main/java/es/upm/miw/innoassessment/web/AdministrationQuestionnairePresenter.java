@@ -23,6 +23,8 @@ import javax.validation.Valid;
 @SessionAttributes("name")
 public class AdministrationQuestionnairePresenter {
 
+	static final String PATH = "jsp/administration/questionnaire";
+
 	@Autowired
 	private AssessmentLineController assessmentLineController;
 
@@ -37,14 +39,14 @@ public class AdministrationQuestionnairePresenter {
 
 	@RequestMapping("/administration-list-questionnaire")
 	public ModelAndView listQuestionnaire(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationQuestionnaireList");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
 
 	@RequestMapping("/administration-list-assessment")
 	public ModelAndView listAssessmentLines(Model model) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationAssessmentList");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentList");
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
@@ -52,14 +54,14 @@ public class AdministrationQuestionnairePresenter {
 	@RequestMapping("/administration-create-questionnaire-select-model")
 	public ModelAndView createQuestionnaireSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationQuestionnaireCreateSelectModel");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireCreateSelectModel");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/administration-create-questionnaire/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createQuestionnaire(Model model, @PathVariable int modelid) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationQuestionnaireCreate");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireCreate");
 		modelAndView.addObject("model", modelController.showModel(modelid));
 		modelAndView.addObject("questionnaire", new QuestionnaireWrapper());
 		return modelAndView;
@@ -73,7 +75,7 @@ public class AdministrationQuestionnairePresenter {
 		} else {
 			bindingResult.rejectValue("name", "error.questionnaire", "Questionnaire exist");
 		}
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationQuestionnaireList");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
@@ -82,21 +84,20 @@ public class AdministrationQuestionnairePresenter {
 	public String deleteQuestionnaire(@PathVariable int id, Model model) {
 		questionnaireController.deleteQuestionnaire(id);
 		model.addAttribute("questionnaireList", questionnaireController.showQuestionnaires());
-		return "jsp/administration/administrationQuestionnaireList";
+		return PATH + "/administrationQuestionnaireList";
 	}
 
 	@RequestMapping("/administration-create-assessment-select-questionnaire")
 	public ModelAndView listQuestionnaire(Model model,
 			@RequestParam(value = "questionnaireId", required = false, defaultValue = "0") int questionnaireId) {
-		ModelAndView modelAndView = new ModelAndView(
-				"jsp/administration/administrationAssessmentsCreateSelectQuestionnaire");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentsCreateSelectQuestionnaire");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/administration-create-assessments/{questionnaireid}", method = RequestMethod.GET)
 	public ModelAndView createAssessments(Model model, @PathVariable int questionnaireid) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationAssessmentCreate");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentCreate");
 		modelAndView.addObject("questionnaire", questionnaireController.showQuestionnaire(questionnaireid));
 		ListModelItem listModelItem = new ListModelItem();
 		listModelItem.setModelItemList(modelItemController.showModelItems());
@@ -114,7 +115,7 @@ public class AdministrationQuestionnairePresenter {
 						modelItem.getImpact());
 			}
 		}
-		ModelAndView modelAndView = new ModelAndView("jsp/questionnaire/assessmentLineList");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentList");
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
