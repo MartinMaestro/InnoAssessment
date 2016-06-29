@@ -73,6 +73,10 @@ public class Presenter {
 		return "jsp/homeDevelop";
 	}
 	
+	@RequestMapping("/home-administration-old")
+	public String homeAdministrationOLD(Model model) {
+		return "jsp/homeAdministration";
+	}
 	
 	
 

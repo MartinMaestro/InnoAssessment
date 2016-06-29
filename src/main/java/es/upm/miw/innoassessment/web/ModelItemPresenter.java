@@ -71,6 +71,7 @@ public class ModelItemPresenter {
 		return "jsp/model-modelItems/modelItemsCreate";
 	}
 
+	/*
 	@RequestMapping(value = "/create-model", method = RequestMethod.GET)
 	public String createModel(Model model) {
 		model.addAttribute("model", new ModelWrapper());
@@ -118,7 +119,7 @@ public class ModelItemPresenter {
 		}
 		return "jsp/model-modelItems/modelItemCreate";
 	}
-
+*/
 	@RequestMapping(value = "/create-modelItems/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createModelItems(Model model, @PathVariable int modelid,
 			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {

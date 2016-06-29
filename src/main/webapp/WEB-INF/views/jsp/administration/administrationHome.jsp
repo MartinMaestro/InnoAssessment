@@ -78,9 +78,14 @@
 			</thead>
 			<tbody> 		
 				<tr>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-dimension" role="button">View ModelItems »</a></p></td>
-				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-dimension" role="button">Create ModelItems »</a></p></td>
-				</tr>  		
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-modelitem" role="button">View ModelItems »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-modelitem" role="button">Create ModelItem »</a></p>
+				  	<p><a class="btn btn-primary" href="/innoassessment/administration-create-modelitems-select-model" role="button">Create ModelItems »</a></p>
+				  	</td>
+				</tr>  	
+				<tr>
+				<td class="col-lg-2"></td>
+				</tr>	
 			</tbody>
 			</table>          
        </div>

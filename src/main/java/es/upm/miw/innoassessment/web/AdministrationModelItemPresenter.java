@@ -41,7 +41,6 @@ public class AdministrationModelItemPresenter {
 	@Autowired
 	private ModelItemController modelItemController;
 
-	
 	@RequestMapping("/administration-list-model")
 	public ModelAndView listModel(Model model) {
 		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelList");
@@ -54,8 +53,8 @@ public class AdministrationModelItemPresenter {
 		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
 		return modelAndView;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/administration-create-model", method = RequestMethod.GET)
 	public String createModel(Model model) {
 		model.addAttribute("model", new ModelWrapper());
@@ -76,81 +75,43 @@ public class AdministrationModelItemPresenter {
 		return "jsp/administration/administrationModelCreate";
 	}
 
-	@RequestMapping(value = "/create-modelItem", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.GET)
 	public String createModelItem(Model model) {
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("modelItem", new ModelItemWrapper());
 		model.addAttribute("impactValuesList", modelItemController.showAssessmentTypes());
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		model.addAttribute("factorList", factorController.showFactors());
-		return "jsp/model-modelItems/modelItemsCreate";
+		return "jsp/administration/administrationModelItemCreate";
 	}
 
-	@RequestMapping(value = "/create-modelItem", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.POST)
 	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),
 					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
 					modelItem.getInterpretation(), modelItem.getHelp())) {
-				return "jsp/home";
+				model.addAttribute("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
+				return "jsp/administration/administrationModelItemList";
 			} else {
 				bindingResult.rejectValue("name", "error.model", "Model ya existente");
 			}
 		}
-		return "jsp/model-modelItems/modelItemCreate";
+		return "jsp/administration/administrationModelItemCreate";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*	
-	@RequestMapping("/model-select")
-	public ModelAndView listModelDimension(Model model,
+	@RequestMapping("/administration-create-modelitems-select-model")
+	public ModelAndView createModelItemsSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/selectModel");
+		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationCreateModelItemsSelectModel");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/factor-select/{modelid}")
-	public ModelAndView listFactor(Model model, @PathVariable int modelid) {
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/factorList");
-		modelAndView.addObject("model", modelid);
-		modelAndView.addObject("factorList", factorController.showFactors());
-		ListFactor listFactor = new ListFactor();
-		listFactor.setFactorList(factorController.showFactors());
-		modelAndView.addObject("listFactor", listFactor);
-		return modelAndView;
-	}
-
-	@RequestMapping(value = { "/factor-select/{modelid}" }, method = RequestMethod.POST)
-	public String listFactorSubmit(Model model, @PathVariable int modelid,
-			@ModelAttribute("listFactor") ListFactor listFactor) {
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/factorList");
-		modelAndView.addObject("factorList", factorController.showFactors());
-		for (FactorWrapper factor : listFactor.getFactorList()) {
-			System.out.println("FACTORS: " + factor.getId() + " - " + factor.getRadioValue());
-		}
-		return "jsp/model-modelItems/modelItemsCreate";
-	}
-
-	
-	
-	@RequestMapping(value = "/create-modelItems/{modelid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration-create-modelitems/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createModelItems(Model model, @PathVariable int modelid,
 			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreate");
+		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreate");
 		modelAndView.addObject("model", modelController.showModel(modelid));
 		if (dimensionid != 0) {
 			modelAndView.addObject("dimensionDetail", dimensionController.showDimension(dimensionid));
@@ -163,10 +124,11 @@ public class AdministrationModelItemPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/create-modelItems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
+	@RequestMapping(value = {
+			"/administration-create-modelitems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsSubmit(Model model, @PathVariable int modelid, @PathVariable int dimensionid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemsCreateConfirm");
+		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreateConfirm");
 		ModelWrapper modelw = modelController.showModel(modelid);
 		modelAndView.addObject("model", modelw);
 		DimensionWrapper dimensionw = dimensionController.showDimension(dimensionid);
@@ -189,7 +151,7 @@ public class AdministrationModelItemPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/create-modelItemsExecute" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/administration-create-modelitems-confirm" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsExecute(Model model,
 			@ModelAttribute("listModelItem") ListModelItem listModelItem) {
 		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
@@ -197,17 +159,11 @@ public class AdministrationModelItemPresenter {
 					modelItem.getFactorId(), modelItem.getImpact(), modelItem.getWeight(),
 					modelItem.getInterpretation(), modelItem.getHelp());
 		}
-		ModelAndView modelAndView = new ModelAndView("jsp/model-modelItems/modelItemList");
+		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItemsOrderByIdDesc());
 		return modelAndView;
-	}
+	}	
 
-	
-*/
-	
-	
-	
-	
 	@RequestMapping(value = { "/administration-delete-model/{id}" })
 	public String deleteModel(@PathVariable int id, Model model) {
 		modelController.deleteModel(id);
