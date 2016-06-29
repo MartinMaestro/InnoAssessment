@@ -28,8 +28,8 @@
 		<fieldset name='model'>
 			<legend>Model</legend>
 			<p />
-			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b></br>
-			Description: <b>${model.description}</b></br> <input type='hidden'
+			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b><br>
+			Description: <b>${model.description}</b><br> <input type='hidden'
 				name='model' value='model.id' /> <a
 				href="<c:url value='/modelq-select/'/>">Change Model</a>
 		</fieldset>

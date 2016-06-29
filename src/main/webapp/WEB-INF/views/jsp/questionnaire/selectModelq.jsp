@@ -18,7 +18,7 @@
      </div>
    
     <div class="myheader2" align='center'>Model List</div>
-    <table border="1" align='center' class="table table-bordered">
+    <table border="1" class="table table-bordered">
         <thead>
             <tr>
             	<th>Model Id</th>

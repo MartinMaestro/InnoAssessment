@@ -56,8 +56,8 @@
 		<fieldset name='model'>
 			<legend>Model</legend>
 			<p />
-			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b></br>
-			Description: <b>${model.description}</b></br> <input type='hidden'
+			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b><br>
+			Description: <b>${model.description}</b><br> <input type='hidden'
 				name='model' value='model.id' /> <a
 				href="<c:url value='/model-select/'/>">Change Model</a>
 		</fieldset>
@@ -88,20 +88,20 @@
 						</tbody>
 					</table>
 				</div>
-		</c:if>
 		</fieldset>
+		</c:if>		
 		<c:if test="${!empty param.dimensionid && param.dimensionid > 0}">
 			<fieldset name='dimensionDetail'>
 				<legend>Dimension</legend>
 				<p />
 				Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
-					name='dimensionDetail' value='dimensionDetail.id' /></br> <a
+					name='dimensionDetail' value='dimensionDetail.id' /><br> <a
 					href="<c:url value='/create-modelItems/${modelid}'/>">Change
 					Dimension</a>
 			</fieldset>
-			</br>
+			<br>
 			<fieldset name='factor_list'>
-				<legend align="center">Factor's list</legend>
+				<legend>Factor's list</legend>
 				<p />
 				Select all the factors as you required, and click next:
 				<div class="table-responsive">

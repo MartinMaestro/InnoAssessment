@@ -1,21 +1,21 @@
 body {
-	padding-left: 2em;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	color: #4682B4;
+	padding-left: 2em;	
+	/*color: #4682B4;*/
+	color: F8FBFC;
 	/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
 	/* IE10 Consumer Preview */
-	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #AEC8EF 100%);
+	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/* Mozilla Firefox */
-	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #AEC8EF 100%);
+	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/* Opera */
-	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #AEC8EF 100%);
+	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/* Webkit (Safari/Chrome 10) */
 	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF),
-		color-stop(1, #AEC8EF));
+		color-stop(1, #FFFFFF));
 	/* Webkit (Chrome 11+) */
-	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #AEC8EF 100%);
+	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/* W3C Markup, IE10 Release Preview */
-	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #AEC8EF 100%);
+	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
 }
 
 ul.navbar {
@@ -103,7 +103,6 @@ label {
 	padding-right: 1em;
 	padding-left: 1em;
 	color: #4682B4;
-	font-family: Georgia, "Times New Roman", Times, serif;
 	margin-bottom: 0%;
 	cursor: pointer;
 }
@@ -241,18 +240,18 @@ label {
 	margin-left: -40px;
 	/*  Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
 	/*	IE10 Consumer Preview */
-	background-image: -ms-linear-gradient(top left, #FAFBFE 0%, #AEC8EF 100%);
+	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/*	Mozilla Firefox  */
-	background-image: -moz-linear-gradient(top left, #FAFBFE 0%, #AEC8EF 100%);
+	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/*	Opera  */
-	background-image: -o-linear-gradient(top left, #FAFBFE 0%, #AEC8EF 100%);
+	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/*	Webkit (Safari/Chrome 10)  */
-	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FAFBFE),
-		color-stop(1, #AEC8EF));
+	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF),
+		color-stop(1, #FFFFFF));
 	/*	Webkit (Chrome 11+) */
-	background-image: -webkit-linear-gradient(top left, #FAFBFE 0%, #AEC8EF 100%);
+	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
 	/*	W3C Markup, IE10 Release Preview  */
-	background-image: linear-gradient(to bottom right, #FAFBFE 0%, #AEC8EF 100%);
+	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
 }
 
 .estilotextarea {

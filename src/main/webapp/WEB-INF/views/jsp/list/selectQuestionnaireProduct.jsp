@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"  href="<c:url value='/static/images/bulb-favicon.png' />"/>
-<link rel="stylesheet" href="<c:url value='/static/css/estilo.css' />">
+<link rel="stylesheet" href="<c:url value='/static/css/estilo-origin.css' />">
 <link rel="stylesheet" href="<c:url value='/static/css/bootstrap.css' />">
 
 <script type="text/javascript">
@@ -16,7 +16,7 @@ function showProductVersions(productId) {
 function loadBuildQuestionnaire(questionnaireId){
 	var selectBox = document.getElementById("ddlProductVersion");
     var productVersionId = selectBox.options[selectBox.selectedIndex].value;
-	var url = '/innoassessment/build-questionnaire/'+questionnaireId + '?productVersionId='+productVersionId;
+	var url = '/innoassessment/questionnaire-build/'+questionnaireId + '?productVersionId='+productVersionId;
 	window.location.href = url;
 }
 
@@ -52,7 +52,7 @@ function reloadPage(param,value){
                 Date: <input name='evaluation_date' value='${fecha}'/>
                 Time: <input name='evaluation_time' value='${hora}'/>
                 <input type='hidden' name='model' value='questionnaireDetail.modelId' />
-                <input type='hidden' name='questionnaire' value='questionnaireDetail.id'/></br></br>
+                <input type='hidden' name='questionnaire' value='questionnaireDetail.id'/><br><br>
                 <a href="<c:url value='/model-questionnaire/'/>">Change Model</a>
       </fieldset>
       
@@ -62,7 +62,7 @@ function reloadPage(param,value){
                 <legend>Product</legend><p/>
                 Name: <b>${product.name}</b> 
                 - Description: <b>${product.description}</b>
-                <input type='hidden' name='product' value='product.id' /></br></br>              
+                <input type='hidden' name='product' value='product.id' /><br><br>              
       	<a href="<c:url value='/questionnaire-product/${questionnaireDetail.id}'/>">Change Product</a>
       	</fieldset>
        <fieldset name='product_version'>
@@ -74,11 +74,13 @@ function reloadPage(param,value){
 				</c:forEach> 
 		</select>
 		</fieldset>
-		 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" onclick="loadBuildQuestionnaire(${questionnaireDetail.id});">Build Questionnaire</button>
+		 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit" value="Submit" 
+		 onclick="loadBuildQuestionnaire(${questionnaireDetail.id});">
+		 Build Questionnaire</button>
     	</c:when>    
     	<c:otherwise>
          <div class="myheader2" align='center'>Product List</div>
-    		<table align='center' class="table table-bordered">
+    		<table  class="table table-bordered">
         		<thead>
            		 <tr>
             		<th>Product Id</th>

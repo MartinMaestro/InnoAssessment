@@ -54,7 +54,7 @@
 			
 			
     <div class="myheader2" align='center'>Model List</div>
-    		<table border="1" align='center' class="table table-bordered">
+    		<table border="1" class="table table-bordered">
         		<thead>
             		<tr>
             			<th>Model Id</th>
@@ -80,7 +80,7 @@
     </table>
     
     <div class="myheader2" align='center'>Dimension List</div>
-     <table table border="1" align='center' class="table table-bordered">
+     <table border="1" class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -101,7 +101,7 @@
 		</tbody>
 	</table>		
 			<fieldset name='factor_list'>
-		<legend  align="center">Factor's list</legend>
+		<legend>Factor's list</legend>
 		<p/>
 		<div class="table-responsive">
 		

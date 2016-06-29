@@ -17,9 +17,9 @@
             Factor
             <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
      </div>
-	</br>
+	<br>
 	<fieldset name='factor_list'>
-		<legend  align="center">Factor's list</legend>
+		<legend>Factor's list</legend>
 		<p/>
 		<table class="table table-bordered">
 		<thead>

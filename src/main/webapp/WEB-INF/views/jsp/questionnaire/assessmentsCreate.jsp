@@ -28,14 +28,14 @@
 		<fieldset name='questionnaire'>
 			<legend>Questionnaire</legend>
 			<p />
-			Questionnaire: <b>${questionnaire.name}</b> - Version: <b>${questionnaire.version}</b></br>
+			Questionnaire: <b>${questionnaire.name}</b> - Version: <b>${questionnaire.version}</b><br>
 			<input type='hidden' name='questionnaire' value='questionnaire' /> <a
 				href="<c:url value='/questionnaire-select/'/>">Change
 				Questionnaire</a>
 		</fieldset>
 
 		<fieldset name='modelItem_list'>
-			<legend align="center">Model Item's list</legend>
+			<legend>Model Item's list</legend>
 			<p />
 			Select all the model Items as you required, and click next:
 			<div class="table-responsive">

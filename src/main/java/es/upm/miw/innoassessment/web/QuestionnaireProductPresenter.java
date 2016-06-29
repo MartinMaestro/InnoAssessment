@@ -90,9 +90,9 @@ public class QuestionnaireProductPresenter {
 		}
 		return modelAndView;
 	}
-	/*
+	
 
-	@RequestMapping(value = { "/build-questionnaire/{id}" })
+	@RequestMapping(value = { "/questionnaire-build/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
 			@RequestParam(value = "productVersionId", required = true) int productVersionId,
 			@RequestParam(value = "processQuestionnaire", required = false, defaultValue = "0") int processQuestionnaire) {
@@ -110,7 +110,7 @@ public class QuestionnaireProductPresenter {
 	}
 
 	@RequestMapping(value = {
-			"/build-questionnaire/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
+			"/questionnaire-build/{questionnaireId}/productversion/{productVersionId}" }, method = RequestMethod.POST)
 	public String buildQuestionnaireSubmit(@PathVariable int questionnaireId, @PathVariable int productVersionId,
 			@ModelAttribute("listAssessmentLine") ListAssessmentLine listAssessmentLine, BindingResult bindingResult,
 			Model model) {
@@ -118,7 +118,7 @@ public class QuestionnaireProductPresenter {
 		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
 			String [] arrayURLInit = assessmentLine.getArrayUrl();
-			List<SourceUrl> sourcesUrls = new ArrayList();
+			List<SourceUrl> sourcesUrls = new ArrayList<SourceUrl>();
 			for (int i = 0; i < arrayURLInit.length; i++) {
 				if (arrayURLInit[i] != null && arrayURLInit[i] != ""){
 					sourcesUrls.add(new SourceUrl(arrayURLInit[i]));
@@ -131,6 +131,6 @@ public class QuestionnaireProductPresenter {
 		lineValueController.createLineValues(lineValues, questionnaireId, evaluationId);
 		return "jsp/home";
 	}
-	*/
+	
 
 }

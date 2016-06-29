@@ -17,18 +17,18 @@
             Factor
             <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
      </div>
-	</br>
+	<br>
     <input name='model' value='${modelid}'/>
 	
 	
 <form:form method="post" action = "/innoassessment/factor-select/${modelid}" modelAttribute="listFactor">		
 
 	   	 <fieldset name='factor_list'>
-		<legend  align="center">Factor's list</legend>
+		<legend>Factor's list</legend>
 		<p/>
 	   	 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"   value="Submit">Submit Questionnaire</button>   
 	   
-	    <input aligh = "right" type="submit" class="btn btn-default" style = 'display: block;' value="Add Factors">
+	    <input type="submit" class="btn btn-default" style = 'display: block;' value="Add Factors">
 		<table class="table table-bordered">
 		<thead>
 			<tr>

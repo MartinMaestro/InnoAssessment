@@ -98,7 +98,7 @@
 								</table>
 			    		</td>
                          <td valign = 'top'>
-                             <table border='3' cellpadding='5' style='text-align: center; border-color: #4682B4;' align='center' valign='top'>
+                             <table border='3' cellpadding='5' style='text-align: center; border-color: #4682B4;' align='center' align='top'>
                                  <tr><th>Resulting impact</th><th>Value</th>
                                  <c:forEach items="${evaluationResultList}" var="evaluationResult">
                                  	<c:if test="${evaluationResult.dimension.name == dimension.name}">

@@ -1,0 +1,263 @@
+body {
+	padding-left: 2em;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	/*color: #4682B4;*/
+	color: F8FBFC;
+	/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+	/* IE10 Consumer Preview */
+	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/* Mozilla Firefox */
+	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/* Opera */
+	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF),
+		color-stop(1, #FFFFFF));
+	/* Webkit (Chrome 11+) */
+	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/* W3C Markup, IE10 Release Preview */
+	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
+}
+
+ul.navbar {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 2em;
+	left: 1em;
+	width: 9em
+}
+
+h1 {
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif
+}
+
+ul.navbar li {
+	background: white;
+	margin: 0.5em 0;
+	padding: 0.3em;
+	border-right: 1em solid black
+}
+
+ul.navbar a {
+	text-decoration: none
+}
+
+a:link {
+	color: blue
+}
+
+address {
+	margin-top: 1em;
+	padding-top: 1em;
+	border-top: thin dotted
+}
+
+fieldset {
+	margin: 2% 0;
+	border: 1px solid #4682B4;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	background: url(fieldsetbg.jpg) no-repeat left top;
+}
+
+legend {
+	font-size: large;
+	text-align: left;
+	background: -webkit-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+label {
+	font-size: small;
+}
+
+.tab {
+	font-size: large;
+	text-align: left;
+	background: -webkit-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA inset;
+	padding-right: 1em;
+	padding-left: 1em;
+	color: #4682B4;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin-bottom: 0%;
+	cursor: pointer;
+}
+
+.myheader {
+	font-size: xx-large;
+	text-align: center;
+	background: -webkit-linear-gradient(90deg, #4682B4, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA;
+	padding-right: 1em;
+	padding-left: 1em;
+	position: relative;
+}
+
+.myheadermodern {
+	background: -webkit-linear-gradient(90deg, #4682B4, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #4682B4, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA;
+	padding-right: 1em;
+	padding-left: 1em;
+	position: relative;
+}
+
+.myheader2 {
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 3em;
+	padding-right: 1em;
+	padding-left: 1em;
+	position: relative;
+}
+
+.myheader>img {
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	right: 2%;
+}
+
+.myheadermodern>img {
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	right: 2%;
+}
+
+.mytable {
+	table-layout: fixed;
+	width: 50%;
+}
+
+.mytable>td {
+	height: 100px;
+	table-layout: fixed;
+	width: 100px;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.myproducttable {
+	table-layout: fixed;
+	width: 75%;
+}
+
+.myproducttable>td {
+	height: 100px;
+	table-layout: fixed;
+	width: 50px;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.mybutton {
+	color: #4682B4;
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
+	text-transform: uppercase;
+	float: none;
+	display: none;
+	margin: 10px auto;
+}
+
+.mybutton2 {
+	font-size: large;
+	text-align: left;
+	background: -webkit-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat
+		scroll 0 0 transparent;
+	background: -moz-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll
+		0 0 transparent;
+	background: -ms-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: -o-linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0
+		0 transparent;
+	background: linear-gradient(90deg, #CCCCCC, #FFFFFF) repeat scroll 0 0
+		transparent;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 15px #AAAAAA inset;
+	padding-right: 1em;
+	padding-left: 1em;
+	color: #4682B4;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin-bottom: 0%;
+	cursor: pointer;
+	border: 2px solid #568FBD;
+}
+
+.edit {
+	position: absolute;
+	width: 96.35%;
+	top: 354px;
+	padding-left: 39px;
+	padding-right: 8px;
+	padding-bottom: 20px;
+	margin-left: -40px;
+	/*  Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+	/*	IE10 Consumer Preview */
+	background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/*	Mozilla Firefox  */
+	background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/*	Opera  */
+	background-image: -o-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/*	Webkit (Safari/Chrome 10)  */
+	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF),
+		color-stop(1, #FFFFFF));
+	/*	Webkit (Chrome 11+) */
+	background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+	/*	W3C Markup, IE10 Release Preview  */
+	background-image: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
+}
+
+.estilotextarea {
+	width: 400px;
+	height: 100px;
+	border: 2px solid #AEC8EF;
+}

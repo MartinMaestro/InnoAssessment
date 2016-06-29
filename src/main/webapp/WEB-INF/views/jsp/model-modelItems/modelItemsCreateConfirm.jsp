@@ -26,7 +26,7 @@
 		action="/innoassessment/create-modelItemsExecute"
 		modelAttribute="listModelItem">
 		<fieldset name='modelItem_list'>
-			<legend align="center">Model Item list</legend>
+			<legend >Model Item list</legend>
 			<p />
 			<div class="table-responsive">
 				<table class="table table-bordered">

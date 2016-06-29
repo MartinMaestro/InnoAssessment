@@ -65,6 +65,13 @@ public class Presenter {
 		// WebConfig.java
 		return "jsp/home";
 	}
+	
+	@RequestMapping("/home-modern")
+	public String homeModern(Model model) {
+		// La vista resultante no lleva extensión (.jsp) configurado en
+		// WebConfig.java
+		return "jsp/homeModern";
+	}
 
 	@RequestMapping("/home-develop")
 	public String homeDevelop(Model model) {

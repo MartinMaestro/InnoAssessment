@@ -18,34 +18,14 @@
     <link href='/innoassessment/static/modernStyle/justified-nav.css' rel="stylesheet">
 	 <script src='/innoassessment/static/modernStyle/ie-emulation-modes-warning.js' ></script>
 </head>
-
   <body>
-
     <div class="container">
-
-      <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
-        <h3 class="text-muted">Product Innovation Assessment Tool</h3>
-        <nav>
-          <ul class="nav nav-justified">
-            <li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-            <li><a href="/innoassessment/home-administration">Administration</a></li>
-            <li><a href="/innoassessment/build-questionnaire-select-model">Build Questionnaire</a></li>
-            <li><a href="http://getbootstrap.com/examples/justified-nav/#">Downloads</a></li>
-            <li><a href="http://getbootstrap.com/examples/justified-nav/#">About</a></li>
-            <li><a href="http://getbootstrap.com/examples/justified-nav/#">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-
+	<%@ include file="../common/header.jsp" %>    
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Administration</h1>
-        <p class="lead">Welcome to the administration section</p>
+        <h2>Welcome to the administration section</h2>
        </div>
 
-      <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
           <h2>Factors and Dimensions</h2>
@@ -94,7 +74,7 @@
 			</table>          
        </div>
         <div class="col-lg-4">
-          <h2>Products and Questionnaires</h2>
+          <h2>Product and Questionnaire</h2>
           <p>Product innovation assessment models that can be assessed and positioned through questionnaires in the proposed tool
           that also provides automation in the assessment and positioning of innovation.</p>
          <table >
@@ -116,19 +96,13 @@
 					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-assessment-select-questionnaire" role="button">Create Assessments »</a></p></td>
 				</tr>	
 			</tbody>
-			</table>    
-         
+			</table>          
         </div>
-      </div>
-
-      <!-- Site footer -->
-      <footer class="footer">
-        <p>© 2016 MiW, Inc.</p>
-      </footer>
+      </div>  
 
     </div> <!-- /container -->
 
-
+<%@ include file="../common/footer.jsp" %>  
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src='/innoassessment/static/modernStyle/ie10-viewport-bug-workaround.js' ></script>

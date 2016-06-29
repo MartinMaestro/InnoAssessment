@@ -2,8 +2,6 @@ package es.upm.miw.innoassessment.business.wrapper;
 
 import java.util.List;
 
-import es.upm.miw.innoassessment.data.entities.AssessmentLine;
-
 public class ListAssessmentLine {
 
 	List<AssessmentLineWrapper> assessmentList;

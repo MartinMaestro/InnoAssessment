@@ -2,61 +2,23 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon"
-	href='/innoassessment/static/images/vitruvio.png' />
-<title>Innoassessment</title>
-<!-- Bootstrap core CSS -->
-<link href='/innoassessment/static/modernStyle/bootstrap.min.css'
-	rel="stylesheet">
-<link href='/innoassessment/static/css/estilo.css' rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="shortcut icon" href="<c:url value='/static/images/vitruvio.png' />" />
+	<link rel="stylesheet" href="<c:url value='/static/css/estilo-origin.css' />">
+	<script language='Javascript' src="<c:url value='/static/js/tabsQuestionnaire.js' />"></script>
+	<script language='Javascript' src="<c:url value='/static/js/overlib.js' />"></script>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link
-	href='/innoassessment/static/modernStyle/ie10-viewport-bug-workaround.css'
-	rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href='/innoassessment/static/modernStyle/justified-nav.css'
-	rel="stylesheet">
-<script
-	src='/innoassessment/static/modernStyle/ie-emulation-modes-warning.js'></script>
-	<script src="<c:url value='/static/js/tabsQuestionnaire.js' />"></script>
-	<script src="<c:url value='/static/js/overlib.js' />"></script>
-	
+	<title>Innoassessment</title>
 </head>
-
-<body>
-	<div class="container">
-		<!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-		<div class="masthead">
-			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-					<li><a href="<c:url value='/home-administration'/>">Administration</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Services</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Downloads</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">About</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Contact</a></li>
-				</ul>
-			</nav>
-		</div>
-		<!-- Jumbotron -->
-		<div class="jumbotron">
-			<p class="lead">Product innovation assessment questionnaire</p>
-		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<fieldset name='date_evaluation'>
+    <body>
+        <div class="myheader">
+            Product innovation assessment questionnaire
+             <img src="<c:url value='/static/images/syst_logo.png' />" alt="" />
+        </div>
+            <fieldset name='date_evaluation'>
                 <legend>Evaluation Date</legend><p />
                 Model: <b>${questionnaireDetail.modelName}</b> 
                 - Questionnaire: <b>${questionnaireDetail.name}</b>
@@ -68,9 +30,9 @@
             <fieldset name='product_evaluation'>
                 <legend>Product</legend><p/>
                 Name: <b>${productVersion.productName}</b> 
-                - Description: <b>${productVersion.productDescription}</b></br>
+                - Description: <b>${productVersion.productDescription}</b><br>
                 Version of Product: <b>${productVersion.name}</b>
-                <input type='hidden' name='productVersion' value='productVersion.id' /></br></br>     	
+                <input type='hidden' name='productVersion' value='productVersion.id' /><br><br>     	
       		</fieldset>
       		<div id='pestanas'>
 		<div id='dTabs' style='padding-left: 1%;'>
@@ -79,7 +41,8 @@
 					value='${dimension.name}'>
 			</c:forEach>
 		</div>
-		<form:form method="post" action="/innoassessment/build-questionnaire/${questionnaireDetail.modelId}/productversion/${productVersion.id}" modelAttribute="listAssessmentLine">
+
+<form:form method="post" action="/innoassessment/questionnaire-build/${questionnaireDetail.modelId}/productversion/${productVersion.id}" modelAttribute="listAssessmentLine">
 		<div id='cont'
 			style='border: 1px solid #4682B4; border-radius: 8px; padding: 1%; margin-top: -0.9%;'>
 			<div id='pesta0' style='display: block;'>
@@ -88,7 +51,7 @@
 						id='al_${assessmentLine.modelItemDimensionId}-${assessmentLine.id}'>
 						<fieldset name='${assessmentLine.id}'>
 							<legend>${assessmentLine.modelItemFactorName}<a
-									onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> ${assessmentLine.modelItemHelp}',ABOVE, WIDTH, 500, FGCOLOR, '#FFFFFF', BGCOLOR, '#174A75', TEXTCOLOR, '#010100');"
+									onmouseover="return overlib('<b><i>${assessmentLine.modelItemFactorName}</i></b><br><br><b>Definition:</b><br>${assessmentLine.modelItemFactorDefinition}.<br><br><b>Interpretation:</b><br>${assessmentLine.modelItemInterpretation}<br><br><b>Help:</b><br> ${assessmentLine.modelItemHelp}',ABOVE, WIDTH, 500, FGCOLOR, '#FFF4CB', BGCOLOR, '#174A75', TEXTCOLOR, '#A68E34');"
 									onmouseout='return nd();'
 									style='position: relative; top: 1.5px; left: 4px;'> 
 									<img src="<c:url value='/static/images/icon_help.gif' />" alt='Help' height='16px' width='16px'/>
@@ -176,34 +139,11 @@
 		</div>
 	</div>  
 	 <button id='btn_submit' class = 'mybutton' style = 'display: block;' type="submit"   value="Submit">Submit Questionnaire</button>   
-	</form:form>
-		
-      		
-      		
-            
-            
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-dimension"
-						role="button">Create Dimension »</a>
-				</p>
-			</div>			
-		</div>
-
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
-	</div>
-	<!-- /container -->
-
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script
-		src='/innoassessment/static/modernStyle/ie10-viewport-bug-workaround.js'></script>
-
-</body>
+	</form:form>     
+			        
+           
+         
+           
+           
+    </body>
 </html>

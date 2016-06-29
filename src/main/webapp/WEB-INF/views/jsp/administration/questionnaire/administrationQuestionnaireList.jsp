@@ -30,24 +30,7 @@
 
 <body>
 	<div class="container">
-		<!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-		<div class="masthead">
-			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-					<li><a href="<c:url value='/home-administration'/>">Administration</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Services</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Downloads</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">About</a></li>
-					<li><a href="http://getbootstrap.com/examples/justified-nav/#">Contact</a></li>
-				</ul>
-			</nav>
-		</div>
-		<p></p>
-		<p></p>
-		<p></p>
+		<%@ include file="../../common/header.jsp" %> 	     
 		<div class="row">
 			<div class="col-sm-12" align="center">
 				<p class="lead">Questionnaire List</p>
@@ -92,11 +75,7 @@
 				</p>
 			</div>
 		</div>
-
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
+		<%@ include file="../../common/footer.jsp" %>  
 	</div>
 	<!-- /container -->
 
