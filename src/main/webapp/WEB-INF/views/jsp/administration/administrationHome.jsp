@@ -96,8 +96,8 @@
          <table >
 			<thead>
 				<tr>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-questionnaire" role="button">View Products »</a></p></th>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create Product »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-product" role="button">View Products »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-product" role="button">Create Product »</a></p></th>
 				</tr>
 			</thead>
 			<tbody> 		
