@@ -103,7 +103,6 @@ public class Presenter {
 
 	@RequestMapping(value = { "/search-productversion/{id}" })
 	public ModelAndView searchProductVersion(@PathVariable int id, Model model) {
-		System.out.println("---- PRESENTER searchProductVersion  " + id);
 		ModelAndView modelAndView = new ModelAndView("jsp/list/productVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(id));
 		return modelAndView;
@@ -142,8 +141,7 @@ public class Presenter {
 	@RequestMapping(value = "/productQuestionnaire-list", method = RequestMethod.POST)
 	public String listProductQuestionnaireSelect(@Valid QuestionnaireWrapper questionnaire, BindingResult bindingResult,
 			Model model) {
-		System.out.println("-------------PRESENTER listProductQuestionnaireSelect");
-		System.out.println("---- PRESENTER  " + questionnaire.getId());
+		
 
 		return "jsp/list/productQuestionnaireList";
 	}
@@ -259,8 +257,7 @@ public class Presenter {
 		// TODO CAMBIAR id questionario
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(1));
 
-		// System.out.println("----------------------- PRESENTER
-		// BUIDQUESTIONNAIRE DIMENSION: " + dimensionId);
+		
 		modelAndView.addObject("assessmentLineList",
 				// assessmentLineController.showAssessmentLinesByDimension(dimensionId)
 				assessmentLineController.showAssessmentLinesByQuestionnaire(questionnaireId));

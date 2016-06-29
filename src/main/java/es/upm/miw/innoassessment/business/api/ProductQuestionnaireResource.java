@@ -25,7 +25,6 @@ public class ProductQuestionnaireResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public void selectQuestionnaire(@RequestParam(required = true) int modelId) {
 		//TODO
-		System.out.println("-------------product questionnaire resource");
 		//this.questionnaireController.showQuestionnairesByModel(modelId);
 		//this.modelController.createModel(name, year, version, description);
 	}
@@ -38,7 +37,6 @@ public class ProductQuestionnaireResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<QuestionnaireWrapper> showQuestionnaires() {
-		System.out.println("-------------product questionnaire showQuestionnaires");
 		return questionnaireController.showQuestionnaires();
 	}
 

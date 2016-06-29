@@ -30,8 +30,8 @@
         <nav>
           <ul class="nav nav-justified">
             <li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-            <li><a href="http://getbootstrap.com/examples/justified-nav/#">Administration</a></li>
-            <li><a href="http://getbootstrap.com/examples/justified-nav/#">Services</a></li>
+            <li><a href="/innoassessment/home-administration">Administration</a></li>
+            <li><a href="/innoassessment/build-questionnaire-select-model">Build Questionnaire</a></li>
             <li><a href="http://getbootstrap.com/examples/justified-nav/#">Downloads</a></li>
             <li><a href="http://getbootstrap.com/examples/justified-nav/#">About</a></li>
             <li><a href="http://getbootstrap.com/examples/justified-nav/#">Contact</a></li>
@@ -49,8 +49,10 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Factors and Dimensions</h2>
-          <p>Product innovation assessment is seen as a multi-dimensional factors composition. 
-          where factors on each dimension could impact in the success of a software product</p>
+          <p>Product innovation assessment is seen as a multi-dimensional factors composition, 
+          where factors on each dimension could impact in the success of a software product.<br>
+          The impact of a factor could be positive, negative or both depending on the assessment model.
+          </p>
           <table >
 			<thead>
 				<tr>
@@ -68,7 +70,9 @@
         </div>
         <div class="col-lg-4">
           <h2>Models and ModelItems</h2>
-          <p>A product innovation assessment model is a composition of ModelItems.</p>
+          <p> Each model is identified by a modelIde and is described by its modelName.<br>
+          A product innovation assessment model is a composition of ModelItems. All these models
+          referred this two core concepts (factors and dimensions) with different impacts and weights.</p>
           <table >
 			<thead>
 				<tr>

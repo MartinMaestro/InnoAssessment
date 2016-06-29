@@ -26,6 +26,30 @@
 	rel="stylesheet">
 <script
 	src='/innoassessment/static/modernStyle/ie-emulation-modes-warning.js'></script>
+<script type="text/javascript">
+function showQuestionnaires(modelId) {
+	reloadPage('modelId',modelId);
+}
+
+function reloadPage(param,value){
+	param = param + "=" + value;
+	var url = window.location.href; 
+	if (url.indexOf('?') > -1){		
+		if (param.substring(0,7) == "modelId"){
+			var res = url.substring(0,url.indexOf('?'))
+	 		url = res + '?' + param
+		}
+		else {
+			url +=  '&' + param;
+		}
+	}else{
+	   	url += '?' + param
+	}
+	window.location.href = url;
+}
+</script>
+
+
 </head>
 
 <body>
@@ -34,6 +58,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
 		<div class="masthead">
 			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
+
 			<nav>
 				<ul class="nav nav-justified">
 					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
@@ -48,50 +73,75 @@
 		<p></p>
 		<p></p>
 		<p></p>
+
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Product Version List</p>
+				<p class="lead">Build Questionnaire <br> select one Model:</p>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="table table-bordered">
+				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Product Id</th>
-							<th>Product Name</th>
-							<th>Product Description</th>
-							<th>Product Provider</th>
+							<th>Model Id</th>
+							<th>Model Name</th>
+							<th>Model Year</th>
+							<th>Model Version</th>
+							<th>Model Description</th>
 							<th>#</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${productVersionList}" var="productVersion">
+						<c:forEach items="${modelList}" var="model">
 							<tr>
-								<td>${productVersion.id}</td>
-								<td>${productVersion.name}</td>
-								<td>${productVersion.description}</td>
-								<td>${productVersion.productId}</td>
-								<td>${productVersion.productName}</td>
-								<td>${productVersion.productDescription}</td>
-								<td>${product.productProvider}</td>
-
-								<td><a
-									href="<c:url value='/administration-delete-productversion/${productVersion.id}' />">delete</a></td>
+								<td>${model.id}</td>
+								<td>${model.name}</td>
+								<td>${model.year}</td>
+								<td>${model.version}</td>
+								<td>${model.description}</td>
+								<td><input id="model" type='radio' name='model'
+									value="${model.id}" onchange="showQuestionnaires(${model.id});"
+									${param.modelId==model.id?'checked':''}></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${!empty param.modelId && param.modelId > 0}">
+					<div class="myheader2" align='center'>Questionnnaire</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Questionnaire Id</th>
+								<th>Questionnaire Name</th>
+								<th>Questionnaire Version</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${questionnaireList}" var="questionnaire">
+								<tr>
+									<td>${questionnaire.id}</td>
+									<td>${questionnaire.name}</td>
+									<td>${questionnaire.version}</td>
+									<td><a
+										href="<c:url value='/build-questionnaire-select-product/${questionnaire.id}' />">Add
+											Product</a></td>
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
+
 			</div>
 		</div>
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
 	</div>
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>© 2016 MiW, Inc.</p>
+	</footer>
 	<!-- /container -->
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

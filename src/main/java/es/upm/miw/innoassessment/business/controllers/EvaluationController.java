@@ -31,9 +31,6 @@ public class EvaluationController {
 	}
 	
 	public int createEvaluation(int questionnaireId,int productVersionId) {
-		//Calendar fecha = Calendar.getInstance();	
-		//TODO MIRAR TIPO FECHA EVALUATION Date --> Calendar
-		System.out.println("------------- CONTROLLER PRESENTER QuestionnaireId: "+ questionnaireId+ " - ProductId"+productVersionId  );
 		Date fecha = new Date();
 		Evaluation evaluation = new Evaluation(new Questionnaire(questionnaireId), new ProductVersion(productVersionId),fecha);
 		evaluationDao.saveAndFlush(evaluation);

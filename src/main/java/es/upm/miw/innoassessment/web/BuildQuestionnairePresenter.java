@@ -32,8 +32,10 @@ import java.util.List;
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
 @SessionAttributes("name")
-public class QuestionnaireProductPresenter {
+public class BuildQuestionnairePresenter {
 
+	static final String PATH = "jsp/public/build-questionnaire";
+	
 	@Autowired
 	private AssessmentLineController assessmentLineController;
 
@@ -60,24 +62,23 @@ public class QuestionnaireProductPresenter {
 	
 	@Autowired
 	private SourceUrlController sourceUrlController;
-	
-	
-
-	@RequestMapping("/model-questionnaire")
-	public ModelAndView listModelQuestionnaire(Model model,
+		
+			
+	@RequestMapping("/build-questionnaire-select-model")
+	public ModelAndView buildQuestionnaireSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/selectModelQuestionnaire");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/buildQuestionnaireSelectModel");
 		modelAndView.addObject("modelList", modelController.showModels());
 		if (modelId != 0) {
 			modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnairesByModel(modelId));
 		}
 		return modelAndView;
 	}
-
-	@RequestMapping("/questionnaire-product/{id}")
-	public ModelAndView listQuestionnaireProduct(Model model, @PathVariable int id,
+	
+	@RequestMapping("/build-questionnaire-select-product/{id}")
+	public ModelAndView buildQuestionnaireSelectProduct(Model model, @PathVariable int id,
 			@RequestParam(value = "productId", required = false, defaultValue = "0") int productId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/list/selectQuestionnaireProduct");
+		ModelAndView modelAndView = new ModelAndView(PATH+"/buildQuestionnaireSelectProduct");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
 		modelAndView.addObject("hora", new SimpleDateFormat("H:mm").format(new Date()));
@@ -90,14 +91,12 @@ public class QuestionnaireProductPresenter {
 		}
 		return modelAndView;
 	}
-	/*
-
+	
 	@RequestMapping(value = { "/build-questionnaire/{id}" })
 	public ModelAndView buildQuestionnaire(@PathVariable int id, Model model,
 			@RequestParam(value = "productVersionId", required = true) int productVersionId,
 			@RequestParam(value = "processQuestionnaire", required = false, defaultValue = "0") int processQuestionnaire) {
-
-		ModelAndView modelAndView = new ModelAndView("jsp/create/questionnaireBuild");
+		ModelAndView modelAndView = new ModelAndView(PATH + "/buildQuestionnaire");
 		modelAndView.addObject("questionnaireDetail", questionnaireController.showQuestionnaire(id));
 		modelAndView.addObject("productVersion", productVersionController.showProductVersion(productVersionId));
 		modelAndView.addObject("fecha", new SimpleDateFormat("d/MM/yyyy").format(new Date()));
@@ -118,7 +117,7 @@ public class QuestionnaireProductPresenter {
 		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (AssessmentLineWrapper assessmentLine : listAssessmentLine.getAssessmentList()) {
 			String [] arrayURLInit = assessmentLine.getArrayUrl();
-			List<SourceUrl> sourcesUrls = new ArrayList();
+			List<SourceUrl> sourcesUrls = new ArrayList<SourceUrl>();
 			for (int i = 0; i < arrayURLInit.length; i++) {
 				if (arrayURLInit[i] != null && arrayURLInit[i] != ""){
 					sourcesUrls.add(new SourceUrl(arrayURLInit[i]));
@@ -131,6 +130,5 @@ public class QuestionnaireProductPresenter {
 		lineValueController.createLineValues(lineValues, questionnaireId, evaluationId);
 		return "jsp/home";
 	}
-	*/
 
 }
