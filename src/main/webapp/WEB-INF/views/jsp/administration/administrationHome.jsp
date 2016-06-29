@@ -67,7 +67,7 @@
 			</table>        
         </div>
         <div class="col-lg-4">
-          <h2>Model and ModelItems</h2>
+          <h2>Models and ModelItems</h2>
           <p>A product innovation assessment model is a composition of ModelItems.</p>
           <table >
 			<thead>
@@ -90,9 +90,30 @@
 			</table>          
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="http://getbootstrap.com/examples/justified-nav/#" role="button">View details »</a></p>
+          <h2>Products and Questionnaires</h2>
+          <p>Product innovation assessment models that can be assessed and positioned through questionnaires in the proposed tool
+          that also provides automation in the assessment and positioning of innovation.</p>
+         <table >
+			<thead>
+				<tr>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-questionnaire" role="button">View Products »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create Product »</a></p></th>
+				</tr>
+			</thead>
+			<tbody> 		
+				<tr>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-questionnaire" role="button">View Questionnaires »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create Questionnaire »</a></p>
+				  	
+				  	</td>
+				</tr>  	
+				<tr>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-assessment" role="button">View Assessments »</a></p></td>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-assessment-select-questionnaire" role="button">Create Assessments »</a></p></td>
+				</tr>	
+			</tbody>
+			</table>    
+         
         </div>
       </div>
 

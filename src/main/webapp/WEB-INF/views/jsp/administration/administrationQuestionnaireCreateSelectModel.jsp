@@ -50,7 +50,9 @@
 		<p></p>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
+				<p class="lead">
+					Create Questionnaire: <br> Model list to add questionnaire
+				</p>
 			</div>
 		</div>
 		<div class="row">
@@ -58,12 +60,11 @@
 				<table class="table table-bordered text-center">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Year</th>
-							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
+							<th>Model Id</th>
+							<th>Model Name</th>
+							<th>Model Year</th>
+							<th>Model Version</th>
+							<th>Model Description</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -75,23 +76,14 @@
 								<td>${model.version}</td>
 								<td>${model.description}</td>
 								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
+									href="<c:url value='/administration-create-questionnaire/${model.id}' />">Select
+										Model »</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
-				</p>
-			</div>
-		</div>
-
 		<!-- Site footer -->
 		<footer class="footer">
 			<p>© 2016 MiW, Inc.</p>

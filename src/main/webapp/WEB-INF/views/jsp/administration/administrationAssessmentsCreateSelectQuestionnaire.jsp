@@ -34,6 +34,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
 		<div class="masthead">
 			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
+			
 			<nav>
 				<ul class="nav nav-justified">
 					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
@@ -45,58 +46,48 @@
 				</ul>
 			</nav>
 		</div>
-		<p></p>
-		<p></p>
-		<p></p>
+		<p></p><p></p><p></p>
+		
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
+				<p class="lead">Create Assessments select Questionnaire</p>
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="col-sm-12">
 				<table class="table table-bordered text-center">
 					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Year</th>
-							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${modelList}" var="model">
-							<tr>
-								<td>${model.id}</td>
-								<td>${model.name}</td>
-								<td>${model.year}</td>
-								<td>${model.version}</td>
-								<td>${model.description}</td>
-								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Version</th>
+				<th>Model Name</th>
+				<th>Model Version</th>
+				<th>Model Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${questionnaireList}" var="questionnaire">
+				<tr>
+					<td>${questionnaire.id}</td>
+					<td>${questionnaire.name}</td>
+					<td>${questionnaire.version}</td>
+					<td>${questionnaire.modelName}</td>
+					<td>${questionnaire.modelVersion}</td>
+					<td>${questionnaire.modelDescription}</td>
+					<td><a href="<c:url value='/administration-create-assessments/${questionnaire.id}'/>">Select</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 				</table>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
-				</p>
-			</div>
-		</div>
-
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
 	</div>
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>© 2016 MiW, Inc.</p>
+	</footer>
 	<!-- /container -->
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

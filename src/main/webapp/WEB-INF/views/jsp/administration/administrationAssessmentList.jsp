@@ -45,40 +45,39 @@
 				</ul>
 			</nav>
 		</div>
-		<p></p>
-		<p></p>
-		<p></p>
+		<p></p><p></p><p></p>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
+				<p class="lead">Assessment List</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="table table-bordered text-center">
+				<table class="table table-bordered">
 					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Year</th>
-							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${modelList}" var="model">
-							<tr>
-								<td>${model.id}</td>
-								<td>${model.name}</td>
-								<td>${model.year}</td>
-								<td>${model.version}</td>
-								<td>${model.description}</td>
-								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
+				<tr>
+					<th>Id</th>
+					<th>Model</th>
+					<th>Dimension</th>
+					<th>Factor</th>
+					<th>Impact</th>
+					<th>Weight</th>
+					<th>Interpretation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${assessmentLineList}" var="assessmentLine">
+					<tr>
+						<td>${assessmentLine.id}</td>
+						<td>${assessmentLine.modelItemModelName}</td>
+						<td>${assessmentLine.modelItemDimensionName}</td>
+						<td>${assessmentLine.modelItemFactorName}</td>
+						<td>${assessmentLine.modelItemImpact}</td>
+						<td>${assessmentLine.modelItemWeight}</td>
+						<td>${assessmentLine.modelItemInterpretation}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
 				</table>
 			</div>
 		</div>
@@ -86,10 +85,10 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
+						href="/innoassessment/administration-create-dimension"
+						role="button">Create Dimension »</a>
 				</p>
-			</div>
+			</div>			
 		</div>
 
 		<!-- Site footer -->

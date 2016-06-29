@@ -34,6 +34,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
 		<div class="masthead">
 			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
+
 			<nav>
 				<ul class="nav nav-justified">
 					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
@@ -48,55 +49,83 @@
 		<p></p>
 		<p></p>
 		<p></p>
+
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
+				<p class="lead">Create Assessment</p>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-bordered text-center">
+			<div class="col-sm-12" align="center">
+				<form:form method="post"
+		action="/innoassessment/administration-create-assessments/${questionnaireid}"
+		modelAttribute="listModelItem">
+		<fieldset name='questionnaire'>
+			<legend>Questionnaire</legend>
+			<p />
+			Questionnaire: <b>${questionnaire.name}</b> - Version: <b>${questionnaire.version}</b><br>
+			<input type='hidden' name='questionnaire' value='questionnaire' /> <a
+				href="<c:url value='/administration-create-assessment-select-questionnaire/'/>">Change
+				Questionnaire</a>
+		</fieldset>
+
+		<fieldset name='modelItem_list'>
+			<legend >Model Item's list</legend>
+			<p />
+			Select all the model Items as you required, and click next:
+			<div class="table-responsive">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Name</th>
-							<th>Year</th>
-							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
+							<th>Model Name</th>
+							<th>Model Version</th>
+							<th>Dimension Name</th>
+							<th>Factor Name</th>
+							<th>Impact</th>
+							<th>Weight</th>
+							<th>Interpretation</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${modelList}" var="model">
+						<c:forEach items="${listModelItem.modelItemList}" var="modelItem"
+							varStatus="status">
 							<tr>
-								<td>${model.id}</td>
-								<td>${model.name}</td>
-								<td>${model.year}</td>
-								<td>${model.version}</td>
-								<td>${model.description}</td>
-								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
+								<td>${modelItem.id}</td>
+								<td>${modelItem.modelName}</td>
+								<td>${modelItem.modelVersion}</td>
+								<td>${modelItem.dimensionName}</td>
+								<td>${modelItem.factorName}</td>
+								<td>${modelItem.impact}</td>
+								<td>${modelItem.weight}</td>
+								<td>${modelItem.interpretation}</td>
+								<td><input type='checkbox'
+									name='modelItemList[${status.index}].radioValue'
+									value='${modelItem.id}'> <input type='hidden'
+									name='modelItemList[${status.index}].id'
+									value='${modelItem.id}' />
+									<input type='hidden'
+									name='modelItemList[${status.index}].impact'
+									value='${modelItem.impact}' />
+									</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
-				</p>
+		</fieldset>
+		<p>
+			<input class="btn btn-primary" type="submit" value="Next »">
+		</p>
+	</form:form>
 			</div>
 		</div>
-
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
 	</div>
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>© 2016 MiW, Inc.</p>
+	</footer>
 	<!-- /container -->
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

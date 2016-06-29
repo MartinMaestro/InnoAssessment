@@ -34,6 +34,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
 		<div class="masthead">
 			<h3 class="text-muted">Product Innovation Assessment Tool</h3>
+
 			<nav>
 				<ul class="nav nav-justified">
 					<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
@@ -48,55 +49,50 @@
 		<p></p>
 		<p></p>
 		<p></p>
+
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-bordered text-center">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Year</th>
-							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${modelList}" var="model">
-							<tr>
-								<td>${model.id}</td>
-								<td>${model.name}</td>
-								<td>${model.year}</td>
-								<td>${model.version}</td>
-								<td>${model.description}</td>
-								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
-				</p>
+				<p class="lead">Create Questionnaire</p>
 			</div>
 		</div>
 
-		<!-- Site footer -->
-		<footer class="footer">
-			<p>© 2016 MiW, Inc.</p>
-		</footer>
+		<div class="row">
+			<div class="col-sm-12" align="center">
+				<form:form method="post"
+					action="/innoassessment/administration-create-questionnaire/${modelid}"
+					modelAttribute="questionnaire">
+					<fieldset name='model'>
+						<legend>Model</legend>
+						<p />
+						Model: <b>${model.name}</b> <br>
+						Year: <b>${model.year}</b> <br>
+						Version: <b>${model.version}</b><br> 						
+						Description: <b>${model.description}</b><br>
+						<input type='hidden' name='model' value='model.id' /> <a
+							href="<c:url value='/administration-create-questionnaire-select-model/'/>">Change Model</a>
+					</fieldset>
+					<fieldset name='questionnaire'>
+						<legend>Fill the questionnaire details</legend>
+						<p>
+							Name:
+							<form:input path="name" placeholder="Name" required="required" />
+							<form:errors path="name" cssClass="error" />
+						</p>
+						<p>
+							Version:
+							<form:input path="version" placeholder="Version" />
+							<form:errors path="version" cssClass="error" />
+						</p>
+					</fieldset>
+					<input class="btn btn-primary" type="submit" value="Create »">
+				</form:form>
+			</div>
+		</div>
 	</div>
+	<!-- Site footer -->
+	<footer class="footer">
+		<p>© 2016 MiW, Inc.</p>
+	</footer>
 	<!-- /container -->
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

@@ -50,7 +50,7 @@
 		<p></p>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<p class="lead">Model List</p>
+				<p class="lead">Questionnaire List</p>
 			</div>
 		</div>
 		<div class="row">
@@ -60,22 +60,23 @@
 						<tr>
 							<th>Id</th>
 							<th>Name</th>
-							<th>Year</th>
 							<th>Version</th>
-							<th>Description</th>
-							<th>#</th>
+							<th>Model Name</th>
+							<th>Model Version</th>
+							<th>Model Description</th>							
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${modelList}" var="model">
+						<c:forEach items="${questionnaireList}" var="questionnaire">
 							<tr>
-								<td>${model.id}</td>
-								<td>${model.name}</td>
-								<td>${model.year}</td>
-								<td>${model.version}</td>
-								<td>${model.description}</td>
+								<td>${questionnaire.id}</td>
+								<td>${questionnaire.name}</td>
+								<td>${questionnaire.version}</td>
+								<td>${questionnaire.modelName}</td>
+								<td>${questionnaire.modelVersion}</td>
+								<td>${questionnaire.modelDescription}</td>
 								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
+									href="<c:url value='/administration-delete-questionnaire/${questionnaire.id}' />">Delete »</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -86,8 +87,8 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
-						Model »</a>
+						href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create
+						Questionnaire »</a>
 				</p>
 			</div>
 		</div>

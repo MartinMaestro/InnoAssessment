@@ -80,8 +80,7 @@
 			</div>
 		</fieldset>
 		<p>
-			<input type="submit" class="btn btn-default" style='display: block;'
-				value="Next">
+			<input class="btn btn-primary" type="submit" value="Next »">			
 		</p>
 	</form:form>
 	<a href="<c:url value="/home"/>">Home</a>

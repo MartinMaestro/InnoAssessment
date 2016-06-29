@@ -103,7 +103,7 @@ public class AdministrationModelItemPresenter {
 	@RequestMapping("/administration-create-modelitems-select-model")
 	public ModelAndView createModelItemsSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationCreateModelItemsSelectModel");
+		ModelAndView modelAndView = new ModelAndView("jsp/administration/administrationModelItemsCreateSelectModel");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
