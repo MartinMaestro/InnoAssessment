@@ -38,7 +38,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="administration/create-modelitem"
+				<form:form action="create-modelitem"
 					modelAttribute="modelItem">
 					<p>
 						Impact: <input type='radio' name='impact' id='opcion0'

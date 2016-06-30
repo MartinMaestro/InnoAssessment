@@ -39,7 +39,7 @@
 
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="administration/create-factor" modelAttribute="factor">
+				<form:form action="create-factor" modelAttribute="factor">
 					<p>
 						Name:
 						<form:input path="name" placeholder="Name" required="required" />

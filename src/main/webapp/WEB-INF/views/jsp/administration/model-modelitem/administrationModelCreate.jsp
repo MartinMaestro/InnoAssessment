@@ -39,7 +39,7 @@
 
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="administration/create-model"
+				<form:form action="create-model"
 					modelAttribute="model">
 					<p>
 						Name:

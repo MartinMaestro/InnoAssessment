@@ -39,7 +39,7 @@
 
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="administration/create-product" modelAttribute="product">		
+				<form:form action="create-product" modelAttribute="product">		
 		
 		<p>Name:
 			<form:input path="name" placeholder="Name" required="required" />
