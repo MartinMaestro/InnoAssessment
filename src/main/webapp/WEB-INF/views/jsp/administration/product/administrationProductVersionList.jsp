@@ -63,7 +63,7 @@
 								<td>${product.productProvider}</td>
 
 								<td><a
-									href="<c:url value='/administration-delete-productversion/${productVersion.id}' />">delete</a></td>
+									href="<c:url value='/administration/delete-productversion/${productVersion.id}' />">delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -28,34 +28,34 @@ public class AdministrationProductPresenter {
 	@Autowired
 	private ProductVersionController productVersionController;
 
-	@RequestMapping("/administration-list-product")
+	@RequestMapping("/administration/list-product")
 	public ModelAndView listProduct(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationProductList");
 		modelAndView.addObject("productList", productController.showProducts());
 		return modelAndView;
 	}
 
-	@RequestMapping("/administration-list-productversion")
+	@RequestMapping("/administration/list-productversion")
 	public ModelAndView listProductVersion(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationProductVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersions());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/administration-search-productversion/{id}" })
+	@RequestMapping(value = { "/administration/search-productversion/{id}" })
 	public ModelAndView searchProductVersion(@PathVariable int id, Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationProductVersionList");
 		modelAndView.addObject("productVersionList", productVersionController.showProductVersionsByProduct(id));
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-product", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-product", method = RequestMethod.GET)
 	public String createProduct(Model model) {
 		model.addAttribute("product", new ProductWrapper());
 		return PATH + "/administrationProductCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-product", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-product", method = RequestMethod.POST)
 	public String createProductSubmit(@Valid ProductWrapper product, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (productController.createProduct(product.getName(), product.getDescription(), product.getProvider())) {
@@ -68,7 +68,7 @@ public class AdministrationProductPresenter {
 		return PATH + "/administrationProductCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-productversion/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-productversion/{id}", method = RequestMethod.GET)
 	public ModelAndView createProductVersion(@PathVariable int id, Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationProductVersionCreate");
 		modelAndView.addObject("product", productController.showProduct(id));
@@ -76,7 +76,7 @@ public class AdministrationProductPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-productversion/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-productversion/{id}", method = RequestMethod.POST)
 	public String createProductVersionSubmit(@Valid ProductVersionWrapper productVersion, BindingResult bindingResult,
 			Model model) {
 		if (!bindingResult.hasErrors()) {
@@ -92,14 +92,14 @@ public class AdministrationProductPresenter {
 		return PATH + "/administrationProductVersionList";
 	}
 
-	@RequestMapping(value = { "/administration-delete-product/{id}" })
+	@RequestMapping(value = { "/administration/delete-product/{id}" })
 	public String deleteProduct(@PathVariable int id, Model model) {
 		productController.deleteProduct(id);
 		model.addAttribute("productList", productController.showProducts());
 		return PATH + "/administrationProductList";
 	}
 
-	@RequestMapping(value = { "/administration-delete-productversion/{id}" })
+	@RequestMapping(value = { "/administration/delete-productversion/{id}" })
 	public String deleteProductVersion(@PathVariable int id, Model model) {
 		productVersionController.deleteProductVersion(id);
 		model.addAttribute("productVersionList", productVersionController.showProductVersions());

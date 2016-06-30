@@ -5,7 +5,7 @@
 	<nav>
 		<ul class="nav nav-justified">
 			<li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-			<li><a href="/innoassessment/home-administration">Administration</a></li>
+			<li><a href="/innoassessment/administration/home">Administration</a></li>
 			<li><a href="/innoassessment/build-questionnaire-select-model">Build Questionnaire</a></li>
 			<li><a href="/innoassessment/assessment-product-search">Assessment by Product</a></li>
 			<li><a href="/innoassessment/assessment-questionnaire-search">Assessment by Questionnaire</a></li>

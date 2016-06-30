@@ -59,7 +59,7 @@
 					<td>${questionnaire.modelName}</td>
 					<td>${questionnaire.modelVersion}</td>
 					<td>${questionnaire.modelDescription}</td>
-					<td><a href="<c:url value='/administration-create-assessments/${questionnaire.id}'/>">Select</a></td>
+					<td><a href="<c:url value='/administration/create-assessments/${questionnaire.id}'/>">Select</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

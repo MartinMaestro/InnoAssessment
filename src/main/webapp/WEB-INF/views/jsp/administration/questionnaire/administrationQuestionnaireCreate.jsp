@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="col-sm-12" align="center">
 				<form:form method="post"
-					action="/innoassessment/administration-create-questionnaire/${modelid}"
+					action="/innoassessment/administration/create-questionnaire/${modelid}"
 					modelAttribute="questionnaire">
 					<fieldset name='model'>
 						<legend>Model</legend>
@@ -50,7 +50,7 @@
 						Version: <b>${model.version}</b><br> 						
 						Description: <b>${model.description}</b><br>
 						<input type='hidden' name='model' value='model.id' /> <a
-							href="<c:url value='/administration-create-questionnaire-select-model/'/>">Change Model</a>
+							href="<c:url value='/administration/create-questionnaire-select-model/'/>">Change Model</a>
 					</fieldset>
 					<fieldset name='questionnaire'>
 						<legend>Fill the questionnaire details</legend>

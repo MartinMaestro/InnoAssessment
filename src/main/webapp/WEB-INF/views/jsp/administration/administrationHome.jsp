@@ -36,14 +36,14 @@
           <table >
 			<thead>
 				<tr>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-factor" role="button">View Factors »</a></p></th>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-factor" role="button">Create Factor »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-factor" role="button">View Factors »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-factor" role="button">Create Factor »</a></p></th>
 				</tr>
 			</thead>
 			<tbody> 		
 				<tr>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-dimension" role="button">View Dimensions »</a></p></td>
-				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-dimension" role="button">Create Dimension »</a></p></td>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-dimension" role="button">View Dimensions »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-dimension" role="button">Create Dimension »</a></p></td>
 				</tr>  		
 			</tbody>
 			</table>        
@@ -56,15 +56,15 @@
           <table >
 			<thead>
 				<tr>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-model" role="button">View Models »</a></p></th>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-model" role="button">Create Model »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-model" role="button">View Models »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-model" role="button">Create Model »</a></p></th>
 				</tr>
 			</thead>
 			<tbody> 		
 				<tr>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-modelitem" role="button">View ModelItems »</a></p></td>
-				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-modelitem" role="button">Create ModelItem »</a></p>
-				  	<p><a class="btn btn-primary" href="/innoassessment/administration-create-modelitems-select-model" role="button">Create ModelItems »</a></p>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-modelitem" role="button">View ModelItems »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-modelitem" role="button">Create ModelItem »</a></p>
+				  	<p><a class="btn btn-primary" href="/innoassessment/administration/create-modelitems-select-model" role="button">Create ModelItems »</a></p>
 				  	</td>
 				</tr>  	
 				<tr>
@@ -80,20 +80,20 @@
          <table >
 			<thead>
 				<tr>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-product" role="button">View Products »</a></p></th>
-					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-product" role="button">Create Product »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-product" role="button">View Products »</a></p></th>
+					<th class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-product" role="button">Create Product »</a></p></th>
 				</tr>
 			</thead>
 			<tbody> 		
 				<tr>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-questionnaire" role="button">View Questionnaires »</a></p></td>
-				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create Questionnaire »</a></p>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-questionnaire" role="button">View Questionnaires »</a></p></td>
+				  	<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-questionnaire-select-model" role="button">Create Questionnaire »</a></p>
 				  	
 				  	</td>
 				</tr>  	
 				<tr>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-list-assessment" role="button">View Assessments »</a></p></td>
-					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration-create-assessment-select-questionnaire" role="button">Create Assessments »</a></p></td>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/list-assessment" role="button">View Assessments »</a></p></td>
+					<td class="col-lg-2"><p><a class="btn btn-primary" href="/innoassessment/administration/create-assessment-select-questionnaire" role="button">Create Assessments »</a></p></td>
 				</tr>	
 			</tbody>
 			</table>          

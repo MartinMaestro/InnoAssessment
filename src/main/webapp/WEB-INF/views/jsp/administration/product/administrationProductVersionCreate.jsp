@@ -66,7 +66,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="administration-create-productversion"
+				<form:form action="administration/create-productversion"
 					modelAttribute="productVersion">
 					<form:input path="id" placeholder="Id" required="required"
 						type="hidden" />

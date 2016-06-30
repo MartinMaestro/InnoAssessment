@@ -59,7 +59,7 @@
 								<td>${model.version}</td>
 								<td>${model.description}</td>
 								<td><a
-									href="<c:url value='/administration-create-questionnaire/${model.id}' />">Select
+									href="<c:url value='/administration/create-questionnaire/${model.id}' />">Select
 										Model »</a></td>
 							</tr>
 						</c:forEach>

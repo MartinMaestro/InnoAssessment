@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<form:form method="post"
-					action="/innoassessment/administration-create-modelitems-confirm"
+					action="/innoassessment/administration/create-modelitems-confirm"
 					modelAttribute="listModelItem">
 					<fieldset name='modelItem_list'>
 						<legend>Model Item list</legend>

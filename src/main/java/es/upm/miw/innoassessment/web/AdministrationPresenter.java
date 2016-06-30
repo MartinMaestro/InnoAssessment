@@ -11,13 +11,9 @@ import org.springframework.web.context.WebApplicationContext;
 @SessionAttributes("name")
 public class AdministrationPresenter {
 
-	@RequestMapping("/home-administration")
-	public String homeAdministration(Model model) {
+	@RequestMapping("/administration/home")
+	public String admin(Model model) {
 		return "jsp/administration/administrationHome";
-	}
-	
-
-	
-	
+	}	
 
 }

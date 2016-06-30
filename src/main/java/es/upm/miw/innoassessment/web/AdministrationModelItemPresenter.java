@@ -41,27 +41,27 @@ public class AdministrationModelItemPresenter {
 	@Autowired
 	private ModelItemController modelItemController;
 
-	@RequestMapping("/administration-list-model")
+	@RequestMapping("/administration/list-model")
 	public ModelAndView listModel(Model model) {
 		ModelAndView modelAndView = new ModelAndView( PATH + "/administrationModelList");
 		modelAndView.addObject("modelList", modelController.showModels());
 		return modelAndView;
 	}
 
-	@RequestMapping("/administration-list-modelitem")
+	@RequestMapping("/administration/list-modelitem")
 	public ModelAndView listModelItem(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemList");
 		modelAndView.addObject("modelItemList", modelItemController.showModelItems());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-model", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-model", method = RequestMethod.GET)
 	public String createModel(Model model) {
 		model.addAttribute("model", new ModelWrapper());
 		return PATH + "/administrationModelCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-model", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-model", method = RequestMethod.POST)
 	public String createModelSubmit(@Valid ModelWrapper modelw, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (modelController.createModel(modelw.getName(), modelw.getYear(), modelw.getVersion(),
@@ -75,7 +75,7 @@ public class AdministrationModelItemPresenter {
 		return PATH +"/administrationModelCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-modelitem", method = RequestMethod.GET)
 	public String createModelItem(Model model) {
 		model.addAttribute("modelList", modelController.showModels());
 		model.addAttribute("modelItem", new ModelItemWrapper());
@@ -85,7 +85,7 @@ public class AdministrationModelItemPresenter {
 		return PATH + "/administrationModelItemCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-modelitem", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-modelitem", method = RequestMethod.POST)
 	public String createModelItemSubmit(@Valid ModelItemWrapper modelItem, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (modelItemController.createModelItem(modelItem.getModelId(), modelItem.getDimensionId(),
@@ -100,7 +100,7 @@ public class AdministrationModelItemPresenter {
 		return PATH +"/administrationModelItemCreate";
 	}
 
-	@RequestMapping("/administration-create-modelitems-select-model")
+	@RequestMapping("/administration/create-modelitems-select-model")
 	public ModelAndView createModelItemsSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreateSelectModel");
@@ -108,7 +108,7 @@ public class AdministrationModelItemPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-modelitems/{modelid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-modelitems/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createModelItems(Model model, @PathVariable int modelid,
 			@RequestParam(value = "dimensionid", required = false, defaultValue = "0") int dimensionid) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreate");
@@ -125,7 +125,7 @@ public class AdministrationModelItemPresenter {
 	}
 
 	@RequestMapping(value = {
-			"/administration-create-modelitems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
+			"/administration/create-modelitems/{modelid}/dimension/{dimensionid}" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsSubmit(Model model, @PathVariable int modelid, @PathVariable int dimensionid,
 			@ModelAttribute("listFactor") ListFactor listFactor) {
 		ModelAndView modelAndView = new ModelAndView(PATH +"/administrationModelItemsCreateConfirm");
@@ -151,7 +151,7 @@ public class AdministrationModelItemPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/administration-create-modelitems-confirm" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/administration/create-modelitems-confirm" }, method = RequestMethod.POST)
 	public ModelAndView createModelItemsExecute(Model model,
 			@ModelAttribute("listModelItem") ListModelItem listModelItem) {
 		for (ModelItemWrapper modelItem : listModelItem.getModelItemList()) {
@@ -164,7 +164,7 @@ public class AdministrationModelItemPresenter {
 		return modelAndView;
 	}	
 
-	@RequestMapping(value = { "/administration-delete-model/{id}" })
+	@RequestMapping(value = { "/administration/delete-model/{id}" })
 	public String deleteModel(@PathVariable int id, Model model) {
 		modelController.deleteModel(id);
 		model.addAttribute("modelList", modelController.showModels());

@@ -68,7 +68,7 @@
 
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form method="post" action="/innoassessment/administration-create-modelitems/${modelid}/dimension/${dimensionDetail.id}"
+				<form:form method="post" action="/innoassessment/administration/create-modelitems/${modelid}/dimension/${dimensionDetail.id}"
 		modelAttribute="listFactor">
 		<fieldset name='model'>
 			<legend>Model</legend>
@@ -76,7 +76,7 @@
 			Model: <b>${model.name}</b> - Year: <b>${model.year}</b> - Version: <b>${model.version}</b><br>
 			Description: <b>${model.description}</b><br> <input type='hidden'
 				name='model' value='model.id' /> <a
-				href="<c:url value='/administration-create-modelitems-select-model/'/>">Change Model</a>
+				href="<c:url value='/administration/create-modelitems-select-model/'/>">Change Model</a>
 		</fieldset>
 		<c:if test="${empty param.dimensionid }">
 			<fieldset name='dimension'>
@@ -114,7 +114,7 @@
 				<p/> 
 				Dimension: <b>${dimensionDetail.name}</b> <input type='hidden'
 					name='dimensionDetail' value='dimensionDetail.id' /><br> <a
-					href="<c:url value='/administration-create-modelitems/${modelid}'/>">Change
+					href="<c:url value='/administration/create-modelitems/${modelid}'/>">Change
 					Dimension</a>
 			</fieldset>
 			<br>

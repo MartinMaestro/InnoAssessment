@@ -57,9 +57,9 @@
 				    <td>${product.name}</td>
 				    <td>${product.description}</td>
 				    <td>${product.provider}</td>
-				    <td><a href="<c:url value='/administration-search-productversion/${product.id}' />">List Product Version</a></td>       
-				    <td><a href="<c:url value='/administration-create-productversion/${product.id}' />">Create Product Version</a></td>				   
-				    <td><a href="<c:url value='/administration-delete-product/${product.id}' />">delete</a></td>
+				    <td><a href="<c:url value='/administration/search-productversion/${product.id}' />">List Product Version</a></td>       
+				    <td><a href="<c:url value='/administration/create-productversion/${product.id}' />">Create Product Version</a></td>				   
+				    <td><a href="<c:url value='/administration/delete-product/${product.id}' />">delete</a></td>
 				    				
 				</tr>
 			</c:forEach>
@@ -71,7 +71,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-product"
+						href="/innoassessment/administration/create-product"
 						role="button">Create Product »</a>
 				</p>
 			</div>

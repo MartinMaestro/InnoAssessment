@@ -26,27 +26,27 @@ public class AdministrationDimensionFactorPresenter {
 	@Autowired
 	private FactorController factorController;
 
-	@RequestMapping("/administration-list-dimension")
+	@RequestMapping("/administration/list-dimension")
 	public ModelAndView listDimension(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationDimensionList");
 		modelAndView.addObject("dimensionList", dimensionController.showDimensions());
 		return modelAndView;
 	}
 
-	@RequestMapping("/administration-list-factor")
+	@RequestMapping("/administration/list-factor")
 	public ModelAndView listFactor(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationFactorList");
 		modelAndView.addObject("factorList", factorController.showFactors());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-dimension", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-dimension", method = RequestMethod.GET)
 	public String createDimension(Model model) {
 		model.addAttribute("dimension", new DimensionWrapper());
 		return PATH + "/administrationDimensionCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-dimension", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-dimension", method = RequestMethod.POST)
 	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (dimensionController.createDimension(dimension.getName())) {
@@ -59,13 +59,13 @@ public class AdministrationDimensionFactorPresenter {
 		return PATH + "/administrationDimensionCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-factor", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-factor", method = RequestMethod.GET)
 	public String createFactor(Model model) {
 		model.addAttribute("factor", new FactorWrapper());
 		return PATH + "/administrationFactorCreate";
 	}
 
-	@RequestMapping(value = "/administration-create-factor", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-factor", method = RequestMethod.POST)
 	public String createFactorSubmit(@Valid FactorWrapper factor, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
 			if (factorController.createFactor(factor.getName(), factor.getDefinition())) {
@@ -78,14 +78,14 @@ public class AdministrationDimensionFactorPresenter {
 		return PATH + "/administrationFactorCreate";
 	}
 
-	@RequestMapping(value = { "/administration-delete-dimension/{id}" })
+	@RequestMapping(value = { "/administration/delete-dimension/{id}" })
 	public String deleteDimension(@PathVariable int id, Model model) {
 		dimensionController.deleteDimension(id);
 		model.addAttribute("dimensionList", dimensionController.showDimensions());
 		return PATH + "/administrationDimensionList";
 	}
 
-	@RequestMapping(value = { "/administration-delete-factor/{id}" })
+	@RequestMapping(value = { "/administration/delete-factor/{id}" })
 	public String deleteFactor(@PathVariable int id, Model model) {
 		factorController.deleteFactor(id);
 		model.addAttribute("factorList", factorController.showFactors());

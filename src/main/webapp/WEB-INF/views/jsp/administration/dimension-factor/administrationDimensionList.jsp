@@ -53,7 +53,7 @@
 								<td>${dimension.id}</td>
 								<td>${dimension.name}</td>
 								<td><a
-									href="<c:url value='/administration-delete-dimension/${dimension.id}' />">Delete</a></td>
+									href="<c:url value='/administration/delete-dimension/${dimension.id}' />">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -64,7 +64,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-dimension"
+						href="/innoassessment/administration/create-dimension"
 						role="button">Create Dimension »</a>
 				</p>
 			</div>			

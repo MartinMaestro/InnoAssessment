@@ -80,7 +80,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-modelitem"
+						href="/innoassessment/administration/create-modelitem"
 						role="button">Create ModelItem »</a>
 				</p>
 			</div>

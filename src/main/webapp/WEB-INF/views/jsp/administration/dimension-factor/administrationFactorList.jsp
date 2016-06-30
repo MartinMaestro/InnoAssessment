@@ -54,7 +54,7 @@
 								<td>${factor.name}</td>
 								<td>${factor.definition}</td>
 								<td><a
-									href="<c:url value='/administration-delete-factor/${factor.id}' />">Delete</a></td>
+									href="<c:url value='/administration/delete-factor/${factor.id}' />">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -65,7 +65,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-factor"
+						href="/innoassessment/administration/create-factor"
 						role="button">Create Factor »</a>
 				</p>
 			</div>

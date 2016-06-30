@@ -69,7 +69,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-model" role="button">Create
+						href="/innoassessment/administration/create-model" role="button">Create
 						Model »</a>
 				</p>
 			</div>

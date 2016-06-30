@@ -59,7 +59,7 @@
 								<td>${questionnaire.modelVersion}</td>
 								<td>${questionnaire.modelDescription}</td>
 								<td><a
-									href="<c:url value='/administration-delete-questionnaire/${questionnaire.id}' />">Delete »</a></td>
+									href="<c:url value='/administration/delete-questionnaire/${questionnaire.id}' />">Delete »</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -70,7 +70,7 @@
 			<div class="col-sm-12" align="center">
 				<p>
 					<a class="btn btn-primary"
-						href="/innoassessment/administration-create-questionnaire-select-model" role="button">Create
+						href="/innoassessment/administration/create-questionnaire-select-model" role="button">Create
 						Questionnaire »</a>
 				</p>
 			</div>

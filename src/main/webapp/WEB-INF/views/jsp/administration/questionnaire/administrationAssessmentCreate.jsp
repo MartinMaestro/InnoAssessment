@@ -40,14 +40,14 @@
 		<div class="row">
 			<div class="col-sm-12" align="center">
 				<form:form method="post"
-		action="/innoassessment/administration-create-assessments/${questionnaireid}"
+		action="/innoassessment/administration/create-assessments/${questionnaireid}"
 		modelAttribute="listModelItem">
 		<fieldset name='questionnaire'>
 			<legend>Questionnaire</legend>
 			<p />
 			Questionnaire: <b>${questionnaire.name}</b> - Version: <b>${questionnaire.version}</b><br>
 			<input type='hidden' name='questionnaire' value='questionnaire' /> <a
-				href="<c:url value='/administration-create-assessment-select-questionnaire/'/>">Change
+				href="<c:url value='/administration/create-assessment-select-questionnaire/'/>">Change
 				Questionnaire</a>
 		</fieldset>
 

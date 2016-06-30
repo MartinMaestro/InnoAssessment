@@ -58,7 +58,7 @@
                     <td>${model.year}</td>
                     <td>${model.version}</td>                   
                     <td>${model.description}</td>                   
-                	<td><a href="<c:url value='/administration-create-modelitems/${model.id}' />">Select Model »</a></td>        
+                	<td><a href="<c:url value='/administration/create-modelitems/${model.id}' />">Select Model »</a></td>        
                </tr>
             </c:forEach>
 					</tbody>

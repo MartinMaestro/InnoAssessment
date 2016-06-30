@@ -37,21 +37,21 @@ public class AdministrationQuestionnairePresenter {
 	@Autowired
 	private QuestionnaireController questionnaireController;
 
-	@RequestMapping("/administration-list-questionnaire")
+	@RequestMapping("/administration/list-questionnaire")
 	public ModelAndView listQuestionnaire(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireList");
 		modelAndView.addObject("questionnaireList", questionnaireController.showQuestionnaires());
 		return modelAndView;
 	}
 
-	@RequestMapping("/administration-list-assessment")
+	@RequestMapping("/administration/list-assessment")
 	public ModelAndView listAssessmentLines(Model model) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentList");
 		modelAndView.addObject("assessmentLineList", assessmentLineController.showAssessmentLines());
 		return modelAndView;
 	}
 
-	@RequestMapping("/administration-create-questionnaire-select-model")
+	@RequestMapping("/administration/create-questionnaire-select-model")
 	public ModelAndView createQuestionnaireSelectModel(Model model,
 			@RequestParam(value = "modelId", required = false, defaultValue = "0") int modelId) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireCreateSelectModel");
@@ -59,7 +59,7 @@ public class AdministrationQuestionnairePresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-questionnaire/{modelid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-questionnaire/{modelid}", method = RequestMethod.GET)
 	public ModelAndView createQuestionnaire(Model model, @PathVariable int modelid) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationQuestionnaireCreate");
 		modelAndView.addObject("model", modelController.showModel(modelid));
@@ -67,7 +67,7 @@ public class AdministrationQuestionnairePresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-questionnaire/{modelid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-questionnaire/{modelid}", method = RequestMethod.POST)
 	public ModelAndView createQuestionnaireSubmit(@Valid QuestionnaireWrapper questionnaire,
 			BindingResult bindingResult, Model model, @PathVariable int modelid) {
 		if (!bindingResult.hasErrors()) {
@@ -80,14 +80,14 @@ public class AdministrationQuestionnairePresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/administration-delete-questionnaire/{id}" })
+	@RequestMapping(value = { "/administration/delete-questionnaire/{id}" })
 	public String deleteQuestionnaire(@PathVariable int id, Model model) {
 		questionnaireController.deleteQuestionnaire(id);
 		model.addAttribute("questionnaireList", questionnaireController.showQuestionnaires());
 		return PATH + "/administrationQuestionnaireList";
 	}
 
-	@RequestMapping("/administration-create-assessment-select-questionnaire")
+	@RequestMapping("/administration/create-assessment-select-questionnaire")
 	public ModelAndView listQuestionnaire(Model model,
 			@RequestParam(value = "questionnaireId", required = false, defaultValue = "0") int questionnaireId) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentsCreateSelectQuestionnaire");
@@ -95,7 +95,7 @@ public class AdministrationQuestionnairePresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-assessments/{questionnaireid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/administration/create-assessments/{questionnaireid}", method = RequestMethod.GET)
 	public ModelAndView createAssessments(Model model, @PathVariable int questionnaireid) {
 		ModelAndView modelAndView = new ModelAndView(PATH + "/administrationAssessmentCreate");
 		modelAndView.addObject("questionnaire", questionnaireController.showQuestionnaire(questionnaireid));
@@ -105,7 +105,7 @@ public class AdministrationQuestionnairePresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/administration-create-assessments/{questionnaireid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/administration/create-assessments/{questionnaireid}", method = RequestMethod.POST)
 	public ModelAndView createAssessmentsSubmit(Model model, @PathVariable int questionnaireid,
 			@ModelAttribute("listModelItem") ListModelItem listModelItem) {
 
