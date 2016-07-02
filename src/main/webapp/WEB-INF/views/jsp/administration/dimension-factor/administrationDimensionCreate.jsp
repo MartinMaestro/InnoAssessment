@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
 <link href='/innoassessment/static/modernStyle/bootstrap.min.css'
 	rel="stylesheet">
 <link href='/innoassessment/static/css/estilo.css' rel="stylesheet">
-
+<style>.error {	color: red;}</style>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link
 	href='/innoassessment/static/modernStyle/ie10-viewport-bug-workaround.css'

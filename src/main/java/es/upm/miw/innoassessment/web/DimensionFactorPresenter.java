@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.upm.miw.innoassessment.business.api.exceptions.AlreadyExistDimensionException;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.FactorController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
@@ -48,7 +49,8 @@ public class DimensionFactorPresenter {
 	}
 
 	@RequestMapping(value = "/create-dimension", method = RequestMethod.POST)
-	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
+	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model)
+			throws AlreadyExistDimensionException {
 		if (!bindingResult.hasErrors()) {
 			if (dimensionController.createDimension(dimension.getName())) {
 				model.addAttribute("name", dimension.getName());

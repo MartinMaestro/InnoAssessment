@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import es.upm.miw.innoassessment.business.api.exceptions.AlreadyExistDimensionException;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.data.daos.DimensionDao;
 import es.upm.miw.innoassessment.data.entities.Dimension;
@@ -40,14 +41,26 @@ public class DimensionController {
 		return dimensionWrapperList;
 	}
 
-	public boolean createDimension(String name) {
-		dimensionDao.saveAndFlush(new Dimension(name));
-		return true;
+	public boolean createDimension(String name)
+	// throws AlreadyExistDimensionException
+	{
+		if (exist(name)) {
+			return false;
+			// throw new AlreadyExistDimensionException();
+		} else {
+
+			dimensionDao.saveAndFlush(new Dimension(name));
+			return true;
+		}
 	}
 
 	public boolean deleteDimension(int id) {
 		dimensionDao.delete(id);
 		return true;
+	}
+
+	public boolean exist(String name) {
+		return dimensionDao.findByName(name) != null;
 	}
 
 }

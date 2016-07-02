@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.upm.miw.innoassessment.business.api.exceptions.AlreadyExistDimensionException;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.FactorController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
@@ -53,6 +54,8 @@ public class AdministrationDimensionFactorPresenter {
 				model.addAttribute("dimensionList", dimensionController.showDimensions());
 				return PATH + "/administrationDimensionList";
 			} else {
+				System.out.println("------ errror dimension");
+				model.addAttribute("dimension", dimension);
 				bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
 			}
 		}
