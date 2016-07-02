@@ -11,7 +11,7 @@ import javax.persistence.Column;
 public class Questionnaire {
 	@Id
 	@GeneratedValue
-	private int id; 
+	private int id;
 
 	@ManyToOne
 	@JoinColumn
@@ -26,11 +26,12 @@ public class Questionnaire {
 	public Questionnaire() {
 
 	}
-	public Questionnaire(int id){
+
+	public Questionnaire(int id) {
 		this.id = id;
-		
+
 	}
-	
+
 	public Questionnaire(Model model, String name, String version) {
 		this.model = model;
 		this.name = name;
@@ -68,7 +69,5 @@ public class Questionnaire {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
-	
 
 }
