@@ -40,8 +40,7 @@
 		
 		<div class="row">
 			<div class="col-sm-12" align="center">
-				<form:form action="create-dimension"
-					modelAttribute="dimension">
+				<form:form action="create-dimension" modelAttribute="dimensionWrapper">
 					<p>
 						Name:
 						<form:input path="name" placeholder="Name" required="required" />

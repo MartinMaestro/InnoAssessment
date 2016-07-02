@@ -43,19 +43,18 @@ public class AdministrationDimensionFactorPresenter {
 
 	@RequestMapping(value = "/administration/create-dimension", method = RequestMethod.GET)
 	public String createDimension(Model model) {
-		model.addAttribute("dimension", new DimensionWrapper());
+		model.addAttribute("dimensionWrapper", new DimensionWrapper());
 		return PATH + "/administrationDimensionCreate";
 	}
 
 	@RequestMapping(value = "/administration/create-dimension", method = RequestMethod.POST)
-	public String createDimensionSubmit(@Valid DimensionWrapper dimension, BindingResult bindingResult, Model model) {
+	public String createDimensionSubmit(@Valid DimensionWrapper dimensionWrapper, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
-			if (dimensionController.createDimension(dimension.getName())) {
+			if (dimensionController.createDimension(dimensionWrapper.getName())) {
 				model.addAttribute("dimensionList", dimensionController.showDimensions());
 				return PATH + "/administrationDimensionList";
 			} else {
-				model.addAttribute("dimension", dimension);
-				bindingResult.rejectValue("name", "error.dimension", "Exist dimension");
+				bindingResult.rejectValue("name", "error.dimensionWrapper", "Dimension ya existente");
 			}
 		}
 		return PATH + "/administrationDimensionCreate";
