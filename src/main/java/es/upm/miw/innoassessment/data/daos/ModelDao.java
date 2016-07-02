@@ -5,5 +5,5 @@ import es.upm.miw.innoassessment.data.entities.Model;
 
 public interface ModelDao extends JpaRepository<Model, Integer>, ModelDaoExtended{
 	
-	
+	Model findByName(String name);
 }
