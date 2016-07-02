@@ -58,7 +58,7 @@
 								<td>${model.version}</td>
 								<td>${model.description}</td>
 								<td><a
-									href="<c:url value='/administration-delete-model/${model.id}' />">Delete »</a></td>
+									href="<c:url value='/administration/delete-model/${model.id}' />">Delete »</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

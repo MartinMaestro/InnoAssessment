@@ -62,7 +62,8 @@ public class AdministrationProductPresenter {
 				model.addAttribute("productList", productController.showProducts());
 				return PATH + "/administrationProductList";
 			} else {
-				bindingResult.rejectValue("name", "error.product", "Product ya existente");
+				model.addAttribute("product", product);
+				bindingResult.rejectValue("name", "error.product", "Exist Product");
 			}
 		}
 		return PATH + "/administrationProductCreate";

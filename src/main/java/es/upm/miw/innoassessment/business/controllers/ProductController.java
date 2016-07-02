@@ -38,7 +38,14 @@ public class ProductController {
 	}
 
 	public boolean createProduct(String name, String description, String provider) {
+		if (exist(name)) {
+			return false;
+		}
 		productDao.saveAndFlush(new Product(name, description, provider));
 		return true;
+	}
+
+	public boolean exist(String name) {
+		return productDao.findByName(name) != null;
 	}
 }

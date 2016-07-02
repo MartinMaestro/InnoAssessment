@@ -15,6 +15,7 @@
 <!-- Bootstrap core CSS -->
 <link href='/innoassessment/static/modernStyle/bootstrap.min.css'
 	rel="stylesheet">
+<style>.error {	color: red;}</style>
 <link href='/innoassessment/static/css/estilo.css' rel="stylesheet">
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

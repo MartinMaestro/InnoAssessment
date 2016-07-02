@@ -69,7 +69,8 @@ public class AdministrationModelItemPresenter {
 				model.addAttribute("modelList", modelController.showModels());
 				return PATH +"/administrationModelList";
 			} else {
-				bindingResult.rejectValue("name", "error.model", "Model ya existente");
+				model.addAttribute("model", modelw);
+				bindingResult.rejectValue("name", "error.model", "Exist Model");
 			}
 		}
 		return PATH +"/administrationModelCreate";

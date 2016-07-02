@@ -41,17 +41,12 @@ public class DimensionController {
 		return dimensionWrapperList;
 	}
 
-	public boolean createDimension(String name)
-	// throws AlreadyExistDimensionException
-	{
+	public boolean createDimension(String name) {
 		if (exist(name)) {
 			return false;
-			// throw new AlreadyExistDimensionException();
-		} else {
-
-			dimensionDao.saveAndFlush(new Dimension(name));
-			return true;
 		}
+		dimensionDao.saveAndFlush(new Dimension(name));
+		return true;
 	}
 
 	public boolean deleteDimension(int id) {

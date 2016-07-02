@@ -32,6 +32,9 @@ public class ModelController {
 	
 
 	public boolean createModel(String name, String year, String version, String description) {
+		if (exist(name)) {
+			return false;
+		}
 		modelDao.saveAndFlush(new Model(name, year, version, description));
 		return true;
 	}
@@ -39,5 +42,9 @@ public class ModelController {
 	public boolean deleteModel(int id) {
 		modelDao.delete(id);
 		return true;
+	}
+	
+	public boolean exist(String name) {
+		return modelDao.findByName(name) != null;
 	}
 }

@@ -54,9 +54,8 @@ public class AdministrationDimensionFactorPresenter {
 				model.addAttribute("dimensionList", dimensionController.showDimensions());
 				return PATH + "/administrationDimensionList";
 			} else {
-				System.out.println("------ errror dimension");
 				model.addAttribute("dimension", dimension);
-				bindingResult.rejectValue("name", "error.dimension", "Dimension ya existente");
+				bindingResult.rejectValue("name", "error.dimension", "Exist dimension");
 			}
 		}
 		return PATH + "/administrationDimensionCreate";
@@ -75,6 +74,7 @@ public class AdministrationDimensionFactorPresenter {
 				model.addAttribute("factorList", factorController.showFactors());
 				return PATH + "/administrationFactorList";
 			} else {
+				model.addAttribute("factor", factor);
 				bindingResult.rejectValue("name", "error.factor", "Exist factor");
 			}
 		}
