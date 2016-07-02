@@ -1,25 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Error</title>
+<%@ page isErrorPage="true" import="java.io.*" contentType="text/html"%>
+  <title>We're sorry, but something went wrong (500)</title>
+	<style type="text/css">
+		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+		div.dialog {
+			width: 25em;
+			padding: 0 4em;
+			margin: 4em auto 0 auto;
+			border: 1px solid #ccc;
+			border-right-color: #999;
+			border-bottom-color: #999;
+		}
+		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+	</style>
 </head>
+
 <body>
-<%@ page isErrorPage="true" import="java.io.*" contentType="text/plain"%>
+  <!-- This file lives in public/500.html -->
+  <div class="dialog">
+    <h1>We're sorry, but something went wrong.</h1>
+    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+  </div>
+
+<br>
 
 Message:
-<%=exception.getMessage()%>
-
-StackTrace:
-<%
-	StringWriter stringWriter = new StringWriter();
-	PrintWriter printWriter = new PrintWriter(stringWriter);
-	exception.printStackTrace(printWriter);
-	out.println(stringWriter);
-	printWriter.close();
-	stringWriter.close();
-%>
+<font color="red">Error: <%=exception.getMessage() %></font><br>
 </body>
 </html>
