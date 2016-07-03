@@ -152,7 +152,7 @@
             	}; 
         </script>
 	<form:form id = 'lineValuesForm' action = '/innoassessment/modern/assessment-product-update' method = 'post' modelAttribute="listLineValue">
-		<div id='editDiv' class='edit' style='display: none;'>
+		<div id='editDiv' class='edit2' style='display: none;'>
                 <fieldset style='margin: 0px;'>
                     <legend>Editing</legend>
 				    	<c:forEach items="${dimensionList}" var="dimension" varStatus="status">

@@ -76,7 +76,7 @@ function reloadPage(param){
 		</tbody>
 	</table>
 	<c:if test="${!empty param.modelId && param.modelId > 0}">
-	<div align='center'><a href="<c:url value='/assessment-questionnaire-search'/>">Reload Models</a></div>
+	<div align='center'><a href="<c:url value='/modern/assessment-questionnaire-search'/>">Reload Models</a></div>
     <H3 align='center'>Questionnaires</H3>
 	<table border="1" align='center'>
 		<thead>
@@ -100,7 +100,7 @@ function reloadPage(param){
 	</table>
 	
 	<c:if test="${!empty param.questionnaireId && param.questionnaireId > 0}">
-	<div align='center'><a href="<c:url value='/assessment-questionnaire-search'>
+	<div align='center'><a href="<c:url value='/modern/assessment-questionnaire-search'>
 				    	<c:param name="modelId" value="${param.modelId}"/>
 				    </c:url>">Reload Questionnaires</a></div>
     <H3 align='center'>Assessments</H3>
@@ -119,7 +119,7 @@ function reloadPage(param){
 					<td>${evaluation.id}</td>
 				    <td>${evaluation.productVersion.product.name}</td>	
 				    <td>${evaluation.creationTimeStamp}</td>	
-				    <td><a href="<c:url value='/assessment-product-view'>
+				    <td><a href="<c:url value='/modern/assessment-product-view'>
 				    	<c:param name="evaluationId" value="${evaluation.id}"/>
 				    </c:url>">Show Assessment</a></td>		    				
 				</tr>
