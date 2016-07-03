@@ -1,16 +1,12 @@
 package es.upm.miw.innoassessment.data.daos;
 
 import org.junit.runners.MethodSorters;
-
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Calendar;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +20,7 @@ import es.upm.miw.innoassessment.data.entities.Dimension;
 import es.upm.miw.innoassessment.data.entities.Factor;
 import es.upm.miw.innoassessment.data.entities.Model;
 import es.upm.miw.innoassessment.data.entities.ModelItem;
-import es.upm.miw.innoassessment.data.entities.Product;
-import es.upm.miw.innoassessment.data.entities.ProductVersion;
+import es.upm.miw.innoassessment.data.services.DataService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenceConfig.class, TestsPersistenceConfig.class })
@@ -44,6 +39,14 @@ public class ModelItemDaoIT {
 	@Autowired
 	private FactorDao factorDao;
 
+	@Autowired
+	private DataService dataService;
+	
+	@Before
+	public void deleteAllBefore(){
+		dataService.deleteAll();
+	}
+	
 	@Test
 	public void Test01_CreateModelItem() {
 		Model model = new Model("testModelDao", "2016", "v.1.0", "demo model");
@@ -75,55 +78,30 @@ public class ModelItemDaoIT {
 		modelItemDao.saveAndFlush(modelItem);
 		ModelItem modelItemFind = modelItemDao.findByDimension(dimension).get(0);
 		assertEquals(modelItemFind.getDimension().getId(),dimension.getId());
-		modelItemDao.delete(modelItem);	
 	}
 
 	@Test
 	public void Test03_DeleteModel() {
-		Model model = modelDao.findByName("testModelDao");
+		Model model = new Model("testModelDao", "2016", "v.1.0", "demo model");
+		model = modelDao.saveAndFlush(model);
 		modelDao.delete(model);
 		assertNull(modelDao.findByName("testModelDao"));
 	}
 
-	/*
-	 * @Test public void Test01_FindAnyProduct() {
-	 * assertNotNull(productDao.findOne(1)); }
-	 * 
-	 * @Test public void Test02_FindByName() { Product product =
-	 * productDao.findByName("testProductDao"); assertEquals("testProductDao",
-	 * product.getName()); }
-	 * 
-	 * @Test public void Test03_AddProductVersion() { Product product =
-	 * productDao.findByName("testProductDao"); assertEquals("testProductDao",
-	 * product.getName()); ProductVersion productVersion = new
-	 * ProductVersion("testProductVersion", product);
-	 * productVersionDao.saveAndFlush(productVersion);
-	 * assertTrue(productVersion.getName() == "testProductVersion");
-	 * assertEquals(1, productVersionDao.findByProduct(product).size()); }
-	 * 
-	 * @Test public void Test04_FindProductVersion() { Product product =
-	 * productDao.findByName("testProductDao"); assertEquals("testProductDao",
-	 * product.getName()); assertEquals(1,
-	 * productVersionDao.findByProduct(product).size()); List<ProductVersion>
-	 * listProductVersion = productVersionDao.findByProduct(product);
-	 * assertEquals(1, listProductVersion.size()); }
-	 * 
-	 * @Test public void Test05_DeleteProductVersion() { Product product =
-	 * productDao.findByName("testProductDao"); assertEquals(1,
-	 * productVersionDao.findByProduct(product).size()); List<ProductVersion>
-	 * listProductVersion = productVersionDao.findByProduct(product);
-	 * ProductVersion productVersion = listProductVersion.get(0);
-	 * assertEquals("testProductDao", productVersion.getProduct().getName());
-	 * productVersionDao.delete(productVersion); productVersionDao.flush(); //
-	 * assertNull(productDao.findByName("testProductDao")); }
-	 */
 	@Test
 	public void Test06_DeleteModelItem() {
-		/*
-		 * ModelItem modelItem = modelItemDao. Product product =
-		 * productDao.findByName("testProductDao");
-		 * assertEquals("testProductDao", product.getName());
-		 * productDao.delete(product);
-		 */
+		Model model = new Model("testModelDao", "2016", "v.1.0", "demo model");
+		model = modelDao.saveAndFlush(model);
+		Dimension dimension = new Dimension("testDimensionDao2");
+		dimensionDao.saveAndFlush(dimension);
+		Factor factor = new Factor("testFactorDao2", "test Factor");
+		factorDao.saveAndFlush(factor);
+		ModelItem modelItem = new ModelItem(model, dimension, factor, "Positive", 0.1f, "demo model Item",
+				"help model Item");
+		modelItem = modelItemDao.saveAndFlush(modelItem);
+		assertNotNull(modelItem);
+		modelItemDao.deleteAll();
+		modelItemDao.flush();
+		assertNull(modelItemDao.findOne(modelItem.getId()));
 	}
 }

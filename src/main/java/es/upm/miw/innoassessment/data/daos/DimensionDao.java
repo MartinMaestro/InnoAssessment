@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import es.upm.miw.innoassessment.data.entities.Dimension;
 
-public interface DimensionDao extends JpaRepository<Dimension, Integer>, DimensionDaoExtended {
+public interface DimensionDao extends JpaRepository<Dimension, Integer> {
 
 	List<Dimension> findAllByOrderByIdAsc();
 

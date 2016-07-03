@@ -7,7 +7,7 @@ import es.upm.miw.innoassessment.data.entities.AssessmentLine;
 import es.upm.miw.innoassessment.data.entities.ModelItem;
 import es.upm.miw.innoassessment.data.entities.Questionnaire;
 
-public interface AssessmentLineDao extends JpaRepository<AssessmentLine, Integer>, AssessmentLineDaoExtended {
+public interface AssessmentLineDao extends JpaRepository<AssessmentLine, Integer> {
 
 	List<AssessmentLine> findByModelItem(ModelItem modelItem);
 

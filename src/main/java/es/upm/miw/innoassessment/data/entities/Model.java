@@ -2,7 +2,12 @@ package es.upm.miw.innoassessment.data.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
@@ -22,6 +27,10 @@ public class Model {
 
 	@Column(nullable = false)
 	private String description;
+	
+	@OneToMany(cascade=CascadeType.ALL, 
+	        mappedBy = "model", orphanRemoval = true)
+	private List<ModelItem> modelItems;
 
 	public Model() {
 	}
@@ -74,6 +83,14 @@ public class Model {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<ModelItem> getModelItems() {
+		return modelItems;
+	}
+
+	public void setModelItems(List<ModelItem> modelItems) {
+		this.modelItems = modelItems;
 	}
 
 }

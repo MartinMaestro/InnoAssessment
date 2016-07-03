@@ -5,6 +5,5 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ProductDaoIT.class, })
-public class AllDaosIT {
-}
+@SuiteClasses({ ProductDaoIT.class, ModelDaoIT.class, ModelItemDaoIT.class})
+public class AllDaosIT {}
