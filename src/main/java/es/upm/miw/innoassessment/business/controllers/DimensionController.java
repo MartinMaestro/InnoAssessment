@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import es.upm.miw.innoassessment.business.api.exceptions.AlreadyExistDimensionException;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
 import es.upm.miw.innoassessment.data.daos.DimensionDao;
 import es.upm.miw.innoassessment.data.entities.Dimension;

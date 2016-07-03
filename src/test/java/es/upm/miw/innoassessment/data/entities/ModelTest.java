@@ -7,8 +7,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import es.upm.miw.innoassessment.data.entities.Product;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class ModelTest {
