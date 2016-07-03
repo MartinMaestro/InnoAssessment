@@ -284,8 +284,6 @@ public class Presenter {
 		productVersionController.deleteProductVersion(id);
 		model.addAttribute("productVersionList", productVersionController.showProductVersions());
 		return "jsp/list/productVersionList";
-	}
-
-	
+	}	
 
 }

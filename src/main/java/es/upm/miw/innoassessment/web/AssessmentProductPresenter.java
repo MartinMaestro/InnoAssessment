@@ -66,9 +66,63 @@ public class AssessmentProductPresenter {
 	private QuestionnaireController questionnaireController;
 
 	@RequestMapping("/assessment-product-search")
-	public ModelAndView listAssessmentByProduct(Model model, @RequestParam(value="productId", required=false, defaultValue="0") int productId
-			, @RequestParam(value="productVersionId", required=false, defaultValue="0") int productVersionId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductSearch");
+	public ModelAndView listAssessmentByProductClassic(Model model, @RequestParam(value="productId", required=false, defaultValue="0") int productId
+			, @RequestParam(value="productVersionId", required=false, defaultValue="0") int productVersionId){
+		return listAssessmentByProduct(model, productId, productVersionId, "");
+	}
+
+	@RequestMapping("/modern/assessment-product-search")
+	public ModelAndView listAssessmentByProductModern(Model model, @RequestParam(value="productId", required=false, defaultValue="0") int productId
+			, @RequestParam(value="productVersionId", required=false, defaultValue="0") int productVersionId){
+		return listAssessmentByProduct(model, productId, productVersionId, "/public");		
+	}
+
+	@RequestMapping("/assessment-questionnaire-search")
+	public ModelAndView listAssessmentByQuestionnaireClassic(Model model, @RequestParam(value="modelId", required=false, defaultValue="0") int modelId
+			, @RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId) {
+		return listAssessmentByQuestionnaire(model, modelId, questionnaireId, "");
+	}
+
+	@RequestMapping("/modern/assessment-questionnaire-search")
+	public ModelAndView listAssessmentByQuestionnaireModern(Model model, @RequestParam(value="modelId", required=false, defaultValue="0") int modelId
+			, @RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId) {
+		return listAssessmentByQuestionnaire(model, modelId, questionnaireId, "/public");
+	}
+
+	@RequestMapping("/assessment-product-view")
+	public ModelAndView showAssessmentLineClassic(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		return showAssessmentLine(model, evaluationId, "");
+	}
+
+	@RequestMapping("/modern/assessment-product-view")
+	public ModelAndView showAssessmentLineModern(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		return showAssessmentLine(model, evaluationId, "/public");
+	}
+
+	@RequestMapping(value = {"/assessment-product-update" }, method = RequestMethod.POST)
+	public RedirectView updateAssessmentProductClassic(@ModelAttribute("listLineValue") ListLineValue listLineValue, BindingResult bindingResult,
+			Model model) {
+		return updateAssessmentProduct(listLineValue, bindingResult, model, "");
+	}
+
+	@RequestMapping(value = {"/modern/assessment-product-update" }, method = RequestMethod.POST)
+	public RedirectView updateAssessmentProductModern(@ModelAttribute("listLineValue") ListLineValue listLineValue, BindingResult bindingResult,
+			Model model) {
+		return updateAssessmentProduct(listLineValue, bindingResult, model, "/modern");
+	}
+
+	@RequestMapping("/assessment-product-chart")
+	public ModelAndView showAssessmentLineChartClassic(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		return showAssessmentLineChart(model, evaluationId, "");
+	}
+
+	@RequestMapping("/modern/assessment-product-chart")
+	public ModelAndView showAssessmentLineChartModern(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
+		return showAssessmentLineChart(model, evaluationId, "/public");
+	}
+	
+	private ModelAndView listAssessmentByProduct(Model model, int productId, int productVersionId, String route) {
+		ModelAndView modelAndView = new ModelAndView("jsp" + route + "/assessment-product-visualization/assessmentProductSearch");
 		if(productId == 0){
 			modelAndView.addObject("productList", productController.showProducts());
 		} else if(productVersionId == 0){
@@ -91,10 +145,8 @@ public class AssessmentProductPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping("/assessment-questionnaire-search")
-	public ModelAndView listAssessmentByQuestionnaire(Model model, @RequestParam(value="modelId", required=false, defaultValue="0") int modelId
-			, @RequestParam(value="questionnaireId", required=false, defaultValue="0") int questionnaireId) {
-		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentQuestionnaireSearch");
+	private ModelAndView listAssessmentByQuestionnaire(Model model, int modelId, int questionnaireId, String route) {
+		ModelAndView modelAndView = new ModelAndView("jsp" + route + "/assessment-product-visualization/assessmentQuestionnaireSearch");
 		if(modelId == 0){
 			modelAndView.addObject("modelList", modelController.showModels());
 		} else if(questionnaireId == 0){
@@ -117,9 +169,8 @@ public class AssessmentProductPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping("/assessment-product-view")
-	public ModelAndView showAssessmentLine(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
-		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductView");
+	private ModelAndView showAssessmentLine(Model model, int evaluationId, String route){
+		ModelAndView modelAndView = new ModelAndView("jsp" + route + "/assessment-product-visualization/assessmentProductView");
 		Evaluation evaluation = evaluationController.findOne(evaluationId);
 		modelAndView.addObject("evaluation", evaluation);
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));
@@ -135,9 +186,7 @@ public class AssessmentProductPresenter {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = {"/assessment-product-update" }, method = RequestMethod.POST)
-	public RedirectView updateAssessmentProduct(@ModelAttribute("listLineValue") ListLineValue listLineValue, BindingResult bindingResult,
-			Model model) {
+	private RedirectView updateAssessmentProduct(ListLineValue listLineValue, BindingResult bindingResult, Model model, String route) {
 		ArrayList<LineValue> lineValues = new ArrayList<LineValue>();
 		for (LineValueWrapper lineValueWrapper : listLineValue.getLineValueWrapperList()) {
 			LineValue lineValue = new LineValue(new Evaluation(lineValueWrapper.getEvaluationId()), new AssessmentLine(lineValueWrapper.getAssessmentLineId()), ValueName.getByName(lineValueWrapper.getRadioValue()), 0,
@@ -147,15 +196,14 @@ public class AssessmentProductPresenter {
 		}
 		lineValueController.saveLineValues(lineValues);
 		
-		RedirectView redirectView = new RedirectView("/innoassessment/assessment-product-view");
+		RedirectView redirectView = new RedirectView("/innoassessment" + route + "/assessment-product-view");
 		redirectView.addStaticAttribute("evaluationId", lineValues.get(0).getEvaluation().getId());
 		
 		return redirectView;
 	}
 
-	@RequestMapping("/assessment-product-chart")
-	public ModelAndView showAssessmentLineChart(Model model, @RequestParam(value="evaluationId", required=false, defaultValue="0") int evaluationId){
-		ModelAndView modelAndView = new ModelAndView("jsp/assessment-product-visualization/assessmentProductChart");
+	private ModelAndView showAssessmentLineChart(Model model, int evaluationId, String route){
+		ModelAndView modelAndView = new ModelAndView("jsp" + route + "/assessment-product-visualization/assessmentProductChart");
 		Evaluation evaluation = evaluationController.findOne(evaluationId);
 		modelAndView.addObject("evaluation", evaluation);
 		modelAndView.addObject("dimensionList", dimensionController.showDimensionsByQuestionnaireId(evaluation.getQuestionnaire().getId()));

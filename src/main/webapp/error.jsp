@@ -2,6 +2,8 @@
 <html>
 <head>
 <%@ page isErrorPage="true" import="java.io.*" contentType="text/html"%>
+<link rel="shortcut icon"
+ href="<c:url value='/static/images/vitruvio.png' />"/>
   <title>We're sorry, but something went wrong (500)</title>
 	<style type="text/css">
 		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
