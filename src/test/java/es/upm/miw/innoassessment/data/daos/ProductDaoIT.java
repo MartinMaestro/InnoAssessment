@@ -26,7 +26,7 @@ import es.upm.miw.innoassessment.data.entities.ProductVersion;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenceConfig.class, TestsPersistenceConfig.class })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ProductDaoITest {
+public class ProductDaoIT {
 
 	@Autowired
 	private ProductDao productDao;

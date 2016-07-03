@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.upm.miw.innoassessment.business.api.exceptions.AlreadyExistDimensionException;
 import es.upm.miw.innoassessment.business.controllers.DimensionController;
 import es.upm.miw.innoassessment.business.controllers.FactorController;
 import es.upm.miw.innoassessment.business.wrapper.DimensionWrapper;
