@@ -65,16 +65,7 @@
 			</tbody>
 				</table>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12" align="center">
-				<p>
-					<a class="btn btn-primary"
-						href="/innoassessment/administration/create-dimension"
-						role="button">Create Dimension »</a>
-				</p>
-			</div>			
-		</div>
+		</div>		
 		<%@ include file="../../common/footer.jsp" %>  
 	</div>
 	<!-- /container -->
