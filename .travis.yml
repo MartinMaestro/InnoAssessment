@@ -2,16 +2,16 @@ language: java
 
 jdk:
   - oraclejdk8
-  
+
 branches:
   only:
     - master
     - develop
-    
+
 notifications:
   email:
     recipients:
       - miriam.sanz.pascua@alumnos.upm.es
       - gonzalo.gutierrezm@alumnos.upm.es
-      
-script: mvn verify
+
+script: mvn verify -Denvironment.type=production
