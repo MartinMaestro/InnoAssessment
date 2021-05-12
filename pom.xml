@@ -29,7 +29,7 @@
 		<!-- Web. Api Rest; security -->
         <javax.servlet.api.version>3.0.1</javax.servlet.api.version>
 		<spring.version>[4.3.17,)</spring.version>
-		<spring.security.version>4.0.1.RELEASE</spring.security.version>
+		<spring.security.version>5.2.10.RELEASE</spring.security.version>
         <!-- Api Rest. JSON -->
         <jackson.databind.version>[2.9.9.1,)</jackson.databind.version>
         <!-- Web. Validation -->
